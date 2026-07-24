@@ -113,8 +113,8 @@ export default function CimReviewCanvasView({ state, bottomInset = 0, onAccept }
               </Typography>
             ))}
           </Box>
-          {CIM_REVIEW_ROWS.map((row) => (
-            <ReviewRow key={row.id} row={row} />
+          {CIM_REVIEW_ROWS.map((row, index) => (
+            <ReviewRow key={row.id} row={row} staggerIndex={index} />
           ))}
         </Box>
       </Box>
@@ -204,7 +204,7 @@ const FIT_STYLES: Record<CimFit, { bg: string; fg: string }> = {
   flag: { bg: ruby[50], fg: ruby[800] },
 };
 
-function ReviewRow({ row }: { row: CimReviewRow }) {
+function ReviewRow({ row, staggerIndex }: { row: CimReviewRow; staggerIndex: number }) {
   const fit = FIT_STYLES[row.fit];
   return (
     <Box
@@ -219,6 +219,18 @@ function ReviewRow({ row }: { row: CimReviewRow }) {
         borderColor: 'divider',
         '&:last-of-type': { borderBottom: 0 },
         '&:hover': { bgcolor: 'action.hover' },
+        // Output rows stream in on the AX 90ms stagger.
+        opacity: 0,
+        animation: 'reviewRowEnter 220ms cubic-bezier(0.2, 0, 0, 1) forwards',
+        animationDelay: `${staggerIndex * 90}ms`,
+        '@keyframes reviewRowEnter': {
+          from: { opacity: 0, transform: 'translateY(4px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        '@media (prefers-reduced-motion: reduce)': {
+          animation: 'none',
+          opacity: 1,
+        },
       }}
     >
       <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: 'text.primary' }}>{row.criterion}</Typography>

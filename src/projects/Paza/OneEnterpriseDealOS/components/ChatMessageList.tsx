@@ -132,6 +132,7 @@ export default function ChatMessageList({
                 <CimWorkLog
                   steps={CIM_WORK_STEPS}
                   completedCount={live ? state.cimRun.workStepIndex : CIM_WORK_STEPS.length}
+                  live={live}
                 />
               </Stack>
             </MessageShell>
@@ -166,6 +167,7 @@ export default function ChatMessageList({
                 <CimWorkLog
                   steps={CIM_EXEC_STEPS}
                   completedCount={live ? state.cimRun.execStepIndex : CIM_EXEC_STEPS.length}
+                  live={live}
                 />
               </Stack>
             </MessageShell>
@@ -359,7 +361,18 @@ function MessageShell({
       spacing={1.25}
       justifyContent={isUser ? 'flex-end' : 'flex-start'}
       alignItems="flex-start"
-      sx={{ width: '100%' }}
+      sx={{
+        width: '100%',
+        // AX entrance: fade + 8px rise at dur-base / ease-standard.
+        animation: 'messageEnter 220ms cubic-bezier(0.2, 0, 0, 1)',
+        '@keyframes messageEnter': {
+          from: { opacity: 0, transform: 'translateY(8px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        '@media (prefers-reduced-motion: reduce)': {
+          animation: 'none',
+        },
+      }}
     >
       <Box
         sx={{

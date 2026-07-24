@@ -24,6 +24,15 @@ export default function CimPlanCard({ status, onApprove }: Props) {
         borderRadius: 2,
         p: 2,
         bgcolor: 'background.paper',
+        // AX plan arrival: scale .98→1 + fade at dur-base — the "aha", let it land.
+        animation: 'planCardEnter 220ms cubic-bezier(0.2, 0, 0, 1)',
+        '@keyframes planCardEnter': {
+          from: { opacity: 0, transform: 'scale(0.98)' },
+          to: { opacity: 1, transform: 'scale(1)' },
+        },
+        '@media (prefers-reduced-motion: reduce)': {
+          animation: 'none',
+        },
       }}
     >
       <Stack spacing={0.25}>
