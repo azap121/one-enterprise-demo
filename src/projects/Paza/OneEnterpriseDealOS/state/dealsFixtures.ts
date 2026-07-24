@@ -124,6 +124,15 @@ export const CALDERA_SCRIPTED = {
   // "What changed this week?" — short scripted digest referencing the 3 targets + 1 new signal.
   whatsChanged:
     'Since last week on Project Caldera:\n• GulfAir Mechanical — seller-intent score ticked up to 68 (owner transition signal).\n• Lone Star Climate Systems — new leadership-succession filing detected.\n• Hill Country Air — no material change.\n• 1 new signal: a TX HVAC roll-up comparable closed at ~7.5x EBITDA.',
+  // Generic Merlin-mode deal reply for unscripted prompts (Phase 3).
+  genericDealReply:
+    'I can work across Project Caldera — the carried search, the three targets, documents, and signals. Anything I draft holds for your approval before it lands on the deal.',
+  // Generic Normal-mode reply — conversation only, never writes to the deal.
+  genericNormalReply:
+    'Happy to talk it through — in Normal mode this stays a conversation. Switch to Merlin (⌘M) when you want me to run Agents and land work on the deal.',
+  // A non-CIM Agent was staged and submitted: honest demo stub.
+  otherAgentReply:
+    'Staged and holding for your approval. In this prototype the CIM Screen agent is wired end-to-end — run that one to see the full plan → glass-box → cited-output → commit loop.',
 } as const;
 
 // Deal Overview canvas view — the "where was I" answer.
@@ -241,10 +250,33 @@ export const CALDERA_PLAYBOOKS: DealPlaybook[] = [
 ];
 
 export const CALDERA_RAIL_COPY = {
+  // Two-tier vocabulary (doc 09, LOCKED): the assistant is "Blueflame AI"; "Agents"
+  // are the countable library items (blueprints + push-button skills folded together,
+  // outcome-named). No skill-vs-blueprint badge — provenance + status chips only.
   agentsHeader: 'Agents',
-  playbooksHeader: 'Playbooks',
-  allPlaybooks: 'All playbooks',
+  allAgents: 'All agents',
+  seatToggleLabel: 'Seat',
 } as const;
+
+// The unified Agent library, grouped by deal-lifecycle stage (doc 09:
+// Source → Evaluate → Diligence → Report → Monitor; empty stages omitted).
+// Governed runners (status chips) and runnable Agents live in the SAME library.
+export interface CalderaAgentGroup {
+  stage: string;
+  agentIds: string[]; // governed runner cards (from CALDERA_AGENTS)
+  playbookIds: string[]; // runnable Agent cards (from CALDERA_PLAYBOOKS)
+}
+
+export const CALDERA_AGENT_GROUPS: readonly CalderaAgentGroup[] = [
+  { stage: 'Source', agentIds: ['signal-monitor'], playbookIds: ['target-outreach-drafter'] },
+  { stage: 'Evaluate', agentIds: ['research-agent'], playbookIds: ['pe-cim-screen'] },
+  { stage: 'Diligence', agentIds: [], playbookIds: ['diligence-qa-tracker'] },
+  { stage: 'Monitor', agentIds: [], playbookIds: ['weekly-signal-digest'] },
+];
+
+// Deal-scoped composer placeholder — the assistant is Blueflame AI in the deal.
+export const CALDERA_COMPOSER_PLACEHOLDER =
+  'Ask Blueflame AI about this deal, or run an Agent — work holds for your approval…';
 
 // Deal Context markdown (A3 Blueflame Deal template — Deal Metadata / Transaction Overview).
 export const CALDERA_CONTEXT_MARKDOWN = `# 1. Deal Metadata

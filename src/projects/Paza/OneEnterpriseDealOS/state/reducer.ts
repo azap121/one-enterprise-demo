@@ -5,6 +5,14 @@ import { FILING_COPY, filingScenario, filingSaveSteps, filingSteps } from './fil
 import { planFormationSteps, recommendationSteps, saveSteps } from './timing';
 import { SOURCING_COMPANIES, SOURCING_COPY, SOURCING_QUICK_SUGGESTIONS } from './sourcingScenario';
 import { CALDERA_OPENED_COPY, CALDERA_SCRIPTED } from './dealsFixtures';
+import {
+  CIM_EXEC_STEPS,
+  CIM_RUN_COPY,
+  CIM_WORK_STEPS,
+  GRATA_SIMILAR,
+  INITIAL_CIM_RUN,
+} from './cimRunScenario';
+import { DEFAULT_AUTONOMY_DIAL, DEFAULT_MODEL_ID, isPlanGated } from './merlinFixtures';
 import { createDefaultValidationPlan } from './validationPlan';
 import type { ValidationPlanPhase, WorkspaceAction, WorkspaceState } from './types';
 import {
@@ -47,6 +55,13 @@ export const initialState: WorkspaceState = {
   sourcingNarrowed: false,
   sourcingSelectedIds: [],
   dealId: null,
+  cimRun: INITIAL_CIM_RUN,
+  cimAcceptedOnce: false,
+  grataSimilarRunning: false,
+  merlinMode: false,
+  autonomyDial: DEFAULT_AUTONOMY_DIAL,
+  normalModelId: DEFAULT_MODEL_ID,
+  webSearch: false,
 };
 
 // Scripted reply for the 'Stage the client drop' card. Synthetic Aldgate fixture data,
@@ -564,6 +579,31 @@ export function reducer(state: WorkspaceState, action: WorkspaceAction): Workspa
     case 'CHAT_PROMPT_SUBMITTED': {
       const prompt = action.prompt.trim();
       if (!prompt) return state;
+      // ── Deal workspace (Phase 3): the run engine keys off the queued playbook id ──
+      if (state.dealId != null) {
+        const runIdle = state.cimRun.phase === 'idle' || state.cimRun.phase === 'accepted';
+        if (state.merlinMode && state.cimRun.queuedPlaybookId === 'pe-cim-screen' && runIdle) {
+          return reducer(state, { type: 'RUN_CIM_SCREEN', prompt });
+        }
+        if (/@grata/i.test(prompt) && !state.grataSimilarRunning) {
+          return reducer(state, { type: 'RUN_GRATA_SIMILAR', prompt });
+        }
+        const dealReply = !state.merlinMode
+          ? CALDERA_SCRIPTED.genericNormalReply
+          : state.cimRun.queuedPlaybookId != null
+            ? CALDERA_SCRIPTED.otherAgentReply
+            : CALDERA_SCRIPTED.genericDealReply;
+        return {
+          ...state,
+          composerValue: '',
+          cimRun: { ...state.cimRun, queuedPlaybookId: null },
+          messages: [
+            ...state.messages.filter((message) => message.kind !== 'deal-empty'),
+            { id: `deal-user-${state.messages.length}`, role: 'user', kind: 'text', content: prompt },
+            { id: `deal-assistant-${state.messages.length}`, role: 'assistant', kind: 'text', content: dealReply },
+          ],
+        };
+      }
       const scriptedReply = getScriptedReply(prompt);
       return {
         ...state,
@@ -778,6 +818,232 @@ export function reducer(state: WorkspaceState, action: WorkspaceAction): Workspa
 
     case 'SET_COMPOSER':
       return { ...state, composerValue: action.value };
+
+    // ── CIM run (Phase 3) ──
+
+    case 'QUEUE_PLAYBOOK':
+      track('one_enterprise.agent.queue', { playbook: action.playbookId });
+      // Clicking an Agent card is delegating work → auto-switch into Merlin mode.
+      return {
+        ...state,
+        merlinMode: true,
+        composerValue: action.prompt,
+        cimRun: { ...state.cimRun, queuedPlaybookId: action.playbookId },
+      };
+
+    case 'RUN_CIM_SCREEN': {
+      const planGated = isPlanGated(state.autonomyDial);
+      track('one_enterprise.cim_run.start', { dial: state.autonomyDial });
+      return {
+        ...state,
+        composerValue: '',
+        cimRun: { phase: 'working', workStepIndex: 0, execStepIndex: 0, queuedPlaybookId: null },
+        messages: [
+          // Freeze the previous run's cards — a rerun must not resurrect old gates.
+          ...state.messages
+            .filter((message) => message.kind !== 'deal-empty')
+            .map((message) =>
+              message.kind === 'cim-plan'
+                ? { ...message, runMeta: { ...message.runMeta, done: true } }
+                : message
+            ),
+          { id: `cim-user-${state.messages.length}`, role: 'user', kind: 'text', content: action.prompt },
+          {
+            id: `cim-worklog-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'cim-worklog',
+            content: planGated ? CIM_RUN_COPY.workingIntro : CIM_RUN_COPY.workingIntroAutonomous,
+          },
+        ],
+      };
+    }
+
+    case 'CIM_WORK_STEP_DONE':
+      if (state.cimRun.phase !== 'working') return state;
+      return {
+        ...state,
+        cimRun: {
+          ...state.cimRun,
+          workStepIndex: Math.min(state.cimRun.workStepIndex + 1, CIM_WORK_STEPS.length),
+        },
+      };
+
+    case 'CIM_PLAN_READY': {
+      if (state.cimRun.phase !== 'working') return state;
+      // Plan-gated dials (Guide me / Plan first) stop at the plan card; autonomous
+      // dials (Draft ahead / Run it / Sandbox) skip the plan gate and run through —
+      // the commit gate still fires at the canvas.
+      if (isPlanGated(state.autonomyDial)) {
+        track('one_enterprise.cim_run.plan_ready');
+        return {
+          ...state,
+          cimRun: { ...state.cimRun, phase: 'plan-ready', workStepIndex: CIM_WORK_STEPS.length },
+          messages: [
+            ...state.messages,
+            {
+              id: `cim-plan-${state.messages.length}`,
+              role: 'assistant',
+              kind: 'cim-plan',
+              content: CIM_RUN_COPY.planSummary,
+            },
+          ],
+        };
+      }
+      track('one_enterprise.cim_run.plan_skipped', { dial: state.autonomyDial });
+      return {
+        ...state,
+        cimRun: { ...state.cimRun, phase: 'executing', workStepIndex: CIM_WORK_STEPS.length, execStepIndex: 0 },
+        messages: [
+          ...state.messages,
+          {
+            id: `cim-exec-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'cim-exec',
+            content: CIM_RUN_COPY.executingIntroAutonomous,
+          },
+        ],
+      };
+    }
+
+    case 'APPROVE_CIM_PLAN':
+      if (state.cimRun.phase !== 'plan-ready') return state;
+      track('one_enterprise.cim_run.plan_approved');
+      return {
+        ...state,
+        cimRun: { ...state.cimRun, phase: 'executing', execStepIndex: 0 },
+        messages: [
+          ...state.messages,
+          {
+            id: `cim-exec-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'cim-exec',
+            content: CIM_RUN_COPY.executingIntro,
+          },
+        ],
+      };
+
+    case 'CIM_EXEC_STEP_DONE':
+      if (state.cimRun.phase !== 'executing') return state;
+      return {
+        ...state,
+        cimRun: {
+          ...state.cimRun,
+          execStepIndex: Math.min(state.cimRun.execStepIndex + 1, CIM_EXEC_STEPS.length),
+        },
+      };
+
+    case 'CIM_OUTPUT_READY': {
+      if (state.cimRun.phase !== 'executing') return state;
+      track('one_enterprise.cim_run.output_ready', { dial: state.autonomyDial });
+      const outputSummary = state.autonomyDial === 'sandbox'
+        ? CIM_RUN_COPY.outputSummarySandbox
+        : isPlanGated(state.autonomyDial)
+          ? CIM_RUN_COPY.outputSummary
+          : CIM_RUN_COPY.outputSummaryAutonomous;
+      const auditLine = state.autonomyDial === 'sandbox'
+        ? CIM_RUN_COPY.auditSandbox
+        : state.autonomyDial === 'guide-me'
+          ? CIM_RUN_COPY.auditGuideMe
+          : state.autonomyDial === 'plan-first'
+            ? CIM_RUN_COPY.auditPlanFirst
+            : state.autonomyDial === 'run-it'
+              ? CIM_RUN_COPY.auditRunIt
+              : CIM_RUN_COPY.auditDraftAhead;
+      return {
+        ...state,
+        cimRun: { ...state.cimRun, phase: 'output-ready', execStepIndex: CIM_EXEC_STEPS.length },
+        messages: [
+          ...state.messages,
+          {
+            id: `cim-output-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'cim-output',
+            content: outputSummary,
+            // Stamped at run time — the audit trail can't be rewritten by later dial changes.
+            runMeta: { auditLine, sandbox: state.autonomyDial === 'sandbox' },
+          },
+        ],
+      };
+    }
+
+    case 'ACCEPT_CIM_OUTPUT': {
+      if (state.cimRun.phase !== 'output-ready') return state;
+      if (state.autonomyDial === 'sandbox') return state; // Sandbox can't touch the deal record.
+      track('one_enterprise.cim_run.accepted', { dial: state.autonomyDial });
+      const lastOutputId = [...state.messages].reverse().find((message) => message.kind === 'cim-output')?.id;
+      return {
+        ...state,
+        cimRun: { ...state.cimRun, phase: 'accepted' },
+        cimAcceptedOnce: true,
+        messages: [
+          ...state.messages.map((message) =>
+            message.id === lastOutputId
+              ? { ...message, runMeta: { ...message.runMeta, accepted: true } }
+              : message
+          ),
+          {
+            id: `cim-accepted-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'text',
+            content: isPlanGated(state.autonomyDial)
+              ? CIM_RUN_COPY.acceptedReply
+              : CIM_RUN_COPY.acceptedReplyAutonomous,
+          },
+        ],
+      };
+    }
+
+    case 'RUN_GRATA_SIMILAR':
+      track('one_enterprise.grata_similar.start');
+      return {
+        ...state,
+        composerValue: '',
+        grataSimilarRunning: true,
+        cimRun: { ...state.cimRun, queuedPlaybookId: null },
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'deal-empty'),
+          { id: `grata-user-${state.messages.length}`, role: 'user', kind: 'text', content: action.prompt },
+          {
+            id: `grata-thinking-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'grata-similar-thinking',
+            content: GRATA_SIMILAR.thinkingLabel,
+          },
+        ],
+      };
+
+    case 'GRATA_SIMILAR_READY':
+      if (!state.grataSimilarRunning) return state;
+      track('one_enterprise.grata_similar.ready', { count: GRATA_SIMILAR.companies.length });
+      return {
+        ...state,
+        grataSimilarRunning: false,
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'grata-similar-thinking'),
+          {
+            id: `grata-similar-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'grata-similar',
+            content: GRATA_SIMILAR.intro,
+          },
+        ],
+      };
+
+    // ── Merlin mode (Phase 3) ──
+
+    case 'TOGGLE_MERLIN_MODE':
+      track('one_enterprise.merlin.toggle', { to: state.merlinMode ? 'normal' : 'merlin' });
+      return { ...state, merlinMode: !state.merlinMode };
+
+    case 'SET_AUTONOMY_DIAL':
+      track('one_enterprise.merlin.dial', { dial: action.dial });
+      return { ...state, autonomyDial: action.dial };
+
+    case 'SET_NORMAL_MODEL':
+      return { ...state, normalModelId: action.modelId };
+
+    case 'TOGGLE_WEB_SEARCH':
+      return { ...state, webSearch: !state.webSearch };
 
     default:
       return state;

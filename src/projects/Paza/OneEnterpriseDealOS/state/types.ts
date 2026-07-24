@@ -1,4 +1,7 @@
 // apps/docs/app/prototypes/enhanced-index-v2/state/types.ts
+import type { CimRunState } from './cimRunScenario';
+import type { AutonomyDialId } from './merlinFixtures';
+
 export type PublishState = 'published' | 'partial' | 'not-published';
 export type NodeKind = 'folder' | 'file';
 export type DialogStage =
@@ -157,7 +160,16 @@ export type ChatMessageKind =
   | 'sourcing-interpreting'
   | 'sourcing-parse'
   // Deal workspace (Phase 2) — chat empty-state with headline + context strip + chips.
-  | 'deal-empty';
+  | 'deal-empty'
+  // CIM run (Phase 3) — glass-box analysis log, plan + approval gate, execution log,
+  // output card pointing at the cited review canvas.
+  | 'cim-worklog'
+  | 'cim-plan'
+  | 'cim-exec'
+  | 'cim-output'
+  // "@Grata find similar" mid-chat (Phase 3, federation beat).
+  | 'grata-similar-thinking'
+  | 'grata-similar';
 
 export interface ChatMessage {
   id: string;
@@ -165,6 +177,14 @@ export interface ChatMessage {
   kind: ChatMessageKind;
   content: string;
   citationFileIds?: string[];
+  // CIM run cards freeze their run-time facts here so a later rerun (possibly on a
+  // different autonomy dial) can't rewrite history — the audit stamp is the point.
+  runMeta?: {
+    auditLine?: string;
+    sandbox?: boolean;
+    accepted?: boolean;
+    done?: boolean;
+  };
 }
 
 export interface NodeOverride {
@@ -228,6 +248,22 @@ export interface WorkspaceState {
   // Set when the Caldera deal is open — distinguishes the deal workspace from the
   // Aldgate sourcing scenario (both use flow: 'sourcing'). null → not in a deal.
   dealId: string | null;
+  // ── CIM run (Phase 3) ── phase machine for the scripted playbook run.
+  cimRun: CimRunState;
+  // Sticky: a CIM screen has been accepted at least once this session — keeps the
+  // Overview echo (activity row + next step) alive across reruns.
+  cimAcceptedOnce: boolean;
+  // "@Grata find similar" scripted lookup in flight.
+  grataSimilarRunning: boolean;
+  // ── Merlin mode (Phase 3) ── two-mode assistant frame, sticky per session/space.
+  // false = Normal (chat, user-picked frontier model, never writes to the deal).
+  merlinMode: boolean;
+  // Autonomy dial — where the human signs. Branches the run engine: 1–2 plan-gated,
+  // 3–5 straight through to the commit gate (Sandbox can't commit at all).
+  autonomyDial: AutonomyDialId;
+  // Normal-mode frontier model choice + web toggle (roster fixture).
+  normalModelId: string;
+  webSearch: boolean;
 }
 
 export type WorkspaceAction =
@@ -291,4 +327,22 @@ export type WorkspaceAction =
   // "What changed this week?" — scripted weekly digest.
   | { type: 'DEAL_WHATS_CHANGED' }
   // Insert a prepared prompt into the composer (Playbook cards; don't auto-send).
-  | { type: 'SET_COMPOSER'; value: string };
+  | { type: 'SET_COMPOSER'; value: string }
+  // ── CIM run (Phase 3) ──
+  // Agent card click: stage the prompt in the composer AND remember the playbook id so
+  // the run engine keys off the id at submit time (never composer-string parsing).
+  | { type: 'QUEUE_PLAYBOOK'; playbookId: string; prompt: string }
+  | { type: 'RUN_CIM_SCREEN'; prompt: string }
+  | { type: 'CIM_WORK_STEP_DONE' }
+  | { type: 'CIM_PLAN_READY' }
+  | { type: 'APPROVE_CIM_PLAN' }
+  | { type: 'CIM_EXEC_STEP_DONE' }
+  | { type: 'CIM_OUTPUT_READY' }
+  | { type: 'ACCEPT_CIM_OUTPUT' }
+  | { type: 'RUN_GRATA_SIMILAR'; prompt: string }
+  | { type: 'GRATA_SIMILAR_READY' }
+  // ── Merlin mode (Phase 3) ──
+  | { type: 'TOGGLE_MERLIN_MODE' }
+  | { type: 'SET_AUTONOMY_DIAL'; dial: AutonomyDialId }
+  | { type: 'SET_NORMAL_MODEL'; modelId: string }
+  | { type: 'TOGGLE_WEB_SEARCH' };
