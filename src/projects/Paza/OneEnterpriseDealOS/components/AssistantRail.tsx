@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import type { ReactNode } from 'react';
 import { HaloButton } from '~/theme/halo/components';
+import DealRailSections from './DealRailSections';
 
 export interface RecentChat {
   id: string;
@@ -21,6 +22,10 @@ interface Props {
   onOpenSkills: () => void;
   onOpenTemplates: () => void;
   onSelectSession: (sessionId: string) => void;
+  // ── Deal workspace (Phase 2) — swaps Search/Skills/Templates for Agents/Playbooks ──
+  dealActive?: boolean;
+  onInsertPlaybookPrompt?: (prompt: string) => void;
+  onAllPlaybooks?: () => void;
 }
 
 export default function AssistantRail({
@@ -32,6 +37,9 @@ export default function AssistantRail({
   onOpenSkills,
   onOpenTemplates,
   onSelectSession,
+  dealActive = false,
+  onInsertPlaybookPrompt,
+  onAllPlaybooks,
 }: Props) {
   return (
     <Box
@@ -51,6 +59,7 @@ export default function AssistantRail({
           height: '100%',
           px: 2,
           py: 2,
+          overflowY: 'auto',
         }}
       >
         <HaloButton
@@ -59,10 +68,17 @@ export default function AssistantRail({
           fullWidth
           startIcon={<FontAwesomeIcon icon={faPlus} />}
           onClick={onNewChat}
-          sx={{ minHeight: 30, justifyContent: 'center', textTransform: 'none' }}
+          sx={{ minHeight: 30, justifyContent: 'center', textTransform: 'none', flexShrink: 0 }}
         >
           New chat
         </HaloButton>
+
+        {dealActive ? (
+          <DealRailSections
+            onInsertPrompt={onInsertPlaybookPrompt ?? (() => {})}
+            onAllPlaybooks={onAllPlaybooks ?? (() => {})}
+          />
+        ) : null}
 
         <AssistantHistoryContent
           activeSessionId={activeSessionId}
@@ -72,6 +88,7 @@ export default function AssistantRail({
           onOpenSkills={onOpenSkills}
           onOpenTemplates={onOpenTemplates}
           onSelectSession={onSelectSession}
+          hideNav={dealActive}
         />
       </Stack>
     </Box>
@@ -86,6 +103,7 @@ export function AssistantHistoryContent({
   onOpenSkills,
   onOpenTemplates,
   onSelectSession,
+  hideNav = false,
 }: {
   activeSessionId: string;
   activeMode: AssistantRailMode;
@@ -94,24 +112,27 @@ export function AssistantHistoryContent({
   onOpenSkills: () => void;
   onOpenTemplates: () => void;
   onSelectSession: (sessionId: string) => void;
+  hideNav?: boolean;
 }) {
   return (
     <>
-      <Stack spacing={0.25}>
-        <RailRow label="Search" icon={<FontAwesomeIcon icon={faMagnifyingGlass} />} onClick={onOpenSearch} />
-        <RailRow
-          label="Skills"
-          icon={<FontAwesomeIcon icon={faClipboardCheck} />}
-          active={activeMode === 'skills'}
-          onClick={onOpenSkills}
-        />
-        <RailRow
-          label="Templates"
-          icon={<FontAwesomeIcon icon={faBookOpenLines} />}
-          active={activeMode === 'templates'}
-          onClick={onOpenTemplates}
-        />
-      </Stack>
+      {hideNav ? null : (
+        <Stack spacing={0.25}>
+          <RailRow label="Search" icon={<FontAwesomeIcon icon={faMagnifyingGlass} />} onClick={onOpenSearch} />
+          <RailRow
+            label="Skills"
+            icon={<FontAwesomeIcon icon={faClipboardCheck} />}
+            active={activeMode === 'skills'}
+            onClick={onOpenSkills}
+          />
+          <RailRow
+            label="Templates"
+            icon={<FontAwesomeIcon icon={faBookOpenLines} />}
+            active={activeMode === 'templates'}
+            onClick={onOpenTemplates}
+          />
+        </Stack>
+      )}
 
       <RailSection label="Recents">
         {recentChats.map((chat) => (

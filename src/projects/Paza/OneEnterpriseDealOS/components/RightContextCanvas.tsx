@@ -4,11 +4,13 @@ import {
   faArrowDownLeftAndArrowUpRightToCenter,
   faArrowUpRightAndArrowDownLeftFromCenter,
   faBookOpenLines,
+  faChartMixed,
   faChevronDown,
   faChevronUp,
   faClipboardCheck,
   faFile,
   faFolderTree,
+  faListCheck,
   faMagnifyingGlass,
   faMessagesQuestion,
   faPlus,
@@ -30,6 +32,8 @@ import RightContextCanvasFileDetailView from './RightContextCanvasFileDetailView
 import RightContextCanvasFilesView from './RightContextCanvasFilesView';
 import RightContextCanvasQaView, { type QaFocusTarget } from './RightContextCanvasQaView';
 import RightContextCanvasSourcingView from './RightContextCanvasSourcingView';
+import DealOverviewCanvasView from './DealOverviewCanvasView';
+import IntelligenceCanvasView from './IntelligenceCanvasView';
 import ValidationPlanWorkspace from './ValidationPlanWorkspace';
 import { createAppliedFilesSource } from './appliedFilesSource';
 import { BRIEF_SOURCE_FILES } from '../state/briefScenario';
@@ -39,7 +43,7 @@ import { SOURCING_COPY } from '../state/sourcingScenario';
 import { selectCompositedTree } from '../state/reducer';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
-type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates' | 'sourcing-results';
+type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates' | 'sourcing-results' | 'deal-overview' | 'intelligence';
 type FilePreviewCanvasTab = `file:${string}`;
 
 export type RightCanvasTab = BaseRightCanvasTab | FilePreviewCanvasTab;
@@ -64,6 +68,9 @@ interface Props {
   onOpenQaItem: (itemId: string) => void;
   onPromoteSourcing?: () => void;
   motion?: RightCanvasMotion;
+  // ── Deal workspace (Phase 2) ──
+  intelligenceTargetId?: string | null;
+  onOpenTarget?: (targetId: string, targetName: string, wired: boolean) => void;
 }
 
 const FILE_PREVIEW_TAB_PREFIX = 'file:';
@@ -108,6 +115,16 @@ const RIGHT_CANVAS_TAB_META: Record<BaseRightCanvasTab, { label: string; icon: I
     label: 'Sourcing results',
     icon: faMagnifyingGlass,
     closeLabel: 'Remove Sourcing results tab',
+  },
+  'deal-overview': {
+    label: 'Overview',
+    icon: faListCheck,
+    closeLabel: 'Remove Overview tab',
+  },
+  intelligence: {
+    label: 'Intelligence',
+    icon: faChartMixed,
+    closeLabel: 'Remove Intelligence tab',
   },
 };
 
@@ -168,6 +185,8 @@ export default function RightContextCanvas({
   selectedQaItemId,
   onOpenQaItem,
   onPromoteSourcing,
+  intelligenceTargetId,
+  onOpenTarget,
   motion = 'idle',
 }: Props) {
   const [addMenuAnchorEl, setAddMenuAnchorEl] = useState<HTMLElement | null>(null);
@@ -438,6 +457,8 @@ export default function RightContextCanvas({
               qaFocusTarget={qaFocusTarget}
               selectedQaItemId={selectedQaItemId}
               onPromoteSourcing={onPromoteSourcing}
+              intelligenceTargetId={intelligenceTargetId}
+              onOpenTarget={onOpenTarget}
             />
           </Box>
           {expanded ? (
@@ -711,6 +732,8 @@ function RightCanvasTabContent({
   qaFocusTarget,
   selectedQaItemId,
   onPromoteSourcing,
+  intelligenceTargetId,
+  onOpenTarget,
 }: {
   activeTab: RightCanvasTab | null;
   state: WorkspaceState;
@@ -725,6 +748,8 @@ function RightCanvasTabContent({
   qaFocusTarget: QaFocusTarget | null;
   selectedQaItemId: string | null;
   onPromoteSourcing?: () => void;
+  intelligenceTargetId?: string | null;
+  onOpenTarget?: (targetId: string, targetName: string, wired: boolean) => void;
 }) {
   if (activeTab === 'validation-plan') {
     return (
@@ -800,6 +825,24 @@ function RightCanvasTabContent({
         bottomInset={bottomInset}
         onToggleRow={(companyId) => dispatch({ type: 'TOGGLE_SOURCING_ROW', companyId })}
         onPromote={onPromoteSourcing ?? (() => {})}
+      />
+    );
+  }
+
+  if (activeTab === 'deal-overview') {
+    return (
+      <DealOverviewCanvasView
+        bottomInset={bottomInset}
+        onOpenTarget={onOpenTarget ?? (() => {})}
+      />
+    );
+  }
+
+  if (activeTab === 'intelligence') {
+    return (
+      <IntelligenceCanvasView
+        targetId={intelligenceTargetId ?? 'co-gulfair'}
+        bottomInset={bottomInset}
       />
     );
   }

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Stack, Typography } from '@mui/material';
 import type { ReactNode } from 'react';
 import BriefReadoutCard from './BriefReadoutCard';
+import DealChatIntro from './DealChatIntro';
 import FilingProposalCard from './FilingProposalCard';
 import QaTriageReadoutCard from './QaTriageReadoutCard';
 import SavedPathCard from './SavedPathCard';
@@ -12,6 +13,7 @@ import ThinkingTimeline from './ThinkingTimeline';
 import ValidationPlanProposalCard from './ValidationPlanProposalCard';
 import { findSellerFileById } from './rightCanvasFileData';
 import type { WorkspaceState } from '../state/types';
+import type { CALDERA_SUGGESTIONS } from '../state/dealsFixtures';
 import { COPY } from '../state/copy';
 import { briefPlanSteps, briefRunSteps } from '../state/briefScenario';
 import { FILING_COPY, filingSaveSteps, filingSteps } from '../state/filingScenario';
@@ -30,6 +32,7 @@ interface Props {
   onRemoveSourcingTerm?: (termId: string) => void;
   onNarrowSourcing?: () => void;
   onNoOpSourcingSuggestion?: () => void;
+  onDealSuggestion?: (action: (typeof CALDERA_SUGGESTIONS)[number]['action']) => void;
 }
 
 export default function ChatMessageList({
@@ -45,10 +48,19 @@ export default function ChatMessageList({
   onRemoveSourcingTerm,
   onNarrowSourcing,
   onNoOpSourcingSuggestion,
+  onDealSuggestion,
 }: Props) {
   return (
     <Stack spacing={2.5} sx={{ width: '100%' }}>
       {state.messages.map((message) => {
+        if (message.kind === 'deal-empty') {
+          return (
+            <Box key={message.id} sx={{ width: '100%' }}>
+              <DealChatIntro onSuggestion={onDealSuggestion ?? (() => {})} />
+            </Box>
+          );
+        }
+
         if (message.kind === 'proposal') {
           return (
             <MessageShell key={message.id} role="assistant">

@@ -36,6 +36,11 @@ interface Props {
   onJumpToNotes: () => void;
   composerPlaceholder?: string;
   railOnly?: boolean;
+  // ── Deal workspace (Phase 2) ──
+  dealActive?: boolean;
+  onDealSuggestion?: (action: 'screen-gulfair' | 'queue-cim' | 'whats-changed') => void;
+  onInsertPlaybookPrompt?: (prompt: string) => void;
+  onAllPlaybooks?: () => void;
 }
 
 export default function AssistantPanel({
@@ -61,6 +66,10 @@ export default function AssistantPanel({
   onJumpToNotes,
   composerPlaceholder,
   railOnly = false,
+  dealActive = false,
+  onDealSuggestion,
+  onInsertPlaybookPrompt,
+  onAllPlaybooks,
 }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -89,6 +98,9 @@ export default function AssistantPanel({
         onOpenSkills={onOpenSkills}
         onOpenTemplates={onOpenTemplates}
         onSelectSession={onSelectSession}
+        dealActive={dealActive}
+        onInsertPlaybookPrompt={onInsertPlaybookPrompt}
+        onAllPlaybooks={onAllPlaybooks}
       />
       <SearchSpotlightDialog
         open={searchOpen}
@@ -166,6 +178,7 @@ export default function AssistantPanel({
                     onRemoveSourcingTerm={(termId) => dispatch({ type: 'REMOVE_SOURCING_TERM', termId })}
                     onNarrowSourcing={() => dispatch({ type: 'NARROW_SOURCING' })}
                     onNoOpSourcingSuggestion={() => setSourcingToastOpen(true)}
+                    onDealSuggestion={onDealSuggestion}
                   />
                 </Box>
               </Box>

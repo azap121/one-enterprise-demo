@@ -14,12 +14,11 @@ import {
   faXmark,
 } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, GlobalStyles, IconButton, InputBase, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, GlobalStyles, IconButton, InputBase, Snackbar, Stack, Tooltip, Typography } from '@mui/material';
 import { DatasitePrototypeShell, type NavItem } from '~/shared';
 import AiSparkleBadge from './AiSparkleBadge';
 import AssistantPanel, { type RecentChat } from './AssistantPanel';
 import type { AssistantRailMode } from './AssistantRail';
-import DealOpenedView from './DealOpenedView';
 import LegalReviewWorkspace from './LegalReviewWorkspace';
 import MyDealsHome from './MyDealsHome';
 import PromoteToDealDialog from './PromoteToDealDialog';
@@ -56,7 +55,7 @@ import { BRIEF_SOURCE_FILES, briefPlanSteps, briefRunSteps } from '../state/brie
 import { filingSaveSteps, filingSteps } from '../state/filingScenario';
 import { initialState, reducer } from '../state/reducer';
 import { PERSONAS, type SeatId } from '../state/persona';
-import { CALDERA_DEAL, SEED_DEALS, type DealCard } from '../state/dealsFixtures';
+import { CALDERA_DEAL, CALDERA_OVERVIEW, CALDERA_SCRIPTED, SEED_DEALS, type DealCard } from '../state/dealsFixtures';
 import { SOURCING_INTERPRET_MS } from '../state/sourcingScenario';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
@@ -119,6 +118,9 @@ export default function FolderRecommendationsChatAssistant() {
   const [rightCanvasMotion, setRightCanvasMotion] = useState<RightCanvasMotion>('idle');
   const [qaNotesByRowId, setQaNotesByRowId] = useState<Record<string, string>>({});
   const [selectedQaItemId, setSelectedQaItemId] = useState<string | null>(null);
+  // ── Deal workspace (Phase 2) ──
+  const [intelligenceTargetId, setIntelligenceTargetId] = useState<string | null>(null);
+  const [dealToast, setDealToast] = useState<string | null>(null);
   const transitionTimersRef = useRef<number[]>([]);
 
   const activeSession = useMemo(
@@ -126,6 +128,8 @@ export default function FolderRecommendationsChatAssistant() {
     [activeSessionId, draftSession, sessions]
   );
   const state = activeSession.state;
+  // Caldera deal workspace is active when the reducer has stamped a dealId.
+  const dealActive = state.dealId != null;
   const rightCanvasOpen = activeSession.rightCanvasOpen;
   const openRightCanvasTabs = activeSession.openRightCanvasTabs;
   const activeRightCanvasTab = activeSession.activeRightCanvasTab;
@@ -352,13 +356,76 @@ export default function FolderRecommendationsChatAssistant() {
       setDraftSession(createDraftSession());
       setActiveSessionId(DRAFT_SESSION_ID);
     } else {
-      // Caldera — Phase-1 deal-opened state.
-      setDraftSession({ ...createDraftSession(), state: reducer(createDraftSession().state, { type: 'OPEN_DEAL' }) });
+      // Caldera — Phase-2 deal workspace. Chat-first with the Overview canvas default-open.
+      setIntelligenceTargetId(null);
+      setDraftSession({
+        ...createDraftSession(),
+        state: reducer(createDraftSession().state, { type: 'OPEN_DEAL' }),
+        rightCanvasOpen: true,
+        rightCanvasDisplayMode: 'default',
+        openRightCanvasTabs: ['deal-overview'],
+        activeRightCanvasTab: 'deal-overview',
+      });
       setActiveSessionId(DRAFT_SESSION_ID);
     }
     setActiveCoreTab('ai');
     setHomeView('chat');
   }, [clearReviewTransitionTimers]);
+
+  // ── Deal workspace handlers ──
+  // Open the Intelligence canvas for a target (GulfAir wired; others toast in Overview).
+  const openIntelligenceForTarget = useCallback((targetId: string) => {
+    setIntelligenceTargetId(targetId);
+    clearReviewTransitionTimers();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: true,
+      rightCanvasDisplayMode: 'default',
+      openRightCanvasTabs: session.openRightCanvasTabs.includes('intelligence')
+        ? session.openRightCanvasTabs
+        : [...session.openRightCanvasTabs, 'intelligence'],
+      activeRightCanvasTab: 'intelligence',
+    }));
+    setRightCanvasMotion(reducedMotion ? 'idle' : 'entering-from-right');
+    if (!reducedMotion) {
+      setReviewTransitionTimer(() => setRightCanvasMotion('idle'), REVIEW_ENTER_MS);
+    }
+  }, [clearReviewTransitionTimers, setReviewTransitionTimer, updateActiveSession]);
+
+  // Overview target rows: open the Intelligence view for a wired target; toast otherwise.
+  const handleOpenTarget = useCallback((targetId: string, targetName: string, wired: boolean) => {
+    if (!wired) {
+      setDealToast(CALDERA_OVERVIEW.toastOpenProfile);
+      return;
+    }
+    dispatch({ type: 'DEAL_SCREEN_TARGET', targetId, targetName });
+    openIntelligenceForTarget(targetId);
+  }, [dispatch, openIntelligenceForTarget]);
+
+  // Deal chat suggestion chips.
+  const handleDealSuggestion = useCallback((action: 'screen-gulfair' | 'queue-cim' | 'whats-changed') => {
+    if (action === 'screen-gulfair') {
+      dispatch({ type: 'DEAL_SCREEN_TARGET', targetId: 'co-gulfair', targetName: 'GulfAir Mechanical' });
+      openIntelligenceForTarget('co-gulfair');
+      return;
+    }
+    if (action === 'queue-cim') {
+      dispatch({ type: 'DEAL_QUEUE_CIM' });
+      setDealToast(CALDERA_SCRIPTED.queueCimToast);
+      return;
+    }
+    dispatch({ type: 'DEAL_WHATS_CHANGED' });
+  }, [dispatch, openIntelligenceForTarget]);
+
+  // Playbook cards insert a prepared prompt into the composer (don't auto-send).
+  const handleInsertPlaybookPrompt = useCallback((prompt: string) => {
+    dispatch({ type: 'SET_COMPOSER', value: prompt });
+  }, [dispatch]);
+
+  const handleAllPlaybooks = useCallback(() => {
+    setDealToast('All playbooks — for demo only');
+  }, []);
 
   const goToDealsHome = useCallback(() => {
     clearReviewTransitionTimers();
@@ -852,6 +919,12 @@ export default function FolderRecommendationsChatAssistant() {
               onNoteChange={handleQaNoteChange}
               selectedQaItemId={selectedQaItemId}
               onPromoteSourcing={() => setPromoteOpen(true)}
+              dealActive={dealActive}
+              intelligenceTargetId={intelligenceTargetId}
+              onOpenTarget={handleOpenTarget}
+              onDealSuggestion={handleDealSuggestion}
+              onInsertPlaybookPrompt={handleInsertPlaybookPrompt}
+              onAllPlaybooks={handleAllPlaybooks}
             />
           ) : null}
           {activeCoreTab === 'documents' ? (
@@ -894,6 +967,13 @@ export default function FolderRecommendationsChatAssistant() {
           selectedCount={state.sourcingSelectedIds.length}
           onClose={() => setPromoteOpen(false)}
           onConfirm={confirmPromote}
+        />
+        <Snackbar
+          open={Boolean(dealToast)}
+          autoHideDuration={2600}
+          onClose={() => setDealToast(null)}
+          message={dealToast ?? ''}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         />
       </Box>
     </DatasitePrototypeShell>
@@ -940,6 +1020,12 @@ function AiWorkspace({
   onNoteChange,
   selectedQaItemId,
   onPromoteSourcing,
+  dealActive,
+  intelligenceTargetId,
+  onOpenTarget,
+  onDealSuggestion,
+  onInsertPlaybookPrompt,
+  onAllPlaybooks,
 }: {
   activeSessionId: string;
   activeMode: AssistantRailMode;
@@ -980,19 +1066,15 @@ function AiWorkspace({
   onNoteChange: (rowId: string, value: string) => void;
   selectedQaItemId: string | null;
   onPromoteSourcing: () => void;
+  dealActive: boolean;
+  intelligenceTargetId: string | null;
+  onOpenTarget: (targetId: string, targetName: string, wired: boolean) => void;
+  onDealSuggestion: (action: 'screen-gulfair' | 'queue-cim' | 'whats-changed') => void;
+  onInsertPlaybookPrompt: (prompt: string) => void;
+  onAllPlaybooks: () => void;
 }) {
   if (state.stage === 'documents-view') {
     return <SandboxFolderStructureView state={state} dispatch={dispatch} />;
-  }
-
-  if (state.stage === 'deal-opened') {
-    return (
-      <DealOpenedView
-        composerValue={state.composerValue}
-        onComposerChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
-        onComposerSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
-      />
-    );
   }
 
   return (
@@ -1037,6 +1119,10 @@ function AiWorkspace({
           onJumpToNotes={onJumpToNotes}
           composerPlaceholder={composerPlaceholder}
           railOnly={rightCanvasExpanded}
+          dealActive={dealActive}
+          onDealSuggestion={onDealSuggestion}
+          onInsertPlaybookPrompt={onInsertPlaybookPrompt}
+          onAllPlaybooks={onAllPlaybooks}
         />
       </Box>
 
@@ -1072,6 +1158,8 @@ function AiWorkspace({
             selectedQaItemId={selectedQaItemId}
             onOpenQaItem={onOpenQaItem}
             onPromoteSourcing={onPromoteSourcing}
+            intelligenceTargetId={intelligenceTargetId}
+            onOpenTarget={onOpenTarget}
           />
         </Box>
       ) : (
