@@ -32,18 +32,22 @@ import RightContextCanvasFileDetailView from './RightContextCanvasFileDetailView
 import RightContextCanvasFilesView from './RightContextCanvasFilesView';
 import RightContextCanvasQaView, { type QaFocusTarget } from './RightContextCanvasQaView';
 import RightContextCanvasSourcingView from './RightContextCanvasSourcingView';
+import CimReviewCanvasView from './CimReviewCanvasView';
 import DealOverviewCanvasView from './DealOverviewCanvasView';
 import IntelligenceCanvasView from './IntelligenceCanvasView';
+import MerlinComposerFrame from './MerlinComposerFrame';
 import ValidationPlanWorkspace from './ValidationPlanWorkspace';
 import { createAppliedFilesSource } from './appliedFilesSource';
 import { BRIEF_SOURCE_FILES } from '../state/briefScenario';
 import { STIFEL_SOURCE_FILES } from './qaTriageData';
 import { findSellerFileById, registerRuntimeSellerFiles, type SellerIndexSource } from './rightCanvasFileData';
+import { GRATA_SIMILAR } from '../state/cimRunScenario';
+import { CALDERA_COMPOSER_PLACEHOLDER } from '../state/dealsFixtures';
 import { SOURCING_COPY } from '../state/sourcingScenario';
 import { selectCompositedTree } from '../state/reducer';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
-type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates' | 'sourcing-results' | 'deal-overview' | 'intelligence';
+type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates' | 'sourcing-results' | 'deal-overview' | 'intelligence' | 'deal-review';
 type FilePreviewCanvasTab = `file:${string}`;
 
 export type RightCanvasTab = BaseRightCanvasTab | FilePreviewCanvasTab;
@@ -125,6 +129,11 @@ const RIGHT_CANVAS_TAB_META: Record<BaseRightCanvasTab, { label: string; icon: I
     label: 'Intelligence',
     icon: faChartMixed,
     closeLabel: 'Remove Intelligence tab',
+  },
+  'deal-review': {
+    label: 'Review',
+    icon: faTableList,
+    closeLabel: 'Remove Review tab',
   },
 };
 
@@ -470,7 +479,7 @@ export default function RightContextCanvas({
               onOpenSavedFiles={onOpenSavedFiles}
               onOpenQaItem={onOpenQaItem}
               onAddTab={onAddTab}
-              composerPlaceholder={getComposerPlaceholderForRightTab(activeTab)}
+              composerPlaceholder={state.dealId != null ? CALDERA_COMPOSER_PLACEHOLDER : getComposerPlaceholderForRightTab(activeTab)}
             />
           ) : null}
         </Box>
@@ -498,7 +507,11 @@ function ExpandedCanvasAssistantDock({
   onAddTab: (tab: RightCanvasTab) => void;
   composerPlaceholder?: string;
 }) {
-  const composerLoading = state.stage === 'chat-processing-recommendation' || state.stage === 'save-processing';
+  const composerLoading = state.stage === 'chat-processing-recommendation'
+    || state.stage === 'save-processing'
+    || state.cimRun.phase === 'working'
+    || state.cimRun.phase === 'executing'
+    || state.grataSimilarRunning;
   const assistantPanelBorder = alpha(moondust[900], 0.16);
 
   return (
@@ -614,27 +627,34 @@ function ExpandedCanvasAssistantDock({
                   }}
                   onToggleRationale={() => dispatch({ type: 'SHOW_RATIONALE' })}
                   onOpenCitation={(fileId) => onAddTab(`file:${fileId}` as RightCanvasTab)}
+                  onApproveCimPlan={() => dispatch({ type: 'APPROVE_CIM_PLAN' })}
+                  onOpenCimReview={() => onAddTab('deal-review')}
+                  onAskGrataSimilar={() => dispatch({ type: 'SET_COMPOSER', value: GRATA_SIMILAR.prompt })}
                 />
               </Box>
             </Collapse>
           </Box>
         </Box>
 
-        <ChatComposer
-          large
-          showPoweredLine={false}
-          loading={composerLoading}
-          value={state.composerValue}
-          placeholder={composerPlaceholder}
-          attachedFileIds={state.attachedFileIds}
-          attachedFolderIds={state.attachedFolderIds}
-          onChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
-          onSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
-          onContextChange={({ fileIds, folderIds }) => dispatch({ type: 'SET_CONTEXT_REFERENCES', fileIds, folderIds })}
-        />
+        <MerlinComposerFrame state={state} dispatch={dispatch} active={state.dealId != null}>
+          <ChatComposer
+            large
+            showPoweredLine={false}
+            loading={composerLoading}
+            value={state.composerValue}
+            placeholder={composerPlaceholder}
+            attachedFileIds={state.attachedFileIds}
+            attachedFolderIds={state.attachedFolderIds}
+            onChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
+            onSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
+            onContextChange={({ fileIds, folderIds }) => dispatch({ type: 'SET_CONTEXT_REFERENCES', fileIds, folderIds })}
+          />
+        </MerlinComposerFrame>
 
         <Typography variant="caption" sx={{ display: 'block', color: 'text.disabled', textAlign: 'center' }}>
-          Datasite AI drafts answers with citations. The deal team controls review and routing.
+          {state.dealId != null
+            ? 'Blueflame AI drafts with citations. You control what lands on the deal.'
+            : 'Datasite AI drafts answers with citations. The deal team controls review and routing.'}
         </Typography>
       </Stack>
     </Box>
@@ -834,6 +854,17 @@ function RightCanvasTabContent({
       <DealOverviewCanvasView
         bottomInset={bottomInset}
         onOpenTarget={onOpenTarget ?? (() => {})}
+        cimAccepted={state.cimAcceptedOnce}
+      />
+    );
+  }
+
+  if (activeTab === 'deal-review') {
+    return (
+      <CimReviewCanvasView
+        state={state}
+        bottomInset={bottomInset}
+        onAccept={() => dispatch({ type: 'ACCEPT_CIM_OUTPUT' })}
       />
     );
   }

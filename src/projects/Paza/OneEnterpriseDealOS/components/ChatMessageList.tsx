@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Stack, Typography } from '@mui/material';
 import type { ReactNode } from 'react';
 import BriefReadoutCard from './BriefReadoutCard';
+import CimOutputCard from './CimOutputCard';
+import CimPlanCard from './CimPlanCard';
+import CimWorkLog from './CimWorkLog';
 import DealChatIntro from './DealChatIntro';
 import FilingProposalCard from './FilingProposalCard';
+import GrataSimilarCard from './GrataSimilarCard';
 import QaTriageReadoutCard from './QaTriageReadoutCard';
 import SavedPathCard from './SavedPathCard';
 import SourcingInterpretingMessage from './SourcingInterpretingMessage';
@@ -12,10 +16,11 @@ import SourcingParseCard from './SourcingParseCard';
 import ThinkingTimeline from './ThinkingTimeline';
 import ValidationPlanProposalCard from './ValidationPlanProposalCard';
 import { findSellerFileById } from './rightCanvasFileData';
-import type { WorkspaceState } from '../state/types';
+import type { ChatMessageKind, WorkspaceState } from '../state/types';
 import type { CALDERA_SUGGESTIONS } from '../state/dealsFixtures';
 import { COPY } from '../state/copy';
 import { briefPlanSteps, briefRunSteps } from '../state/briefScenario';
+import { CIM_EXEC_STEPS, CIM_RUN_COPY, CIM_WORK_STEPS } from '../state/cimRunScenario';
 import { FILING_COPY, filingSaveSteps, filingSteps } from '../state/filingScenario';
 import { planFormationSteps, recommendationSteps, saveSteps } from '../state/timing';
 
@@ -33,6 +38,10 @@ interface Props {
   onNarrowSourcing?: () => void;
   onNoOpSourcingSuggestion?: () => void;
   onDealSuggestion?: (action: (typeof CALDERA_SUGGESTIONS)[number]['action']) => void;
+  // ── CIM run (Phase 3) ──
+  onApproveCimPlan?: () => void;
+  onOpenCimReview?: () => void;
+  onAskGrataSimilar?: () => void;
 }
 
 export default function ChatMessageList({
@@ -49,7 +58,22 @@ export default function ChatMessageList({
   onNarrowSourcing,
   onNoOpSourcingSuggestion,
   onDealSuggestion,
+  onApproveCimPlan,
+  onOpenCimReview,
+  onAskGrataSimilar,
 }: Props) {
+  // Reruns append fresh cim-* messages; only the LATEST of each kind is live-animated
+  // against the current run state — earlier runs render frozen/complete.
+  const latestIdOfKind = (kind: ChatMessageKind) => {
+    for (let index = state.messages.length - 1; index >= 0; index -= 1) {
+      if (state.messages[index].kind === kind) return state.messages[index].id;
+    }
+    return null;
+  };
+  const latestWorklogId = latestIdOfKind('cim-worklog');
+  const latestPlanId = latestIdOfKind('cim-plan');
+  const latestExecId = latestIdOfKind('cim-exec');
+
   return (
     <Stack spacing={2.5} sx={{ width: '100%' }}>
       {state.messages.map((message) => {
@@ -91,10 +115,83 @@ export default function ChatMessageList({
           );
         }
 
-        if (message.kind === 'sourcing-interpreting') {
+        if (message.kind === 'sourcing-interpreting' || message.kind === 'grata-similar-thinking') {
           return (
             <MessageShell key={message.id} role="assistant">
               <SourcingInterpretingMessage label={message.content} />
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'cim-worklog') {
+          const live = message.id === latestWorklogId && state.cimRun.phase === 'working';
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <Stack spacing={1.5}>
+                <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>{message.content}</Typography>
+                <CimWorkLog
+                  steps={CIM_WORK_STEPS}
+                  completedCount={live ? state.cimRun.workStepIndex : CIM_WORK_STEPS.length}
+                />
+              </Stack>
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'cim-plan') {
+          const live = message.id === latestPlanId && !message.runMeta?.done;
+          const status = !live || state.cimRun.phase === 'output-ready' || state.cimRun.phase === 'accepted'
+            ? 'done' as const
+            : state.cimRun.phase === 'executing'
+              ? 'executing' as const
+              : state.cimRun.phase === 'plan-ready'
+                ? 'pending' as const
+                : 'done' as const;
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <Stack spacing={1.5}>
+                <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>{message.content}</Typography>
+                <CimPlanCard status={status} onApprove={onApproveCimPlan ?? (() => {})} />
+              </Stack>
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'cim-exec') {
+          const live = message.id === latestExecId && state.cimRun.phase === 'executing';
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <Stack spacing={1.5}>
+                <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>{message.content}</Typography>
+                <CimWorkLog
+                  steps={CIM_EXEC_STEPS}
+                  completedCount={live ? state.cimRun.execStepIndex : CIM_EXEC_STEPS.length}
+                />
+              </Stack>
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'cim-output') {
+          // Run-time facts are frozen on the message — reruns can't rewrite them.
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <CimOutputCard
+                summary={message.content}
+                auditLine={message.runMeta?.auditLine ?? CIM_RUN_COPY.auditPlanFirst}
+                accepted={Boolean(message.runMeta?.accepted)}
+                sandbox={Boolean(message.runMeta?.sandbox)}
+                onOpenReview={onOpenCimReview ?? (() => {})}
+                onAskGrataSimilar={onAskGrataSimilar ?? (() => {})}
+              />
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'grata-similar') {
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <GrataSimilarCard intro={message.content} />
             </MessageShell>
           );
         }

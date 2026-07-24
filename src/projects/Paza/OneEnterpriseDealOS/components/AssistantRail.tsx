@@ -4,6 +4,8 @@ import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 import type { ReactNode } from 'react';
 import { HaloButton } from '~/theme/halo/components';
 import DealRailSections from './DealRailSections';
+import type { DealPlaybook } from '../state/dealsFixtures';
+import type { DealLayout } from '../state/persona';
 
 export interface RecentChat {
   id: string;
@@ -22,10 +24,13 @@ interface Props {
   onOpenSkills: () => void;
   onOpenTemplates: () => void;
   onSelectSession: (sessionId: string) => void;
-  // ── Deal workspace (Phase 2) — swaps Search/Skills/Templates for Agents/Playbooks ──
+  // ── Deal workspace — swaps Search/Skills/Templates for the Agents library ──
   dealActive?: boolean;
-  onInsertPlaybookPrompt?: (prompt: string) => void;
-  onAllPlaybooks?: () => void;
+  onRunPlaybook?: (playbook: DealPlaybook) => void;
+  onAllAgents?: () => void;
+  researchAgentActive?: boolean;
+  seatLayout?: DealLayout;
+  onSeatLayout?: (layout: DealLayout) => void;
 }
 
 export default function AssistantRail({
@@ -38,8 +43,11 @@ export default function AssistantRail({
   onOpenTemplates,
   onSelectSession,
   dealActive = false,
-  onInsertPlaybookPrompt,
-  onAllPlaybooks,
+  onRunPlaybook,
+  onAllAgents,
+  researchAgentActive = false,
+  seatLayout = 'chat-first',
+  onSeatLayout,
 }: Props) {
   return (
     <Box
@@ -75,8 +83,11 @@ export default function AssistantRail({
 
         {dealActive ? (
           <DealRailSections
-            onInsertPrompt={onInsertPlaybookPrompt ?? (() => {})}
-            onAllPlaybooks={onAllPlaybooks ?? (() => {})}
+            onRunPlaybook={onRunPlaybook ?? (() => {})}
+            onAllAgents={onAllAgents ?? (() => {})}
+            researchAgentActive={researchAgentActive}
+            seatLayout={seatLayout}
+            onSeatLayout={onSeatLayout ?? (() => {})}
           />
         ) : null}
 

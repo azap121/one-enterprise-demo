@@ -7,9 +7,11 @@ import AssistantRail, { type AssistantRailMode, type RecentChat } from './Assist
 import ChatComposer from './ChatComposer';
 import ChatMessageList from './ChatMessageList';
 import FullChatEmptyState from './FullChatEmptyState';
+import MerlinComposerFrame from './MerlinComposerFrame';
 import { SOURCING_COPY } from '../state/sourcingScenario';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
-import type { SeatId } from '../state/persona';
+import type { DealPlaybook } from '../state/dealsFixtures';
+import type { DealLayout, SeatId } from '../state/persona';
 
 export type { RecentChat };
 
@@ -36,11 +38,17 @@ interface Props {
   onJumpToNotes: () => void;
   composerPlaceholder?: string;
   railOnly?: boolean;
-  // ── Deal workspace (Phase 2) ──
+  // ── Deal workspace (Phases 2–3) ──
   dealActive?: boolean;
   onDealSuggestion?: (action: 'screen-gulfair' | 'queue-cim' | 'whats-changed') => void;
-  onInsertPlaybookPrompt?: (prompt: string) => void;
-  onAllPlaybooks?: () => void;
+  onRunPlaybook?: (playbook: DealPlaybook) => void;
+  onAllAgents?: () => void;
+  researchAgentActive?: boolean;
+  seatLayout?: DealLayout;
+  onSeatLayout?: (layout: DealLayout) => void;
+  onApproveCimPlan?: () => void;
+  onOpenCimReview?: () => void;
+  onAskGrataSimilar?: () => void;
 }
 
 export default function AssistantPanel({
@@ -68,14 +76,24 @@ export default function AssistantPanel({
   railOnly = false,
   dealActive = false,
   onDealSuggestion,
-  onInsertPlaybookPrompt,
-  onAllPlaybooks,
+  onRunPlaybook,
+  onAllAgents,
+  researchAgentActive = false,
+  seatLayout = 'chat-first',
+  onSeatLayout,
+  onApproveCimPlan,
+  onOpenCimReview,
+  onAskGrataSimilar,
 }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [sourcingToastOpen, setSourcingToastOpen] = useState(false);
   const showFullEmpty = state.stage === 'chat-empty';
-  const composerLoading = state.stage === 'chat-processing-recommendation' || state.stage === 'save-processing';
+  const composerLoading = state.stage === 'chat-processing-recommendation'
+    || state.stage === 'save-processing'
+    || state.cimRun.phase === 'working'
+    || state.cimRun.phase === 'executing'
+    || state.grataSimilarRunning;
 
   const openSearchSpotlight = () => {
     setSearchValue('');
@@ -99,8 +117,11 @@ export default function AssistantPanel({
         onOpenTemplates={onOpenTemplates}
         onSelectSession={onSelectSession}
         dealActive={dealActive}
-        onInsertPlaybookPrompt={onInsertPlaybookPrompt}
-        onAllPlaybooks={onAllPlaybooks}
+        onRunPlaybook={onRunPlaybook}
+        onAllAgents={onAllAgents}
+        researchAgentActive={researchAgentActive}
+        seatLayout={seatLayout}
+        onSeatLayout={onSeatLayout}
       />
       <SearchSpotlightDialog
         open={searchOpen}
@@ -179,23 +200,29 @@ export default function AssistantPanel({
                     onNarrowSourcing={() => dispatch({ type: 'NARROW_SOURCING' })}
                     onNoOpSourcingSuggestion={() => setSourcingToastOpen(true)}
                     onDealSuggestion={onDealSuggestion}
+                    onApproveCimPlan={onApproveCimPlan}
+                    onOpenCimReview={onOpenCimReview}
+                    onAskGrataSimilar={onAskGrataSimilar}
                   />
                 </Box>
               </Box>
 
               <Box sx={{ px: { xs: 2, md: 6 }, pb: 3 }}>
                 <Box sx={{ width: 'min(600px, 100%)', mx: 'auto' }}>
-                  <ChatComposer
-                    large
-                    loading={composerLoading}
-                    value={state.composerValue}
-                    placeholder={composerPlaceholder}
-                    attachedFileIds={state.attachedFileIds}
-                    attachedFolderIds={state.attachedFolderIds}
-                    onChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
-                    onSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
-                    onContextChange={({ fileIds, folderIds }) => dispatch({ type: 'SET_CONTEXT_REFERENCES', fileIds, folderIds })}
-                  />
+                  <MerlinComposerFrame state={state} dispatch={dispatch} active={dealActive}>
+                    <ChatComposer
+                      large
+                      showPoweredLine={!dealActive}
+                      loading={composerLoading}
+                      value={state.composerValue}
+                      placeholder={composerPlaceholder}
+                      attachedFileIds={state.attachedFileIds}
+                      attachedFolderIds={state.attachedFolderIds}
+                      onChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
+                      onSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
+                      onContextChange={({ fileIds, folderIds }) => dispatch({ type: 'SET_CONTEXT_REFERENCES', fileIds, folderIds })}
+                    />
+                  </MerlinComposerFrame>
                 </Box>
               </Box>
             </>

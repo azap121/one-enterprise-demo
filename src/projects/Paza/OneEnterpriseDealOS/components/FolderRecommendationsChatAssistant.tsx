@@ -52,10 +52,28 @@ import {
   saveSteps,
 } from '../state/timing';
 import { BRIEF_SOURCE_FILES, briefPlanSteps, briefRunSteps } from '../state/briefScenario';
+import {
+  CIM_EXEC_STEPS,
+  CIM_EXEC_STEP_MS,
+  CIM_FINAL_PAUSE_MS,
+  CIM_STEP_REDUCED_MS,
+  CIM_WORK_STEPS,
+  CIM_WORK_STEP_MS,
+  GRATA_SIMILAR,
+  GRATA_SIMILAR_MS,
+} from '../state/cimRunScenario';
 import { filingSaveSteps, filingSteps } from '../state/filingScenario';
 import { initialState, reducer } from '../state/reducer';
-import { PERSONAS, type SeatId } from '../state/persona';
-import { CALDERA_DEAL, CALDERA_OVERVIEW, CALDERA_SCRIPTED, SEED_DEALS, type DealCard } from '../state/dealsFixtures';
+import { PERSONAS, type DealLayout, type SeatId } from '../state/persona';
+import {
+  CALDERA_COMPOSER_PLACEHOLDER,
+  CALDERA_DEAL,
+  CALDERA_OVERVIEW,
+  CALDERA_SCRIPTED,
+  SEED_DEALS,
+  type DealCard,
+  type DealPlaybook,
+} from '../state/dealsFixtures';
 import { SOURCING_INTERPRET_MS } from '../state/sourcingScenario';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
@@ -100,7 +118,9 @@ const REVIEWER_DOCUMENT_SECTIONS: DocumentSourceSection[] = [
 ];
 
 export default function FolderRecommendationsChatAssistant() {
-  const [activeSeat] = useState<SeatId>('alex');
+  const [activeSeat, setActiveSeat] = useState<SeatId>('alex');
+  // Phase 3 seat toggle: chat-first (Alex) vs structure-first (Morgan, canvas expanded).
+  const [dealLayout, setDealLayout] = useState<DealLayout>('chat-first');
   // Surface 0: the project opens on the My Deals home, not straight into Aldgate chat.
   const [homeView, setHomeView] = useState<'home' | 'chat'>('home');
   const [deals, setDeals] = useState<DealCard[]>(SEED_DEALS);
@@ -238,6 +258,9 @@ export default function FolderRecommendationsChatAssistant() {
     clearReviewTransitionTimers();
     setRightCanvasMotion('idle');
     setAssistantRailMode('chat');
+    // Leaving the deal for a fresh chat: return to the default seat + layout.
+    setActiveSeat('alex');
+    setDealLayout('chat-first');
     setDraftSession(createDraftSession());
     setActiveSessionId(DRAFT_SESSION_ID);
     setActiveCoreTab('ai');
@@ -418,14 +441,63 @@ export default function FolderRecommendationsChatAssistant() {
     dispatch({ type: 'DEAL_WHATS_CHANGED' });
   }, [dispatch, openIntelligenceForTarget]);
 
-  // Playbook cards insert a prepared prompt into the composer (don't auto-send).
-  const handleInsertPlaybookPrompt = useCallback((prompt: string) => {
-    dispatch({ type: 'SET_COMPOSER', value: prompt });
+  // Agent cards stage the prepared prompt in the composer and arm the run engine off
+  // the playbook id (don't auto-send — the user presses Enter, per the demo beat).
+  // QUEUE_PLAYBOOK also auto-switches into Merlin mode.
+  const handleRunPlaybook = useCallback((playbook: DealPlaybook) => {
+    dispatch({ type: 'QUEUE_PLAYBOOK', playbookId: playbook.id, prompt: playbook.prompt });
   }, [dispatch]);
 
-  const handleAllPlaybooks = useCallback(() => {
-    setDealToast('All playbooks — for demo only');
+  const handleAllAgents = useCallback(() => {
+    setDealToast('Full Agent library — demo stub');
   }, []);
+
+  // ── Phase 3: CIM run handlers ──
+  const handleApproveCimPlan = useCallback(() => {
+    dispatch({ type: 'APPROVE_CIM_PLAN' });
+  }, [dispatch]);
+
+  const handleOpenCimReview = useCallback(() => {
+    clearReviewTransitionTimers();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: true,
+      openRightCanvasTabs: session.openRightCanvasTabs.includes('deal-review')
+        ? session.openRightCanvasTabs
+        : [...session.openRightCanvasTabs, 'deal-review'],
+      activeRightCanvasTab: 'deal-review',
+    }));
+    setRightCanvasMotion(reducedMotion ? 'idle' : 'entering-from-right');
+    if (!reducedMotion) {
+      setReviewTransitionTimer(() => setRightCanvasMotion('idle'), REVIEW_ENTER_MS);
+    }
+  }, [clearReviewTransitionTimers, setReviewTransitionTimer, updateActiveSession]);
+
+  const handleAskGrataSimilar = useCallback(() => {
+    dispatch({ type: 'SET_COMPOSER', value: GRATA_SIMILAR.prompt });
+  }, [dispatch]);
+
+  // Seat toggle: swap persona + flip the workspace between chat-first (canvas docked)
+  // and structure-first (canvas expanded, chat in the rail dock).
+  const handleSeatLayout = useCallback((layout: DealLayout) => {
+    if (layout === dealLayout) return;
+    setDealLayout(layout);
+    setActiveSeat(layout === 'chat-first' ? 'alex' : 'morgan');
+    clearReviewTransitionTimers();
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: true,
+      rightCanvasDisplayMode: layout === 'structure-first' ? 'expanded' : 'default',
+      openRightCanvasTabs: session.openRightCanvasTabs.includes('deal-overview')
+        ? session.openRightCanvasTabs
+        : ['deal-overview', ...session.openRightCanvasTabs],
+      activeRightCanvasTab: layout === 'structure-first'
+        ? 'deal-overview'
+        : session.activeRightCanvasTab ?? 'deal-overview',
+    }));
+    setRightCanvasMotion('idle');
+  }, [clearReviewTransitionTimers, dealLayout, updateActiveSession]);
 
   const goToDealsHome = useCallback(() => {
     clearReviewTransitionTimers();
@@ -497,6 +569,75 @@ export default function FolderRecommendationsChatAssistant() {
     const timer = window.setTimeout(() => dispatch({ type: 'SOURCING_PARSED' }), SOURCING_INTERPRET_MS);
     return () => window.clearTimeout(timer);
   }, [activeCoreTab, dispatch, state.stage]);
+
+  // ── Phase 3: CIM run timers (AX cadence ~800–1100ms; near-instant under reduced motion) ──
+  useEffect(() => {
+    if (activeCoreTab !== 'ai') return undefined;
+    if (state.cimRun.phase !== 'working') return undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (state.cimRun.workStepIndex < CIM_WORK_STEPS.length) {
+      const timer = window.setTimeout(
+        () => dispatch({ type: 'CIM_WORK_STEP_DONE' }),
+        reducedMotion ? CIM_STEP_REDUCED_MS : CIM_WORK_STEP_MS
+      );
+      return () => window.clearTimeout(timer);
+    }
+    const timer = window.setTimeout(() => dispatch({ type: 'CIM_PLAN_READY' }), CIM_FINAL_PAUSE_MS);
+    return () => window.clearTimeout(timer);
+  }, [activeCoreTab, dispatch, state.cimRun.phase, state.cimRun.workStepIndex]);
+
+  useEffect(() => {
+    if (activeCoreTab !== 'ai') return undefined;
+    if (state.cimRun.phase !== 'executing') return undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (state.cimRun.execStepIndex < CIM_EXEC_STEPS.length) {
+      const timer = window.setTimeout(
+        () => dispatch({ type: 'CIM_EXEC_STEP_DONE' }),
+        reducedMotion ? CIM_STEP_REDUCED_MS : CIM_EXEC_STEP_MS
+      );
+      return () => window.clearTimeout(timer);
+    }
+    const timer = window.setTimeout(() => dispatch({ type: 'CIM_OUTPUT_READY' }), CIM_FINAL_PAUSE_MS);
+    return () => window.clearTimeout(timer);
+  }, [activeCoreTab, dispatch, state.cimRun.phase, state.cimRun.execStepIndex]);
+
+  // Output ready → the cited review table slides open in the right canvas.
+  useEffect(() => {
+    if (state.cimRun.phase !== 'output-ready') return;
+    if (activeSession.openRightCanvasTabs.includes('deal-review')) return;
+    clearReviewTransitionTimers();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: true,
+      openRightCanvasTabs: session.openRightCanvasTabs.includes('deal-review')
+        ? session.openRightCanvasTabs
+        : [...session.openRightCanvasTabs, 'deal-review'],
+      activeRightCanvasTab: 'deal-review',
+    }));
+    setRightCanvasMotion(reducedMotion ? 'idle' : 'entering-from-right');
+    if (!reducedMotion) {
+      setReviewTransitionTimer(() => setRightCanvasMotion('idle'), REVIEW_ENTER_MS);
+    }
+  }, [
+    activeSession.openRightCanvasTabs,
+    clearReviewTransitionTimers,
+    setReviewTransitionTimer,
+    state.cimRun.phase,
+    updateActiveSession,
+  ]);
+
+  // "@Grata find similar" — short scripted lookup.
+  useEffect(() => {
+    if (activeCoreTab !== 'ai') return undefined;
+    if (!state.grataSimilarRunning) return undefined;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(
+      () => dispatch({ type: 'GRATA_SIMILAR_READY' }),
+      reducedMotion ? 300 : GRATA_SIMILAR_MS
+    );
+    return () => window.clearTimeout(timer);
+  }, [activeCoreTab, dispatch, state.grataSimilarRunning]);
 
   // When the parse arrives, slide the sourcing-results canvas open (320ms).
   useEffect(() => {
@@ -892,7 +1033,7 @@ export default function FolderRecommendationsChatAssistant() {
               rightCanvasBasis={rightCanvasBasis}
               rightCanvasMotion={rightCanvasMotion}
               reviewOpen={reviewOpen}
-              composerPlaceholder={getComposerPlaceholderForRightTab(activeRightCanvasTab)}
+              composerPlaceholder={dealActive ? CALDERA_COMPOSER_PLACEHOLDER : getComposerPlaceholderForRightTab(activeRightCanvasTab)}
               onNewChat={startNewChat}
               onSelectSession={selectSession}
               onViewPlan={handleViewValidationPlan}
@@ -923,8 +1064,14 @@ export default function FolderRecommendationsChatAssistant() {
               intelligenceTargetId={intelligenceTargetId}
               onOpenTarget={handleOpenTarget}
               onDealSuggestion={handleDealSuggestion}
-              onInsertPlaybookPrompt={handleInsertPlaybookPrompt}
-              onAllPlaybooks={handleAllPlaybooks}
+              onRunPlaybook={handleRunPlaybook}
+              onAllAgents={handleAllAgents}
+              researchAgentActive={state.cimRun.phase === 'executing'}
+              seatLayout={dealLayout}
+              onSeatLayout={handleSeatLayout}
+              onApproveCimPlan={handleApproveCimPlan}
+              onOpenCimReview={handleOpenCimReview}
+              onAskGrataSimilar={handleAskGrataSimilar}
             />
           ) : null}
           {activeCoreTab === 'documents' ? (
@@ -1024,8 +1171,14 @@ function AiWorkspace({
   intelligenceTargetId,
   onOpenTarget,
   onDealSuggestion,
-  onInsertPlaybookPrompt,
-  onAllPlaybooks,
+  onRunPlaybook,
+  onAllAgents,
+  researchAgentActive,
+  seatLayout,
+  onSeatLayout,
+  onApproveCimPlan,
+  onOpenCimReview,
+  onAskGrataSimilar,
 }: {
   activeSessionId: string;
   activeMode: AssistantRailMode;
@@ -1070,8 +1223,14 @@ function AiWorkspace({
   intelligenceTargetId: string | null;
   onOpenTarget: (targetId: string, targetName: string, wired: boolean) => void;
   onDealSuggestion: (action: 'screen-gulfair' | 'queue-cim' | 'whats-changed') => void;
-  onInsertPlaybookPrompt: (prompt: string) => void;
-  onAllPlaybooks: () => void;
+  onRunPlaybook: (playbook: DealPlaybook) => void;
+  onAllAgents: () => void;
+  researchAgentActive: boolean;
+  seatLayout: DealLayout;
+  onSeatLayout: (layout: DealLayout) => void;
+  onApproveCimPlan: () => void;
+  onOpenCimReview: () => void;
+  onAskGrataSimilar: () => void;
 }) {
   if (state.stage === 'documents-view') {
     return <SandboxFolderStructureView state={state} dispatch={dispatch} />;
@@ -1121,8 +1280,14 @@ function AiWorkspace({
           railOnly={rightCanvasExpanded}
           dealActive={dealActive}
           onDealSuggestion={onDealSuggestion}
-          onInsertPlaybookPrompt={onInsertPlaybookPrompt}
-          onAllPlaybooks={onAllPlaybooks}
+          onRunPlaybook={onRunPlaybook}
+          onAllAgents={onAllAgents}
+          researchAgentActive={researchAgentActive}
+          seatLayout={seatLayout}
+          onSeatLayout={onSeatLayout}
+          onApproveCimPlan={onApproveCimPlan}
+          onOpenCimReview={onOpenCimReview}
+          onAskGrataSimilar={onAskGrataSimilar}
         />
       </Box>
 

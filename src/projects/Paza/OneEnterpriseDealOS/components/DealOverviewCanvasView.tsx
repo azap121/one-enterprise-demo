@@ -11,11 +11,35 @@ interface Props {
   bottomInset?: number;
   // Open the Intelligence view for a wired target; toast for the rest.
   onOpenTarget: (targetId: string, targetName: string, wired: boolean) => void;
+  // Phase 3: the accepted CIM screen echoes here — visible cause→effect.
+  cimAccepted?: boolean;
 }
 
 // Deal Overview canvas view — the "where was I" answer for Project Caldera.
-export default function DealOverviewCanvasView({ bottomInset = 0, onOpenTarget }: Props) {
+export default function DealOverviewCanvasView({ bottomInset = 0, onOpenTarget, cimAccepted = false }: Props) {
   const [contextOpen, setContextOpen] = useState(false);
+  const nextSteps = cimAccepted
+    ? [
+        ...CALDERA_OVERVIEW.nextSteps.map((step) =>
+          step.label === 'Screen target profiles' ? { ...step, done: true } : { ...step }
+        ),
+        { label: 'CIM screen tracked to Review', done: true },
+      ]
+    : [...CALDERA_OVERVIEW.nextSteps];
+  const activity = cimAccepted
+    ? [
+        {
+          id: 'act-cim',
+          actor: 'Blueflame AI',
+          initials: 'BA',
+          action: 'CIM screen',
+          object: 'GulfAir Mechanical CIM (v2)',
+          verb: 'tracked to Review',
+          time: 'just now',
+        },
+        ...CALDERA_OVERVIEW.activity,
+      ]
+    : [...CALDERA_OVERVIEW.activity];
 
   return (
     <Box sx={{ height: '100%', minHeight: 0, display: 'flex', flexDirection: 'column' }}>
@@ -87,7 +111,7 @@ export default function DealOverviewCanvasView({ bottomInset = 0, onOpenTarget }
             <SectionLabel>Next steps</SectionLabel>
             <SectionCard>
               <Stack spacing={1}>
-                {CALDERA_OVERVIEW.nextSteps.map((step) => (
+                {nextSteps.map((step) => (
                   <Stack key={step.label} direction="row" spacing={1.25} alignItems="center">
                     <Box
                       sx={{
@@ -122,7 +146,7 @@ export default function DealOverviewCanvasView({ bottomInset = 0, onOpenTarget }
             <SectionLabel>Activity</SectionLabel>
             <SectionCard>
               <Stack spacing={1.5}>
-                {CALDERA_OVERVIEW.activity.map((row) => (
+                {activity.map((row) => (
                   <Stack key={row.id} direction="row" spacing={1.25} alignItems="flex-start">
                     <Monogram initials={row.initials} />
                     <Box sx={{ flex: 1, minWidth: 0 }}>
