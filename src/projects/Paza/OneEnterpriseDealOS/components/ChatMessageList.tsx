@@ -6,6 +6,8 @@ import BriefReadoutCard from './BriefReadoutCard';
 import FilingProposalCard from './FilingProposalCard';
 import QaTriageReadoutCard from './QaTriageReadoutCard';
 import SavedPathCard from './SavedPathCard';
+import SourcingInterpretingMessage from './SourcingInterpretingMessage';
+import SourcingParseCard from './SourcingParseCard';
 import ThinkingTimeline from './ThinkingTimeline';
 import ValidationPlanProposalCard from './ValidationPlanProposalCard';
 import { findSellerFileById } from './rightCanvasFileData';
@@ -24,6 +26,10 @@ interface Props {
   onOpenFilingReview: () => void;
   onToggleRationale: () => void;
   onOpenCitation: (fileId: string) => void;
+  onToggleSourcingTerms?: () => void;
+  onRemoveSourcingTerm?: (termId: string) => void;
+  onNarrowSourcing?: () => void;
+  onNoOpSourcingSuggestion?: () => void;
 }
 
 export default function ChatMessageList({
@@ -35,6 +41,10 @@ export default function ChatMessageList({
   onOpenFilingReview,
   onToggleRationale,
   onOpenCitation,
+  onToggleSourcingTerms,
+  onRemoveSourcingTerm,
+  onNarrowSourcing,
+  onNoOpSourcingSuggestion,
 }: Props) {
   return (
     <Stack spacing={2.5} sx={{ width: '100%' }}>
@@ -65,6 +75,28 @@ export default function ChatMessageList({
           return (
             <MessageShell key={message.id} role="assistant">
               <BriefReadoutCard onOpenCitation={onOpenCitation} />
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'sourcing-interpreting') {
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <SourcingInterpretingMessage label={message.content} />
+            </MessageShell>
+          );
+        }
+
+        if (message.kind === 'sourcing-parse') {
+          return (
+            <MessageShell key={message.id} role="assistant">
+              <SourcingParseCard
+                state={state}
+                onToggleTerms={onToggleSourcingTerms ?? (() => {})}
+                onRemoveTerm={onRemoveSourcingTerm ?? (() => {})}
+                onNarrow={onNarrowSourcing ?? (() => {})}
+                onNoOpSuggestion={onNoOpSourcingSuggestion ?? (() => {})}
+              />
             </MessageShell>
           );
         }

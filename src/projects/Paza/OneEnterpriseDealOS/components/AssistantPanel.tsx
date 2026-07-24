@@ -2,11 +2,12 @@ import { useState, type ReactNode } from 'react';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faArrowRight, faFileLines, faMagnifyingGlass, faMessagesQuestion, faPenLine, faSparkles } from '@fortawesome/pro-light-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Dialog, DialogContent, InputBase, Stack, Typography } from '@mui/material';
+import { Box, Dialog, DialogContent, InputBase, Snackbar, Stack, Typography } from '@mui/material';
 import AssistantRail, { type AssistantRailMode, type RecentChat } from './AssistantRail';
 import ChatComposer from './ChatComposer';
 import ChatMessageList from './ChatMessageList';
 import FullChatEmptyState from './FullChatEmptyState';
+import { SOURCING_COPY } from '../state/sourcingScenario';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 import type { SeatId } from '../state/persona';
 
@@ -63,6 +64,7 @@ export default function AssistantPanel({
 }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [sourcingToastOpen, setSourcingToastOpen] = useState(false);
   const showFullEmpty = state.stage === 'chat-empty';
   const composerLoading = state.stage === 'chat-processing-recommendation' || state.stage === 'save-processing';
 
@@ -160,6 +162,10 @@ export default function AssistantPanel({
                     onOpenFilingReview={onOpenFilingReview}
                     onToggleRationale={() => dispatch({ type: 'SHOW_RATIONALE' })}
                     onOpenCitation={onOpenCitation}
+                    onToggleSourcingTerms={() => dispatch({ type: 'TOGGLE_SOURCING_TERMS' })}
+                    onRemoveSourcingTerm={(termId) => dispatch({ type: 'REMOVE_SOURCING_TERM', termId })}
+                    onNarrowSourcing={() => dispatch({ type: 'NARROW_SOURCING' })}
+                    onNoOpSourcingSuggestion={() => setSourcingToastOpen(true)}
                   />
                 </Box>
               </Box>
@@ -183,6 +189,13 @@ export default function AssistantPanel({
           )}
         </Box>
       )}
+      <Snackbar
+        open={sourcingToastOpen}
+        autoHideDuration={2600}
+        onClose={() => setSourcingToastOpen(false)}
+        message={SOURCING_COPY.continuationToast}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      />
     </Box>
   );
 }

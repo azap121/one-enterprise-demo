@@ -9,6 +9,7 @@ import {
   faClipboardCheck,
   faFile,
   faFolderTree,
+  faMagnifyingGlass,
   faMessagesQuestion,
   faPlus,
   faSidebarFlip,
@@ -28,15 +29,17 @@ import LegalReviewWorkspace from './LegalReviewWorkspace';
 import RightContextCanvasFileDetailView from './RightContextCanvasFileDetailView';
 import RightContextCanvasFilesView from './RightContextCanvasFilesView';
 import RightContextCanvasQaView, { type QaFocusTarget } from './RightContextCanvasQaView';
+import RightContextCanvasSourcingView from './RightContextCanvasSourcingView';
 import ValidationPlanWorkspace from './ValidationPlanWorkspace';
 import { createAppliedFilesSource } from './appliedFilesSource';
 import { BRIEF_SOURCE_FILES } from '../state/briefScenario';
 import { STIFEL_SOURCE_FILES } from './qaTriageData';
 import { findSellerFileById, registerRuntimeSellerFiles, type SellerIndexSource } from './rightCanvasFileData';
+import { SOURCING_COPY } from '../state/sourcingScenario';
 import { selectCompositedTree } from '../state/reducer';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
-type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates';
+type BaseRightCanvasTab = 'validation-plan' | 'enhanced-index' | 'filing-review' | 'files' | 'qa' | 'skills' | 'templates' | 'sourcing-results';
 type FilePreviewCanvasTab = `file:${string}`;
 
 export type RightCanvasTab = BaseRightCanvasTab | FilePreviewCanvasTab;
@@ -59,6 +62,7 @@ interface Props {
   onOpenSavedFiles: () => void;
   selectedQaItemId: string | null;
   onOpenQaItem: (itemId: string) => void;
+  onPromoteSourcing?: () => void;
   motion?: RightCanvasMotion;
 }
 
@@ -100,6 +104,11 @@ const RIGHT_CANVAS_TAB_META: Record<BaseRightCanvasTab, { label: string; icon: I
     icon: faBookOpenLines,
     closeLabel: 'Remove Templates tab',
   },
+  'sourcing-results': {
+    label: 'Sourcing results',
+    icon: faMagnifyingGlass,
+    closeLabel: 'Remove Sourcing results tab',
+  },
 };
 
 function makeFilePreviewCanvasTab(fileId: string): FilePreviewCanvasTab {
@@ -135,6 +144,9 @@ export function getComposerPlaceholderForRightTab(tab: RightCanvasTab | null) {
   if (tab === 'templates') {
     return 'Upload templates or describe the playbook/output standard you want agents to use...';
   }
+  if (tab === 'sourcing-results') {
+    return SOURCING_COPY.continuationPlaceholder;
+  }
   return undefined;
 }
 
@@ -155,6 +167,7 @@ export default function RightContextCanvas({
   onOpenSavedFiles,
   selectedQaItemId,
   onOpenQaItem,
+  onPromoteSourcing,
   motion = 'idle',
 }: Props) {
   const [addMenuAnchorEl, setAddMenuAnchorEl] = useState<HTMLElement | null>(null);
@@ -424,6 +437,7 @@ export default function RightContextCanvas({
               onOpenQa={openFocusedQa}
               qaFocusTarget={qaFocusTarget}
               selectedQaItemId={selectedQaItemId}
+              onPromoteSourcing={onPromoteSourcing}
             />
           </Box>
           {expanded ? (
@@ -696,6 +710,7 @@ function RightCanvasTabContent({
   onOpenQa,
   qaFocusTarget,
   selectedQaItemId,
+  onPromoteSourcing,
 }: {
   activeTab: RightCanvasTab | null;
   state: WorkspaceState;
@@ -709,6 +724,7 @@ function RightCanvasTabContent({
   onOpenQa: (target: QaFocusTarget) => void;
   qaFocusTarget: QaFocusTarget | null;
   selectedQaItemId: string | null;
+  onPromoteSourcing?: () => void;
 }) {
   if (activeTab === 'validation-plan') {
     return (
@@ -773,6 +789,17 @@ function RightCanvasTabContent({
         focusTarget={qaFocusTarget}
         selectedItemId={selectedQaItemId}
         onOpenFile={onOpenFilePreview}
+      />
+    );
+  }
+
+  if (activeTab === 'sourcing-results') {
+    return (
+      <RightContextCanvasSourcingView
+        state={state}
+        bottomInset={bottomInset}
+        onToggleRow={(companyId) => dispatch({ type: 'TOGGLE_SOURCING_ROW', companyId })}
+        onPromote={onPromoteSourcing ?? (() => {})}
       />
     );
   }
