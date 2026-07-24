@@ -155,7 +155,9 @@ export type ChatMessageKind =
   | 'folder-overview'
   // Sourcing flow.
   | 'sourcing-interpreting'
-  | 'sourcing-parse';
+  | 'sourcing-parse'
+  // Deal workspace (Phase 2) — chat empty-state with headline + context strip + chips.
+  | 'deal-empty';
 
 export interface ChatMessage {
   id: string;
@@ -222,6 +224,10 @@ export interface WorkspaceState {
   sourcingNarrowed: boolean;
   // Selected company ids in the results canvas (checkboxes → floating action bar).
   sourcingSelectedIds: string[];
+  // ── Deal workspace (Phase 2) ──
+  // Set when the Caldera deal is open — distinguishes the deal workspace from the
+  // Aldgate sourcing scenario (both use flow: 'sourcing'). null → not in a deal.
+  dealId: string | null;
 }
 
 export type WorkspaceAction =
@@ -275,4 +281,14 @@ export type WorkspaceAction =
   | { type: 'REMOVE_SOURCING_TERM'; termId: string }
   | { type: 'NARROW_SOURCING' }
   | { type: 'TOGGLE_SOURCING_ROW'; companyId: string }
-  | { type: 'OPEN_DEAL' };
+  | { type: 'OPEN_DEAL' }
+  // ── Deal workspace (Phase 2) ──
+  // Screen a target's Grata profile — appends a chat exchange; the orchestrator opens
+  // the Intelligence canvas view for the target.
+  | { type: 'DEAL_SCREEN_TARGET'; targetId: string; targetName: string }
+  // "Run CIM screen when the CIM arrives" — governed, approval-gated reply.
+  | { type: 'DEAL_QUEUE_CIM' }
+  // "What changed this week?" — scripted weekly digest.
+  | { type: 'DEAL_WHATS_CHANGED' }
+  // Insert a prepared prompt into the composer (Playbook cards; don't auto-send).
+  | { type: 'SET_COMPOSER'; value: string };

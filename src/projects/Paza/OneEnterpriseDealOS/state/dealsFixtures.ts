@@ -97,11 +97,162 @@ export const CALDERA_DEAL: DealCard = {
   opens: 'caldera',
 };
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Phase 2 — Caldera deal workspace
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const CALDERA_OPENED_COPY = {
   headline: 'What should we dig into on Project Caldera?',
-  suggestions: [
-    'Screen GulfAir Mechanical’s profile',
-    'Draft outreach shortlist',
-    'Set a weekly signal digest',
-  ],
+  // Deal context strip under the headline (chat-first workspace).
+  directionBadge: 'Buy-side · Acquisition',
+  stageChip: 'Sourcing',
+  contextChips: ['Search: HVAC · Texas · $10M–$50M', '3 targets', 'Signals on'],
 } as const;
+
+// Suggestion chips. `action` maps to a WorkspaceAction dispatched by the deal chat.
+export const CALDERA_SUGGESTIONS = [
+  { id: 'screen-gulfair', label: 'Screen GulfAir Mechanical’s profile', action: 'screen-gulfair' as const },
+  { id: 'queue-cim', label: 'Run CIM screen when the CIM arrives', action: 'queue-cim' as const },
+  { id: 'whats-changed', label: 'What changed this week?', action: 'whats-changed' as const },
+];
+
+export const CALDERA_SCRIPTED = {
+  // "Run CIM screen…" — governed, approval-gated reply + toast.
+  queueCim:
+    'I’ll watch for a CIM upload and queue pe-cim-screen — you’ll approve before anything runs.',
+  queueCimToast: 'Watching for a CIM upload — pe-cim-screen queued',
+  // "What changed this week?" — short scripted digest referencing the 3 targets + 1 new signal.
+  whatsChanged:
+    'Since last week on Project Caldera:\n• GulfAir Mechanical — seller-intent score ticked up to 68 (owner transition signal).\n• Lone Star Climate Systems — new leadership-succession filing detected.\n• Hill Country Air — no material change.\n• 1 new signal: a TX HVAC roll-up comparable closed at ~7.5x EBITDA.',
+} as const;
+
+// Deal Overview canvas view — the "where was I" answer.
+export const CALDERA_OVERVIEW = {
+  // State block.
+  state: {
+    stage: 'Sourcing',
+    direction: 'Buy-side · Acquisition',
+    created: 'Today',
+    owner: 'Alex Verma',
+  },
+  // "Carried from sourcing" — the search chips + 3 target rows.
+  searchChips: ['HVAC', 'Texas', '$10M–$50M'],
+  targets: [
+    { id: 'co-gulfair', name: 'GulfAir Mechanical', revenue: '$18M', sellerIntent: 'Has Intent · 68', wired: true },
+    { id: 'co-lonestar', name: 'Lone Star Climate Systems', revenue: '$38M', sellerIntent: 'Has Intent · 61', wired: false },
+    { id: 'co-hillcountry', name: 'Hill Country Air', revenue: '$29M', sellerIntent: 'Has Intent · 57', wired: false },
+  ],
+  // Next steps checklist (first checked).
+  nextSteps: [
+    { label: 'Targets shortlisted', done: true },
+    { label: 'Screen target profiles', done: false },
+    { label: 'Draft outreach shortlist', done: false },
+  ],
+  // Activity feed (A3 anatomy: monogram + "Actor — action 'quoted object'" + relative time).
+  activity: [
+    { id: 'act-1', actor: 'Alex Verma', initials: 'AV', action: 'Deal', object: 'Project Caldera', verb: 'created', time: 'just now' },
+    { id: 'act-2', actor: 'Sourcing Signal Monitor', initials: 'SM', action: 'Signal', object: 'TX HVAC watchlist', verb: 'enabled', time: 'just now' },
+    { id: 'act-3', actor: 'Alex Verma', initials: 'AV', action: '3 companies added from search', object: '', verb: '', time: '2m' },
+  ],
+  toastOpenProfile: 'Profile stub — full Intelligence view wired for GulfAir in this demo',
+} as const;
+
+// ── AI rail (Phase 2): Agents + Playbooks — shown only in the Caldera deal ──
+
+export interface DealAgent {
+  id: string;
+  name: string;
+  status: 'active' | 'idle';
+  capabilities: string[]; // capability chips
+  scope?: string;
+  budget?: string;
+}
+
+// 2 governed agent cards (manda-aOS Agents panel pattern).
+export const CALDERA_AGENTS: DealAgent[] = [
+  {
+    id: 'signal-monitor',
+    name: 'Sourcing Signal Monitor',
+    status: 'active',
+    capabilities: ['signals.watch', 'companies.enrich'],
+    scope: 'TX HVAC watchlist',
+    budget: '50 tool calls/run · hard stop',
+  },
+  {
+    id: 'research-agent',
+    name: 'Deal Research Agent',
+    status: 'idle',
+    capabilities: ['corpus.list', 'doc.read', 'citation.resolve'],
+  },
+];
+
+export interface DealPlaybook {
+  id: string;
+  name: string;
+  oneLiner: string;
+  input: string;
+  sentTo: string;
+  scope: 'Firm' | 'Personal';
+  scheduleChip?: string;
+  // Prepared prompt inserted into the composer on click (don't auto-send).
+  prompt: string;
+}
+
+// 4 unified playbook cards (Skills + Blueprints + Templates). Blueprint INPUT/SENT-TO
+// pattern from blueflame-platform-recon-FINAL.md §5a/5b.
+export const CALDERA_PLAYBOOKS: DealPlaybook[] = [
+  {
+    id: 'pe-cim-screen',
+    name: 'CIM Screen — buy-side',
+    oneLiner: 'Screen an inbound CIM against the Caldera thesis.',
+    input: 'CIM file',
+    sentTo: 'Chat',
+    scope: 'Firm',
+    prompt: 'Run pe-cim-screen on the latest CIM upload and summarize fit against the Project Caldera thesis. Hold for my approval before anything runs.',
+  },
+  {
+    id: 'diligence-qa-tracker',
+    name: 'Diligence Q&A Tracker',
+    oneLiner: 'Track diligence questions against VDR evidence.',
+    input: 'Question sheet + VDR folder',
+    sentTo: 'Excel',
+    scope: 'Firm',
+    prompt: 'Set up a diligence Q&A tracker for Project Caldera from a question sheet and VDR folder, resolving each answer to a cited source.',
+  },
+  {
+    id: 'target-outreach-drafter',
+    name: 'Target Outreach Drafter',
+    oneLiner: 'Draft outreach emails to the shortlisted targets.',
+    input: 'Shortlist',
+    sentTo: 'Email drafts',
+    scope: 'Personal',
+    prompt: 'Draft outreach emails to the three Project Caldera targets from the shortlist. Keep them in drafts for my review.',
+  },
+  {
+    id: 'weekly-signal-digest',
+    name: 'Weekly Signal Digest',
+    oneLiner: 'Weekly roll-up of signals across the watchlist.',
+    input: 'none',
+    sentTo: 'Email',
+    scope: 'Personal',
+    scheduleChip: 'Mon 7:00 AM',
+    prompt: 'Configure a weekly signal digest for the Project Caldera TX HVAC watchlist, delivered Monday mornings.',
+  },
+];
+
+export const CALDERA_RAIL_COPY = {
+  agentsHeader: 'Agents',
+  playbooksHeader: 'Playbooks',
+  allPlaybooks: 'All playbooks',
+} as const;
+
+// Deal Context markdown (A3 Blueflame Deal template — Deal Metadata / Transaction Overview).
+export const CALDERA_CONTEXT_MARKDOWN = `# 1. Deal Metadata
+- **Project Name:** Project Caldera
+- **Company Sector:** Commercial HVAC services
+- **Deal Classification:** Buy-side add-on acquisition
+- **Deal Team:** Alex Verma (Corporate Development)
+
+# 2. Transaction Overview
+- **Transaction Summary:** Buy-side platform is pursuing a Texas HVAC roll-up, consolidating commercial mechanical-services providers ($10M–$50M revenue) with recurring maintenance contracts. Initial shortlist of three targets carried from Grata sourcing, led by GulfAir Mechanical. Thesis: fragmented Gulf Coast market, owner-operators approaching transition, strong recurring-revenue mix.`;
+

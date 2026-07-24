@@ -4,6 +4,7 @@ import { BRIEF_COPY, BRIEF_PLAN, briefPlanSteps, briefRunSteps } from './briefSc
 import { FILING_COPY, filingScenario, filingSaveSteps, filingSteps } from './filingScenario';
 import { planFormationSteps, recommendationSteps, saveSteps } from './timing';
 import { SOURCING_COMPANIES, SOURCING_COPY, SOURCING_QUICK_SUGGESTIONS } from './sourcingScenario';
+import { CALDERA_OPENED_COPY, CALDERA_SCRIPTED } from './dealsFixtures';
 import { createDefaultValidationPlan } from './validationPlan';
 import type { ValidationPlanPhase, WorkspaceAction, WorkspaceState } from './types';
 import {
@@ -45,6 +46,7 @@ export const initialState: WorkspaceState = {
   sourcingRemovedTermIds: [],
   sourcingNarrowed: false,
   sourcingSelectedIds: [],
+  dealId: null,
 };
 
 // Scripted reply for the 'Stage the client drop' card. Synthetic Aldgate fixture data,
@@ -723,7 +725,59 @@ export function reducer(state: WorkspaceState, action: WorkspaceAction): Workspa
       };
 
     case 'OPEN_DEAL':
-      return { ...initialState, stage: 'deal-opened', flow: 'sourcing' };
+      track('one_enterprise.deal.open', { deal: 'caldera' });
+      return {
+        ...initialState,
+        stage: 'deal-opened',
+        flow: 'sourcing',
+        dealId: 'deal-caldera',
+        // The deal chat opens on a scripted empty-state (headline + context strip + chips).
+        messages: [{ id: 'deal-empty', role: 'assistant', kind: 'deal-empty', content: CALDERA_OPENED_COPY.headline }],
+      };
+
+    case 'DEAL_SCREEN_TARGET':
+      track('one_enterprise.deal.screen_target', { target: action.targetId });
+      return {
+        ...state,
+        composerValue: '',
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'deal-empty'),
+          { id: `deal-user-${state.messages.length}`, role: 'user', kind: 'text', content: `Screen ${action.targetName}’s profile` },
+          {
+            id: `deal-assistant-${state.messages.length}`,
+            role: 'assistant',
+            kind: 'text',
+            content: `Opening the Grata profile for ${action.targetName} in the Intelligence canvas — sizing, seller intent, keywords, executives, evidence, and comps, all scoped to Project Caldera.`,
+          },
+        ],
+      };
+
+    case 'DEAL_QUEUE_CIM':
+      track('one_enterprise.deal.queue_cim');
+      return {
+        ...state,
+        composerValue: '',
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'deal-empty'),
+          { id: `deal-user-${state.messages.length}`, role: 'user', kind: 'text', content: 'Run CIM screen when the CIM arrives' },
+          { id: `deal-assistant-${state.messages.length}`, role: 'assistant', kind: 'text', content: CALDERA_SCRIPTED.queueCim },
+        ],
+      };
+
+    case 'DEAL_WHATS_CHANGED':
+      track('one_enterprise.deal.whats_changed');
+      return {
+        ...state,
+        composerValue: '',
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'deal-empty'),
+          { id: `deal-user-${state.messages.length}`, role: 'user', kind: 'text', content: 'What changed this week?' },
+          { id: `deal-assistant-${state.messages.length}`, role: 'assistant', kind: 'text', content: CALDERA_SCRIPTED.whatsChanged },
+        ],
+      };
+
+    case 'SET_COMPOSER':
+      return { ...state, composerValue: action.value };
 
     default:
       return state;
