@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'caret-large-down';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e82c';
+var svgPathData = 'M214.6 374.6c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-9.2-9.2-11.9-22.9-6.9-34.9l2.2-4.3c4.9-8.1 13.2-13.7 22.6-15.1l4.8-.3 320 0c11.3 0 21.7 6 27.4 15.5l2.2 4.3c5 12 2.2 25.7-6.9 34.9l-160 160zM313.4 208L70.6 208 192 329.4 313.4 208z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCaretLargeDown = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

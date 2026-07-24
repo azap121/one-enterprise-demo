@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'cassette-betamax';
+var width = 512;
+var height = 512;
+var aliases = ["betamax"];
+var unicode = 'f8a4';
+var svgPathData = 'M64 64C28.7 64 0 92.7 0 128l512 0c0-35.3-28.7-64-64-64L64 64zM512 176L0 176 0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208zM144 336a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm0-112a80 80 0 1 1 0 160 80 80 0 1 1 0-160zm176 0l96 0c17.7 0 32 14.3 32 32l0 96c0 17.7-14.3 32-32 32l-96 0c-17.7 0-32-14.3-32-32l0-96c0-17.7 14.3-32 32-32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCassetteBetamax = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

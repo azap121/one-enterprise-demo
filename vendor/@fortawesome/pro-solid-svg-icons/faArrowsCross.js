@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'arrows-cross';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e0a2';
+var svgPathData = 'M54.6 41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L144.8 222.1 190.1 176.8 54.6 41.4zM257.9 335.2l80.8 80.8-50.7 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l128 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 50.7-80.8-80.8-45.3 45.3zM288 32c-17.7 0-32 14.3-32 32s14.3 32 32 32L338.7 96 9.4 425.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L384 141.3 384 192c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128c0-17.7-14.3-32-32-32L288 32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowsCross = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

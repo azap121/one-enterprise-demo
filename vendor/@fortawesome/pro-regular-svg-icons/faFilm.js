@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'film';
+var width = 448;
+var height = 512;
+var aliases = [127902,62368,"film-alt","film-simple"];
+var unicode = 'f008';
+var svgPathData = 'M160 432l128 0 0-352-128 0 0 352zM112 80L64 80c-8.8 0-16 7.2-16 16l0 32 64 0 0-48zm0 96l-64 0 0 56 64 0 0-56zm0 104l-64 0 0 56 64 0 0-56zm0 104l-64 0 0 32c0 8.8 7.2 16 16 16l48 0 0-48zM336 80l0 48 64 0 0-32c0-8.8-7.2-16-16-16l-48 0zm64 96l-64 0 0 56 64 0 0-56zm0 104l-64 0 0 56 64 0 0-56zm0 104l-64 0 0 48 48 0c8.8 0 16-7.2 16-16l0-32zM64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFilm = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

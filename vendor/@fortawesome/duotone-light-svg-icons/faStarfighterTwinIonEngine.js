@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'starfighter-twin-ion-engine';
+var width = 512;
+var height = 512;
+var aliases = ["starfighter-alt"];
+var unicode = 'e038';
+var svgPathData = ['M32 236.9l0 38.1 67.5 14.5c-2.3-10.8-3.5-22-3.5-33.5s1.2-22.7 3.5-33.5L32 236.9zM128 256a128 128 0 1 0 256 0 128 128 0 1 0 -256 0zm208 0a80 80 0 1 1 -160 0 80 80 0 1 1 160 0zm76.5-33.5c2.3 10.8 3.5 22 3.5 33.5s-1.2 22.7-3.5 33.5l67.5-14.5 0-38.1-67.5-14.5z', 'M32 48c0-8.8-7.2-16-16-16S0 39.2 0 48L0 464c0 8.8 7.2 16 16 16s16-7.2 16-16l0-156.2 79.5 17C137.3 378.7 192.3 416 256 416s118.7-37.3 144.5-91.2l79.5-17 0 156.2c0 8.8 7.2 16 16 16s16-7.2 16-16l0-416c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 156.2-79.5-17C374.7 133.3 319.7 96 256 96s-118.7 37.3-144.5 91.2L32 204.2 32 48zM412.5 222.5l67.5 14.5 0 38.1-67.5 14.5c2.3-10.8 3.5-22 3.5-33.5s-1.2-22.7-3.5-33.5zm-313 67.1l-67.5-14.5 0-38.1 67.5-14.5c-2.3 10.8-3.5 22-3.5 33.5s1.2 22.7 3.5 33.5zM256 128a128 128 0 1 1 0 256 128 128 0 1 1 0-256zm48 128a48 48 0 1 1 -96 0 48 48 0 1 1 96 0zm-48-80a80 80 0 1 0 0 160 80 80 0 1 0 0-160z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faStarfighterTwinIonEngine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

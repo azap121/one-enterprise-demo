@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'square-manat';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e704';
+var svgPathData = ['M32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96zm80 160c0-56.4 41.7-103.1 96-110.9l0-9.1c0-8.8 7.2-16 16-16s16 7.2 16 16l0 9.1c54.3 7.8 96 54.4 96 110.9l0 112c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-112c0-38.7-27.5-71-64-78.4L240 368c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-190.4c-36.5 7.4-64 39.7-64 78.4l0 112c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-112z', 'M64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm208 40c0-8.8 7.2-16 16-16s16 7.2 16 16l0 9.1c54.3 7.8 96 54.4 96 110.9l0 112c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-112c0-38.7-27.5-71-64-78.4L240 368c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-190.4c-36.5 7.4-64 39.7-64 78.4l0 112c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-112c0-56.4 41.7-103.1 96-110.9l0-9.1z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareManat = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

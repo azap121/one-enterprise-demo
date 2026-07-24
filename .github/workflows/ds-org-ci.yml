@@ -1,0 +1,12 @@
+# Run actions shared within the organization
+name: DS Organization Actions
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-ld-code-ref-in-local-repo:
+    uses: MerrillCorporation/.github-internal/.github/workflows/launch-darkly.yml@latest
+    secrets:
+      LD_ACCESS_TOKEN: ${{ secrets.LD_ACCESS_TOKEN }}

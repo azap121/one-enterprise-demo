@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'person-meditating';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e7e1';
+var svgPathData = ['M168 72a56 56 0 1 0 112 0 56 56 0 1 0 -112 0z', 'M364.3 394.3c26.8-5.3 51.7 15.1 51.7 42.4 0 23.9-19.4 43.3-43.3 43.3L75.2 480c-23.9 0-43.2-19.4-43.2-43.3 0-27.3 25-47.8 51.7-42.4l140.3 28 140.3-28zM224 176c39.9 0 77.8 17.7 103.3 48.4l39.7 47.6 49 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-9.5 0-18.5-4.2-24.6-11.5l-23.4-28.1 0 69.2-80 16-80-16 0-69.2-23.4 28.1C114.5 331.8 105.5 336 96 336l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l49 0 39.7-47.6 4.9-5.6C151 191.6 186.6 176 224 176z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonMeditating = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

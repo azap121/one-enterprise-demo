@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'circle-naira';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e749';
+var svgPathData = ['M32 256a224 224 0 1 0 448 0 224 224 0 1 0 -448 0zm96 16c0-8.8 7.2-16 16-16l16 0 0-112c0-7 4.5-13.1 11.1-15.2s13.9 .3 17.9 5.9l86.6 121.3 44.3 0 0-112c0-8.8 7.2-16 16-16s16 7.2 16 16l0 112 16 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-16 0 0 80c0 7-4.5 13.1-11.1 15.2S327 383 323 377.3l-63.8-89.3-67.2 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-16 0c-8.8 0-16-7.2-16-16zm64-78.1l0 62.1 44.3 0-44.3-62.1z', 'M256 32a224 224 0 1 1 0 448 224 224 0 1 1 0-448zm0 480a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM171.1 128.8C164.5 130.9 160 137 160 144l0 112-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l16 0 0 80c0 8.8 7.2 16 16 16s16-7.2 16-16l0-80 67.2 0 63.8 89.3c4 5.7 11.3 8.1 17.9 5.9S352 375 352 368l0-80 16 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-16 0 0-112c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 112-44.3 0-86.6-121.3c-4-5.7-11.3-8.1-17.9-5.9zM320 318.1l-21.5-30.1 21.5 0 0 30.1zM192 193.9l44.3 62.1-44.3 0 0-62.1z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleNaira = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

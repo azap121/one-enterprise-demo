@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'polish-zloty-sign';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e70b';
+var svgPathData = 'M352 32c17.7 0 32 14.3 32 32l0 130.4 23.6-8.8c12.4-4.7 26.2 1.6 30.9 14s-1.6 26.2-14 30.9L384 245.6 384 448c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-178.4-23.6 8.8c-12.4 4.7-26.2-1.6-30.9-14s1.6-26.2 14-30.9L320 218.4 320 64c0-17.7 14.3-32 32-32zM32 192l160 0c12 0 23 6.7 28.5 17.4s4.6 23.5-2.4 33.2L94.2 416 192 416c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-12 0-23-6.7-28.5-17.4S-1 439.2 6 429.4L129.8 256 32 256c-17.7 0-32-14.3-32-32s14.3-32 32-32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPolishZlotySign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

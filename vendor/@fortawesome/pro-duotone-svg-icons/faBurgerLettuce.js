@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'burger-lettuce';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e3e3';
+var svgPathData = ['M32 202c0 12.2 9.9 22 22 22L458 224c12.2 0 22-9.9 22-22 0-17.2-2.6-34.4-10.8-49.5-22.2-40.8-82.3-120.5-213.2-120.5S65 111.6 42.8 152.5C34.6 167.6 32 184.8 32 202zm0 198c0 44.2 35.8 80 80 80l288 0c44.2 0 80-35.8 80-80 0-8.8-7.2-16-16-16L48 384c-8.8 0-16 7.2-16 16zM168 128a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zM280 96a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zm112 32a24 24 0 1 1 -48 0 24 24 0 1 1 48 0z', 'M319 263.4c20.5-12 46-11.6 66.2 1L419 285.6c2.5 1.6 5.5 2.4 8.5 2.4l60.5 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-60.5 0c-12 0-23.7-3.4-33.9-9.7l-33.8-21.1c-5-3.1-11.4-3.2-16.5-.2l-55 32.1c-19.9 11.6-44.6 11.6-64.5 0l-55-32.1c-5.1-3-11.5-2.9-16.5 .2l-33.8 21.1c-10.2 6.4-21.9 9.7-33.9 9.7L24 336c-13.3 0-24-10.7-24-24s10.7-24 24-24l60.5 0c3 0 5.9-.8 8.5-2.4l33.8-21.1c20.2-12.6 45.6-13 66.2-1l55 32.1c5 2.9 11.1 2.9 16.1 0l55-32.1z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBurgerLettuce = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

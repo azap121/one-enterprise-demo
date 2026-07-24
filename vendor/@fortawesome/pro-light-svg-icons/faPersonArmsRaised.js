@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'person-arms-raised';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e783';
+var svgPathData = 'M47.7-19.1C46-27.8 37.5-33.4 28.9-31.7S14.6-21.5 16.3-12.9l6.9 34.5C33.7 74 67.2 116.8 112 140.3L112 528c0 8.8 7.2 16 16 16s16-7.2 16-16l0-160 96 0 0 160c0 8.8 7.2 16 16 16s16-7.2 16-16l0-387.7c44.8-23.5 78.3-66.3 88.8-118.7l6.9-34.5c1.7-8.7-3.9-17.1-12.6-18.8S338-27.8 336.3-19.1l-6.9 34.5C316.3 80.9 258.8 128 192 128S67.7 80.9 54.6 15.3L47.7-19.1zM240 336l-96 0 0-182.8c15.3 4.4 31.4 6.8 48 6.8s32.7-2.4 48-6.8L240 336zM168 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonArmsRaised = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

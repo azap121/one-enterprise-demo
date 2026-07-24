@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'cart-circle-check';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e3f1';
+var svgPathData = ['M113 64l417.3 0c5.1 0 8.9 4.7 7.8 9.7L509.3 208.5c-4.4-.3-8.8-.5-13.3-.5-48.7 0-93.2 18.1-127 48L147.9 256 113 64zM228 460a20 20 0 1 1 -40 0 20 20 0 1 1 40 0z', 'M16 0C7.2 0 0 7.2 0 16S7.2 32 16 32l45.3 0C69 32 75.7 37.5 77 45.1l50.9 279.7c6.2 34.2 36 59.1 70.8 59.1l105.9 0c.9-11 2.7-21.6 5.4-32l-111.3 0c-19.3 0-35.9-13.8-39.4-32.8L153.7 288 340 288c8.4-11.7 18.2-22.5 29-32L147.9 256 113 64 530.3 64c5.1 0 8.9 4.7 7.8 9.7L509.3 208.5c10.8 .7 21.4 2.4 31.7 4.8L569.4 80.4C574.8 55.5 555.8 32 530.3 32L106.6 32C99.9 13.1 81.9 0 61.3 0L16 0zM188 460a20 20 0 1 1 40 0 20 20 0 1 1 -40 0zm72 0a52 52 0 1 0 -104 0 52 52 0 1 0 104 0zM496 288a112 112 0 1 1 0 224 112 112 0 1 1 0-224zm0 256a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm57.4-204.9c-7.1-5.2-17.2-3.6-22.4 3.5l-53 72.9-26.8-26.8c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l40 40c3.3 3.3 7.9 5 12.6 4.6s8.9-2.8 11.7-6.5l64-88c5.2-7.1 3.6-17.2-3.5-22.4z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCartCircleCheck = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

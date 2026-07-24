@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'monument';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'f5a6';
+var svgPathData = 'M175-33c9.4-9.4 24.6-9.4 33.9 0l80 80c4.1 4.1 6.5 9.4 7 15.1L326.8 464 344 464c13.3 0 24 10.7 24 24s-10.7 24-24 24L40 512c-13.3 0-24-10.7-24-24s10.7-24 24-24l17.2 0 30.9-401.8c.4-5.7 2.9-11.1 7-15.1l80-80zM248.8 74.7L192 17.9 135.2 74.7 105.3 464 278.7 464 248.8 74.7zM168 288l48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMonument = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

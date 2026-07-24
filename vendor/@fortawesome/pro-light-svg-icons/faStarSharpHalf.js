@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'star-sharp-half';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e28c';
+var svgPathData = 'M256 77.8L206.8 198.1c-2.5 6-8.3 9.9-14.8 9.9l-148.7 0 126 91c5.5 4 7.9 11.1 5.9 17.6L131.5 460.6 256 363.7 256 77.8zm-8-64.9C251.2 5.1 258.8 0 267.2 0 278.7 0 288 9.3 288 20.8l0 350.8c0 4.9-2.3 9.6-6.2 12.6L123.1 507.6c-3.6 2.8-8.1 4.4-12.7 4.4-13.9 0-23.9-13.4-19.8-26.8l50.8-167-130.3-94.1c-6.9-5-11-13-11-21.6 0-14.7 11.9-26.6 26.6-26.6L181.3 176 248 12.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faStarSharpHalf = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

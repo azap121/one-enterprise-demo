@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'flute';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f8b9';
+var svgPathData = 'M30.1 406.1l408-408c18.7-18.7 49.1-18.7 67.9 0l40 40c18.7 18.7 18.7 49.1 0 67.9l-408 408c-18.7 18.7-49.1 18.7-67.9 0l-40-40c-18.7-18.7-18.7-49.1 0-67.9zM472 32L420.5 83.5c6.9 4.2 11.5 11.8 11.5 20.5 0 13.3-10.7 24-24 24-8.7 0-16.3-4.6-20.5-11.5l-31 31c6.9 4.2 11.5 11.8 11.5 20.5 0 13.3-10.7 24-24 24-8.7 0-16.3-4.6-20.5-11.5l-31 31c6.9 4.2 11.5 11.8 11.5 20.5 0 13.3-10.7 24-24 24-8.7 0-16.3-4.6-20.5-11.5L197 307 237 347 512 72 472 32zM99.5 404.5l-35.5 35.5 40 40 99-99-40-40-30.5 30.5c6.9 4.2 11.5 11.8 11.5 20.5 0 13.3-10.7 24-24 24-8.7 0-16.3-4.6-20.5-11.5z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFlute = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

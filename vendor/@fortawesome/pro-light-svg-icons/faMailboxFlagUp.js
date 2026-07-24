@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'mailbox-flag-up';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e5bb';
+var svgPathData = 'M310.7 64c-4.3 9.8-6.7 20.6-6.7 32l-69.5 0c32.6 26.4 53.5 66.8 53.5 112l0 208c0 11.7-3.1 22.6-8.6 32L512 448c17.7 0 32-14.3 32-32l0-192c0-22.5-5.8-43.7-16-62.1 0-.6 0-1.3 0-1.9l0-50.3c29.6 29 48 69.5 48 114.3l0 192c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 208C0 128.5 64.5 64 144 64l166.7 0zM144 96C82.1 96 32 146.1 32 208l0 208c0 17.7 14.3 32 32 32l160 0c17.7 0 32-14.3 32-32l0-208c0-61.9-50.1-112-112-112zM80 240c0-8.8 7.2-16 16-16l96 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16zm272 0l0-144c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l-64 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16zm96-80l0-64-64 0 0 64 64 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMailboxFlagUp = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

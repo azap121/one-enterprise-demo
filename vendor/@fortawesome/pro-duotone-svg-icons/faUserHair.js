@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'user-hair';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e45a';
+var svgPathData = ['M144 128l0 16c0 44.2 35.8 80 80 80s80-35.8 80-80l0-16c0-18-5.9-34.6-16-48-12.8 9.6-25.6 19.2-38.4 28.8-16.6 12.5-36.8 19.2-57.6 19.2l-48 0z', 'M304 144c0 44.2-35.8 80-80 80s-80-35.8-80-80l0-16 48 0c20.8 0 41-6.7 57.6-19.2L288 80 288 80c10 13.4 16 30 16 48l0 16zM224 0C153.3 0 96 57.3 96 128l0 16c0 70.7 57.3 128 128 128s128-57.3 128-128l0-16C352 57.3 294.7 0 224 0zM180.6 320C89.7 320 16 393.7 16 484.6 16 499.7 28.3 512 43.4 512l361.1 0c15.1 0 27.4-12.3 27.4-27.4 0-90.9-73.7-164.6-164.6-164.6l-86.9 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faUserHair = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

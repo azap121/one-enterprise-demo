@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "halo-app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 9000,
+      "autoPort": true
+    },
+    {
+      "name": "preview-server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview"],
+      "port": 5000
+    }
+  ]
+}

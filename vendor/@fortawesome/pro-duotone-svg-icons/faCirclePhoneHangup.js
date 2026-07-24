@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'circle-phone-hangup';
+var width = 512;
+var height = 512;
+var aliases = ["phone-circle-down"];
+var unicode = 'e11d';
+var svgPathData = ['M0 256a256 256 0 1 0 512 0 256 256 0 1 0 -512 0zm113.7 52.6c-16.6-29.1-14-70.7 18.7-92 75-48.8 172.3-48.8 247.3 0 32.7 21.3 35.3 62.9 18.7 92l-1.4 2.5c-5.1 8.9-15.9 12.6-25.3 8.7l-48.7-20.1c-8.3-3.4-13.3-11.9-12.5-20.8l3-30.3c-37.2-12.5-77.8-11.9-114.6 2l2.8 28.4c.9 8.9-4.2 17.4-12.5 20.8l-48.7 20.1c-9.4 3.9-20.3 .2-25.3-8.7l-1.4-2.5z', 'M140.4 319.8c-9.4 3.9-20.3 .2-25.3-8.7l-1.4-2.5c-16.6-29.1-14-70.7 18.7-92 75-48.8 172.3-48.8 247.3 0 32.7 21.3 35.3 62.9 18.7 92l-1.4 2.5c-5.1 8.9-15.9 12.6-25.3 8.7l-48.7-20.1c-8.3-3.4-13.3-11.9-12.5-20.8l3-30.3c-37.2-12.5-77.8-11.9-114.6 2l2.8 28.4c.9 8.9-4.2 17.4-12.5 20.8l-48.7 20.1z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCirclePhoneHangup = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'hat-chef';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f86b';
+var svgPathData = 'M448 384l-384 0 0 80c0 26.5 21.5 48 48 48l288 0c26.5 0 48-21.5 48-48l0-80zm0-48l0-90.8c37.8-18 64-56.5 64-101.2 0-61.9-50.1-112-112-112-17.3 0-33.7 3.9-48.3 10.9-23.4-26.3-57.6-42.9-95.7-42.9s-72.2 16.6-95.7 42.9C145.7 35.9 129.3 32 112 32 50.1 32 0 82.1 0 144 0 188.7 26.2 227.2 64 245.2l0 90.8 64 0 0-120c0-13.3 10.7-24 24-24s24 10.7 24 24l0 120 56 0 0-120c0-13.3 10.7-24 24-24s24 10.7 24 24l0 120 56 0 0-120c0-13.3 10.7-24 24-24s24 10.7 24 24l0 120 64 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHatChef = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

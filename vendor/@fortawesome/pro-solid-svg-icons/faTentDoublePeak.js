@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'tent-double-peak';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e627';
+var svgPathData = 'M442.2 40.4c32.5 51.6 75.6 85.3 107.9 105.2 15.5 9.5 25.9 25.9 25.9 44.1l0 18.3-576 0 0-18.3c0-18.2 10.4-34.6 25.9-44.1 32.3-19.9 75.4-53.6 107.9-105.2 6.8-10.8 23.6-11.6 31.6-1.6 22.6 28.4 66.3 71.8 122.6 71.8S388 67.2 410.6 38.7c7.9-10 24.8-9.1 31.6 1.6zM0 448l0-192 576 0 0 192c0 35.3-28.7 64-64 64l-77.6 0c-11.4-.1-21.9-6.2-27.6-16.1L317.9 340.3c-8.1-14.2-29.9-8.5-29.9 7.9L288 480c0 17.6-14.2 31.9-31.8 32L64 512c-35.3 0-64-28.7-64-64z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTentDoublePeak = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'layer-plus';
+var width = 512;
+var height = 512;
+var aliases = ["layer-group-plus"];
+var unicode = 'f5ff';
+var svgPathData = ['M43.1 224l202.9 93.8c6.4 3 13.7 3 20.1 0L468.9 224 266.1 130.2c-6.4-3-13.8-3-20.1 0L43.1 224zm0 160l202.9 93.8c6.4 3 13.7 3 20.1 0L468.9 384 391.2 348c-30.5 14.1-61 28.2-91.6 42.3-27.7 12.8-59.6 12.8-87.3 0-30.5-14.1-61-28.2-91.6-42.3L43.1 384z', 'M448-16l0 48 48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l48 0 0-48c0-8.8 7.2-16 16-16s16 7.2 16 16zM245.9 130.2L43.1 224 245.9 317.7c6.4 3 13.7 3 20.1 0L468.9 224 266.1 130.2c-6.4-3-13.8-3-20.1 0zm-13.4-29c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 245.8C5.4 241.8 0 233.3 0 224s5.4-17.9 13.9-21.8l218.6-101zM13.9 362.2l68.7-31.8 38.1 17.6-77.7 35.9 202.9 93.8c6.4 3 13.7 3 20.1 0l202.9-93.8-77.7-35.9 38.1-17.6 68.7 31.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLayerPlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

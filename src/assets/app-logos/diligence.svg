@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192.06">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0091ea;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #304ffe;
+      }
+
+      .cls-4 {
+        opacity: .2;
+      }
+
+      .cls-5 {
+        opacity: .4;
+      }
+
+      .cls-6 {
+        opacity: .6;
+      }
+
+      .cls-7 {
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-3" points="0 .06 0 192.06 144 192.06 144 144.06 192 144.06 192 .06 0 .06" />
+  <g>
+    <g class="cls-7">
+      <rect class="cls-1" y=".06" width="48" height="48" />
+    </g>
+    <g class="cls-6">
+      <rect class="cls-1" x="144" width="48" height="48" />
+    </g>
+    <g class="cls-5">
+      <rect class="cls-1" x="96" y=".06" width="48" height="48" />
+    </g>
+    <g class="cls-4">
+      <rect class="cls-1" x="48" y=".06" width="48" height="48" />
+    </g>
+    <g class="cls-4">
+      <rect class="cls-1" y="48.06" width="48" height="48" />
+    </g>
+    <g class="cls-5">
+      <rect class="cls-1" x="144" y="47.98" width="48" height="48" />
+    </g>
+    <g class="cls-7">
+      <rect class="cls-1" x="96" y="48.06" width="48" height="48" />
+    </g>
+    <g class="cls-7">
+      <rect class="cls-1" x="48" y="48.06" width="48" height="48" />
+    </g>
+    <g class="cls-7">
+      <rect class="cls-1" y="96.06" width="48" height="48" />
+    </g>
+    <g class="cls-4">
+      <rect class="cls-1" x="144" y="95.96" width="48" height="48" />
+    </g>
+    <g class="cls-5">
+      <rect class="cls-1" x="96" y="96.06" width="48" height="48" />
+    </g>
+    <g class="cls-6">
+      <rect class="cls-1" x="48" y="96.06" width="48" height="48" />
+    </g>
+    <g class="cls-5">
+      <rect class="cls-1" y="144.06" width="48" height="48" />
+    </g>
+    <g class="cls-6">
+      <rect class="cls-1" x="96" y="144.06" width="48" height="48" />
+    </g>
+    <g class="cls-4">
+      <rect class="cls-1" x="48" y="144.06" width="48" height="48" />
+    </g>
+  </g>
+  <path class="cls-2" d="m92.2,60.15h-10.56v11.62h10.56c11.3,0,17.64,4.44,17.64,13.94v20.7c0,9.51-6.34,13.94-17.64,13.94h-10.56v-48.59h-13.73v60.21h24.3c22.71,0,31.9-11.83,31.9-35.92s-9.19-35.92-31.9-35.92Z" />
+</svg>

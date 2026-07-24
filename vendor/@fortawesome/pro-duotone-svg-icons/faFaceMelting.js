@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'face-melting';
+var width = 640;
+var height = 512;
+var aliases = [129760];
+var unicode = 'e483';
+var svgPathData = ['M0 480c0 17.7 14.3 32 32 32l544 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-8 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l40 0c17.7 0 32-14.3 32-32s-14.4-32-32.1-32c-21.9 0-37.6-21.6-34.5-43.3 1.7-12 2.6-24.2 2.6-36.7 0-141.4-114.6-256-256-256S64 114.6 64 256c0 38.5 8.5 75.1 23.8 107.9 15.5 33.4-6 84.1-42.9 84.1L32 448c-17.7 0-32 14.3-32 32zM170.7 313.4c-4.8-12.4 1.4-26.3 13.8-31s26.3 1.4 31 13.8c12.5 32.3 39.6 58.4 75.6 68s72.5 .7 99.4-21.1c10.3-8.3 25.4-6.7 33.8 3.6s6.7 25.4-3.6 33.8c-38.4 31-90.6 43.9-142 30.1s-90.2-51.1-107.9-97.1zM288 192a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm160 32a32 32 0 1 1 -64 0 32 32 0 1 1 64 0z', 'M256 224a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm160 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFaceMelting = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

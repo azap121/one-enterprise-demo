@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'file-heart';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e176';
+var svgPathData = 'M64 32l128 0 0 96c0 35.3 28.7 64 64 64l96 0 0 256c0 17.7-14.3 32-32 32L64 480c-17.7 0-32-14.3-32-32L32 64c0-17.7 14.3-32 32-32zM224 45.3L338.7 160 256 160c-17.7 0-32-14.3-32-32l0-82.7zM64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-261.5c0-17-6.7-33.3-18.7-45.3L242.7 18.7C230.7 6.7 214.5 0 197.5 0L64 0zM212.4 282.2c6.5-6.5 15.4-10.2 24.7-10.2l2.9 0c17.7 0 32 14.3 32 32 0 21.4-14.5 42.5-34.6 61-16.9 15.5-35.4 27-45.4 32.7-10-5.7-28.5-17.2-45.4-32.7-20.1-18.5-34.6-39.7-34.6-61 0-17.7 14.3-32 32-32l2.9 0c9.3 0 18.1 3.7 24.7 10.2l9.1 9.1c3 3 7.1 4.7 11.3 4.7s8.3-1.7 11.3-4.7l9.1-9.1zM237.1 240c-16.7 0-32.8 6.3-45.1 17.5-12.3-11.2-28.4-17.5-45.1-17.5l-2.9 0c-35.3 0-64 28.7-64 64 0 35.3 23.1 64.5 45 84.6 22.4 20.6 46.8 34.7 55.9 39.6 7 3.8 15.3 3.8 22.2 0 9.1-4.9 33.5-19 55.9-39.6 21.8-20.1 45-49.3 45-84.6 0-35.3-28.7-64-64-64l-2.9 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileHeart = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

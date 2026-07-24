@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'dollar-sign';
+var width = 320;
+var height = 512;
+var aliases = [128178,61781,"dollar","usd"];
+var unicode = '24';
+var svgPathData = ['', 'M144 16c0-8.8 7.2-16 16-16s16 7.2 16 16l0 48 80 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L113.9 96C77.5 96 48 125.5 48 161.9 48 194.4 71.6 222 103.7 227l113.8 17.8c49.8 7.8 86.4 50.6 86.4 101 0 56.5-45.8 102.2-102.2 102.2l-25.8 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48-96 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l153.8 0c38.8 0 70.2-31.4 70.2-70.2 0-34.6-25.2-64-59.4-69.4L98.8 258.6C51.1 251.2 16 210.1 16 161.9 16 107.8 59.8 64 113.9 64l30.1 0 0-48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDollarSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

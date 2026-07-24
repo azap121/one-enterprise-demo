@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'signs-post';
+var width = 512;
+var height = 512;
+var aliases = ["map-signs"];
+var unicode = 'f277';
+var svgPathData = ['M41 336l38.4 48 360.6 0c4.4 0 8-3.6 8-8l0-80c0-4.4-3.6-8-8-8L79.4 288 41 336zM64 104l0 80c0 4.4 3.6 8 8 8l360.6 0 38.4-48-38.4-48-360.6 0c-4.4 0-8 3.6-8 8z', 'M240 16c0-8.8 7.2-16 16-16s16 7.2 16 16l0 48 168.3 0c4.9 0 9.5 2.2 12.5 6L504 134c4.7 5.8 4.7 14.1 0 20l-51.2 64c-3 3.8-7.6 6-12.5 6l-168.3 0 0 32 168 0c22.1 0 40 17.9 40 40l0 80c0 22.1-17.9 40-40 40l-168 0 0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80-168.3 0c-4.9 0-9.5-2.2-12.5-6L8 346c-4.7-5.8-4.7-14.1 0-20l51.2-64c3-3.8 7.6-6 12.5-6l168.3 0 0-32-168 0c-22.1 0-40-17.9-40-40l0-80c0-22.1 17.9-40 40-40l168 0 0-48zM432.6 96L72 96c-4.4 0-8 3.6-8 8l0 80c0 4.4 3.6 8 8 8l360.6 0 38.4-48-38.4-48zM79.4 288L41 336 79.4 384 440 384c4.4 0 8-3.6 8-8l0-80c0-4.4-3.6-8-8-8L79.4 288z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSignsPost = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

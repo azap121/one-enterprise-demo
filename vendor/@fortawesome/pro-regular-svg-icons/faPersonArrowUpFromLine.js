@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'person-arrow-up-from-line';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e539';
+var svgPathData = 'M248 24a56 56 0 1 0 -112 0 56 56 0 1 0 112 0zM160 167.1c9.9-4.6 20.8-7.1 32-7.1s22.1 2.5 32 7.1l0 152.9-64 0 0-152.9zM160 496l0-128 64 0 0 128-64 0zm-48 0l-88 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l528 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-280 0 0-278.4 60.5 84.4c7.7 10.8 22.7 13.2 33.5 5.5s13.2-22.7 5.5-33.5L292.3 163.5C269.1 131.2 231.8 112 192 112s-77.2 19.2-100.3 51.5L12.5 274c-7.7 10.8-5.2 25.8 5.5 33.5s25.8 5.2 33.5-5.5L112 217.6 112 496zM561 55L481-25c-9.4-9.4-24.6-9.4-33.9 0L367 55c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39 0 150.1c0 13.3 10.7 24 24 24s24-10.7 24-24l0-150.1 39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonArrowUpFromLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

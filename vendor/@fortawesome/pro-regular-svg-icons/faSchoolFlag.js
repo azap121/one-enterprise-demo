@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'school-flag';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e56e';
+var svgPathData = 'M264-8c0-13.3 10.7-24 24-24l104 0c13.3 0 24 10.7 24 24l0 48c0 13.3-10.7 24-24 24l-80 0 0 14.4 136 81.6 64 0c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 224c0-35.3 28.7-64 64-64l64 0 136-81.6 0-86.4zm24 128L152.7 201.2c-7.5 4.5-16 6.8-24.7 6.8l-64 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16l176 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 176 0c8.8 0 16-7.2 16-16l0-224c0-8.8-7.2-16-16-16l-64 0c-8.7 0-17.2-2.4-24.7-6.8L288 120zM144 416l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16zm16-112c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32zM464 416l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16zm16-112c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32zM288 176a48 48 0 1 1 0 96 48 48 0 1 1 0-96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSchoolFlag = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

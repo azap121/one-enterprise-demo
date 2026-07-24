@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'golf-club';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f451';
+var svgPathData = ['M32.2 316.3l-.2 3.7 0 24c14.7 0 29.3 0 44 0 11 0 20 9 20 20s-9 20-20 20c-14.7 0-29.3 0-44 0l0 32c14.7 0 29.3 0 44 0 11 0 20 9 20 20s-9 20-20 20c-14.7 0-29.3 0-44 0l0 24c0 17.7 14.3 32 32 32l195.2 0c29.5 0 56.7-16.3 70.6-42.3L508.3 135.1c-18.8-10-37.7-20.1-56.5-30.1-43.8 82-87.5 164.1-131.3 246.2L71.8 288.9c-9.6-2.4-19.7-.2-27.4 5.8-6.8 5.3-11.1 13.1-12.1 21.6z', 'M76 416c11 0 20 9 20 20s-9 20-20 20l-44 0 0-40 44 0zm0-72c11 0 20 9 20 20s-9 20-20 20l-44 0 0-40 44 0zM515.8-15.1c8.3-15.6 27.7-21.5 43.3-13.2S580.6-.5 572.3 15.1l-64 120-56.5-30.1 64-120z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGolfClub = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

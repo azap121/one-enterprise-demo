@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'money-bill';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f0d6';
+var svgPathData = ['M32 128c0-17.7 14.3-32 32-32l32 0c0 35.3-28.7 64-64 64l0-32zm0 64c53 0 96-43 96-96l256 0c0 53 43 96 96 96l0 128c-53 0-96 43-96 96l-256 0c0-53-43-96-96-96l0-128zm0 160c35.3 0 64 28.7 64 64l-32 0c-17.7 0-32-14.3-32-32l0-32zm128-96a96 96 0 1 0 192 0 96 96 0 1 0 -192 0zM416 96l32 0c17.7 0 32 14.3 32 32l0 32c-35.3 0-64-28.7-64-64zm0 320c0-35.3 28.7-64 64-64l0 32c0 17.7-14.3 32-32 32l-32 0z', 'M64 96c-17.7 0-32 14.3-32 32l0 32c35.3 0 64-28.7 64-64L64 96zM32 192l0 128c53 0 96 43 96 96l256 0c0-53 43-96 96-96l0-128c-53 0-96-43-96-96L128 96c0 53-43 96-96 96zM416 416l32 0c17.7 0 32-14.3 32-32l0-32c-35.3 0-64 28.7-64 64zM32 352l0 32c0 17.7 14.3 32 32 32l32 0c0-35.3-28.7-64-64-64zM480 160l0-32c0-17.7-14.3-32-32-32l-32 0c0 35.3 28.7 64 64 64zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128zM320 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm-160 0a96 96 0 1 1 192 0 96 96 0 1 1 -192 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMoneyBill = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'circle-user-circle-minus';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e7a1';
+var svgPathData = ['M32 256c0 141.4 114.6 256 256 256 16.7 0 33-1.6 48.8-4.6-12.3-18.2-21.6-38.6-27.1-60.6-7.1 .8-14.4 1.2-21.7 1.2-56.8 0-107.8-24.7-143-63.8 22.1-38.3 63.5-64.2 111-64.2l64 0c.5 0 .9 0 1.4 0 30.3-66.1 97.1-112 174.6-112 15.3 0 30.2 1.8 44.4 5.2-20.4-121-125.6-213.2-252.4-213.2-141.4 0-256 114.6-256 256zm328-56a72 72 0 1 1 -144 0 72 72 0 1 1 144 0z', 'M496 544a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm64-128l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleUserCircleMinus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'game-board-simple';
+var width = 448;
+var height = 512;
+var aliases = ["game-board-alt"];
+var unicode = 'f868';
+var svgPathData = ['M96 128l0 112 112 0 0-112-112 0zM240 272l0 112 112 0 0-112-112 0z', 'M390.5 32.3C422.8 35.6 448 62.9 448 96l0 320-.3 6.5c-3.1 30.1-27 54.1-57.1 57.1l-6.5 .3-320 0-6.5-.3c-30.1-3.1-54.1-27-57.1-57.1L0 416 0 96C0 62.9 25.2 35.6 57.5 32.3l6.5-.3 320 0 6.5 .3zM64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64zM355.3 96.2C371.4 97.8 384 111.4 384 128l0 256-.2 3.3c-1.5 15.1-13.5 27-28.6 28.6l-3.3 .2-256 0-3.3-.2c-15.1-1.5-27-13.5-28.6-28.6L64 384 64 128c0-16.6 12.6-30.2 28.7-31.8l3.3-.2 256 0 3.3 .2zM240 384l112 0 0-112-112 0 0 112zM96 384l112 0 0-112-112 0 0 112zM240 240l112 0 0-112-112 0 0 112zM96 240l112 0 0-112-112 0 0 112z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGameBoardSimple = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

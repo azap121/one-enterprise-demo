@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'ramp-loading';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'f4d4';
+var svgPathData = ['M0 64L0 404.7c42.4-84.8 63.7-127.5 64-128l0-212.7 256 0 0 212.7 10.9 21.9 53.1 106.1 0-340.7c0-35.3-28.7-64-64-64L64 0C28.7 0 0 28.7 0 64z', 'M87.2 337.7c5.4-10.8 16.5-17.7 28.6-17.7l152.4 0c12.1 0 23.2 6.8 28.6 17.7l75.6 151.2c5.3 10.6-2.4 23.2-14.3 23.2L25.9 512C14 512 6.3 499.5 11.6 488.8L87.2 337.7z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRampLoading = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'square-turkish-lira';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e71f';
+var svgPathData = 'M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm120 96c13.3 0 24 10.7 24 24l0 44.5 58.9-19.6c8.4-2.8 17.4 1.7 20.2 10.1s-1.7 17.4-10.1 20.2l-69.1 23 0 30.3 58.9-19.6c8.4-2.8 17.4 1.7 20.2 10.1s-1.7 17.4-10.1 20.2l-69.1 23 0 41.8 48 0c26.5 0 48-21.5 48-48 0-13.3 10.7-24 24-24s24 10.7 24 24c0 53-43 96-96 96l-72 0c-13.3 0-24-10.7-24-24l0-49.8-26.9 9c-8.4 2.8-17.4-1.7-20.2-10.1s1.7-17.4 10.1-20.2l37.1-12.4 0-30.3-26.9 9c-8.4 2.8-17.4-1.7-20.2-10.1s1.7-17.4 10.1-20.2l37.1-12.4 0-60.5c0-13.3 10.7-24 24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareTurkishLira = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

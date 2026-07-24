@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'rhombus';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e23b';
+var svgPathData = 'M7 236c-9.5 11.8-9.3 28.7 .3 40.4l192 232c6.1 7.3 15.1 11.6 24.7 11.6s18.6-4.3 24.7-11.6l192-232c9.7-11.7 9.8-28.6 .3-40.4L249-4c-6.1-7.6-15.3-12-25-12s-18.9 4.4-25 12L7 236zM224 41.6L395.4 255.8 224 462.9 52.6 255.8 224 41.6zM403.7 245.8l0 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRhombus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

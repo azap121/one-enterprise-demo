@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'wireless';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e7df';
+var svgPathData = 'M24 216c132.5 0 240 107.5 240 240 0 13.2-10.7 24-24 24-13.2 0-24-10.8-24-24 0-106-86-192-192-192-13.2 0-24-10.8-24-24 0-13.2 10.8-24 24-24zM24 32c234.2 0 424 189.8 424 424 0 13.2-10.7 24-24 24-13.2 0-24-10.8-24-24 0-207.7-168.3-376-376-376-13.2 0-24-10.8-24-24 0-13.2 10.8-24 24-24zM82 465.9A48 48 0 1 1 14.1 398 48 48 0 1 1 82 465.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWireless = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'bag-shopping-minus';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e650';
+var svgPathData = ['M32 176l0 208c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-208c0-8.8-7.2-16-16-16L48 160c-8.8 0-16 7.2-16 16zm96 128c0-8.8 7.2-16 16-16l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16z', 'M160 64l0 64 128 0 0-64c0-35.3-28.7-64-64-64s-64 28.7-64 64zm160 96L48 160c-8.8 0-16 7.2-16 16l0 208c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-208c0-8.8-7.2-16-16-16l-80 0zM128 128l0-64c0-53 43-96 96-96s96 43 96 96l0 64 80 0c26.5 0 48 21.5 48 48l0 208c0 53-43 96-96 96L96 480c-53 0-96-43-96-96L0 176c0-26.5 21.5-48 48-48l80 0zm16 160l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBagShoppingMinus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

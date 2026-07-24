@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'house-crack';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e3b1';
+var svgPathData = 'M240 6.1c9.1-8.2 22.9-8.2 32 0l232 208c9.9 8.8 10.7 24 1.8 33.9s-24 10.7-33.9 1.8l-8-7.2 0 205.3c0 35.3-28.7 64-64 64l-288 0c-35.3 0-64-28.7-64-64l0-205.3-8 7.2c-9.9 8.8-25 8-33.9-1.8s-8-25 1.8-33.9L240 6.1zm16 50.1L96 199.7 96 448c0 8.8 7.2 16 16 16l85.9 0-30.3-48.1c-4.4-6.9-2.8-16 3.6-21.1l84.8-67.3-58.1-76.1c-11.3-14.8 7.4-33.6 22.3-22.5l115.2 86.2c8.4 6.3 8.6 18.8 .4 25.3L256 403.8 293.9 464 400 464c8.8 0 16-7.2 16-16l0-248.3-160-143.4z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHouseCrack = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

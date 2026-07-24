@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'whiskey-glass';
+var width = 448;
+var height = 512;
+var aliases = [129347,"glass-whiskey"];
+var unicode = 'f7a0';
+var svgPathData = 'M48 104c0-13.3 10.7-24 24-24l304 0c13.3 0 24 10.7 24 24l0 120-352 0 0-120zm0 168l352 0 0 72c0 48.6-39.4 88-88 88l-176 0c-48.6 0-88-39.4-88-88l0-72zM72 32C32.2 32 0 64.2 0 104L0 344c0 75.1 60.9 136 136 136l176 0c75.1 0 136-60.9 136-136l0-240c0-39.8-32.2-72-72-72L72 32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWhiskeyGlass = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

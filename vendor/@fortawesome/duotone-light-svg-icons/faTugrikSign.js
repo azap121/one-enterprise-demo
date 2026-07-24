@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'tugrik-sign';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e2ba';
+var svgPathData = ['', 'M16 32C7.2 32 0 39.2 0 48S7.2 64 16 64l160 0 0 147.5-115.9 29c-8.6 2.1-13.8 10.8-11.6 19.4s10.8 13.8 19.4 11.6l108.1-27 0 63-115.9 29c-8.6 2.1-13.8 10.8-11.6 19.4s10.8 13.8 19.4 11.6l108.1-27 0 115.5c0 8.8 7.2 16 16 16s16-7.2 16-16l0-123.5 115.9-29c8.6-2.1 13.8-10.8 11.6-19.4s-10.8-13.8-19.4-11.6l-108.1 27 0-63 115.9-29c8.6-2.1 13.8-10.8 11.6-19.4s-10.8-13.8-19.4-11.6L208 203.5 208 64 368 64c8.8 0 16-7.2 16-16s-7.2-16-16-16L16 32z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTugrikSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

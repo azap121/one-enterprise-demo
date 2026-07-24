@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'comment-middle-top';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e14a';
+var svgPathData = 'M216.6 86.3L256 7.6 295.4 86.3c4.2 8.4 12 14.6 21.1 16.8 97.1 23.3 163.5 99.5 163.5 184.9 0 102.2-96.1 192-224 192S32 390.2 32 288c0-85.4 66.4-161.6 163.5-184.9 9.2-2.2 16.9-8.4 21.1-16.8zM261.5-3.4l0 0 0 0s0 0 0 0zM324 72L279.2-17.7C274.8-26.5 265.8-32 256-32s-18.8 5.5-23.2 14.3L188 72C79.6 98 0 184.9 0 288 0 411.7 114.6 512 256 512S512 411.7 512 288c0-103.1-79.6-190-188-216z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCommentMiddleTop = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

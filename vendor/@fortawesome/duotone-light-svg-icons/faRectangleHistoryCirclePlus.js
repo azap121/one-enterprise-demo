@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'rectangle-history-circle-plus';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e4a3';
+var svgPathData = ['M32 272c0-17.7 14.3-32 32-32l261.8 0c-51.7 34.4-85.8 93.2-85.8 160 0 16.6 2.1 32.7 6 48L64 448c-17.7 0-32-14.3-32-32l0-144z', 'M246 448L64 448c-17.7 0-32-14.3-32-32l0-144c0-17.7 14.3-32 32-32l261.8 0c30.4-20.2 66.9-32 106.2-32L64 208c-35.3 0-64 28.7-64 64L0 416c0 35.3 28.7 64 64 64l193.4 0c-4.7-10.2-8.5-20.9-11.4-32zM464 120c0-8.8-7.2-16-16-16L64 104c-8.8 0-16 7.2-16 16s7.2 16 16 16l384 0c8.8 0 16-7.2 16-16zM416 16c0-8.8-7.2-16-16-16L112 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l288 0c8.8 0 16-7.2 16-16zM320 400a112 112 0 1 1 224 0 112 112 0 1 1 -224 0zm256 0a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zM448 336c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 48-48 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l48 0 0 48c0 8.8 7.2 16 16 16s16-7.2 16-16l0-48 48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0 0-48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRectangleHistoryCirclePlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

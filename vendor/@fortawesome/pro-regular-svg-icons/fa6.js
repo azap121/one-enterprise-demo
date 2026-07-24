@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = '6';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = '36';
+var svgPathData = 'M264 32c13.3 0 24 10.7 24 24s-10.7 24-24 24L160 80c-53 0-96 43-96 96l0 64.3c23.7-20.1 54.4-32.3 88-32.3l64 0c75.1 0 136 60.9 136 136S291.1 480 216 480l-64 0c-75.1 0-136-60.9-136-136 0-1.9 0-3.8 .1-5.6-.1-.8-.1-1.6-.1-2.4l0-160C16 96.5 80.5 32 160 32l104 0zM64 344c0 48.6 39.4 88 88 88l64 0c48.6 0 88-39.4 88-88s-39.4-88-88-88l-64 0c-48.6 0-88 39.4-88 88z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.fa6 = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

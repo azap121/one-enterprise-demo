@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'arrow-turn-left';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e632';
+var svgPathData = 'M464 424c0 13.3 10.7 24 24 24s24-10.7 24-24l0-96c0-53-43-96-96-96l-334.1 0 95-95c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L7 239c-4.5 4.5-7 10.6-7 17s2.5 12.5 7 17L143 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-95-95 334.1 0c26.5 0 48 21.5 48 48l0 96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowTurnLeft = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

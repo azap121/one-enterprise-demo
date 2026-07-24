@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'file-ppt';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e64a';
+var svgPathData = ['M32 64C32 28.7 60.7 0 96 0L245.5 0c17 0 33.3 6.7 45.3 18.7L397.3 125.3c12 12 18.7 28.3 18.7 45.3l0 165.5-176 0c-35.3 0-64 28.7-64 64l0 112-80 0c-35.3 0-64-28.7-64-64L32 64zm208-5.5l0 93.5c0 13.3 10.7 24 24 24L357.5 176 240 58.5z', 'M220 400c0-11 9-20 20-20l32 0c33.1 0 60 26.9 60 60s-26.9 60-60 60l-12 0 0 28c0 11-9 20-20 20s-20-9-20-20l0-128zm40 60l12 0c11 0 20-9 20-20s-9-20-20-20l-12 0 0 40zm88-60c0-11 9-20 20-20l32 0c33.1 0 60 26.9 60 60s-26.9 60-60 60l-12 0 0 28c0 11-9 20-20 20s-20-9-20-20l0-128zm40 60l12 0c11 0 20-9 20-20s-9-20-20-20l-12 0 0 40zm108-80l64 0c11 0 20 9 20 20s-9 20-20 20l-12 0 0 108c0 11-9 20-20 20s-20-9-20-20l0-108-12 0c-11 0-20-9-20-20s9-20 20-20z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFilePpt = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'circle-three-quarters';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e125';
+var svgPathData = ['M256 0l0 224c0 17.7 14.3 32 32 32l224 0C512 114.6 397.4 0 256 0z', 'M256 0C114.6 0 0 114.6 0 256S114.6 512 256 512 512 397.4 512 256l-224 0c-17.7 0-32-14.3-32-32L256 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleThreeQuarters = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

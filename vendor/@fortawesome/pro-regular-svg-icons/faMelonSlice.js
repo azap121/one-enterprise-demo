@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'melon-slice';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e311';
+var svgPathData = 'M391.7 391.4c-91.1 91.1-235.2 96.2-332.6 15.8l22.4-22.4c37 29.6 83.8 47.2 134.8 47.2 119.3 0 216-96.7 216-216 0-51-17.7-97.9-47.2-134.8l22.4-22.4c80.4 97.4 75.3 241.5-15.8 332.6zM365.1 137.9c12.3 23.3 19.2 49.9 19.2 78.1 0 92.8-75.2 168-168 168-26.2 0-51-6-73.2-16.7 40.2-.2 97.3-13.4 154.1-70.3 56.1-56.1 67.7-117.7 67.8-159.1zM13 385.4c-12.4 12.4-12.7 33.1 .6 45.7 116 109.5 298.5 107.8 412-5.7s115.2-296.1 5.7-412c-12.6-13.3-33.2-13-45.7-.6l-63 63c-8.3 8.3-10.9 19.8-8.7 30 3.7 17.1 15.1 91.6-50.6 157.3-71.8 71.8-140 56.2-155.1 51.7-10.8-3.3-23.6-1-32.6 8.1L13 385.4z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMelonSlice = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'truck-ramp';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f4e0';
+var svgPathData = 'M320 112c0-44.2 35.8-80 80-80l176 0 0 392c0 48.6-39.4 88-88 88s-88-39.4-88-88c0-2.7 .1-5.4 .4-8l-43.7 0-315.5 94.6c-16.9 5.1-34.8-4.5-39.8-21.5s4.5-34.8 21.5-39.8L320 360.2 320 112zM528 423.9c-.1-22-17.9-39.9-40-39.9-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40l0-.1z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTruckRamp = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

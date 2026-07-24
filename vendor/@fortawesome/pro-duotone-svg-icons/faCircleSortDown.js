@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'circle-sort-down';
+var width = 512;
+var height = 512;
+var aliases = ["sort-circle-down"];
+var unicode = 'e031';
+var svgPathData = ['M0 256a256 256 0 1 0 512 0 256 256 0 1 0 -512 0zm153.8-46.8c-3.7-9-1.7-19.3 5.2-26.2l80-80c9.4-9.4 24.6-9.4 33.9 0l80 80c6.9 6.9 8.9 17.2 5.2 26.2S345.7 224 336 224l-160 0c-9.7 0-18.5-5.8-22.2-14.8zm0 93.6c3.7-9 12.5-14.8 22.2-14.8l160 0c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-80 80c-9.4 9.4-24.6 9.4-33.9 0l-80-80c-6.9-6.9-8.9-17.2-5.2-26.2z', 'M273 409c-9.4 9.4-24.6 9.4-33.9 0l-80-80c-6.9-6.9-8.9-17.2-5.2-26.2S166.3 288 176 288l160 0c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-80 80z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleSortDown = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

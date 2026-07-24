@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'layer-plus';
+var width = 512;
+var height = 512;
+var aliases = ["layer-group-plus"];
+var unicode = 'f5ff';
+var svgPathData = 'M432-32c13.3 0 24 10.7 24 24l0 32 32 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-32 0 0 32c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-32-32 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l32 0 0-32c0-13.3 10.7-24 24-24zM252.6 144.7L81.2 224 252.6 303.2c2.1 1 4.6 1 6.7 0L430.8 224 259.4 144.7c-2.1-1-4.6-1-6.7 0zm-20.1-43.6c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 245.8C5.4 241.8 0 233.3 0 224s5.4-17.9 13.9-21.8l218.6-101zM13.9 362.2l68.7-31.8 57.2 26.4-58.7 27.1 171.4 79.2c2.1 1 4.6 1 6.7 0l171.4-79.2-58.7-27.1 57.2-26.4 68.7 31.8c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L13.9 405.8C5.4 401.8 0 393.3 0 384s5.4-17.9 13.9-21.8z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLayerPlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

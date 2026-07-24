@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'left-long-to-line';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e41e';
+var svgPathData = 'M0 112c0-8.8 7.2-16 16-16s16 7.2 16 16l0 288c0 8.8-7.2 16-16 16S0 408.8 0 400L0 112zM137.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9S320 115.1 320 128l0 64 272 0c26.5 0 48 21.5 48 48l0 32c0 26.5-21.5 48-48 48l-272 0 0 64c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128zM160 256l128 128 0-80c0-8.8 7.2-16 16-16l288 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-288 0c-8.8 0-16-7.2-16-16l0-80-128 128z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLeftLongToLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'clipboard';
+var width = 384;
+var height = 512;
+var aliases = [128203];
+var unicode = 'f328';
+var svgPathData = ['M0 96L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-352c0-35.3-28.7-64-64-64l-2.7 0c1.8 5 2.7 10.4 2.7 16 0 26.5-21.5 48-48 48L112 96c-26.5 0-48-21.5-48-48 0-5.6 1-11 2.7-16L64 32C28.7 32 0 60.7 0 96z', 'M64 48C64 21.5 85.5 0 112 0L272 0c26.5 0 48 21.5 48 48s-21.5 48-48 48L112 96C85.5 96 64 74.5 64 48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faClipboard = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

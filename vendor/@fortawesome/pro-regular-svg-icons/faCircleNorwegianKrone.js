@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'circle-norwegian-krone';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e738';
+var svgPathData = 'M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM152 128c-13.3 0-24 10.7-24 24l0 208c0 13.3 10.7 24 24 24s24-10.7 24-24l0-38.1 15.8-15.8 35.1 65.2c6.3 11.7 20.8 16 32.5 9.8s16-20.8 9.8-32.5L227.2 270.7 265 233c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-55 55 0-102.1c0-13.3-10.7-24-24-24zm182.2 79c-3.6-8.8-12.2-15-22.2-15-13.3 0-24 10.7-24 24l0 144c0 13.3 10.7 24 24 24s24-10.7 24-24l0-81.4c0-8.1 3.2-15.9 9-21.7s13.5-9 21.7-9l9.4 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-9.4 0c-11.3 0-22.3 2.4-32.4 7z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleNorwegianKrone = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

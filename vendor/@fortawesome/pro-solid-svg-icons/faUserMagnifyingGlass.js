@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'user-magnifying-glass';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e5c5';
+var svgPathData = 'M224 248c20.9 0 40.5-5.3 57.7-14.7 10.7-12.2 23.2-22.9 37.1-31.6 15.8-20.3 25.2-45.9 25.2-73.6 0-66.3-53.7-120-120-120S104 61.7 104 128 157.7 248 224 248zm-29.7 56C95.8 304 16 383.8 16 482.3 16 498.7 29.3 512 45.7 512l356.6 0c.6 0 1.1 0 1.7 0-90.9-2.1-164-76.5-164-168 0-13.8 1.7-27.2 4.8-40l-50.5 0zM408 272.1a72 72 0 1 1 0 144 72 72 0 1 1 0-144zm0 192c24.5 0 47.2-7.3 66.2-19.9L535 505.1c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-60.8-60.9c12.6-19 19.9-41.7 19.9-66.2 0-66.3-53.7-120-120-120s-120 53.7-120 120 53.7 120 120 120z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faUserMagnifyingGlass = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

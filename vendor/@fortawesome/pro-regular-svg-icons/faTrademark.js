@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'trademark';
+var width = 640;
+var height = 512;
+var aliases = [8482];
+var unicode = 'f25c';
+var svgPathData = 'M332.1 106.9C326.3 98 315.3 94 305.1 97S288 109.4 288 120l0 272c0 13.3 10.7 24 24 24s24-10.7 24-24l0-191.4 91.9 140.6c4.4 6.8 12 10.9 20.1 10.9s15.7-4.1 20.1-10.9L560 200.6 560 392c0 13.3 10.7 24 24 24s24-10.7 24-24l0-272c0-10.6-7-20-17.1-23s-21.1 1-26.9 9.9L448 284.1 332.1 106.9zM24 96C10.7 96 0 106.7 0 120s10.7 24 24 24l80 0 0 248c0 13.3 10.7 24 24 24s24-10.7 24-24l0-248 80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTrademark = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

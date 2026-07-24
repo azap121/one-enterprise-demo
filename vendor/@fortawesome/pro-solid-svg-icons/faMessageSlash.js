@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'message-slash';
+var width = 576;
+var height = 512;
+var aliases = ["comment-alt-slash"];
+var unicode = 'f4a9';
+var svgPathData = 'M41-24.9c-9.4-9.4-24.6-9.4-33.9 0S-2.3-.3 7 9.1l528 528c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-69.8-69.8c27-17 44.9-47 44.9-81.3l0-224c0-53-43-96-96-96L128 32c-9.2 0-18.1 1.3-26.5 3.7L41-24.9zM34.9 104.7C33 112.1 32 120 32 128l0 224c0 53 43 96 96 96l32 0 0 72c0 13.3 10.7 24 24 24 5.2 0 10.2-1.7 14.4-4.8l115.2-86.4c4.2-3.1 9.2-4.8 14.4-4.8l50.2 0-343.3-343.3z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMessageSlash = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

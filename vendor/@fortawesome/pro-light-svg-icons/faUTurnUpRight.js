@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'u-turn-up-right';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e7f6';
+var svgPathData = 'M512 128c0-9.7-4.4-16.7-8.3-21.5l-1-1.1-112-112C370.5-26.7 336-12.1 336 16l0 48-128 0C93.1 64 0 157.1 0 272S93.1 480 208 480l208 0 3.3-.2c16.1-1.6 28.7-15.3 28.7-31.8l0-64-.2-3.3C446.2 364.6 432.6 352 416 352l-208 0c-44.2 0-80-35.8-80-80s35.8-80 80-80l128 0 0 48c0 28.1 34.5 42.7 54.6 22.6l112-112 1-1.1c3.9-4.8 8.3-11.8 8.3-21.5l0 0zm-32.8 .8L368 240 368 176c0-8.8-7.2-16-16-16l-144 0c-61.9 0-112 50.1-112 112s50.2 112 112 112l208 0 0 64-208 0c-97.2 0-176-78.8-176-176S110.8 96 208 96l144 0c8.8 0 16-7.2 16-16l0-64 111.2 111.2c.3 .3 .4 .6 .6 .8-.1 .2-.3 .5-.6 .8z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faUTurnUpRight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'thought-bubble';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e32e';
+var svgPathData = 'M374.8 80.3C355.9 33.2 309.8 0 256 0S156.1 33.2 137.2 80.3c-3-.2-6.1-.3-9.2-.3-70.7 0-128 57.3-128 128S57.3 336 128 336c11.5 0 22.6-1.5 33.2-4.3 19.8 31.5 54.9 52.3 94.8 52.3s75-20.9 94.8-52.3c10.6 2.8 21.7 4.3 33.2 4.3 70.7 0 128-57.3 128-128S454.7 80 384 80c-3.1 0-6.1 .1-9.2 .3zM160 496a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM48 528a32 32 0 1 0 0-64 32 32 0 1 0 0 64z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faThoughtBubble = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

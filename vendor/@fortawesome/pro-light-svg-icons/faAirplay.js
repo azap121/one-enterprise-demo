@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'airplay';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e089';
+var svgPathData = 'M448 96L64 96c-17.7 0-32 14.3-32 32l0 224c0 17.7 14.3 32 32 32l14.9 0-30.2 30.2C20.7 407.3 0 382.1 0 352L0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 224c0 30.1-20.7 55.3-48.7 62.2L433.1 384 448 384c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32zM384 448l-128-128-128 128 256 0zM128 480c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9S396.9 480 384 480l-256 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faAirplay = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

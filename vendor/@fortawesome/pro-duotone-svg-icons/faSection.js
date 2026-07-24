@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'section';
+var width = 256;
+var height = 512;
+var aliases = [];
+var unicode = 'e447';
+var svgPathData = ['M0 238c0-23.9 7.6-46 20.5-64 12.5 17.5 30.1 31.2 50.9 39-4.7 7.2-7.4 15.8-7.4 25 0 22.5 16.2 41.6 38.4 45.3l61.7 10.3c7.1 1.2 14 3 20.5 5.5 20.7 7.8 38.3 21.5 50.8 39 13 18.1 20.5 40.3 20.5 64 0 60.7-49.2 110-110 110l-98 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l98 0c25.4 0 46-20.6 46-46 0-22.5-16.2-41.6-38.4-45.3L91.9 346.4C38.9 337.6 0 291.7 0 238z', 'M110 0C49.2 0 0 49.2 0 110 0 163.7 38.9 209.6 91.9 218.4l61.7 10.3c22.2 3.7 38.4 22.9 38.4 45.3 0 9.2-2.7 17.8-7.4 25 20.7 7.8 38.3 21.5 50.8 39 12.9-18 20.5-40.1 20.5-64 0-53.8-38.9-99.6-91.9-108.5l-61.7-10.3C80.2 151.6 64 132.4 64 110 64 84.6 84.6 64 110 64l98 0c17.7 0 32-14.3 32-32S225.7 0 208 0L110 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSection = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

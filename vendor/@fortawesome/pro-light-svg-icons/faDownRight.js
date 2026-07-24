@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'down-right';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e16b';
+var svgPathData = 'M384.2 416l0-265.4-84.7 84.7c-6.2 6.2-16.4 6.2-22.6 0L123.6 81.9c-6.2-6.2-16.4-6.2-22.6 0L50.2 132.7c-6.2 6.2-6.2 16.4 0 22.6L203.6 308.7c6.2 6.2 6.2 16.4 0 22.6l-84.7 84.7 265.4 0zm32 8c0 13.3-10.7 24-24 24l-273.4 0c-28.5 0-42.8-34.5-22.6-54.6L169.6 320 27.6 177.9c-18.7-18.7-18.7-49.1 0-67.9L78.3 59.3c18.7-18.7 49.1-18.7 67.9 0L288.2 201.4 361.6 128c20.2-20.2 54.6-5.9 54.6 22.6l0 273.4z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDownRight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

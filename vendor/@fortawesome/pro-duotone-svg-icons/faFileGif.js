@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'file-gif';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e645';
+var svgPathData = ['M32 64C32 28.7 60.7 0 96 0L245.5 0c17 0 33.3 6.7 45.3 18.7L397.3 125.3c12 12 18.7 28.3 18.7 45.3l0 165.5-112 0c-35.3 0-64 28.7-64 64l0 112-144 0c-35.3 0-64-28.7-64-64L32 64zm208-5.5l0 93.5c0 13.3 10.7 24 24 24L357.5 176 240 58.5z', 'M284 424c0-24.3 19.7-44 44-44l24 0c19.9 0 36 16.1 36 36 0 11-9 20-20 20-9.7 0-17.7-6.9-19.6-16L328 420c-2.2 0-4 1.8-4 4l0 80c0 2.2 1.8 4 4 4l16 0c2.2 0 4-1.8 4-4l0-8c-4.9-3.6-8-9.5-8-16 0-11 9-20 20-20l8 0c11 0 20 9 20 20l0 24c0 24.3-19.7 44-44 44l-16 0c-24.3 0-44-19.7-44-44l0-80zm148-44c11 0 20 9 20 20l0 128c0 11-9 20-20 20s-20-9-20-20l0-128c0-11 9-20 20-20zm64 0l48 0c11 0 20 9 20 20s-9 20-20 20l-28 0 0 24 28 0c11 0 20 9 20 20s-9 20-20 20l-28 0 0 44c0 11-9 20-20 20s-20-9-20-20l0-128c0-11 9-20 20-20z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileGif = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

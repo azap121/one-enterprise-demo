@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'microphone-circle-plus';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e77d';
+var svgPathData = ['M32 184l0 40c0 97.9 73.3 178.7 168 190.5l0 49.5-48 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l144 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-48 0 0-49.5c8.1-1 16.1-2.5 23.9-4.5-9.1-13.7-16.4-28.5-21.8-44.3-8.5 1.6-17.2 2.4-26.1 2.4-79.5 0-144-64.5-144-144l0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24zm96-88l0 128c0 53 43 96 96 96 5.6 0 11.2-.5 16.5-1.4-.4-4.8-.5-9.7-.5-14.6 0-64.2 31.5-121.1 80-156l0-52c0-53-43-96-96-96s-96 43-96 96z', 'M288 304a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-80c-8.8 0-16 7.2-16 16l0 48-48 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l48 0 0 48c0 8.8 7.2 16 16 16s16-7.2 16-16l0-48 48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0 0-48c0-8.8-7.2-16-16-16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMicrophoneCirclePlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

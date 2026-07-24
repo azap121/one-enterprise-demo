@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'wrench-simple';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e2d1';
+var svgPathData = ['M32 176c0-58.9 31.9-107.7 80-134.8L112 176c0 5 2.4 9.8 6.4 12.8l64 48c5.7 4.3 13.5 4.3 19.2 0l64-48c4-3 6.4-7.8 6.4-12.8l0-134.8c48.1 27 80 75.9 80 134.8 0 62.2-35.4 116.1-87.3 142.6-5.4 2.7-8.7 8.2-8.7 14.2L256 496c0 8.8 7.2 16 16 16l-160 0c8.8 0 16-7.2 16-16l0-163.2c0-6-3.4-11.5-8.7-14.2-51.8-26.5-87.3-80.4-87.3-142.6z', 'M137 2.8c4.4 3 7 7.9 7 13.2l0 152 48 36 48-36 0-152c0-5.3 2.6-10.2 7-13.2s9.9-3.6 14.8-1.7c71.1 27.8 122.2 93 122.2 174.9 0 71.1-38.6 133.1-96 166.3L288 496c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-163.2c0-6 3.4-11.5 8.7-14.2 51.8-26.5 87.3-80.4 87.3-142.6 0-58.9-31.9-107.7-80-134.8L272 176c0 5-2.4 9.8-6.4 12.8l-64 48c-5.7 4.3-13.5 4.3-19.2 0l-64-48c-4-3-6.4-7.8-6.4-12.8l0-134.8c-48.1 27-80 75.9-80 134.8 0 62.2 35.4 116.1 87.3 142.6 5.4 2.7 8.7 8.2 8.7 14.2L128 496c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-153.7C38.6 309.1 0 247.1 0 176 0 94.1 51.1 28.9 122.2 1.1 127.1-.8 132.7-.2 137 2.8z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWrenchSimple = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

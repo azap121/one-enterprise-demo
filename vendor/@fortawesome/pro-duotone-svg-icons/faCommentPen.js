@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'comment-pen';
+var width = 512;
+var height = 512;
+var aliases = ["comment-edit"];
+var unicode = 'f4ae';
+var svgPathData = ['M0 240c0 54.3 19.2 104.3 51.6 144.5L2.8 476.8c-4.8 9-3.3 20 3.6 27.5s17.8 9.8 27.1 5.8l118.4-50.7c31.8 13.3 67.1 20.7 104.1 20.7 141.4 0 256-107.5 256-240S397.4 0 256 0 0 107.5 0 240zm144 97.8c0-1.2 .1-2.3 .4-3.5l12.4-49.4c2.1-8.4 6.5-16.1 12.6-22.3L290.7 141.3c8.5-8.5 20-13.3 32-13.3 25 0 45.3 20.3 45.3 45.3 0 12-4.8 23.5-13.3 32L233.4 326.6c-6.2 6.2-13.9 10.5-22.3 12.6l-49.4 12.3c-1.1 .3-2.3 .4-3.5 .4-7.9 0-14.2-6.4-14.2-14.2z', 'M156.8 284.9l-12.4 49.4c-.3 1.1-.4 2.3-.4 3.5 0 7.9 6.4 14.2 14.2 14.2 1.2 0 2.3-.1 3.5-.4l49.4-12.3c8.4-2.1 16.1-6.5 22.3-12.6L354.7 205.3c8.5-8.5 13.3-20 13.3-32 0-25-20.3-45.3-45.3-45.3-12 0-23.5 4.8-32 13.3L169.4 262.6c-6.2 6.2-10.5 13.9-12.6 22.3z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCommentPen = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

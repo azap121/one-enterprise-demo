@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'syringe';
+var width = 576;
+var height = 512;
+var aliases = [128137];
+var unicode = 'f48e';
+var svgPathData = 'M491.3-11.3c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L489.4 32 432 89.4 363.3 20.7c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l4.7 4.7-235.3 235.3c-9 9-14.1 21.2-14.1 33.9l0 108.1-59.3 59.3c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l59.3-59.3 108.1 0c12.7 0 24.9-5.1 33.9-14.1l235.3-235.3 4.7 4.7c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L454.6 112 512 54.6 532.7 75.3c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-64-64zM473.4 176L238.1 411.3c-3 3-7.1 4.7-11.3 4.7l-98.7 0 0-98.7c0-4.2 1.7-8.3 4.7-11.3l43.3-43.3 36.7 36.7c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-36.7-36.7 73.4-73.4 36.7 36.7c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L294.6 144 368 70.6c35.1 35.1 70.2 70.2 105.4 105.4z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSyringe = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

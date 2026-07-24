@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'candy';
+var width = 640;
+var height = 512;
+var aliases = [127852];
+var unicode = 'e3e7';
+var svgPathData = ['M118.7 204.3l347 200.4c26.8-26.2 46.5-59.6 56-97l-347-200.3c-26.8 26.2-46.5 59.5-56.1 97z', 'M521.8 307.7l-347-200.3c37.5-36.7 88.8-59.3 145.5-59.3 39.6 0 76.5 11 108 30.2L460.3-27.2c3.5-11.4 14.7-18.5 26.5-16.8s20.5 11.8 20.5 23.7l0 41.9 28.3-12.9c9.1-4.1 19.8-2.2 26.9 4.9s9 17.8 4.9 26.9l-12.9 28.3 41.9 0c11.9 0 22 8.7 23.7 20.5s-5.4 23-16.8 26.5L498 148c19.2 31.5 30.2 68.5 30.2 108 0 17.8-2.2 35.1-6.5 51.7zm-56 97c-37.5 36.7-88.9 59.4-145.5 59.4-39.6 0-76.5-11-108-30.2L180.1 539.2c-3.5 11.4-14.7 18.5-26.5 16.8s-20.5-11.8-20.5-23.7l0-41.9-28.3 12.9c-9.1 4.1-19.8 2.2-26.9-4.9s-9-17.8-4.9-26.9l12.9-28.3-41.9 0c-11.9 0-22-8.7-23.7-20.5s5.4-23 16.8-26.5L142.4 364c-19.2-31.5-30.2-68.5-30.2-108 0-17.9 2.2-35.2 6.5-51.7l347 200.4z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCandy = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

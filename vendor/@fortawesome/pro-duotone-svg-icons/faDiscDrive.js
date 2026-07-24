@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'disc-drive';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f8b5';
+var svgPathData = ['M96 256a160 160 0 1 0 320 0 160 160 0 1 0 -320 0zm192 0a32 32 0 1 1 -64 0 32 32 0 1 1 64 0z', 'M32 96c0-35.3 28.7-64 64-64l320 0c35.3 0 64 28.7 64 64l0 320c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32L32 96zM224 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192 0a160 160 0 1 0 -320 0 160 160 0 1 0 320 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDiscDrive = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

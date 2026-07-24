@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'person';
+var width = 384;
+var height = 512;
+var aliases = [129485,"male"];
+var unicode = 'f183';
+var svgPathData = 'M168 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0zM108.8 191.1c1-1.7 2.1-3.4 3.2-5L112 528c0 8.8 7.2 16 16 16s16-7.2 16-16l0-160 96 0 0 160c0 8.8 7.2 16 16 16s16-7.2 16-16l0-341.9c1.1 1.6 2.2 3.3 3.2 5l63.1 105.1c4.5 7.6 14.4 10 22 5.5s10-14.4 5.5-21.9L302.7 174.6C279.3 135.8 237.3 112 192 112s-87.3 23.8-110.6 62.6L18.3 279.8c-4.5 7.6-2.1 17.4 5.5 21.9s17.4 2.1 22-5.5l63.1-105.1zM240 336l-96 0 0-179.3c14.4-8.2 30.9-12.7 48-12.7s33.6 4.5 48 12.7L240 336z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPerson = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

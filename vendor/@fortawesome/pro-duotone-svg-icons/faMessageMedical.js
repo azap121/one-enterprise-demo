@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'message-medical';
+var width = 512;
+var height = 512;
+var aliases = ["comment-alt-medical"];
+var unicode = 'f7f4';
+var svgPathData = ['M0 128L0 352c0 53 43 96 96 96l32 0 0 72c0 13.3 10.7 24 24 24 5.2 0 10.2-1.7 14.4-4.8l115.2-86.4c4.2-3.1 9.2-4.8 14.4-4.8l120 0c53 0 96-43 96-96l0-224c0-53-43-96-96-96L96 32C43 32 0 75 0 128zm150.4 92.8c0-10.6 8.6-19.2 19.2-19.2l48 0 0-48c0-10.6 8.6-19.2 19.2-19.2l38.4 0c10.6 0 19.2 8.6 19.2 19.2l0 48 48 0c10.6 0 19.2 8.6 19.2 19.2l0 38.4c0 10.6-8.6 19.2-19.2 19.2l-48 0 0 48c0 10.6-8.6 19.2-19.2 19.2l-38.4 0c-10.6 0-19.2-8.6-19.2-19.2l0-48-48 0c-10.6 0-19.2-8.6-19.2-19.2l0-38.4z', 'M236.8 134.4c-10.6 0-19.2 8.6-19.2 19.2l0 48-48 0c-10.6 0-19.2 8.6-19.2 19.2l0 38.4c0 10.6 8.6 19.2 19.2 19.2l48 0 0 48c0 10.6 8.6 19.2 19.2 19.2l38.4 0c10.6 0 19.2-8.6 19.2-19.2l0-48 48 0c10.6 0 19.2-8.6 19.2-19.2l0-38.4c0-10.6-8.6-19.2-19.2-19.2l-48 0 0-48c0-10.6-8.6-19.2-19.2-19.2l-38.4 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMessageMedical = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

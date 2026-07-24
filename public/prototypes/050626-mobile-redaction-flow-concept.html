@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>050626 — Mobile Redaction Flow Concept</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body,div,span,button,input{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',Helvetica,sans-serif}
+body{background:#E5E5EA;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px 12px}
+.outer{display:flex;flex-direction:column;align-items:center}
+.phone{width:320px;height:620px;background:#FFFFFF;border-radius:40px;border:8px solid #1C1C1E;overflow:hidden;position:relative}
+.screen{position:absolute;inset:0;background:#FFFFFF;display:none;flex-direction:column;overflow:hidden}
+.screen.active{display:flex}
+.sbar{background:#FFFFFF;padding:8px 18px 4px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.stime{font-size:13px;font-weight:600;color:#1C1C1E}
+.sicons{font-size:10px;color:#1C1C1E;letter-spacing:2px}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.ntitle{font-size:15px;font-weight:600;color:#1C1C1E}
+.nback{font-size:13px;color:#3055D8;cursor:pointer;padding:4px 0}
+.srch{margin:8px 12px;background:#E9E9EB;border-radius:10px;padding:7px 12px;font-size:13px;color:#8E8E93;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.scroll{flex:1;overflow-y:auto}
+.crow{display:flex;justify-content:space-between;align-items:center;padding:6px 14px}
+.ccnt{font-size:14px;font-weight:600;color:#1C1C1E}
+.selbtn{font-size:13px;color:#3055D8;cursor:pointer}
+.ditem{display:flex;align-items:flex-start;gap:9px;padding:10px 14px;border-bottom:0.5px solid #E5E5EA;background:#FFFFFF;cursor:pointer}
+.ditem:active{background:#F2F2F7}
+.ditem.sel{background:#EEF1FD}
+.dico{width:30px;height:34px;background:#FDECEA;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#9B2C2C;flex-shrink:0;margin-top:1px}
+.dinf{flex:1;min-width:0}
+.dname{font-size:12px;font-weight:500;color:#1C1C1E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ddate{font-size:11px;color:#6B6B6B;margin:2px 0 4px}
+.dtags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:10px;padding:2px 7px;border-radius:20px;background:#E9E9EB;color:#3C3C43;font-weight:500}
+.tag.lg{background:#EDE9FD;color:#3C3489}
+.tag.rd{background:#E6F4EA;color:#1A6E2E}
+.dmenu{font-size:16px;color:#3055D8;flex-shrink:0;cursor:pointer;padding:4px 2px}
+.bbar{border-top:0.5px solid #E5E5EA;padding:6px 0 10px;display:flex;justify-content:space-around;background:#FFFFFF;flex-shrink:0}
+.btab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:#3C3C43;min-width:36px;cursor:pointer}
+.bico{display:flex;align-items:center;justify-content:center;height:24px}
+.handle{width:36px;height:4px;background:#D1D1D6;border-radius:2px;margin:0 auto 12px}
+.shdr{font-size:12px;font-weight:500;color:#6B6B6B;padding:0 14px 10px;border-bottom:0.5px solid #E5E5EA;display:flex;align-items:center;gap:8px}
+.sitem{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:0.5px solid #E5E5EA;font-size:14px;color:#1C1C1E;cursor:pointer}
+.sitem:active{background:#F2F2F7}
+.sitem.danger{color:#C0392B}
+.sico{font-size:16px;color:#6B6B6B;width:20px;text-align:center}
+.sico.danger{color:#C0392B}
+.selrow{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:0.5px solid #E5E5EA;flex-shrink:0}
+.sela{display:flex;align-items:center;gap:8px;font-size:14px;color:#3055D8;cursor:pointer}
+.cempty{width:20px;height:20px;border-radius:50%;border:1.5px solid #C7C7CC;flex-shrink:0}
+.ccheck{width:20px;height:20px;border-radius:50%;background:#3055D8;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ckmark{color:#fff;font-size:11px;font-weight:700}
+.cancelbtn{font-size:13px;color:#3055D8;cursor:pointer}
+.bulkbar{display:flex;justify-content:space-around;align-items:center;padding:8px 0 12px;border-top:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.bact{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:#3055D8;cursor:pointer}
+.bact.danger{color:#C0392B}
+.rhead{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.rtitle{font-size:17px;font-weight:600;color:#1C1C1E}
+.rclose{font-size:20px;color:#6B6B6B;cursor:pointer;padding:4px;line-height:1}
+.ldcard{margin:12px;background:#FFFFFF;border-radius:12px;padding:14px;border:0.5px solid #E5E5EA}
+.ldtitle{font-size:13px;font-weight:600;color:#1C1C1E;margin-bottom:3px}
+.ldfile{font-size:11px;color:#6B6B6B;margin-bottom:10px}
+.prbg{height:5px;background:#E9E9EB;border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prfill{height:100%;background:#3055D8;border-radius:3px;width:0;transition:width 2s ease}
+.catrow2{display:flex;align-items:center;gap:8px;padding:4px 0}
+.cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.clbl{font-size:12px;color:#1C1C1E;flex:1}
+.cnum{font-size:12px;font-weight:600;color:#1C1C1E}
+.cnum.zero{color:#8E8E93}
+.tabbar{display:flex;border-bottom:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.titem{flex:1;text-align:center;padding:9px 2px;font-size:12px;color:#6B6B6B;position:relative;cursor:pointer}
+.titem.act{color:#3055D8;font-weight:600}
+.titem.act::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:2px;background:#3055D8;border-radius:1px}
+.tbadge{display:inline-block;background:#3055D8;color:#FFFFFF;font-size:9px;padding:0 4px;border-radius:8px;margin-left:2px;vertical-align:middle;font-weight:600}
+.tbadge.muted{background:#E9E9EB;color:#6B6B6B}
+.tcont{padding:10px 12px;flex:1;overflow-y:auto}
+.catlbl{font-size:10px;font-weight:600;color:#6B6B6B;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.togsmall{width:28px;height:16px;border-radius:8px;position:relative;flex-shrink:0;cursor:pointer}
+.togsmall.on{background:#3055D8}
+.togsmall.amber{background:#E07B20}
+.togsmall.off{background:#D1D1D6}
+.togsmall .k{width:12px;height:12px;background:#FFFFFF;border-radius:50%;position:absolute;top:2px}
+.togsmall.on .k,.togsmall.amber .k{right:2px}
+.togsmall.off .k{left:2px}
+.cat-header{display:flex;align-items:center;gap:8px;padding:9px 0;cursor:pointer;border-bottom:0.5px solid #E5E5EA}
+.cat-chevron{font-size:13px;color:#8E8E93;margin-left:auto;transition:transform .2s;flex-shrink:0;font-weight:500}
+.cat-chevron.open{transform:rotate(90deg)}
+.sg-row{display:flex;align-items:center;padding:10px 0;border-bottom:0.5px solid #EFEFEF}
+.sg-label{flex:1;font-size:13px;color:#1C1C1E;min-width:0;padding-right:8px}
+.sg-label.muted{color:#8E8E93}
+.sg-status{font-size:12px;font-weight:500;white-space:nowrap;flex-shrink:0;margin-right:8px}
+.sg-status.redacted{color:#3055D8}
+.sg-status.dismissed{color:#8E8E93}
+.btn-redact{background-color:#3055D8!important;color:#FFFFFF!important;font-size:12px;font-weight:700;padding:7px 13px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;line-height:1.2}
+.btn-redact:active{background-color:#1E3FAD!important}
+.btn-dismiss{background-color:#FFFFFF!important;color:#3055D8!important;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;border:2px solid #3055D8!important;cursor:pointer;white-space:nowrap;flex-shrink:0;margin-left:6px;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;line-height:1.2}
+.btn-dismiss:active{background-color:#EEF1FD!important}
+.btn-undo{background-color:#FFFFFF!important;color:#3055D8!important;font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;border:2px solid #3055D8!important;cursor:pointer;white-space:nowrap;flex-shrink:0;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;line-height:1.2}
+.btn-undo:active{background-color:#EEF1FD!important}
+.accept-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:10px;margin-bottom:12px;cursor:pointer;border:2px solid #3055D8;background-color:#FFFFFF}
+.accept-row.checked{background-color:#EEF1FD}
+.accept-lbl{font-size:13px;font-weight:600;color:#3055D8;flex:1}
+.accept-chk{width:22px;height:22px;border-radius:50%;border:2px solid #3055D8;display:flex;align-items:center;justify-content:center;flex-shrink:0;background-color:#FFFFFF}
+.accept-chk.filled{background-color:#3055D8}
+.bottom-actions{display:flex;gap:8px;padding:8px 12px 12px;flex-shrink:0;border-top:0.5px solid #E5E5EA;background:#FFFFFF}
+.btn-preview{flex:1;background-color:#FFFFFF!important;color:#3055D8!important;font-size:14px;font-weight:700;padding:13px;border-radius:12px;border:2px solid #3055D8!important;cursor:pointer;text-align:center;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;line-height:1.2}
+.btn-preview:active{background-color:#EEF1FD!important}
+.btn-publish{flex:1;background-color:#3055D8!important;color:#FFFFFF!important;font-size:14px;font-weight:700;padding:13px;border-radius:12px;border:none;cursor:pointer;text-align:center;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;line-height:1.2}
+.btn-publish:active{background-color:#1E3FAD!important}
+.btn-success{background-color:#3055D8!important;color:#FFFFFF!important;font-size:14px;font-weight:700;padding:13px 32px;border-radius:12px;border:none;cursor:pointer;margin-top:8px;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif}
+.btn-add{font-size:12px;padding:7px 12px;background-color:#3055D8!important;color:#FFFFFF!important;border-radius:8px;border:none;cursor:pointer;font-weight:700;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif}
+.btn-remove-kw{background:none;border:none;cursor:pointer;color:#8E8E93;font-size:18px;line-height:1;padding:0 2px;font-family:-apple-system,Helvetica,sans-serif;flex-shrink:0}
+.kwinput{display:flex;gap:8px;margin-bottom:10px}
+.kwinput input{flex:1;font-size:12px;padding:7px 9px;border:1px solid #D1D1D6;border-radius:8px;background:#FFFFFF;color:#1C1C1E}
+.kwhint{font-size:11px;color:#6B6B6B;line-height:1.4;margin-top:8px}
+.kw-item{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:0.5px solid #E5E5EA}
+.kw-item-label{flex:1;font-size:13px;color:#1C1C1E}
+.kw-badge{font-size:10px;padding:2px 8px;border-radius:20px;background:#E9E9EB;color:#3C3C43;font-weight:500;white-space:nowrap}
+.mrow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid #E5E5EA}
+.mdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.mtxt{flex:1;font-size:12px;color:#1C1C1E;min-width:0}
+.msub{font-size:10px;color:#8E8E93;margin-top:1px}
+.btn-unredact{font-size:11px;padding:5px 10px;background-color:#FFFFFF!important;color:#3055D8!important;border-radius:6px;border:2px solid #3055D8!important;cursor:pointer;-webkit-appearance:none;appearance:none;font-family:-apple-system,Helvetica,sans-serif;font-weight:600;white-space:nowrap;flex-shrink:0}
+.vgrp{background:#F2F2F7;border-radius:10px;margin:10px 12px;padding:10px 12px}
+.vgrplbl{font-size:10px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.vrow{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer}
+.vrow+.vrow{border-top:0.5px solid #E5E5EA}
+.vico{width:26px;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0}
+.vico.orig{background:#FDECEA;color:#9B2C2C}
+.vico.red{background:#EDE9FD;color:#3C3489}
+.vinf{flex:1;min-width:0}
+.vtitle{font-size:12px;font-weight:500;color:#1C1C1E}
+.vmeta{font-size:10px;color:#6B6B6B}
+.vmenu{font-size:15px;color:#C7C7CC}
+.scaninfo{padding:6px 12px 10px;font-size:11px;color:#6B6B6B;text-align:center;flex-shrink:0}
+.hint{text-align:center;font-size:11px;color:#8E8E93;padding:6px 0 2px;flex-shrink:0}
+.success-overlay{position:absolute;inset:0;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:20}
+.success-icon{width:60px;height:60px;background:#EEF1FD;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.success-title{font-size:16px;font-weight:600;color:#1C1C1E}
+.success-sub{font-size:13px;color:#6B6B6B;text-align:center;padding:0 24px;line-height:1.5}
+.doc-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.doc-nav-mid{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:#1C1C1E;flex:1;min-width:0;overflow:hidden}
+.doc-nav-mid span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doc-toolbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:0.5px solid #E5E5EA;flex-shrink:0}
+.doc-tool{width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:6px}
+.doc-viewer-scroll{flex:1;overflow-y:auto;background:#F2F2F7}
+.doc-page{background:#FFFFFF;border:0.5px solid #E5E5EA;border-radius:4px;padding:16px 14px}
+.doc-conf{font-size:7px;font-weight:600;color:#C0392B;text-align:center;letter-spacing:.08em;border-bottom:0.5px solid #E5E5EA;padding-bottom:6px;margin-bottom:10px}
+.doc-title2{font-size:11px;font-weight:700;color:#1C1C1E;text-align:center;margin-bottom:3px}
+.doc-sub2{font-size:9px;color:#6B6B6B;text-align:center;margin-bottom:12px}
+.doc-sh{font-size:9px;font-weight:700;color:#1C1C1E;margin-bottom:4px}
+.doc-body2{font-size:8px;color:#3C3C43;line-height:1.5}
+.doc-bottom{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:0.5px solid #E5E5EA;background:#FFFFFF;flex-shrink:0}
+.doc-cta{flex:1;background-color:#3055D8;color:#FFFFFF;text-align:center;padding:12px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer}
+.doc-cta:active{background-color:#1E3FAD}
+.doc-sparkle{width:42px;height:42px;background-color:#3055D8;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.transl-badge{display:flex;align-items:center;background:#EDE9FD;border-radius:20px;padding:2px 8px;font-size:10px;color:#3C3489;font-weight:500;flex-shrink:0}
+.redacted-bar{background:#1C1C1E;border-radius:3px;height:10px;display:inline-block;vertical-align:middle}
+.preview-banner{background:#FFF8E7;border-bottom:0.5px solid #E9C84A;padding:8px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.preview-banner-txt{font-size:11px;color:#7A5900;flex:1;line-height:1.3}
+.mk-section-lbl{font-size:10px;font-weight:600;color:#6B6B6B;letter-spacing:.05em;text-transform:uppercase;padding:10px 0 4px;border-bottom:0.5px solid #E5E5EA;margin-bottom:2px}
+.summary-card{margin:8px;background:#F2F2F7;border-radius:10px;padding:12px 14px}
+.summary-lbl{font-size:10px;font-weight:600;color:#6B6B6B;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.summary-row{font-size:12px;color:#3C3C43;line-height:1.7;padding:4px 0;border-bottom:0.5px solid #E5E5EA}
+.summary-row:last-child{border-bottom:none}
+</style>
+</head>
+<body>
+<div class="outer">
+<div class="phone">
+
+<!-- INDEX -->
+<div id="s-index" class="screen active">
+  <div class="sbar"><span class="stime">8:55</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="nav"><span class="nback">‹ Back</span><span class="ntitle">1.1 1.5_IP</span><div style="display:flex;gap:12px"><span style="font-size:16px;color:#3055D8;cursor:pointer">···</span><span style="font-size:16px;color:#3055D8;cursor:pointer">⌂</span></div></div>
+  <div class="srch">⌕ Search documents...</div>
+  <div class="crow"><span class="ccnt">4 documents</span><span class="selbtn" onclick="go('s-bulk')">Select ▽</span></div>
+  <div class="scroll">
+    <div class="ditem" onclick="go('s-viewer')"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.1 VoxelMatter_IP_Assignment_Ag...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span><span class="tag lg">Korean</span><span class="tag lg">German</span><span class="tag lg">English</span></div></div><span class="dmenu" onclick="event.stopPropagation();showMenu()">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.2 VoxelMatter_Patent_Register...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">11 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.3 VoxelMatter_Trademark_Regi...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.4 VoxelMatter_IP_Assignment_...</div><div class="ddate">04/20/2026, 4:45 AM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+  </div>
+  <div class="hint">Tap doc → viewer · tap ··· → menu</div>
+  <div class="bbar">
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="13" height="16" rx="2" stroke="#3C3C43" stroke-width="1.5"/><line x1="6" y1="8" x2="13" y2="8" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="11" x2="13" y2="11" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="14" x2="10" y2="14" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Documents</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polyline points="4,11 8,15 18,6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Trackers</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#3C3C43" stroke-width="1.5"/><path d="M5 18c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Users</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#3C3C43" stroke-width="1.5"/><path d="M11 11L11 6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><path d="M11 11L15 13" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Analytics</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="3" stroke="#3C3C43" stroke-width="1.5"/><path d="M11 4v2M11 16v2M4 11h2M16 11h2M6.05 6.05l1.41 1.41M14.54 14.54l1.41 1.41M6.05 15.95l1.41-1.41M14.54 7.46l1.41-1.41" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Settings</div>
+  </div>
+</div>
+
+<!-- VIEWER -->
+<div id="s-viewer" class="screen">
+  <div class="sbar"><span class="stime">11:36</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="doc-nav">
+    <span style="font-size:18px;color:#3055D8;cursor:pointer;padding:4px;flex-shrink:0" onclick="go('s-index')">✕</span>
+    <div class="doc-nav-mid"><div class="transl-badge">AZ</div><span>1.1.1 VoxelMatter_IP_A...</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0"><path d="M4 5l3 3 3-3" stroke="#1C1C1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span style="font-size:16px;color:#3055D8;cursor:pointer;padding:4px;flex-shrink:0" onclick="showMenu()">···</span>
+  </div>
+  <div class="doc-toolbar">
+    <div class="doc-tool"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="5" height="5" rx="0.5" stroke="#6B6B6B" stroke-width="1.5"/><rect x="11" y="2" width="5" height="5" rx="0.5" stroke="#6B6B6B" stroke-width="1.5"/><rect x="2" y="11" width="5" height="5" rx="0.5" stroke="#6B6B6B" stroke-width="1.5"/><rect x="11" y="11" width="5" height="5" rx="0.5" stroke="#6B6B6B" stroke-width="1.5"/></svg></div>
+    <div class="doc-tool"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="1" stroke="#6B6B6B" stroke-width="1.5"/><line x1="9" y1="2" x2="9" y2="16" stroke="#6B6B6B" stroke-width="1.5"/></svg></div>
+    <div class="doc-tool"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="3" width="12" height="12" rx="2" stroke="#6B6B6B" stroke-width="1.5"/><circle cx="9" cy="9" r="2" stroke="#6B6B6B" stroke-width="1.5"/></svg></div>
+    <div style="flex:1"></div>
+    <div class="doc-tool"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="4.5" stroke="#6B6B6B" stroke-width="1.5"/><line x1="11" y1="11" x2="15" y2="15" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+  </div>
+  <div class="doc-viewer-scroll">
+    <div style="margin:8px"><div class="doc-page">
+      <div class="doc-conf">CONFIDENTIAL — FOR AUTHORIZED REVIEW ONLY</div>
+      <div class="doc-title2">IP ASSIGNMENT AGREEMENTS SUMMARY</div>
+      <div class="doc-sub2">VoxelMatter, Inc.</div>
+      <div style="height:1px;background:#E5E5EA;margin-bottom:10px"></div>
+      <div class="doc-sh">Section 1: IP Assignments</div>
+      <div class="doc-body2">Section 1 summarizes all IP assignment agreements executed by VoxelMatter, Inc., including founder IP assignments, employee IP assignments, and contractor agreements. All assignments are properly recorded with the USPTO.</div>
+      <div style="height:70px;position:relative"><div style="position:absolute;top:8px;left:18px;transform:rotate(-35deg);font-size:8px;color:rgba(0,0,0,0.1);line-height:1.5;white-space:nowrap">Confidential<br>Melissa.Thompson@datasite.com<br>2026-04-28 11:36:05 -0600</div></div>
+      <div style="height:1px;background:#E5E5EA;margin:8px 0 6px"></div>
+      <div style="font-size:8px;color:#8E8E93;text-align:center">VoxelMatter IP Assignment Agreements Summary | Page 1</div>
+    </div></div>
+    <div style="margin:0 8px 8px"><div class="doc-page">
+      <div class="doc-conf">CONFIDENTIAL — FOR AUTHORIZED REVIEW ONLY</div>
+      <div class="doc-sh" style="margin-top:4px">Section 2: IP Assignments</div>
+      <div class="doc-body2">Section 2 summarizes all IP assignment agreements executed by VoxelMatter, Inc., including founder IP assignments, employee IP assignments, and contractor agreements. All assignments are properly recorded with the USPTO.</div>
+    </div></div>
+  </div>
+  <div class="doc-bottom">
+    <div class="doc-cta" onclick="go('s-scan')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:5px"><path d="M8 2l1.2 2.4 2.8.4-2 2 .5 2.8L8 8.4 5.5 9.6l.5-2.8-2-2 2.8-.4z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/></svg>Redact with AI</div>
+    <div class="doc-sparkle"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.5 4.5L16 8l-4.5 1.5L10 14l-1.5-4.5L4 8l4.5-1.5z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+  </div>
+</div>
+
+<!-- BULK -->
+<div id="s-bulk" class="screen">
+  <div class="sbar"><span class="stime">8:55</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="nav"><span class="nback">‹ Back</span><span class="ntitle">1.1 1.5_IP</span></div>
+  <div class="srch">⌕ Search documents...</div>
+  <div class="selrow"><div class="sela"><div class="cempty"></div>Select All</div><span class="cancelbtn" onclick="go('s-index')">Cancel (1)</span></div>
+  <div class="scroll">
+    <div class="ditem sel"><div class="ccheck"><span class="ckmark">✓</span></div><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.1 VoxelMatter_IP_Assignment_...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span><span class="tag lg">Korean</span></div></div></div>
+    <div class="ditem"><div class="cempty" style="margin-top:6px;flex-shrink:0"></div><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.2 VoxelMatter_Patent_Register...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">11 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div></div>
+    <div class="ditem"><div class="cempty" style="margin-top:6px;flex-shrink:0"></div><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.3 VoxelMatter_Trademark_Regi...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div></div>
+  </div>
+  <div class="bulkbar">
+    <div class="bact danger" onclick="go('s-scan')"><span style="font-size:18px">■</span>Redact</div>
+    <div class="bact"><span style="font-size:18px">♻</span>Recycle</div>
+    <div class="bact"><span style="font-size:18px">⬆</span>Move</div>
+    <div class="bact"><span style="font-size:18px">⧉</span>Copy</div>
+    <div class="bact"><span style="font-size:18px">···</span>More</div>
+  </div>
+</div>
+
+<!-- SCAN -->
+<div id="s-scan" class="screen">
+  <div class="sbar"><span class="stime">8:56</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="rhead"><span class="rclose" onclick="go('s-index')">✕</span><span class="rtitle">Redact</span><span style="width:32px"></span></div>
+  <div class="scroll">
+    <div class="ldcard">
+      <div class="ldtitle">Scanning for sensitive content...</div>
+      <div class="ldfile">1.1.1 VoxelMatter_IP_Assignment_Ag.pdf</div>
+      <div class="prbg"><div class="prfill" id="pbar"></div></div>
+      <div class="catrow2"><span class="cdot" style="background:#3055D8"></span><span class="clbl">PII</span><span class="cnum" id="pii-n">0</span></div>
+      <div class="catrow2"><span class="cdot" style="background:#E07B20"></span><span class="clbl">Financial</span><span class="cnum" id="fin-n">0</span></div>
+      <div class="catrow2"><span class="cdot" style="background:#2E7D32"></span><span class="clbl">Commercial</span><span class="cnum zero">0</span></div>
+      <div class="catrow2"><span class="cdot" style="background:#B5478C"></span><span class="clbl">Legal</span><span class="cnum zero">0</span></div>
+    </div>
+    <div class="scaninfo">Scanning continues in the background if you close the app.</div>
+  </div>
+</div>
+
+<!-- REVIEW -->
+<div id="s-review" class="screen">
+  <div class="sbar"><span class="stime">8:57</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="rhead"><span class="rclose" onclick="go('s-index')">✕</span><span class="rtitle">Redact</span><span style="width:32px"></span></div>
+  <div class="tabbar">
+    <div class="titem act" id="tab-ai" onclick="switchTab('ai')">AI suggestions<span class="tbadge" id="ai-badge">8</span></div>
+    <div class="titem" id="tab-kw" onclick="switchTab('kw')">Keywords</div>
+    <div class="titem" id="tab-mk" onclick="switchTab('mk')">Marked<span class="tbadge muted" id="mk-badge">0</span></div>
+  </div>
+  <div id="pane-ai" class="tcont">
+    <div class="accept-row" id="accept-row" onclick="toggleAcceptAll()">
+      <span class="accept-lbl" id="accept-lbl">Accept all AI suggestions (8)</span>
+      <div class="accept-chk" id="accept-chk"><svg id="accept-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><polyline points="2,6.5 5.5,10 11,3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="catlbl">Categories</div>
+    <div class="cat-header" onclick="toggleCat('pii')"><span class="cdot" style="background:#3055D8"></span><span style="font-size:13px;color:#1C1C1E;font-weight:600;flex:1;margin-left:4px">PII</span><span style="font-size:13px;font-weight:700;color:#1C1C1E">6</span><span class="cat-chevron open" id="chev-pii">›</span></div>
+    <div id="items-pii">
+      <div class="sg-row" id="row-0"><span class="sg-label" id="lbl-0">Marcus Webb</span><div id="btns-0"><button class="btn-redact" onclick="doRedact(0,'Marcus Webb','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(0,'Marcus Webb')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-1"><span class="sg-label" id="lbl-1">Priya Nair</span><div id="btns-1"><button class="btn-redact" onclick="doRedact(1,'Priya Nair','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(1,'Priya Nair')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-2"><span class="sg-label" id="lbl-2">Carlos Reyes</span><div id="btns-2"><button class="btn-redact" onclick="doRedact(2,'Carlos Reyes','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(2,'Carlos Reyes')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-3"><span class="sg-label" id="lbl-3">099-44-5512</span><div id="btns-3"><button class="btn-redact" onclick="doRedact(3,'099-44-5512','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(3,'099-44-5512')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-4"><span class="sg-label" id="lbl-4">078-23-9901</span><div id="btns-4"><button class="btn-redact" onclick="doRedact(4,'078-23-9901','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(4,'078-23-9901')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-5" style="border-bottom:none"><span class="sg-label" id="lbl-5">Date of Birth</span><div id="btns-5"><button class="btn-redact" onclick="doRedact(5,'Date of Birth','pii')">Redact</button><button class="btn-dismiss" onclick="doDismiss(5,'Date of Birth')">Dismiss</button></div></div>
+    </div>
+    <div class="cat-header" style="margin-top:4px" onclick="toggleCat('fin')"><span class="cdot" style="background:#E07B20"></span><span style="font-size:13px;color:#1C1C1E;font-weight:600;flex:1;margin-left:4px">Financial</span><span style="font-size:13px;font-weight:700;color:#1C1C1E">2</span><span class="cat-chevron open" id="chev-fin">›</span></div>
+    <div id="items-fin">
+      <div class="sg-row" id="row-6"><span class="sg-label" id="lbl-6">$142,000</span><div id="btns-6"><button class="btn-redact" onclick="doRedact(6,'$142,000','fin')">Redact</button><button class="btn-dismiss" onclick="doDismiss(6,'$142,000')">Dismiss</button></div></div>
+      <div class="sg-row" id="row-7" style="border-bottom:none"><span class="sg-label" id="lbl-7">$98,500</span><div id="btns-7"><button class="btn-redact" onclick="doRedact(7,'$98,500','fin')">Redact</button><button class="btn-dismiss" onclick="doDismiss(7,'$98,500')">Dismiss</button></div></div>
+    </div>
+    <div class="cat-header" style="margin-top:4px"><span class="cdot" style="background:#2E7D32"></span><span style="font-size:13px;color:#8E8E93;font-weight:500;flex:1;margin-left:4px">Commercial</span><span style="font-size:13px;color:#8E8E93">0</span><span class="cat-chevron" style="color:#D1D1D6">›</span></div>
+    <div class="cat-header" style="margin-top:4px;border-bottom:none"><span class="cdot" style="background:#B5478C"></span><span style="font-size:13px;color:#8E8E93;font-weight:500;flex:1;margin-left:4px">Legal</span><span style="font-size:13px;color:#8E8E93">0</span><span class="cat-chevron" style="color:#D1D1D6">›</span></div>
+  </div>
+  <div id="pane-kw" class="tcont" style="display:none">
+    <p style="font-size:12px;color:#6B6B6B;margin-bottom:10px">Keywords are redacted across all documents.</p>
+    <div class="kwinput"><input id="kw-inp" placeholder="Add keyword..." onkeydown="if(event.key==='Enter')addKeyword()" /><button class="btn-add" onclick="addKeyword()">Add</button></div>
+    <div id="kw-list"></div>
+    <p class="kwhint">Added keywords appear in the Marked tab.</p>
+  </div>
+  <div id="pane-mk" class="tcont" style="display:none">
+    <div id="marked-list"></div>
+    <p id="mk-empty" style="font-size:12px;color:#8E8E93;text-align:center;padding:20px 0">No items marked for redaction yet.</p>
+  </div>
+  <div class="bottom-actions">
+    <button class="btn-preview" onclick="go('s-preview')">Preview</button>
+    <button class="btn-publish" onclick="go('s-success')">Finalize &amp; Publish</button>
+  </div>
+</div>
+
+<!-- PREVIEW -->
+<div id="s-preview" class="screen">
+  <div class="sbar"><span class="stime">8:57</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="doc-nav">
+    <span style="font-size:13px;color:#3055D8;cursor:pointer;padding:4px 0;flex-shrink:0" onclick="go('s-review')">‹ Back</span>
+    <div style="flex:1;text-align:center"><span style="font-size:15px;font-weight:600;color:#1C1C1E">Redaction preview</span></div>
+    <span style="width:44px;flex-shrink:0"></span>
+  </div>
+  <div class="preview-banner">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0"><circle cx="7" cy="7" r="6" stroke="#B38A00" stroke-width="1.2"/><line x1="7" y1="5" x2="7" y2="7.5" stroke="#B38A00" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="9.5" r="0.6" fill="#B38A00"/></svg>
+    <div class="preview-banner-txt">Black bars show what buyers will see as redacted. Tap Finalize &amp; Publish to confirm.</div>
+  </div>
+  <div class="doc-viewer-scroll">
+    <div style="margin:8px"><div class="doc-page">
+      <div class="doc-conf">CONFIDENTIAL — FOR AUTHORIZED REVIEW ONLY</div>
+      <div class="doc-title2">IP ASSIGNMENT AGREEMENTS SUMMARY</div>
+      <div class="doc-sub2">VoxelMatter, Inc.</div>
+      <div style="height:1px;background:#E5E5EA;margin-bottom:10px"></div>
+      <div class="doc-sh">Section 1: IP Assignments</div>
+      <div class="doc-body2">Section 1 summarizes all IP assignment agreements executed by VoxelMatter, Inc., including founder IP assignments, employee IP assignments, and contractor agreements executed by <span class="redacted-bar" style="width:52px"></span>, <span class="redacted-bar" style="width:40px"></span>, and <span class="redacted-bar" style="width:46px"></span>. Employee IDs <span class="redacted-bar" style="width:48px"></span> and <span class="redacted-bar" style="width:48px"></span> verified. Financial terms: <span class="redacted-bar" style="width:34px"></span> and <span class="redacted-bar" style="width:34px"></span> withheld per policy.</div>
+      <div style="height:1px;background:#E5E5EA;margin:10px 0 6px"></div>
+      <div style="font-size:8px;color:#8E8E93;text-align:center">VoxelMatter IP Assignment Agreements Summary | Page 1</div>
+    </div></div>
+    <div class="summary-card">
+      <div class="summary-lbl">Redacted items summary</div>
+      <div id="preview-summary"></div>
+    </div>
+    <div style="height:8px"></div>
+  </div>
+  <div class="bottom-actions">
+    <button class="btn-publish" onclick="go('s-scan')">Redact with AI</button>
+    <button class="btn-preview" onclick="go('s-success')">Finalize &amp; Publish</button>
+  </div>
+</div>
+
+<!-- DONE -->
+<div id="s-done" class="screen">
+  <div class="sbar"><span class="stime">8:58</span><span class="sicons">● ▲ ▐▐</span></div>
+  <div class="nav"><span class="nback" onclick="go('s-index')">‹ Back</span><span class="ntitle">1.1 1.5_IP</span></div>
+  <div class="srch">⌕ Search documents...</div>
+  <div class="crow"><span class="ccnt">4 documents</span><span class="selbtn">Select ▽</span></div>
+  <div class="scroll">
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.1 VoxelMatter_IP_Assignment_Ag...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span><span class="tag rd">Redacted</span><span class="tag lg">Korean</span><span class="tag lg">German</span><span class="tag lg">English</span></div></div><span class="dmenu">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.2 VoxelMatter_Patent_Register...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">11 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.3 VoxelMatter_Trademark_Regi...</div><div class="ddate">02/24/2026, 5:19 PM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+    <div class="ditem"><div class="dico">PDF</div><div class="dinf"><div class="dname">1.1.4 VoxelMatter_IP_Assignment_...</div><div class="ddate">04/20/2026, 4:45 AM</div><div class="dtags"><span class="tag">10 KB</span><span class="tag">pdf</span><span class="tag">Published</span></div></div><span class="dmenu">···</span></div>
+  </div>
+  <div class="bbar">
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="13" height="16" rx="2" stroke="#3C3C43" stroke-width="1.5"/><line x1="6" y1="8" x2="13" y2="8" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="11" x2="13" y2="11" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="14" x2="10" y2="14" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Documents</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><polyline points="4,11 8,15 18,6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Trackers</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#3C3C43" stroke-width="1.5"/><path d="M5 18c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Users</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#3C3C43" stroke-width="1.5"/><path d="M11 11L11 6" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/><path d="M11 11L15 13" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Analytics</div>
+    <div class="btab"><div class="bico"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="3" stroke="#3C3C43" stroke-width="1.5"/><path d="M11 4v2M11 16v2M4 11h2M16 11h2M6.05 6.05l1.41 1.41M14.54 14.54l1.41 1.41M6.05 15.95l1.41-1.41M14.54 7.46l1.41-1.41" stroke="#3C3C43" stroke-width="1.5" stroke-linecap="round"/></svg></div>Settings</div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div id="s-success" class="screen">
+  <div class="success-overlay">
+    <div class="success-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#3055D8" stroke-width="2"/><polyline points="9,14 12,17 19,10" stroke="#3055D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="success-title">Redaction published</div>
+    <div class="success-sub">The redacted version of 1.1.1 VoxelMatter_IP_Assignment_Ag.pdf is now live.</div>
+    <button class="btn-success" onclick="go('s-done')">View document</button>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu-overlay" style="display:none;position:absolute;inset:0;z-index:30">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,0.38)" onclick="hideMenu()"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;background:#FFFFFF;border-radius:14px 14px 0 0;padding:10px 0 16px">
+    <div class="handle"></div>
+    <div class="shdr"><div class="dico" style="width:22px;height:26px;margin:0;flex-shrink:0">PDF</div>1.1.1 VoxelMatter_IP_Assignment_Agree...</div>
+    <div class="sitem"><span class="sico">👤</span>Manage Permissions</div>
+    <div class="sitem"><span class="sico">⊠</span>Unpublish</div>
+    <div class="sitem"><span class="sico">◑</span>View Analytics</div>
+    <div class="sitem"><span class="sico">↗</span>Share</div>
+    <div class="sitem"><span class="sico">⬆</span>Move</div>
+    <div class="sitem"><span class="sico">✏</span>Rename</div>
+    <div class="sitem"><span class="sico">♻</span>Recycle</div>
+    <div class="sitem"><span class="sico">≡</span>Summarize</div>
+    <div class="sitem danger" onclick="hideMenu();go('s-scan')"><span class="sico danger">■</span>Redact</div>
+    <div class="sitem"><span class="sico">✩</span>Favorite</div>
+    <div class="sitem" style="border:none"><span class="sico">⧉</span>Copy</div>
+  </div>
+</div>
+
+</div>
+<div style="text-align:center;font-size:11px;color:#6B6B6B;margin-top:10px;line-height:1.6">Preview: ‹ Back in nav only · "Finalize &amp; Publish" full-width at bottom</div>
+</div>
+
+<script>
+var marked={},aiBadge=8,acceptAllOn=false,catOpen={pii:true,fin:true},keywords=[];
+var rowData=[
+  {label:'Marcus Webb',cat:'pii'},{label:'Priya Nair',cat:'pii'},
+  {label:'Carlos Reyes',cat:'pii'},{label:'099-44-5512',cat:'pii'},
+  {label:'078-23-9901',cat:'pii'},{label:'Date of Birth',cat:'pii'},
+  {label:'$142,000',cat:'fin'},{label:'$98,500',cat:'fin'}
+];
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  document.getElementById(id).classList.add('active');
+  if(id==='s-scan') startScan();
+  if(id==='s-review') renderAll();
+  if(id==='s-preview') renderPreview();
+}
+function showMenu(){document.getElementById('menu-overlay').style.display='block'}
+function hideMenu(){document.getElementById('menu-overlay').style.display='none'}
+
+function toggleCat(cat){
+  var items=document.getElementById('items-'+cat);
+  var chev=document.getElementById('chev-'+cat);
+  if(!items) return;
+  catOpen[cat]=!catOpen[cat];
+  items.style.display=catOpen[cat]?'block':'none';
+  if(chev) chev.classList.toggle('open',catOpen[cat]);
+}
+
+function startScan(){
+  var bar=document.getElementById('pbar'),pii=document.getElementById('pii-n'),fin=document.getElementById('fin-n');
+  bar.style.width='0';pii.textContent='0';fin.textContent='0';
+  setTimeout(function(){bar.style.width='40%'},100);
+  setTimeout(function(){pii.textContent='3'},800);
+  setTimeout(function(){bar.style.width='70%'},1200);
+  setTimeout(function(){fin.textContent='1'},1500);
+  setTimeout(function(){pii.textContent='5'},1900);
+  setTimeout(function(){bar.style.width='100%'},2200);
+  setTimeout(function(){pii.textContent='6';fin.textContent='2';go('s-review')},3000);
+}
+
+function switchTab(t){
+  ['ai','kw','mk'].forEach(function(x){
+    document.getElementById('tab-'+x).className='titem'+(x===t?' act':'');
+    document.getElementById('pane-'+x).style.display=x===t?'block':'none';
+  });
+}
+
+function setRowState(idx,state){
+  var btnsEl=document.getElementById('btns-'+idx),lblEl=document.getElementById('lbl-'+idx);
+  if(state==='redacted'){
+    lblEl.className='sg-label muted';
+    btnsEl.innerHTML='<span class="sg-status redacted">Redacted</span><button class="btn-undo" onclick="undoRow('+idx+')">Undo</button>';
+  } else if(state==='dismissed'){
+    lblEl.className='sg-label muted';
+    btnsEl.innerHTML='<span class="sg-status dismissed">Dismissed</span><button class="btn-undo" onclick="undoRow('+idx+')">Undo</button>';
+  } else {
+    lblEl.className='sg-label';
+    var d=rowData[idx];
+    btnsEl.innerHTML='<button class="btn-redact" onclick="doRedact('+idx+',\''+d.label+'\',\''+d.cat+'\')">Redact</button><button class="btn-dismiss" onclick="doDismiss('+idx+',\''+d.label+'\')">Dismiss</button>';
+  }
+}
+
+function doRedact(idx,label,cat){setRowState(idx,'redacted');marked[label]={cat:cat,color:cat==='fin'?'#E07B20':'#3055D8'};aiBadge=Math.max(0,aiBadge-1);updateBadges();renderMarked()}
+function doDismiss(idx,label){setRowState(idx,'dismissed');delete marked[label];aiBadge=Math.max(0,aiBadge-1);updateBadges();renderMarked()}
+function undoRow(idx){var label=rowData[idx].label;setRowState(idx,'none');delete marked[label];aiBadge=Math.min(8,aiBadge+1);if(acceptAllOn){acceptAllOn=false;document.getElementById('accept-row').classList.remove('checked');document.getElementById('accept-chk').classList.remove('filled');document.getElementById('accept-svg').style.display='none';}updateBadges();renderMarked()}
+
+function updateBadges(){
+  document.getElementById('ai-badge').textContent=aiBadge;
+  var total=Object.keys(marked).length+keywords.length;
+  document.getElementById('mk-badge').textContent=total;
+  document.getElementById('mk-badge').className='tbadge'+(total===0?' muted':'');
+}
+
+function toggleAcceptAll(){
+  acceptAllOn=!acceptAllOn;
+  var row=document.getElementById('accept-row'),chk=document.getElementById('accept-chk'),svg=document.getElementById('accept-svg');
+  if(acceptAllOn){
+    row.classList.add('checked');chk.classList.add('filled');svg.style.display='block';
+    rowData.forEach(function(d,i){if(!document.getElementById('btns-'+i).querySelector('.sg-status')){setRowState(i,'redacted');marked[d.label]={cat:d.cat,color:d.cat==='fin'?'#E07B20':'#3055D8'};}});
+    aiBadge=0;
+  } else {
+    row.classList.remove('checked');chk.classList.remove('filled');svg.style.display='none';
+    marked={};rowData.forEach(function(d,i){setRowState(i,'none')});aiBadge=8;
+  }
+  updateBadges();renderMarked();
+}
+
+function addKeyword(){
+  var inp=document.getElementById('kw-inp'),val=inp.value.trim();
+  if(!val||keywords.indexOf(val)!==-1) return;
+  keywords.push(val);inp.value='';
+  renderKeywordList();renderMarked();updateBadges();
+}
+function removeKeyword(kw){keywords=keywords.filter(function(k){return k!==kw});renderKeywordList();renderMarked();updateBadges()}
+function renderKeywordList(){
+  var list=document.getElementById('kw-list');list.innerHTML='';
+  keywords.forEach(function(kw){var el=document.createElement('div');el.className='kw-item';el.innerHTML='<span class="kw-item-label">'+kw+'</span><span class="kw-badge">Keyword</span><button class="btn-remove-kw" onclick="removeKeyword(\''+kw+'\')">×</button>';list.appendChild(el)});
+}
+function renderMarked(){
+  var list=document.getElementById('marked-list'),empty=document.getElementById('mk-empty');
+  var aiKeys=Object.keys(marked),total=aiKeys.length+keywords.length;
+  list.innerHTML='';
+  if(total===0){empty.style.display='block';return}
+  empty.style.display='none';
+  if(aiKeys.length){var h=document.createElement('div');h.className='mk-section-lbl';h.textContent='AI suggestions';list.appendChild(h);aiKeys.forEach(function(m){var c=marked[m].color||'#3055D8',idx=rowData.findIndex(function(d){return d.label===m});var el=document.createElement('div');el.className='mrow';el.innerHTML='<span class="mdot" style="background:'+c+'"></span><div class="mtxt"><div>'+m+'</div></div><button class="btn-unredact" onclick="undoRow('+idx+')">Undo</button>';list.appendChild(el)})}
+  if(keywords.length){var kh=document.createElement('div');kh.className='mk-section-lbl';kh.textContent='Keywords';list.appendChild(kh);keywords.forEach(function(kw){var el=document.createElement('div');el.className='mrow';el.innerHTML='<span class="mdot" style="background:#5F5E5A"></span><div class="mtxt"><div>'+kw+'</div><div class="msub">Redacted across all documents</div></div><button class="btn-unredact" onclick="removeKeyword(\''+kw+'\')">Remove</button>';list.appendChild(el)})}
+}
+function renderAll(){renderMarked();renderKeywordList()}
+function renderPreview(){
+  var sum=document.getElementById('preview-summary'),keys=Object.keys(marked),html='';
+  var pii=keys.filter(function(k){return marked[k].cat==='pii'});
+  var fin=keys.filter(function(k){return marked[k].cat==='fin'});
+  if(pii.length) html+='<div class="summary-row"><span style="font-weight:700;color:#3055D8">PII ('+pii.length+')</span> — '+pii.join(', ')+'</div>';
+  if(fin.length) html+='<div class="summary-row"><span style="font-weight:700;color:#E07B20">Financial ('+fin.length+')</span> — '+fin.join(', ')+'</div>';
+  if(keywords.length) html+='<div class="summary-row"><span style="font-weight:700;color:#5F5E5A">Keywords ('+keywords.length+')</span> — '+keywords.join(', ')+'</div>';
+  sum.innerHTML=html||'<div class="summary-row" style="color:#8E8E93">No items marked for redaction.</div>';
+}
+
+// --- Text-selection inline redaction ---
+var selFloatBtn=null, selPendingText='';
+
+function initSelectionRedact(){
+  var phone=document.querySelector('.phone');
+  selFloatBtn=document.createElement('button');
+  selFloatBtn.className='btn-redact';
+  selFloatBtn.textContent='Redact';
+  selFloatBtn.style.cssText='position:absolute;z-index:50;display:none;font-size:11px;padding:5px 11px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.22);';
+  phone.appendChild(selFloatBtn);
+
+  document.addEventListener('mouseup',function(e){
+    if(selFloatBtn.contains(e.target)) return;
+    var sel=window.getSelection();
+    if(!sel||sel.isCollapsed||!sel.toString().trim()){selFloatBtn.style.display='none';return;}
+    var text=sel.toString().trim();
+    var range=sel.getRangeAt(0);
+    var viewer=document.getElementById('s-viewer');
+    if(!viewer||!viewer.classList.contains('active')||!viewer.contains(range.commonAncestorContainer)){selFloatBtn.style.display='none';return;}
+    selPendingText=text;
+    var rect=range.getBoundingClientRect();
+    var pr=phone.getBoundingClientRect();
+    var left=rect.left-pr.left+rect.width/2-28;
+    var top=rect.bottom-pr.top+5;
+    selFloatBtn.style.left=Math.max(4,Math.min(left,240))+'px';
+    selFloatBtn.style.top=Math.min(top,580)+'px';
+    selFloatBtn.style.display='block';
+  });
+
+  document.addEventListener('mousedown',function(e){
+    if(selFloatBtn&&!selFloatBtn.contains(e.target)) selFloatBtn.style.display='none';
+  });
+
+  selFloatBtn.onclick=function(){
+    if(!selPendingText) return;
+    window.getSelection().removeAllRanges();
+    redactInViewer(selPendingText);
+    if(keywords.indexOf(selPendingText)===-1){
+      keywords.push(selPendingText);
+      renderKeywordList();
+      renderMarked();
+      updateBadges();
+    }
+    selFloatBtn.style.display='none';
+    selPendingText='';
+    go('s-preview');
+  };
+}
+
+function redactInViewer(text){
+  var escaped=text.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  document.querySelectorAll('#s-viewer .doc-body2,#s-viewer .doc-sh,#s-viewer .doc-title2,#s-viewer .doc-sub2').forEach(function(el){
+    replaceTextWithBars(el,escaped);
+  });
+}
+
+function replaceTextWithBars(el,escaped){
+  var re=new RegExp('('+escaped+')','gi');
+  var walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null,false);
+  var nodes=[],n;
+  while((n=walker.nextNode())) nodes.push(n);
+  nodes.forEach(function(node){
+    if(!re.test(node.textContent)) return;
+    re.lastIndex=0;
+    var parts=node.textContent.split(re);
+    var frag=document.createDocumentFragment();
+    parts.forEach(function(part,i){
+      if(i%2===1){
+        var bar=document.createElement('span');
+        bar.className='redacted-bar';
+        bar.style.width=(part.length*5.5)+'px';
+        frag.appendChild(bar);
+      } else if(part){
+        frag.appendChild(document.createTextNode(part));
+      }
+    });
+    node.parentNode.replaceChild(frag,node);
+  });
+}
+
+initSelectionRedact();
+</script>
+</body>
+</html>

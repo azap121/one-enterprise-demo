@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'calendar-lines';
+var width = 448;
+var height = 512;
+var aliases = ["calendar-note"];
+var unicode = 'e0d5';
+var svgPathData = 'M128 16c0-8.8-7.2-16-16-16S96 7.2 96 16l0 48-32 0C28.7 64 0 92.7 0 128L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64l-32 0 0-48c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 48-192 0 0-48zM64 96l320 0c17.7 0 32 14.3 32 32l0 288c0 17.7-14.3 32-32 32L64 448c-17.7 0-32-14.3-32-32l0-288c0-17.7 14.3-32 32-32zM96 240c0 8.8 7.2 16 16 16l224 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-224 0c-8.8 0-16 7.2-16 16zm16 80c-8.8 0-16 7.2-16 16s7.2 16 16 16l128 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-128 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCalendarLines = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

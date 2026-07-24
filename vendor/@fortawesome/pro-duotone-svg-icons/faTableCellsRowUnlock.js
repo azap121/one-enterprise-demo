@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'table-cells-row-unlock';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e691';
+var svgPathData = ['M64 96l0 320c0 35.3 28.7 64 64 64l241.3 0c-.9-5.2-1.3-10.6-1.3-16.1l0-96c0-19.6 5.9-37.9 16-53.1l0-90.8 25.3 0c17.1-42.2 56-73.2 102.7-79l0-49c0-35.3-28.7-64-64-64L128 32C92.7 32 64 60.7 64 96zm64 128l64 0 0 192-64 0 0-192zm128 0l64 0 0 192-64 0 0-192z', 'M528 240.1c17.6 0 31.9 14.3 32 31.9l48 0c-.1-44.1-35.8-79.9-80-79.9-44.2 0-80 35.8-80 80l0 50.6c-18.6 6.6-32 24.4-32 45.3l0 96c0 26.5 21.5 48 48 48l128 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0 0-47.9c0-17.7 14.3-32 32-32z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTableCellsRowUnlock = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

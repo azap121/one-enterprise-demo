@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'grill-hot';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e5a5';
+var svgPathData = ['M80-40c0 21.7 8.6 42.6 24 57.9L134.1 48c6.4 6.4 9.9 15 9.9 24 0 13.3 10.7 24 24 24s24-10.7 24-24c0-21.7-8.6-42.6-24-57.9L137.9-16c-6.4-6.4-9.9-15-9.9-24 0-13.3-10.7-24-24-24S80-53.3 80-40zm112 0c0 21.7 8.6 42.6 24 57.9L246.1 48c6.4 6.4 9.9 15 9.9 24 0 13.3 10.7 24 24 24s24-10.7 24-24c0-21.7-8.6-42.6-24-57.9L249.9-16c-6.4-6.4-9.9-15-9.9-24 0-13.3-10.7-24-24-24s-24 10.7-24 24z', 'M0 174.3C0 157.6 13.6 144 30.3 144l387.5 0c16.7 0 30.3 13.6 30.3 30.3 0 80.7-49.4 149.9-119.6 179l53.7 125.2c5.2 12.2-.4 26.3-12.6 31.5s-26.3-.4-31.5-12.6L316.7 448 160 448c0 35.3-28.7 64-64 64s-64-28.7-64-64 28.7-64 64-64c3.4 0 6.8 .3 10.1 .8l13.5-31.5C49.4 324.2 0 255 0 174.3zM151.8 400l144.4 0-14.5-33.9c-8.9 1.3-18.1 1.9-27.4 1.9l-60.5 0c-9.3 0-18.4-.7-27.4-1.9L151.8 400zM96 472a24 24 0 1 0 0-48 24 24 0 1 0 0 48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGrillHot = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

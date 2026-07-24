@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'wheelchair';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f193';
+var svgPathData = ['M0 352c0 88.4 71.6 160 160 160 73.1 0 134.8-49 153.9-116l-56.5 0c-1 0-2 0-3 0l-4.2 0c-1.6 0-3.2 0-4.8-.1-15.9 30.9-48.2 52.1-85.4 52.1-53 0-96-43-96-96 0-44.2 29.8-81.3 70.4-92.5l-12.6-62.9C51.9 213.7 0 276.8 0 352z', 'M192-16a56 56 0 1 1 0 112 56 56 0 1 1 0-112zm74.5 185.5l23.7 118.5 60.5 0c33.3 0 63.2 20.7 74.9 51.9l25.5 68 18.7-6.2c16.8-5.6 34.9 3.5 40.5 20.2s-3.5 34.9-20.2 40.5l-48 16c-16.3 5.4-34-3-40.1-19.1l-36.3-96.9c-2.3-6.2-8.3-10.4-15-10.4l-86.1 0c-.4 0-.8 0-1.3 0l-13.1 0c-30.5 0-56.8-21.5-62.8-51.4L165.3 189.7c-6.4-31.9 18-61.7 50.6-61.7 24.6 0 45.8 17.4 50.6 41.5z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWheelchair = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

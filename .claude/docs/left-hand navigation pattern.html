@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datasite — Left Navigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ─────────────────────────────────────────────
+   EXACT HALO DESIGN TOKENS (from Figma variables)
+───────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-default:       #FFFFFF;
+  --bg-alt:           #FAFAF7;
+
+  /* Text */
+  --text-primary:     #323232;
+  --text-secondary:   #6A6A69;
+
+  /* Brand */
+  --primary:          #4E4E4D;
+  --primary-dark:     #191919;
+
+  /* States */
+  --selected:         #19191914;
+  --hover:            rgba(84,89,99,0.04);
+  --divider:          #1919191F;
+
+  /* Shape */
+  --radius-s:         4px;
+  --radius-m:         8px;
+
+  /* Nav widths */
+  --nav-collapsed:    60px;
+  --nav-expanded:     200px;
+
+  /* Transition */
+  --t: 150ms ease-out;
+}
+
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Figtree', sans-serif;
+  background: var(--bg-default);
+  color: var(--text-primary);
+}
+button { font-family: inherit; cursor: pointer; border: none; background: transparent; }
+svg { display: block; }
+
+/* ─────────────────────────────────────────────
+   APP SHELL — nav + empty content area
+───────────────────────────────────────────── */
+.shell {
+  display: flex;
+  height: 100vh;
+}
+
+/* ═══════════════════════════════════════════
+   LEFT NAV
+═══════════════════════════════════════════ */
+.lnav {
+  background: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: var(--nav-collapsed);
+  transition: width var(--t);
+}
+.lnav.open { width: var(--nav-expanded); }
+
+/* ── Logo row ── */
+.logo-row {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 6px 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+  gap: 0;
+}
+.logo-mark {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-name {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.15px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  padding: 0 6px;
+  opacity: 0;
+  transition: opacity var(--t);
+  cursor: pointer;
+}
+.lnav.open .product-name { opacity: 1; }
+
+.collapse-btn {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s);
+  color: var(--text-secondary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t);
+}
+.lnav.open .collapse-btn { opacity: 1; pointer-events: all; }
+.collapse-btn:hover { background: var(--hover); }
+.collapse-btn svg { width: 16px; height: 16px; stroke-width: 1.5; }
+
+/* ── Nav items ── */
+.nav-top { flex: 1; overflow: hidden; }
+.nav-foot { flex-shrink: 0; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 12px;
+  overflow: hidden;
+}
+.nav-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  padding: 4px 6px;
+  border-radius: var(--radius-m);
+  width: 100%;
+  overflow: hidden;
+  transition: background var(--t);
+}
+.nav-item:hover .nav-item-inner { background: var(--hover); }
+.nav-item.active .nav-item-inner { background: var(--selected); }
+
+.nav-ic {
+  width: 25px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+.nav-ic svg { width: 16px; height: 16px; stroke-width: 1.25; }
+
+.nav-lbl {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.43;
+  letter-spacing: 0.17px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  opacity: 0;
+  transition: opacity var(--t);
+}
+.lnav.open .nav-lbl { opacity: 1; }
+
+/* ── User row ── */
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 60px;
+  padding: 4px 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #5C3820;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
+}
+.user-name {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.43;
+  letter-spacing: 0.17px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity var(--t);
+}
+.lnav.open .user-name { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   USER PROFILE MENU
+═══════════════════════════════════════════ */
+.user-menu-wrap { position: relative; }
+.user-menu {
+  position: fixed;
+  bottom: 68px;
+  left: 8px;
+  width: 220px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: var(--radius-m);
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),
+              0px 8px 10px 1px rgba(0,0,0,0.14),
+              0px 3px 14px 2px rgba(0,0,0,0.12);
+  z-index: 200;
+  display: none;
+  overflow: hidden;
+}
+.user-menu.show { display: block; }
+
+.um-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1F22271F;
+}
+.um-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #5C3820;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.um-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.um-name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  letter-spacing: 0.17px;
+  color: #1F2227DE;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.um-edit {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.4px;
+  color: #1F222799;
+  cursor: pointer;
+}
+.um-edit:hover { text-decoration: underline; }
+
+.um-section {
+  padding: 6px 16px 2px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.1px;
+  color: #1F222799;
+}
+
+.um-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.17px;
+  color: #1F2227DE;
+  cursor: pointer;
+  min-height: 36px;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-family: 'Figtree', sans-serif;
+}
+.um-item:hover { background: rgba(31,34,39,0.04); }
+
+.um-divider {
+  height: 1px;
+  background: #1F22271F;
+  margin: 4px 0;
+}
+
+/* ═══════════════════════════════════════════
+   EMPTY CONTENT AREA
+═══════════════════════════════════════════ */
+.content-empty {
+  flex: 1;
+  background: var(--bg-default);
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ════════════════════════════════
+       LEFT NAV
+  ════════════════════════════════ -->
+  <nav class="lnav" id="lnav">
+
+    <div style="flex-shrink:0">
+      <!-- Logo row -->
+      <div class="logo-row">
+        <div class="logo-mark" id="logoMark" title="Toggle navigation" onclick="toggleNav()">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28.75 11H28.721H28.6556H28.5249H28.2635H27.7406H26.6948H24.6034C24.4434 11 24.2902 10.9364 24.177 10.8236C24.0637 10.7104 24.0005 10.5572 24.0005 10.3972L24.0003 6.21424C24.0003 6.09607 23.9042 6 23.786 6H10.2143C10.0961 6 10 6.09607 10 6.21424V10.7858C10 10.9039 10.0961 11 10.2143 11H23.396C23.5563 11 23.7099 11.0626 23.8231 11.1762C23.9363 11.2894 24.0003 11.4433 24.0003 11.6033V24.4169C24.0003 24.5715 23.9388 24.72 23.8296 24.8293C23.7203 24.9386 23.5717 25 23.417 25H10.2146C10.0964 25 10.0003 25.0961 10.0003 25.2142L10 29.7857C10 29.9039 10.0961 30 10.2143 30H23.786C23.9042 30 24.0003 29.9039 24.0003 29.7857V25.6234C24.0003 25.4581 24.066 25.2996 24.1828 25.1824C24.2996 25.0653 24.4581 25 24.6235 25H28.7857C28.9039 25 29 24.9039 29 24.7857V11.2133C29 11.0952 28.9042 11 28.786 11H28.75Z" fill="#0D0D0D"/>
+          </svg>
+        </div>
+        <span class="product-name" onclick="toggleNav()">Datasite</span>
+        <button class="collapse-btn" id="collapseBtn" onclick="toggleNav()" aria-label="Collapse navigation">
+          <i data-lucide="chevron-left"></i>
+        </button>
+      </div>
+
+      <!-- Top nav items -->
+      <div class="nav-top">
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="bar-chart-2"></i></div>
+            <span class="nav-lbl">Dashboard</span>
+          </div>
+        </button>
+
+        <button class="nav-item active" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="file-text"></i></div>
+            <span class="nav-lbl">Documents</span>
+          </div>
+        </button>
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="list-checks"></i></div>
+            <span class="nav-lbl">Trackers</span>
+          </div>
+        </button>
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="message-square"></i></div>
+            <span class="nav-lbl">Q&amp;A</span>
+          </div>
+        </button>
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="users"></i></div>
+            <span class="nav-lbl">Users</span>
+          </div>
+        </button>
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="archive"></i></div>
+            <span class="nav-lbl">Archives</span>
+          </div>
+        </button>
+
+        <button class="nav-item" onclick="setActive(this)">
+          <div class="nav-item-inner">
+            <div class="nav-ic"><i data-lucide="settings"></i></div>
+            <span class="nav-lbl">Settings</span>
+          </div>
+        </button>
+
+      </div><!-- /nav-top -->
+    </div>
+
+    <!-- Bottom section -->
+    <div class="nav-foot">
+
+      <button class="nav-item" onclick="setActive(this)">
+        <div class="nav-item-inner">
+          <div class="nav-ic"><i data-lucide="bell"></i></div>
+          <span class="nav-lbl">Notifications</span>
+        </div>
+      </button>
+
+      <!-- User row — click avatar to open profile menu -->
+      <div class="user-menu-wrap">
+        <div class="user-row" id="userRow" onclick="toggleMenu(event)" style="cursor:pointer">
+          <div class="avatar" title="Daniel Samuels">DS</div>
+          <span class="user-name">Daniel Samuels</span>
+        </div>
+
+        <!-- Profile menu -->
+        <div class="user-menu" id="userMenu">
+          <div class="um-header">
+            <div class="um-avatar">DS</div>
+            <div class="um-user-info">
+              <span class="um-name">Daniel Samuels</span>
+              <span class="um-edit">Edit profile</span>
+            </div>
+          </div>
+
+          <div class="um-section">Help</div>
+          <button class="um-item">Ask Lana</button>
+          <button class="um-item">Support Portal</button>
+          <button class="um-item">Feedback</button>
+          <button class="um-item">Legal</button>
+
+          <div class="um-divider"></div>
+
+          <button class="um-item">Settings</button>
+          <button class="um-item">Log out</button>
+        </div>
+      </div>
+
+    </div>
+  </nav><!-- /lnav -->
+
+  <!-- Empty content area for engineers to drop their work into -->
+  <div class="content-empty"></div>
+
+</div><!-- /shell -->
+
+<script>
+  // Init Lucide icons
+  lucide.createIcons();
+
+  // Nav state
+  var isOpen = false;
+  var nav = document.getElementById('lnav');
+
+  function toggleNav() {
+    isOpen = !isOpen;
+    nav.classList.toggle('open', isOpen);
+  }
+
+  function setActive(btn) {
+    document.querySelectorAll('.nav-item').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+  }
+
+  // User menu
+  var userMenu = document.getElementById('userMenu');
+
+  function toggleMenu(e) {
+    e.stopPropagation();
+    userMenu.classList.toggle('show');
+    lucide.createIcons();
+  }
+
+  document.addEventListener('click', function() {
+    userMenu.classList.remove('show');
+  });
+  userMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+</script>
+</body>
+</html>

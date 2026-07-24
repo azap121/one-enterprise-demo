@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'hand-shaka';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e831';
+var svgPathData = ['M25.9 50.5L45.4 122c2.1 7.5 3.1 15.3 3.1 23.2l0 171c0 51.9 20.6 101.8 57.4 138.5l2.8 2.7c35 35 82.4 54.6 131.9 54.6s96.9-19.7 131.9-54.6L551.1 278.6c12.5-12.5 12.5-32.8 0-45.3-12.5-12.5-32.8-12.5-45.3 0L360.4 378.8c-1 .7-1.8 1.6-2.7 2.5-23.4 23.4-60.5 24.9-85.6 4.4l-4.9-4.4c-10.3-10.3-16.3-23.3-18.1-36.7-20.4 6.9-43.6 3.4-61-10.8l-4.9-4.4c-17.8-17.8-22.9-43.6-15.3-65.9-11.4-1.5-22.5-6-31.8-13.7l-4.9-4.4c-24-24-24.9-62.3-2.8-87.4l0-12.7c0-14.9-2-29.8-5.9-44.2L103.1 29.5C97.3 8.2 75.3-4.4 54 1.4S20.1 29.2 25.9 50.5z', 'M353.9 249.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.2l-64 64c-12.5 12.5-32.8 12.5-45.2 0s-12.5-32.8 0-45.2l64-64zm-61.6-74.2c12.6-10.3 31.1-9.5 42.8 2.2 12.5 12.5 12.5 32.8 0 45.3l-84 84c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l84-84 2.4-2.2zm-72-64c12.6-10.3 31.1-9.5 42.8 2.2s12.4 30.2 2.2 42.8l-2.2 2.4-64 64c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64 2.4-2.2z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHandShaka = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

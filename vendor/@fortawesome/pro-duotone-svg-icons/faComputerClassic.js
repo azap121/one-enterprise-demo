@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'computer-classic';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f8b1';
+var svgPathData = ['M0 48C0 21.5 21.5 0 48 0L400 0c26.5 0 48 21.5 48 48l0 320c0 26.5-21.5 48-48 48L48 416c-26.5 0-48-21.5-48-48L0 48zM32 464l384 0 0 16c0 17.7-14.3 32-32 32L64 512c-17.7 0-32-14.3-32-32l0-16zM64 96l0 128c0 17.7 14.3 32 32 32l256 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32L96 64C78.3 64 64 78.3 64 96zm0 232a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm160 0c0 13.3 10.7 24 24 24l112 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-112 0c-13.3 0-24 10.7-24 24z', 'M64 96c0-17.7 14.3-32 32-32l256 0c17.7 0 32 14.3 32 32l0 128c0 17.7-14.3 32-32 32L96 256c-17.7 0-32-14.3-32-32L64 96z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faComputerClassic = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'box-arrow-down-magnifying-glass';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e796';
+var svgPathData = ['M32.5 148.5l0 267.5 .3 6.5c3.1 30.1 27 54.1 57.1 57.1l6.5 .3 320 0 6.5-.3c30.1-3.1 54.1-27 57.1-57.1l.3-6.5 0-154.2-15.5-15.5c-17.7 6.3-36.7 9.8-56.5 9.8-51.3 0-97.2-23-128-59.2l0 121.3 23-23c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-64 64-1.8 1.7c-9.4 7.7-23.3 7.1-32.1-1.7l-64-64-1.7-1.8c-7.7-9.4-7.1-23.3 1.7-32.1s22.7-9.3 32.1-1.7l1.8 1.7 23 23 0-190.1-121.3 0 34.3-48 95.2 0c1.1-22.8 6.7-44.4 16-64l-111.2 0-7.7 .5C120 18.6 103.8 28.1 93.3 42.8l-48.9 68.5-2.7 4.2c-6 9.9-9.2 21.4-9.2 33z', 'M408.5-31.9c66.3 0 120 53.7 120 120 0 24.4-7.4 47.2-19.9 66.1l60.9 60.9c9.4 9.4 9.4 24.6 0 33.9-8.8 8.8-22.7 9.3-32.1 1.7l-1.8-1.7-60.9-60.9c-19 12.6-41.7 19.9-66.2 19.9-66.3 0-120-53.7-120-120s53.7-120 120-120zm0 48a72 72 0 1 0 0 144 72 72 0 1 0 0-144z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBoxArrowDownMagnifyingGlass = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

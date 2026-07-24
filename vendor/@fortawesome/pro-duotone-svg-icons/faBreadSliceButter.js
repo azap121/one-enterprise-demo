@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'bread-slice-butter';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e3e1';
+var svgPathData = ['M182.6 265.4c-12.5 12.5-12.5 32.8 0 45.3 16.9 16.9 33.8 33.8 50.7 50.7 12.5 12.5 32.8 12.5 45.3 0l50.7-50.7c12.5-12.5 12.5-32.8 0-45.3l-50.7-50.7c-12.5-12.5-32.8-12.5-45.3 0-16.9 16.9-33.8 33.8-50.7 50.7z', 'M64 256l0 176c0 26.5 21.5 48 48 48l288 0c26.5 0 48-21.5 48-48l0-176c35.3 0 64-28.7 64-64 0-216.5-512-216.5-512 0 0 35.3 28.7 64 64 64zm118.6 9.4l50.7-50.7c12.5-12.5 32.8-12.5 45.3 0l50.7 50.7c12.5 12.5 12.5 32.8 0 45.3l-50.7 50.7c-12.5 12.5-32.8 12.5-45.3 0l-50.7-50.7c-12.5-12.5-12.5-32.8 0-45.3z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBreadSliceButter = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

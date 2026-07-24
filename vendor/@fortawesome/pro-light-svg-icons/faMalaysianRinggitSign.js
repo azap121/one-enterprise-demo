@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'malaysian-ringgit-sign';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e6fa';
+var svgPathData = 'M288 432c0 8.8 7.2 16 16 16s16-7.2 16-16l0-299.2 98.7 148c3 4.5 8 7.1 13.3 7.1s10.3-2.7 13.3-7.1l98.7-148 0 299.2c0 8.8 7.2 16 16 16s16-7.2 16-16l0-352c0-7.1-4.6-13.3-11.4-15.3s-14 .6-17.9 6.4L432 243.2 317.3 71.1c-3.9-5.9-11.2-8.5-17.9-6.4S288 73 288 80l0 352zM0 80L0 432c0 8.8 7.2 16 16 16s16-7.2 16-16l0-128 97.9 0 47.1 133.3c2.9 8.3 12.1 12.7 20.4 9.8s12.7-12.1 9.8-20.4L162.7 301c53.4-12.2 93.3-59.9 93.3-117 0-66.3-53.7-120-120-120L16 64C7.2 64 0 71.2 0 80zM32 272l0-176 104 0c48.6 0 88 39.4 88 88s-39.4 88-88 88L32 272z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMalaysianRinggitSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

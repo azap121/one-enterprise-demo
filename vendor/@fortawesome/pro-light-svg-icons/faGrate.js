@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'grate';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e193';
+var svgPathData = 'M112 32l272 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l48 0zM32 272l0 144c0 17.7 14.3 32 32 32l32 0 0-176-64 0zm96 176l80 0 0-176-80 0 0 176zm112 0l80 0 0-176-80 0 0 176zm112 0l32 0c17.7 0 32-14.3 32-32l0-144-64 0 0 176zm64-208l0-144c0-17.7-14.3-32-32-32l-32 0 0 176 64 0zM320 64l-80 0 0 176 80 0 0-176zM208 64l-80 0 0 176 80 0 0-176zM96 64L64 64C46.3 64 32 78.3 32 96l0 144 64 0 0-176z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGrate = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

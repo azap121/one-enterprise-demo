@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'ribbon';
+var width = 384;
+var height = 512;
+var aliases = [127895];
+var unicode = 'f4d6';
+var svgPathData = 'M235.1 32l-86.3 0c-22.3 0-43 11.6-54.6 30.6l-1.3 2.1 24.9 31.3 148.2 0 24.9-31.3-1.3-2.1C278.1 43.6 257.4 32 235.1 32zm-91.8 96l48.6 61.2 48.6-61.2-97.3 0zM257.9 272l62.6-78.2c16.8-21 18.7-50.4 4.6-73.4l-16.3-26.7-96.3 121.1 45.5 57.1zm87.5-58.2L278.3 297.7 364.5 406c5.5 6.9 4.4 16.9-2.5 22.5l-80 64c-6.9 5.5-17 4.4-22.5-2.5L38.6 213.8c-25.2-31.6-28-75.5-7-110L67 45.9C84.4 17.4 115.4 0 148.9 0l86.3 0c33.4 0 64.5 17.4 81.9 45.9l35.3 57.8c21.1 34.5 18.3 78.5-7 110zM19.5 406l55.5-69.8 20.5 25.6-41.1 51.6 55 44 31.3-39.1 20.5 25.6-36.8 46c-5.5 6.9-15.6 8-22.5 2.5l-80-64c-6.9-5.5-8-15.6-2.5-22.5zM75.2 93.8L58.9 120.5c-14 23-12.2 52.3 4.6 73.4l211 263.7 55-44-254.3-319.7z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRibbon = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

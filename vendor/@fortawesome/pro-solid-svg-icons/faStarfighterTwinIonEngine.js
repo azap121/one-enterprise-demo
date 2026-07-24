@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'starfighter-twin-ion-engine';
+var width = 512;
+var height = 512;
+var aliases = ["starfighter-alt"];
+var unicode = 'e038';
+var svgPathData = 'M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-149.3 42.4 14.1C129.3 373.1 187.6 416 256 416s126.7-42.9 149.6-103.2L448 298.7 448 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-384c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 149.3-42.4-14.1C382.7 138.9 324.4 96 256 96S129.3 138.9 106.4 199.2L64 213.3 64 64zm192 96a96 96 0 1 1 0 192 96 96 0 1 1 0-192zm0 152a56 56 0 1 0 0-112 56 56 0 1 0 0 112z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faStarfighterTwinIonEngine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

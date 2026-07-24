@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datasite AI Avatar — Final Spec</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--amber:#EF601A;--ruby:#E94160;--tanzanite:#2F3F7F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0E0E0D;color:#E8E5E0;font-family:'DM Sans',sans-serif;padding:48px 32px 96px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:28px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+.sub{font-size:13px;color:#6B6963;margin-bottom:48px}
+.spec{background:#161615;border:1px solid #252523;border-radius:12px;padding:24px 28px;margin-bottom:12px}
+.spec h3{font-size:13px;font-weight:700;margin-bottom:10px;color:#E8E5E0}
+.spec p,.spec li{font-size:12px;color:#8A877F;line-height:1.6}
+.spec ul{padding-left:18px;margin-top:6px}
+.spec li{margin-bottom:4px}
+.spec strong{color:#C4C0B8;font-weight:600}
+.spec code{font-size:11px;background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:3px;color:#C4C0B8}
+.divider{height:1px;background:#1E1E1D;margin:48px 0}
+.state-block{margin-bottom:48px}
+.state-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.state-num{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);background:rgba(239,96,26,0.1);padding:3px 8px;border-radius:4px;line-height:1}
+.state-head h2{font-size:16px;font-weight:700;letter-spacing:-0.01em}
+.card{background:#161615;border:1px solid #252523;border-radius:14px;padding:32px;display:flex;align-items:center;gap:32px}
+.icon{width:120px;height:120px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon svg{width:96px;height:96px}
+.icon-hover{width:120px;height:120px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;cursor:pointer;transition:background 0.2s}
+.icon-hover:hover{background:rgba(255,255,255,0.04)}
+.icon-hover svg{width:96px;height:96px}
+.card-info{flex:1}
+.card-info h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.card-info .anim-name{font-size:11px;color:var(--amber);font-weight:600;margin-bottom:8px}
+.card-info p{font-size:12px;color:#6B6963;line-height:1.55}
+.card-info .trigger{font-size:11px;color:#8A877F;margin-top:8px}
+.card-info .trigger strong{color:#C4C0B8}
+.play{padding:5px 14px;font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6963;background:transparent;border:1px solid #252523;border-radius:5px;cursor:pointer;font-family:inherit;transition:all 0.15s;margin-top:12px;display:inline-block}
+.play:hover{color:#E8E5E0;border-color:#3A3A37}
+.play.on{color:var(--amber);border-color:rgba(239,96,26,0.3)}
+.hover-hint{font-size:10px;color:#4A4844;font-style:italic;margin-top:8px}
+
+@keyframes cw{0%{transform:scale(1) rotate(0)}12%{transform:scale(.82) rotate(0)}32%{transform:scale(1.12) rotate(30deg)}52%{transform:scale(.96) rotate(-12deg)}68%{transform:scale(1.04) rotate(5deg)}82%{transform:scale(.99) rotate(-2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes wash-fade{0%{opacity:0}12%{opacity:1}80%{opacity:0.85}100%{opacity:0}}
+@keyframes wash-sunrise-1{0%{stop-color:#EF601A}30%{stop-color:#F5A623}65%{stop-color:#F8C84E}100%{stop-color:#EF601A}}
+@keyframes wash-sunrise-2{0%{stop-color:#F38F5E}30%{stop-color:#F5B94A}65%{stop-color:#F6D06B}100%{stop-color:#F38F5E}}
+@keyframes sparkle-grow{0%{transform:scale(1);transform-origin:18px 18px}30%{transform:scale(1.1);transform-origin:18px 18px}100%{transform:scale(1);transform-origin:18px 18px}}
+@keyframes wash-ember-1{0%{stop-color:#EF601A}50%{stop-color:#C44A12}100%{stop-color:#EF601A}}
+@keyframes wash-ember-2{0%{stop-color:#EF601A}50%{stop-color:#A03D10}100%{stop-color:#EF601A}}
+@keyframes sparkle-shrink{0%{transform:scale(1);transform-origin:18px 18px}30%{transform:scale(0.92);transform-origin:18px 18px}100%{transform:scale(1);transform-origin:18px 18px}}
+@keyframes bouncing-ball{0%{transform:translateY(0) scaleX(1) scaleY(1)}3%{transform:translateY(-4.5px) scaleX(.90) scaleY(1.14)}6.5%{transform:translateY(1px) scaleX(1.06) scaleY(.94)}9%{transform:translateY(0) scaleX(1) scaleY(1)}11.5%{transform:translateY(-3.4px) scaleX(.92) scaleY(1.10)}14.5%{transform:translateY(.7px) scaleX(1.05) scaleY(.95)}17%{transform:translateY(0) scaleX(1) scaleY(1)}19%{transform:translateY(-2.5px) scaleX(.94) scaleY(1.07)}21.5%{transform:translateY(.5px) scaleX(1.03) scaleY(.97)}23.5%{transform:translateY(0) scaleX(1) scaleY(1)}25%{transform:translateY(-1.7px) scaleX(.96) scaleY(1.05)}27%{transform:translateY(.3px) scaleX(1.02) scaleY(.98)}28.5%{transform:translateY(0) scaleX(1) scaleY(1)}29.5%{transform:translateY(-1px) scaleX(.97) scaleY(1.03)}31%{transform:translateY(0) scaleX(1) scaleY(1)}32%{transform:translateY(-.5px) scaleX(.99) scaleY(1.01)}33%{transform:translateY(0) scaleX(1) scaleY(1)}33.5%{transform:translateY(-.2px) scaleX(.99) scaleY(1.005)}34%,100%{transform:translateY(0) scaleX(1) scaleY(1)}}
+
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}}
+@media(max-width:700px){body{padding:32px 16px}.card{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Datasite AI Avatar</h1>
+<p class="sub">Final animation specification. Six states.</p>
+<div class="spec"><h3>Grounding Principles</h3><ul><li><strong>Motion has a job.</strong> Decorative motion erodes trust.</li><li><strong>Signal, don't interrupt.</strong> Only animated element in the product.</li><li><strong>Short and resolved.</strong> Completes and returns to idle.</li><li><strong>Accessibility.</strong> Respects <code>prefers-reduced-motion</code>.</li></ul></div>
+<div class="divider"></div>
+<div class="state-block" id="s1"></div><div class="state-block" id="s2"></div><div class="state-block" id="s3"></div><div class="state-block" id="s4"></div><div class="state-block" id="s5"></div><div class="state-block" id="s6"></div>
+<div class="divider"></div>
+<div class="spec"><h3>Colour Palette</h3><ul><li><strong>Amber 600:</strong> <code>#EF601A</code> (base)</li><li><strong>Golden:</strong> <code>#F5A623</code> (sunrise mid)</li><li><strong>Yellow:</strong> <code>#F8C84E</code> (sunrise peak)</li><li><strong>Amber deep:</strong> <code>#C44A12</code> (ember mid)</li><li><strong>Amber darker:</strong> <code>#A03D10</code> (ember deep)</li><li><strong>Ruby 600:</strong> <code>#E94160</code> (hover sunset)</li><li><strong>Tanzanite 600:</strong> <code>#2F3F7F</code> (hover sunset deep)</li></ul></div>
+<div class="spec"><h3>Decisions Made (15 May 2026)</h3><ul><li>Removed periodic awareness cycle.</li><li>On Page Load: Wide CW sparkle breathe with 1.5–2s delay.</li><li>Sidecar Open: Sunrise wash (amber → golden → yellow) + sparkle grows to 110%.</li><li>Sidecar Close: Ember wash (amber darkens) + sparkle shrinks to 92%.</li><li>Hover: Sunset gradient cycle. Exit via Option A.</li><li>Attention Required: bouncing ball, 7 decaying bounces.</li><li>Only animated element in the product.</li><li>All animation respects <code>prefers-reduced-motion</code>.</li></ul></div>
+</div>
+<script>
+const D="M31.3088 17.6175C22.6688 17.5613 18.4275 13.3313 18.3713 4.68V4.48874H17.6175V4.68C17.5613 13.32 13.32 17.5613 4.68002 17.6175H4.48877V18.3712H4.68002C13.32 18.4275 17.5613 22.6687 17.6175 31.3087V31.5H18.3713V31.3087C18.4275 22.6687 22.6688 18.4275 31.3088 18.3712H31.5V17.6175H31.3088Z";
+let uid=0;
+function solidSVG(){return `<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#EF601A"/><path class="sparkle" d="${D}" fill="white"/></svg>`}
+function sunriseSVG(){const i='w'+(uid++);return `<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${i}" cx="35%" cy="35%" r="70%"><stop class="ws1" offset="0%" stop-color="#F38F5E"/><stop class="ws2" offset="100%" stop-color="#F5B94A"/></radialGradient></defs><circle cx="18" cy="18" r="18" fill="#EF601A"/><circle class="wash-ov" cx="18" cy="18" r="18" fill="url(#${i})" opacity="0"/><path class="sparkle" d="${D}" fill="white"/></svg>`}
+function emberSVG(){const i='w'+(uid++);return `<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${i}" cx="35%" cy="35%" r="70%"><stop class="ws1" offset="0%" stop-color="#EF601A"/><stop class="ws2" offset="100%" stop-color="#EF601A"/></radialGradient></defs><circle cx="18" cy="18" r="18" fill="#EF601A"/><circle class="wash-ov" cx="18" cy="18" r="18" fill="url(#${i})" opacity="0"/><path class="sparkle" d="${D}" fill="white"/></svg>`}
+function hoverSVG(){const i='h'+(uid++);return `<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${i}" cx="30%" cy="30%" r="75%"><stop class="s1" offset="0%" stop-color="#EF601A"/><stop class="s2" offset="100%" stop-color="#E94160"/></radialGradient></defs><circle cx="18" cy="18" r="18" fill="#EF601A"/><g class="gg"><circle class="ov" cx="18" cy="18" r="18" fill="url(#${i})" opacity="0"/></g><path class="sparkle" d="${D}" fill="white"/></svg>`}
+function buildState(el,num,label,anim,desc,trigger,iconHTML,opts){opts=opts||{};const iconWrap=opts.hover?`<div class="icon-hover" data-hover="1">${iconHTML}</div>`:`<div class="icon" data-type="${opts.type||''}">${iconHTML}</div>`;const hint=opts.hover?'<p class="hover-hint">Hover over the icon to preview</p>':'';const btn=opts.noBtn?'':`<button class="play" onclick="playAnim(this)">Play</button>`;document.getElementById(el).innerHTML=`<div class="state-head"><span class="state-num">State ${num}</span><h2>${label}</h2></div><div class="card">${iconWrap}<div class="card-info"><h3>${label}</h3><div class="anim-name">${anim}</div><p>${desc}</p><p class="trigger"><strong>Trigger:</strong> ${trigger}</p>${hint}${btn}</div></div>`}
+buildState('s1',1,'Idle','Static','No animation. Solid Amber 600 circle, white sparkle.','Default. Always active when no other state is running.',solidSVG(),{noBtn:true});
+buildState('s2',2,'On Page Load','Wide Clockwise Breathe','Sparkle contracts to 82% (inhale), releases into 30° clockwise rotation (exhale), spring-settles back to idle. 2.8s, plays once.','Page load, after 1.5–2s delay.',solidSVG(),{type:'cw'});
+buildState('s3',3,'On Sidecar Open','Sunrise Wash + Sparkle Grow','Circle shifts from amber through golden to yellow then back. Sparkle grows to 110% then eases back. 3s, plays once.','Sidecar panel opens.',sunriseSVG(),{type:'open'});
+buildState('s4',4,'On Sidecar Close','Ember Wash + Sparkle Shrink','Amber darkens briefly to deep amber tones then returns. Sparkle shrinks to 92% then eases back. 3s, plays once.','Sidecar panel closes.',emberSVG(),{type:'close'});
+buildState('s5',5,'On Hover','Sunset Cycle','Sunset gradient fades in over 0.8s. Sparkle spins 3.6s/rev with breathing scale. Colour drifts Amber → Ruby → Tanzanite over 10s. On mouse leave, eases to idle in 0.5s.','Mouse enters avatar. Stops on mouse leave.',hoverSVG(),{hover:true});
+buildState('s6',6,'Attention Required','Bouncing Ball','Single drop decaying through 7 bounces, each smaller than the last. 2.3s rest before next cycle. 3.5s total.','Async task completes while user is elsewhere. Loops until dismissed.',solidSVG(),{type:'confirm'});
+function playAnim(btn){const card=btn.closest('.card'),icon=card.querySelector('.icon'),type=icon.dataset.type;if(btn.classList.contains('on')){stopAnim(icon,type);btn.textContent='Play';btn.classList.remove('on');return}stopAnim(icon,type);void icon.offsetWidth;if(type==='cw'){const sp=icon.querySelector('.sparkle');sp.style.animation='cw 2.8s cubic-bezier(0.45,0.05,0.55,0.95) 1 forwards';sp.style.transformOrigin='18px 18px'}else if(type==='open'){const ov=icon.querySelector('.wash-ov'),ws1=icon.querySelector('.ws1'),ws2=icon.querySelector('.ws2'),sp=icon.querySelector('.sparkle');ov.style.animation='wash-fade 3s ease-in-out 1 forwards';ws1.style.animation='wash-sunrise-1 3s ease-in-out 1 forwards';ws2.style.animation='wash-sunrise-2 3s ease-in-out 1 forwards';sp.style.animation='sparkle-grow 3s ease-in-out 1 forwards';sp.style.transformOrigin='18px 18px'}else if(type==='close'){const ov=icon.querySelector('.wash-ov'),ws1=icon.querySelector('.ws1'),ws2=icon.querySelector('.ws2'),sp=icon.querySelector('.sparkle');ov.style.animation='wash-fade 3s ease-in-out 1 forwards';ws1.style.animation='wash-ember-1 3s ease-in-out 1 forwards';ws2.style.animation='wash-ember-2 3s ease-in-out 1 forwards';sp.style.animation='sparkle-shrink 3s ease-in-out 1 forwards';sp.style.transformOrigin='18px 18px'}else if(type==='confirm'){icon.querySelector('svg').style.animation='bouncing-ball 3.5s cubic-bezier(0.34,1.56,0.64,1) infinite'}btn.textContent='Stop';btn.classList.add('on')}
+function stopAnim(icon,type){if(type==='cw'){const sp=icon.querySelector('.sparkle');sp.style.animation='';sp.style.transform='';sp.style.transformOrigin=''}else if(type==='open'||type==='close'){const sp=icon.querySelector('.sparkle');[icon.querySelector('.wash-ov'),icon.querySelector('.ws1'),icon.querySelector('.ws2')].forEach(e=>{if(e){e.style.animation='';e.style.opacity=''}});sp.style.animation='';sp.style.transform='';sp.style.transformOrigin=''}else if(type==='confirm'){icon.querySelector('svg').style.animation=''}}
+const hs=document.createElement('style');hs.textContent=`@keyframes hs{0%{transform:rotate(0) scale(1);transform-origin:18px 18px}25%{transform:rotate(90deg) scale(.8);transform-origin:18px 18px}50%{transform:rotate(180deg) scale(1);transform-origin:18px 18px}75%{transform:rotate(270deg) scale(.8);transform-origin:18px 18px}100%{transform:rotate(360deg) scale(1);transform-origin:18px 18px}}@keyframes gr{0%{transform:rotate(0);transform-origin:18px 18px}100%{transform:rotate(360deg);transform-origin:18px 18px}}@keyframes fi{from{opacity:0}to{opacity:1}}@keyframes su1{0%,100%{stop-color:#EF601A}33%{stop-color:#E94160}66%{stop-color:#2F3F7F}}@keyframes su2{0%,100%{stop-color:#E94160}33%{stop-color:#2F3F7F}66%{stop-color:#EF601A}}`;document.head.appendChild(hs);
+document.querySelectorAll('[data-hover]').forEach(el=>{let on=false,timer=null;const sp=el.querySelector('.sparkle'),ov=el.querySelector('.ov'),gg=el.querySelector('.gg'),s1=el.querySelector('.s1'),s2=el.querySelector('.s2');const clr=()=>[sp,ov,gg,s1,s2].forEach(e=>{if(e)e.style.cssText=''});el.addEventListener('mouseenter',()=>{if(timer){clearTimeout(timer);timer=null}on=true;clr();sp.style.animation='hs 3.6s linear infinite';sp.style.transformOrigin='18px 18px';ov.style.animation='fi 0.8s ease-out forwards';gg.style.animation='gr 8s linear infinite';gg.style.transformOrigin='18px 18px';s1.style.animation='su1 10s ease-in-out infinite';s2.style.animation='su2 10s ease-in-out infinite'});el.addEventListener('mouseleave',()=>{if(!on)return;on=false;const ct=getComputedStyle(sp).transform,co=getComputedStyle(ov).opacity,cg=getComputedStyle(gg).transform;[sp,ov,gg,s1,s2].forEach(e=>{if(e)e.style.animation='none'});sp.style.transformOrigin='18px 18px';sp.style.transform=ct;ov.style.opacity=co;gg.style.transformOrigin='18px 18px';gg.style.transform=cg;void sp.offsetWidth;sp.style.transition='transform .5s cubic-bezier(.22,1,.36,1)';sp.style.transform='rotate(0) scale(1)';ov.style.transition='opacity .5s ease-out';ov.style.opacity='0';gg.style.transition='transform .5s ease-out';gg.style.transform='rotate(0)';timer=setTimeout(()=>{clr();timer=null},550)})});
+</script>
+</body>
+</html>

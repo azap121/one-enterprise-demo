@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'circle-eurozone';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e745';
+var svgPathData = 'M256 32a224 224 0 1 1 0 448 224 224 0 1 1 0-448zm0 480a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM144 160c-8.8 0-16 7.2-16 16l0 160c0 8.8 7.2 16 16 16l73.6 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-57.6 0 0-44.8 48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-48 0 0-51.2 56 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-72 0zm136 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l60.9 0-75 136.3c-2.7 5-2.6 11 .2 15.9s8.1 7.9 13.8 7.9l88 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-60.9 0 75-136.3c2.7-5 2.6-11-.2-15.9S373.7 160 368 160l-88 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleEurozone = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

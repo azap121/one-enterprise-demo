@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'sunrise';
+var width = 576;
+var height = 512;
+var aliases = [127749];
+var unicode = 'f766';
+var svgPathData = ['M22.3 353.8c-3.1 7.4-2.2 15.8 2.2 22.5L82.7 464c25.9 0 51.8 0 77.7 0 0-70.7 57.3-128 128-128s128 57.3 128 128c25.9 0 51.8 0 77.7 0 19.4-29.3 38.8-58.5 58.2-87.8 4.4-6.7 5.2-15.1 2.2-22.5s-9.6-12.8-17.4-14.3L433.8 318.6 413 215.3c-1.6-7.8-7-14.4-14.3-17.4s-15.8-2.2-22.5 2.2l-87.8 58.2-87.8-58.2c-6.7-4.4-15.1-5.2-22.5-2.2s-12.8 9.6-14.3 17.4L143 318.6 39.7 339.4c-7.8 1.6-14.4 7-17.4 14.3zM208.4 464c53.3 0 106.7 0 160 0 0-44.2-35.8-80-80-80s-80 35.8-80 80z', 'M305.4-9c-9.4-9.4-24.6-9.4-33.9 0l-64 64c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l23-23 0 102.1c0 13.3 10.7 24 24 24s24-10.7 24-24l0-102.1 23 23c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-64-64zM56.4 464c-13.3 0-24 10.7-24 24s10.7 24 24 24l464 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-464 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSunrise = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'floppy-disk-pen';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e182';
+var svgPathData = ['M64.1 96c0-35.3 28.7-64 64-64l242.7 0c17 0 33.3 6.7 45.3 18.7L493.3 128c12 12 18.7 28.3 18.7 45.3l0 37.7c-9.3 4.8-18.1 11.2-25.9 19L350.7 365.4c.9-4.3 1.4-8.8 1.4-13.4 0-35.3-28.7-64-64-64s-64 28.7-64 64 28.7 64 64 64c5.6 0 10.9-.7 16.1-2-9.3 12.9-15.8 27.7-18.9 43.5l-4.5 22.5-152.6 0c-35.3 0-64-28.7-64-64l0-320zm96 32l0 64c0 17.7 14.3 32 32 32l160 0c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l-160 0c-17.7 0-32 14.3-32 32z', 'M320.4 526.6L332.3 467c2.5-12.4 8.6-23.8 17.5-32.7l118.9-118.9 80 80-118.9 118.9c-8.9 8.9-20.3 15-32.7 17.5l-59.6 11.9c-.9 .2-1.9 .3-2.9 .3-8 0-14.6-6.5-14.6-14.6 0-1 .1-1.9 .3-2.9zm251-153.8l-80-80 28.8-28.8c22.1-22.1 57.9-22.1 80 0s22.1 57.9 0 80l-28.8 28.8z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFloppyDiskPen = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

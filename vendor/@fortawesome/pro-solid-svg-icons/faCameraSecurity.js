@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'camera-security';
+var width = 448;
+var height = 512;
+var aliases = ["camera-home"];
+var unicode = 'f8fe';
+var svgPathData = 'M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l136 0 0 48-80 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l208 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0 0-48 136 0c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0zM224 96a112 112 0 1 1 0 224 112 112 0 1 1 0-224z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCameraSecurity = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

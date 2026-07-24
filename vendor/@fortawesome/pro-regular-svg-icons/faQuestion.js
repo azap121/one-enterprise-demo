@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'question';
+var width = 320;
+var height = 512;
+var aliases = [10067,10068,61736];
+var unicode = '3f';
+var svgPathData = 'M48 160C48 98.1 98.1 48 160 48S272 98.1 272 160c0 48.2-30.5 89.4-73.3 105.1-29.4 10.8-62.7 37.9-62.7 78.9l0 16c0 13.3 10.7 24 24 24s24-10.7 24-24l0-16c0-12.1 11-26.3 31.3-33.8 61.1-22.5 104.7-81.2 104.7-150.2 0-88.4-71.6-160-160-160S0 71.6 0 160l0 8c0 13.3 10.7 24 24 24s24-10.7 24-24l0-8zM160 512c17.7 0 32-14.3 32-32s-14.3-32-32-32-32 14.3-32 32 14.3 32 32 32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faQuestion = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

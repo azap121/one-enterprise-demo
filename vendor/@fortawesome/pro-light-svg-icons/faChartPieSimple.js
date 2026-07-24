@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'chart-pie-simple';
+var width = 512;
+var height = 512;
+var aliases = ["chart-pie-alt"];
+var unicode = 'f64e';
+var svgPathData = 'M304 208l0-173.6C393.2 48.2 463.8 118.8 477.6 208L304 208zm176 32c17.7 0 32.2-14.4 29.9-31.9-14.2-107-99-191.7-206-206-17.5-2.3-31.9 12.2-31.9 29.9l0 176c0 17.7 14.3 32 32 32l176 0zM32 272c0-98.3 68.3-180.8 160-202.4L192 272c0 26.5 21.5 48 48 48l202.4 0C420.8 411.7 338.3 480 240 480 125.1 480 32 386.9 32 272zM224 68.7C224 49.7 206.7 33.4 186.3 38 79.6 62.4 0 157.9 0 272 0 404.6 107.5 512 240 512 354.1 512 449.6 432.4 474 325.7 478.6 305.3 462.3 288 443.3 288L240 288c-8.8 0-16-7.2-16-16l0-203.3z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faChartPieSimple = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

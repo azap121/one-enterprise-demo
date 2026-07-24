@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'dice-d10';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f6cd';
+var svgPathData = ['M60.5 290.2c1.2 11 11.1 18.9 22.1 17.7l65.2-7.2 88.6 54.5 0 92.8c0 11 9 20 20 20s20-9 20-20l0-92.8 88.6-54.5 65.2 7.2 4.1 0c9.3-.8 17-8.1 18-17.7 1.1-9.6-4.9-18.4-13.7-21.3l-3.9-.8-61.4-6.8-99.1-190.5c-3.4-6.6-10.3-10.8-17.7-10.8-6.5 0-12.6 3.2-16.3 8.4l-1.4 2.4-99.1 190.5-61.4 6.8c-11 1.2-18.9 11.1-17.7 22.1zm118.2-17.5l77.7-149.4 77.7 149.4-77.7 47.8-77.7-47.8z', 'M219.8 11c19.2-22.5 54-22.5 73.1 0L498.8 253.2c16.6 19.5 15 48.5-3.7 66L289.3 513c-18.5 17.4-47.3 17.4-65.8 0L17.6 319.3c-18.6-17.5-20.2-46.6-3.7-66L219.8 11zm36.6 49c-6.5 0-12.6 3.2-16.3 8.4l-1.4 2.4-99.1 190.5-61.4 6.8c-11 1.2-18.9 11.1-17.7 22.1s11.1 18.9 22.1 17.7l65.2-7.2 88.6 54.5 0 92.8c0 11 9 20 20 20s20-9 20-20l0-92.8 88.6-54.5 65.2 7.2 4.1 0c9.3-.8 17-8.1 18-17.7 1.1-9.6-4.9-18.4-13.7-21.3l-3.9-.8-61.4-6.8-99.1-190.5C270.7 64.2 263.8 60 256.4 60zM334 272.7l-77.7 47.8-77.7-47.8 77.7-149.4 77.7 149.4z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDiceD10 = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

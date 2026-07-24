@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'gun-slash';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e19c';
+var svgPathData = 'M27.3-27.2c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l544 544c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L294.5 240 441.4 240c8.5 0 16.6-3.4 22.6-9.4l22.6-22.6 57.4 0c17.7 0 32-14.3 32-32l0-80c0-17.7-14.3-32-32-32l-32 0 0-16c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 16-361.5 0-91.2-91.2zM150.5 96l393.5 0 0 80-57.4 0c-8.5 0-16.6 3.4-22.6 9.4l-22.6 22.6-178.8 0-112-112zM0 96L0 208c0 17.7 14.3 32 32 32l10 0c20.8 0 36.1 19.6 31 39.8L33 440.2c-2.4 9.6-.2 19.7 5.8 27.5S54.1 480 64 480l112 0c14.7 0 27.5-10 31-24.2l38-152.2-26.4-26.4-42.7 170.8-112 0 40.1-160.5c4.3-17 1.3-33.8-6.7-47.5l84 0-32-32-117.5 0 0-112 5.5 0-25.2-25.2C4.8 76.7 0 85.8 0 96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGunSlash = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

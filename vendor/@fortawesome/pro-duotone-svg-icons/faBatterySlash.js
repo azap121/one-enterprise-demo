@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'battery-slash';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'f377';
+var svgPathData = ['M32 144l0 224c0 44.2 35.8 80 80 80l298.2 0-64-64-234.2 0c-8.8 0-16-7.2-16-16l0-224c0-2.9 .8-5.7 2.2-8L52.6 90.4C39.8 104.6 32 123.4 32 144z', 'M39-24.9c9.4-9.4 24.6-9.4 33.9 0L161.8 64 528 64c44.2 0 80 35.8 80 80l0 48c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l0 48c0 38.6-27.4 70.9-63.8 78.4L601 503.1c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L39 9.1c-9.4-9.4-9.4-24.6 0-33.9zM481.8 384l46.2 0c8.8 0 16-7.2 16-16l0-224c0-8.8-7.2-16-16-16l-302.2 0 256 256z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBatterySlash = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

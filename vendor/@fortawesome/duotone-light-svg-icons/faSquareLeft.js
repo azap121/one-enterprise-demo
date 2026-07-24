@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'square-left';
+var width = 448;
+var height = 512;
+var aliases = [11013,"arrow-alt-square-left"];
+var unicode = 'f351';
+var svgPathData = ['M32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96zM95 239L199 135c6.9-6.9 17.2-8.9 26.2-5.2S240 142.3 240 152l0 40 72 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-72 0 0 40c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2L95 273c-9.4-9.4-9.4-24.6 0-33.9z', 'M32 416c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96l0 320zm32 64c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480zM208 340.7l0-36.7c0-8.8 7.2-16 16-16l88 0c4.4 0 8-3.6 8-8l0-48c0-4.4-3.6-8-8-8l-88 0c-8.8 0-16-7.2-16-16l0-36.7-84.7 84.7 84.7 84.7zM199 135c6.9-6.9 17.2-8.9 26.2-5.2S240 142.3 240 152l0 40 72 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-72 0 0 40c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2L95 273c-9.4-9.4-9.4-24.6 0-33.9L199 135z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareLeft = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

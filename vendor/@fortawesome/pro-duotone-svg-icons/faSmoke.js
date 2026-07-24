@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'smoke';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f760';
+var svgPathData = ['M0 128c0 46.6 24.9 87.3 62.1 109.7 7.8-5.2 16-9.8 24.6-13.8 20.9-73.9 88.8-128 169.4-128 25.6 0 50 5.5 71.9 15.3 16.2-15.2 35.4-27.3 56.5-35.5-23.5-26.9-58-43.8-96.4-43.8-22 0-42.6 5.5-60.7 15.3-23.5-28.8-59.2-47.3-99.3-47.3-70.7 0-128 57.3-128 128zm144.7 80.7c5-.4 10.1-.7 15.3-.7 26.3 0 51.3 5.8 73.8 16.2 21.2-10.4 45-16.2 70.2-16.2 52.8 0 99.6 25.6 128.7 65 42.2 4.9 78.9 28 101.9 61.3 25.5-23.4 41.4-57 41.4-94.3 0-70.7-57.3-128-128-128-46.5 0-87.3 24.8-109.7 62-22.3-18.7-51-30-82.3-30-47.6 0-89.2 26-111.3 64.7z', 'M160 512C89.3 512 32 454.7 32 384S89.3 256 160 256c27.9 0 53.7 8.9 74.7 24 19.1-15 43.1-24 69.3-24 44.9 0 83.6 26.4 101.5 64.6 3.4-.4 7-.6 10.5-.6 53 0 96 43 96 96s-43 96-96 96l-256 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSmoke = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

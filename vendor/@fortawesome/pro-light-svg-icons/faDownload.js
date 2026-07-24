@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'download';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f019';
+var svgPathData = 'M240 16c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 281.4-84.7-84.7c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l112 112c6.2 6.2 16.4 6.2 22.6 0l112-112c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L240 297.4 240 16zM85.5 288L64 288c-35.3 0-64 28.7-64 64l0 64c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-64c0-35.3-28.7-64-64-64l-21.5 0-32 32 53.5 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L64 448c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l53.5 0-32-32zM368 384a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDownload = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

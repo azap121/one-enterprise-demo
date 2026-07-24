@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'calendars';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e0d7';
+var svgPathData = 'M192 24c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40 128 0 0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40 32 0c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64l-288 0c-35.3 0-64-28.7-64-64l0-224c0-35.3 28.7-64 64-64l32 0 0-40zm256 88l-288 0c-8.8 0-16 7.2-16 16l0 48 320 0 0-48c0-8.8-7.2-16-16-16zM144 352c0 8.8 7.2 16 16 16l288 0c8.8 0 16-7.2 16-16l0-128-320 0 0 128zM48 184l0 264c0 8.8 7.2 16 16 16l328 0c13.3 0 24 10.7 24 24s-10.7 24-24 24L64 512c-35.3 0-64-28.7-64-64L0 184c0-13.3 10.7-24 24-24s24 10.7 24 24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCalendars = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

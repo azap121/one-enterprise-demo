@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'cart-flatbed';
+var width = 576;
+var height = 512;
+var aliases = ["dolly-flatbed"];
+var unicode = 'f474';
+var svgPathData = 'M16 0C7.2 0 0 7.2 0 16S7.2 32 16 32l32 0c8.8 0 16 7.2 16 16l0 304c0 35.3 28.7 64 64 64l8.6 0c-5.4 9.4-8.6 20.3-8.6 32 0 35.3 28.7 64 64 64s64-28.7 64-64c0-11.7-3.1-22.6-8.6-32l145.1 0c-5.4 9.4-8.6 20.3-8.6 32 0 35.3 28.7 64 64 64s64-28.7 64-64c0-11.7-3.1-22.6-8.6-32l56.6 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-432 0c-17.7 0-32-14.3-32-32L96 48C96 21.5 74.5 0 48 0L16 0zM480 448a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM192 480a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM208 96l256 0c8.8 0 16 7.2 16 16l0 160c0 8.8-7.2 16-16 16l-256 0c-8.8 0-16-7.2-16-16l0-160c0-8.8 7.2-16 16-16zm-48 16l0 160c0 26.5 21.5 48 48 48l256 0c26.5 0 48-21.5 48-48l0-160c0-26.5-21.5-48-48-48L208 64c-26.5 0-48 21.5-48 48z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCartFlatbed = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

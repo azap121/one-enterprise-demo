@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'qrcode';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f029';
+var svgPathData = ['M32 80l0 96c0 8.8 7.2 16 16 16l96 0c8.8 0 16-7.2 16-16l0-96c0-8.8-7.2-16-16-16L48 64c-8.8 0-16 7.2-16 16zm0 256l0 96c0 8.8 7.2 16 16 16l96 0c8.8 0 16-7.2 16-16l0-96c0-8.8-7.2-16-16-16l-96 0c-8.8 0-16 7.2-16 16zm88-208a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zm0 256a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zM288 80l0 96c0 8.8 7.2 16 16 16l96 0c8.8 0 16-7.2 16-16l0-96c0-8.8-7.2-16-16-16l-96 0c-8.8 0-16 7.2-16 16zm88 48a24 24 0 1 1 -48 0 24 24 0 1 1 48 0z', 'M144 64c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0zM48 32C21.5 32 0 53.5 0 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48L48 32zM160 336l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16l96 0c8.8 0 16 7.2 16 16zM48 288c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0zM304 64l96 0c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zM256 80l0 96c0 26.5 21.5 48 48 48l96 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-96 0c-26.5 0-48 21.5-48 48zm8 240a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm0 128a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm152-24a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM392 320a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm-40 40a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM96 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48zM72 384a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zM352 104a24 24 0 1 0 0 48 24 24 0 1 0 0-48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faQrcode = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

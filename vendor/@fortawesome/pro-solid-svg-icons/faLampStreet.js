@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'lamp-street';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e1c5';
+var svgPathData = 'M176 64C114.1 64 64 114.1 64 176l0 304c0 17.7-14.3 32-32 32S0 497.7 0 480L0 176c0-97.2 78.8-176 176-176 92.7 0 168.6 71.6 175.5 162.6 80.7 13.3 144.4 76.9 157.9 157.6 2.9 17.4-11.7 31.9-29.4 31.9l-73.5 0c-7.5 41-43.4 72-86.5 72s-79-31-86.5-72L160 352c-17.7 0-32.3-14.4-29.4-31.9 13.4-80.2 76.5-143.6 156.6-157.3-6.5-55.6-53.8-98.8-111.2-98.8zM283.3 352c6.2 14.1 20.3 24 36.7 24s30.5-9.9 36.7-24l-73.3 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLampStreet = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

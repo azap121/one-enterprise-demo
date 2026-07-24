@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'pumpkin';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f707';
+var svgPathData = 'M203.5 18.2l-15 60c1.2 .6 2.4 1.2 3.5 1.8 19.4-10 41-15.9 64-15.9s44.6 5.9 64 15.9c1.2-.6 2.3-1.2 3.5-1.8l-15-60C305.9 7.5 296.3 0 285.3 0L226.7 0c-11 0-20.6 7.5-23.3 18.2zM175.2 482.5c10.3-6.1 23.4-6.1 33.7 0 14.6 8.7 30.5 13.5 47.2 13.5s32.6-4.8 47.2-13.5c10.3-6.1 23.4-6.1 33.7 0 14.6 8.7 30.5 13.5 47.2 13.5 70.7 0 128-86 128-192S454.7 112 384 112c-16.7 0-32.6 4.8-47.2 13.5-10.3 6.1-23.4 6.1-33.7 0-14.6-8.7-30.5-13.5-47.2-13.5s-32.6 4.8-47.2 13.5c-10.3 6.1-23.4 6.1-33.7 0-14.6-8.7-30.5-13.5-47.2-13.5-70.7 0-128 86-128 192S57.3 496 128 496c16.7 0 32.6-4.8 47.2-13.5z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPumpkin = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

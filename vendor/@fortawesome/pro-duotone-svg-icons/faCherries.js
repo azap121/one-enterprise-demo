@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'cherries';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e0ec';
+var svgPathData = ['M172.3 209.6c7.2 4.6 13.8 10 19.7 16 10.7-10.9 23.7-19.7 38.1-25.5l62.6-130.3 120 157.9c12.3 22.7 19.3 48.7 19.3 76.3 0 70.8-34.3 131.9-86.8 172.4 12.5 2.4 25.5 3.6 38.8 3.6 106 0 192-78.8 192-176 0-61.9-50.1-112-112-112-5.8 0-11.6 .4-17.2 1.3L307.1 9.5C302.1 2.8 293.9-.7 285.6 .1s-15.6 6-19.2 13.5l-94.1 196z', 'M384 304c0 97.2-86 176-192 176S0 401.2 0 304c0-61.9 50.1-112 112-112 31.3 0 59.7 12.9 80 33.6 20.3-20.7 48.7-33.6 80-33.6 61.9 0 112 50.1 112 112z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCherries = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

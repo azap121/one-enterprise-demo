@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'watch-smart';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e2cc';
+var svgPathData = 'M121.6-32l140.7 0c23.9 0 44.1 17.6 47.5 41.2l8 56C355.4 71.8 384 104.6 384 144l0 224c0 39.4-28.6 72.2-66.1 78.8l-8 56c-3.4 23.6-23.6 41.2-47.5 41.2l-140.7 0c-23.9 0-44.1-17.6-47.5-41.2l-8-56C28.6 440.2 0 407.4 0 368L0 144c0-39.4 28.6-72.2 66.1-78.8l8-56C77.5-14.4 97.7-32 121.6-32zM304 128L80 128c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16l224 0c8.8 0 16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm-88 56l0 62.1 41 41c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-4.5-4.5-7-10.6-7-17l0-72c0-13.3 10.7-24 24-24s24 10.7 24 24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWatchSmart = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

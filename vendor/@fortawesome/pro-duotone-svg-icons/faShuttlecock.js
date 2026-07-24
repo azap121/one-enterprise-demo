@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'shuttlecock';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f45b';
+var svgPathData = ['M58.5 282.9c12.5-14.3 25-28.6 37.5-42.9 58.7 58.7 117.3 117.3 176 176-14.3 12.5-28.6 25-42.9 37.5-47.9 41.9-120.1 39.5-165.1-5.5S16.6 330.8 58.5 282.9z', 'M239.8 0c10 0 19 5.6 23.5 14.5l18.3 36.6c4.1 8.2 4.5 17.7 1.1 26.2L224 224 323.9 95.6c7.4-9.6 19.6-14.1 31.5-11.8l39.7 7.9c12.7 2.5 22.6 12.4 25.1 25.1l7.9 39.7c2.4 11.9-2.2 24.1-11.8 31.6L288 288 434.7 229.3c8.5-3.4 18-3 26.2 1.1l36.6 18.3c8.9 4.5 14.5 13.5 14.5 23.5 0 9.7-5.4 18.6-13.9 23.2L272 416 96 240 216.6 13.9C221.1 5.3 230.1 0 239.8 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faShuttlecock = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

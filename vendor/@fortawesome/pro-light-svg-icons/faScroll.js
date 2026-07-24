@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'scroll';
+var width = 576;
+var height = 512;
+var aliases = [128220];
+var unicode = 'f70e';
+var svgPathData = 'M32 104c0-22.1 17.9-40 40-40s40 17.9 40 40l0 56-72 0c-4.4 0-8-3.6-8-8l0-48zm99.9-40L360 64c30.9 0 56 25.1 56 56l0 200-144 0c-26.5 0-48 21.5-48 48l0 40c0 22.1-17.9 40-40 40s-40-17.9-40-40l0-304c0-14.8-4.5-28.6-12.1-40zM448 320l0-200c0-48.6-39.4-88-88-88L72 32C32.2 32 0 64.2 0 104l0 48c0 22.1 17.9 40 40 40l72 0 0 216c0 39.8 32.2 72 72 72l272 0c48.6 0 88-39.4 88-88l0-24c0-26.5-21.5-48-48-48l-48 0zm8 128l-212.1 0c7.7-11.4 12.1-25.2 12.1-40l0-40c0-8.8 7.2-16 16-16l224 0c8.8 0 16 7.2 16 16l0 24c0 30.9-25.1 56-56 56z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faScroll = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

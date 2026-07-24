@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'arrows-repeat';
+var width = 512;
+var height = 512;
+var aliases = ["repeat-alt"];
+var unicode = 'f364';
+var svgPathData = ['', 'M475.3 107.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L425.4 80 192 80C86 80 0 166 0 272 0 280.8 7.2 288 16 288s16-7.2 16-16c0-88.4 71.6-160 160-160l233.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zM36.7 404.7c-6.2 6.2-6.2 16.4 0 22.6l96 96c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L86.6 432 320 432c106 0 192-86 192-192 0-8.8-7.2-16-16-16s-16 7.2-16 16c0 88.4-71.6 160-160 160l-233.4 0 68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowsRepeat = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

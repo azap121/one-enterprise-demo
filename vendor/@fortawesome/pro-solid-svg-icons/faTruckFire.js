@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'truck-fire';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e65a';
+var svgPathData = 'M0 24C0 37.3 10.7 48 24 48l8 0 0 88.6C12.9 147.6 0 168.3 0 192l0 48 304 0 0-192 248 0c13.3 0 24-10.7 24-24S565.3 0 552 0L24 0C10.7 0 0 10.7 0 24zM0 288l0 96c0 35.3 28.7 64 64 64l3.3 0c10.4 36.9 44.4 64 84.7 64s74.2-27.1 84.7-64l102.6 0c10.4 36.9 44.4 64 84.7 64s74.2-27.1 84.7-64l3.3 0c35.3 0 64-28.7 64-64l0-192c0-35.3-28.7-64-64-64l-32 0c0-17.7-14.3-32-32-32s-32 14.3-32 32l-64 0 0 136c0 13.3-10.7 24-24 24L0 288zM256 128l-64 0 0-80 64 0 0 80zM80 48l64 0 0 80-64 0 0-80zM416 288l0-96 96 0 0 96-96 0zM152 384a40 40 0 1 1 0 80 40 40 0 1 1 0-80zm232 40a40 40 0 1 1 80 0 40 40 0 1 1 -80 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTruckFire = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

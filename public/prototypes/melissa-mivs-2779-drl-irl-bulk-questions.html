@@ -1,0 +1,3385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk questions processing - DRL/IRL support (MIVS-2779)</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ─── HALO TOKENS ─── */
+:root {
+  --bg-default: #FFFFFF;
+  --bg-alt: #FAFAF7;
+  --paper-alt: #FAFAF7;
+  --sandbox-bg: #FF88181A;
+  --text-primary: #323232;
+  --text-secondary: #6A6A69;
+  --text-disabled: rgba(50,50,50,0.38);
+  --primary: #4E4E4D;
+  --primary-dark: #191919;
+  --selected: rgba(78,78,77,0.08);
+  --hover: rgba(78,78,77,0.04);
+  --divider: #1919191F;
+  --accent-orange: #EF601A;
+  --input-border: rgba(25,25,25,0.23);
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --nav-collapsed: 60px;
+  --nav-expanded: 200px;
+  --t: 150ms ease-out;
+  --blueflame: #4E4E4D;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; font-family: 'Figtree', sans-serif; background: var(--bg-default); color: var(--text-primary); }
+button { font-family: inherit; cursor: pointer; border: none; background: transparent; }
+svg { display: block; }
+
+/* ═══════════════════════════════════
+   SOLUTION SWITCHER — LEFT PANEL
+═══════════════════════════════════ */
+.sol-panel {
+  width: 260px;
+  flex-shrink: 0;
+  background: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 16px;
+  gap: 0;
+  z-index: 1;
+}
+.sol-panel-hdr {
+  padding: 0 16px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 8px;
+}
+.sol-panel-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 6px;
+}
+.sol-panel-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+}
+.sol-panel-epic {
+  margin-top: 4px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+}
+
+.sol-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 120ms, border-color 120ms;
+  text-align: left;
+  width: 100%;
+  border-radius: 0;
+}
+.sol-item:hover { background: rgba(255,255,255,0.05); }
+.sol-item.active {
+  background: rgba(255,255,255,0.07);
+  border-left-color: var(--accent-orange);
+}
+.sol-item-num {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.sol-item.active .sol-item-num { color: var(--accent-orange); }
+.sol-item-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.3;
+}
+.sol-item.active .sol-item-name { color: rgba(255,255,255,0.95); }
+.sol-item-desc {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.sol-panel-footer {
+  margin-top: auto;
+  padding: 12px 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.sol-panel-footer p {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════
+   APP SHELL
+═══════════════════════════════════ */
+.outer-shell {
+  display: flex;
+  height: 100vh;
+}
+.shell {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── LEFT NAV ─── */
+.lnav {
+  background: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: var(--nav-collapsed);
+  transition: width var(--t);
+}
+.lnav.open { width: var(--nav-expanded); }
+.logo-row {
+  display: flex; align-items: center;
+  height: 60px; padding: 6px 12px;
+  flex-shrink: 0; overflow: hidden; gap: 0;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  flex-shrink: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-name {
+  font-size: 20px; font-weight: 500;
+  line-height: 1.6; letter-spacing: 0.15px;
+  color: var(--text-primary);
+  white-space: nowrap; flex: 1; min-width: 0;
+  padding: 0 6px; opacity: 0;
+  transition: opacity var(--t);
+}
+.lnav.open .product-name { opacity: 1; }
+.collapse-btn {
+  width: 24px; height: 24px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-s); color: var(--text-secondary);
+  opacity: 0; pointer-events: none; transition: opacity var(--t);
+}
+.lnav.open .collapse-btn { opacity: 1; pointer-events: all; }
+.collapse-btn:hover { background: var(--hover); }
+.collapse-btn svg { width: 16px; height: 16px; stroke-width: 1.5; }
+.nav-top { flex: 1; overflow: hidden; }
+.nav-foot { flex-shrink: 0; }
+.nav-item {
+  display: flex; align-items: center;
+  width: 100%; padding: 4px 12px; overflow: hidden;
+}
+.nav-item-inner {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 36px; padding: 4px 6px;
+  border-radius: var(--radius-m); width: 100%;
+  overflow: hidden; transition: background var(--t);
+}
+.nav-item:hover .nav-item-inner { background: var(--hover); }
+.nav-item.active .nav-item-inner { background: var(--selected); }
+.nav-ic {
+  width: 25px; height: 20px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-primary);
+}
+.nav-ic svg { width: 16px; height: 16px; stroke-width: 1.25; }
+.nav-lbl {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.43; letter-spacing: 0.17px;
+  color: var(--text-primary);
+  white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; flex: 1; min-width: 0;
+  text-align: left; opacity: 0; transition: opacity var(--t);
+}
+.lnav.open .nav-lbl { opacity: 1; }
+.user-row {
+  display: flex; align-items: center; gap: 7px;
+  min-height: 60px; padding: 4px 12px;
+  overflow: hidden; flex-shrink: 0;
+}
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  flex-shrink: 0; overflow: hidden; background: #5C3820;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 13px; font-weight: 500;
+  letter-spacing: 0.5px; cursor: pointer; user-select: none;
+}
+.user-name {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.43; letter-spacing: 0.17px;
+  color: var(--text-primary);
+  white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; opacity: 0; transition: opacity var(--t);
+}
+.lnav.open .user-name { opacity: 1; }
+
+/* ─── CONTENT COL ─── */
+.content-col {
+  flex: 1; display: flex; flex-direction: column;
+  min-width: 0; overflow: hidden;
+}
+.topnav {
+  background: var(--bg-alt); height: 60px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 16px 12px 8px; flex-shrink: 0;
+}
+.topnav-search {
+  flex: 1; padding: 0 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.search-field {
+  width: 100%; max-width: 800px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-s);
+  background: var(--bg-default);
+  display: flex; align-items: center;
+  padding: 6px 8px; min-height: 36px; gap: 8px;
+}
+.search-ph {
+  flex: 1; font-size: 14px; font-weight: 300;
+  line-height: 24px; letter-spacing: 0.15px;
+  color: var(--text-secondary); font-family: 'Figtree', sans-serif;
+}
+.topnav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.ai-icon-btn {
+  background: none; border: none; padding: 0; cursor: pointer;
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+}
+.ai-icon-btn:hover { opacity: 0.85; }
+.ic-btn {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-s); color: var(--text-primary); padding: 2px;
+}
+.ic-btn:hover { background: var(--hover); }
+.ic-btn svg { width: 16px; height: 16px; stroke-width: 1.5; }
+.page-body { display: flex; flex: 1; overflow: hidden; }
+
+/* ─── LEFT DRAWER ─── */
+.ldrawer {
+  width: 276px; flex-shrink: 0;
+  background: var(--bg-default); padding: 8px;
+  display: flex; flex-direction: column; gap: 10px;
+  overflow-y: auto; border-right: none;
+}
+.ldrawer::-webkit-scrollbar { width: 4px; }
+.ldrawer::-webkit-scrollbar-track { background: transparent; }
+.ldrawer::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
+.dtabs { display: flex; flex-shrink: 0; }
+.dtab {
+  padding: 8px 16px;
+  font-family: 'Figtree', sans-serif; font-size: 14px;
+  font-weight: 500; letter-spacing: 0.4px;
+  color: var(--text-secondary); position: relative; white-space: nowrap;
+}
+.dtab:hover { color: var(--primary); }
+.dtab.on { color: var(--primary); }
+.dtab.on::after {
+  content: ''; position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px; background: var(--primary);
+}
+.sec { border-radius: var(--radius-m); padding: 4px 8px; }
+.sec-plain { background: var(--paper-alt); }
+.sec-sandbox { background: var(--sandbox-bg); }
+.sec-tree { background: var(--paper-alt); }
+.sec-hdr {
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 8px;
+}
+.sec-hdr-l { display: flex; align-items: center; gap: 4px; }
+.hdr-chev {
+  width: 24px; height: 19px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+}
+.hdr-chev svg { width: 12px; height: 12px; stroke-width: 2; }
+.sec-hdr-lbl {
+  font-size: 14px; font-weight: 500;
+  line-height: 1.57; letter-spacing: 0.1px;
+  color: var(--text-secondary);
+}
+.li {
+  display: flex; align-items: center;
+  padding: 4px 8px; border-radius: var(--radius-m);
+  min-height: 28px; cursor: pointer;
+}
+.li:hover { background: var(--hover); }
+.li-ic {
+  width: 20px; height: 16px; flex-shrink: 0;
+  margin-right: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+}
+.li-ic svg { width: 14px; height: 14px; stroke-width: 1.25; }
+.li-txt {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.43; letter-spacing: 0.17px;
+  color: var(--text-primary); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.ti {
+  display: flex; align-items: center;
+  padding: 4px 8px; border-radius: var(--radius-m);
+  min-height: 29px; cursor: pointer;
+}
+.ti:hover { background: var(--hover); }
+.ti.sel { background: var(--selected); }
+.ti-ic {
+  width: 20px; height: 16px; flex-shrink: 0;
+  margin-right: 8px; display: flex; align-items: center; justify-content: center;
+}
+.ti-ic svg { width: 15px; height: 13px; }
+.ti-txt {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.43; letter-spacing: 0.17px;
+  color: var(--text-primary); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0;
+}
+.folder-lid { fill: #B0AEA9; fill-opacity: 0.45; }
+.folder-body { fill: #6E6D6A; fill-opacity: 0.65; }
+.folder-open-body { fill: #6E6D6A; fill-opacity: 0.6; }
+.arch-lid { fill: #A0A09C; fill-opacity: 0.5; }
+.arch-body { fill: #6E6D6A; fill-opacity: 0.65; }
+
+/* ─── MAIN VIEW ─── */
+.main-view {
+  flex: 1; padding: 24px; overflow-y: auto;
+  background: var(--bg-default);
+}
+.ph { background: var(--bg-alt); border-radius: 3px; margin-bottom: 7px; height: 13px; }
+
+/* ═══════════════════════════════════
+   AI SIDECAR
+═══════════════════════════════════ */
+.ai-backdrop {
+  position: fixed; inset: 0; z-index: 300; display: none;
+}
+.ai-backdrop.show { display: block; }
+.ai-container {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 420px;
+  display: flex; flex-direction: column; z-index: 400;
+  transform: translateX(100%); transition: transform 200ms ease-out;
+  pointer-events: none;
+}
+.ai-container.show { transform: translateX(0); pointer-events: all; }
+.ai-panel {
+  width: 100%; height: 100%; background: #FFFFFF;
+  border-left: 1px solid var(--divider); display: flex; flex-direction: column;
+}
+.ai-panel-hdr {
+  height: 64px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 16px; flex-shrink: 0;
+}
+.ai-panel-hdr-l { display: flex; align-items: center; gap: 8px; }
+.ai-panel-hdr-bf { display: flex; align-items: center; gap: 4px; }
+.ai-panel-title {
+  font-size: 16px; font-weight: 500;
+  color: var(--text-primary); letter-spacing: 0.15px;
+}
+.ai-panel-hdr-r { display: flex; align-items: center; gap: 12px; }
+.ai-panel-hdr-r button {
+  width: 24px; height: 24px; border: none; background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary); border-radius: var(--radius-s); padding: 0; flex-shrink: 0;
+}
+.ai-panel-hdr-r button:hover { background: var(--hover); }
+.ai-panel-hdr-r button svg { width: 16px; height: 16px; stroke-width: 1.5; }
+.ai-panel-body {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 16px; overflow-y: auto; gap: 0;
+}
+.ai-hello {
+  font-size: 28px; font-weight: 300; line-height: 1.235;
+  letter-spacing: 0.25px; color: var(--text-primary); text-align: center; margin-bottom: 4px;
+}
+.ai-sub {
+  font-size: 16px; font-weight: 300; line-height: 1.6;
+  letter-spacing: 0.15px; color: var(--text-secondary); text-align: center; margin-bottom: 24px;
+}
+.ai-panel-footer {
+  padding: 8px 16px 16px; flex-shrink: 0;
+}
+.ai-prompt-wrap {
+  border: 1px solid var(--divider); border-radius: var(--radius-m);
+  background: #FFFFFF; overflow: hidden;
+}
+.ai-prompt-input {
+  width: 100%; padding: 12px 16px;
+  font-size: 14px; font-weight: 300; color: var(--text-primary);
+  font-family: 'Figtree', sans-serif; border: none; outline: none;
+  resize: none; background: transparent; line-height: 1.5;
+}
+.ai-prompt-input::placeholder { color: var(--text-secondary); }
+.ai-prompt-actions {
+  display: flex; align-items: center;
+  justify-content: flex-end; padding: 8px 12px;
+}
+.ai-prompt-actions button {
+  width: 32px; height: 32px; border-radius: var(--radius-s);
+  border: none; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+}
+.ai-prompt-actions button:hover { background: var(--hover); }
+.ai-prompt-actions button svg { width: 16px; height: 16px; stroke-width: 1.5; }
+.ai-send-btn {
+  width: 28px !important; height: 28px !important;
+  border-radius: 16777200px !important;
+  background: rgba(25,25,25,0.12) !important;
+  color: rgba(25,25,25,0.38) !important;
+  cursor: default !important;
+  flex-shrink: 0;
+}
+.ai-send-btn svg { width: 20px !important; height: 20px !important; stroke-width: 1.5; }
+.ai-send-btn.active {
+  background: var(--text-primary) !important;
+  color: white !important;
+  cursor: pointer !important;
+}
+.ai-send-btn.active:hover { background: var(--primary-dark) !important; }
+.ai-attribution {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px 4px;
+  font-size: 12px; font-weight: 300; color: var(--text-secondary); letter-spacing: 0.4px;
+}
+
+/* ═══════════════════════════════════
+   SHARED CHIP STYLES — HALO_Chip spec
+   Filled / Actionable / Default / Enabled
+   border-radius: 100px
+   background: var(--NEW-chip-defaultBackground) ≈ #F5F5F4
+   padding: 0 12px (horizontal only; height = 32px)
+   text: var(--text-primary), 13px, weight 400
+═══════════════════════════════════ */
+.chip-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+/* wrapper div for expandable chip — inline so it doesn't stretch */
+.chip-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 100px;
+  background: #F7F6F2;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.16px;
+  cursor: pointer;
+  font-family: 'Figtree', sans-serif;
+  white-space: nowrap;
+  transition: background 100ms, box-shadow 100ms;
+  flex-shrink: 0;
+}
+.hero-chip:hover { background: #DBDAD7; }
+.hero-chip.active {
+  background: #F7F6F2;
+  box-shadow: inset 0 0 0 1.5px var(--primary);
+}
+.hero-chip svg { width: 14px; height: 14px; stroke-width: 1.5; flex-shrink: 0; color: var(--text-secondary); }
+.hero-chip-chevron {
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+  color: var(--text-secondary);
+}
+.hero-chip.active .hero-chip-chevron { transform: rotate(180deg); }
+
+/* Working context chip — light style (matches screenshot) */
+.proj-selector {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 32px; flex-shrink: 0;
+  padding: 0 10px 0 5px;
+  background: var(--bg-alt);
+  border: none; border-radius: 100px; cursor: pointer;
+  font-size: 13px; font-weight: 400; color: var(--text-primary);
+  font-family: 'Figtree', sans-serif;
+  white-space: nowrap; transition: background 120ms;
+}
+.proj-selector:hover { background: #F7F6F2; }
+.proj-avatar {
+  width: 22px; height: 22px; border-radius: 4px;
+  background: var(--blueflame); display: flex; align-items: center;
+  justify-content: center; color: white; font-size: 11px; font-weight: 600;
+  flex-shrink: 0;
+}
+.proj-chevron { color: var(--text-secondary); display: flex; align-items: center; transition: transform 200ms ease; }
+.proj-chevron svg { width: 12px; height: 12px; stroke-width: 2; }
+.proj-chevron.open { transform: rotate(180deg); }
+
+/* Narrowed context chips row */
+.footer-context, .expand-ctx-row {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 6px; min-height: 36px;
+}
+.footer-context { padding: 0 0 8px 2px; }
+.expand-ctx-row { padding: 0; }
+.ctx-folder-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 28px; padding: 0 8px 0 8px;
+  background: var(--bg-alt); border-radius: 100px;
+  font-size: 12px; font-weight: 400; color: var(--text-primary);
+  font-family: 'Figtree', sans-serif; white-space: nowrap;
+}
+.ctx-folder-chip svg { color: var(--text-secondary); }
+.ctx-folder-chip-x {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--text-secondary); display: flex; align-items: center;
+  margin-left: 2px; font-family: 'Figtree', sans-serif;
+  line-height: 1; font-size: 14px;
+}
+.ctx-folder-chip-x:hover { color: var(--text-primary); }
+.ctx-more-badge {
+  display: inline-flex; align-items: center;
+  height: 28px; padding: 0 12px;
+  background: var(--bg-alt); border-radius: 100px;
+  font-size: 12px; font-weight: 500; color: var(--text-primary);
+  font-family: 'Figtree', sans-serif;
+}
+
+/* ═══════════════════════════════════
+   CONTEXT PICKER — INLINE (light mode)
+═══════════════════════════════════ */
+@keyframes ctx-expand {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ctx-modal {
+  width: 100%;
+  background: #FFFFFF; border: 1px solid var(--divider); border-radius: var(--radius-m);
+  overflow: hidden; display: none; flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  max-height: 360px; margin-bottom: 6px;
+}
+.ctx-modal.visible { display: flex; animation: ctx-expand 180ms ease; }
+.ctx-modal-hdr {
+  background: var(--bg-alt); padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--divider); flex-shrink: 0;
+}
+.ctx-modal-hdr-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2px;
+}
+.ctx-modal-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.ctx-modal-close {
+  width: 24px; height: 24px; background: none; border: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary); border-radius: 4px;
+}
+.ctx-modal-close:hover { background: var(--hover); color: var(--text-primary); }
+.ctx-modal-close svg { width: 14px; height: 14px; stroke-width: 1.5; }
+.ctx-modal-meta {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ctx-modal-count { font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+.ctx-modal-clear {
+  font-size: 12px; font-weight: 500; color: var(--text-primary); background: none;
+  border: none; cursor: pointer; font-family: 'Figtree', sans-serif; padding: 0;
+}
+.ctx-modal-clear:disabled { color: var(--text-disabled); cursor: default; }
+
+/* Tree */
+.ctx-tree { flex: 1; overflow-y: auto; padding: 4px 0; }
+.ctx-tree::-webkit-scrollbar { width: 4px; }
+.ctx-tree::-webkit-scrollbar-thumb { background: rgba(25,25,25,0.12); border-radius: 2px; }
+.ctx-tree-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 14px; cursor: pointer;
+  transition: background 80ms; user-select: none;
+  min-height: 34px;
+}
+.ctx-tree-row:hover { background: var(--hover); }
+.ctx-tree-row.selected { background: var(--selected); }
+.ctx-tree-row.selected:hover { background: rgba(25,25,25,0.12); }
+.ctx-expand-btn {
+  width: 16px; height: 16px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; color: var(--text-secondary);
+  transition: transform 180ms ease;
+}
+.ctx-expand-btn svg { width: 12px; height: 12px; stroke-width: 2; }
+.ctx-expand-btn.open { transform: rotate(90deg); }
+.ctx-expand-placeholder { width: 16px; flex-shrink: 0; }
+.ctx-folder-icon { flex-shrink: 0; }
+.ctx-folder-icon svg { width: 16px; height: 14px; }
+.ctx-checkbox {
+  width: 16px; height: 16px; border-radius: 3px; flex-shrink: 0;
+  border: 1.5px solid #BFBEBB; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 100ms, border-color 100ms;
+}
+.ctx-checkbox.checked { background: var(--blueflame); border-color: var(--blueflame); }
+.ctx-checkbox.indeterminate { background: var(--blueflame); border-color: var(--blueflame); }
+.ctx-checkbox svg { width: 10px; height: 8px; stroke: white; stroke-width: 2.5; }
+.ctx-row-label {
+  font-size: 13px; font-weight: 400; color: var(--text-primary);
+  flex: 1; line-height: 1.3;
+}
+.ctx-row-label.muted { color: var(--text-secondary); }
+.ctx-child-rows { display: none; }
+.ctx-child-rows.open { display: block; }
+
+/* Selected chips bar — light */
+.ctx-selected-bar {
+  border-top: 1px solid var(--divider);
+  padding: 8px 14px; display: none; flex-wrap: wrap;
+  gap: 6px; min-height: 0;
+}
+.ctx-selected-bar.has-items { display: flex; }
+.ctx-selected-bar .ctx-folder-chip { background: var(--bg-alt); color: var(--text-primary); }
+.ctx-selected-bar .ctx-folder-chip-x { color: var(--text-secondary); }
+.ctx-selected-bar .ctx-folder-chip-x:hover { color: var(--text-primary); }
+.ctx-selected-bar .ctx-more-badge { background: var(--bg-alt); color: var(--text-primary); }
+
+/* Footer buttons */
+.ctx-modal-footer {
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 10px; padding: 8px 14px;
+  border-top: 1px solid var(--divider); flex-shrink: 0; background: #FFFFFF;
+}
+.ctx-btn-cancel {
+  font-size: 13px; font-weight: 500; color: var(--text-secondary);
+  background: none; border: none; cursor: pointer;
+  font-family: 'Figtree', sans-serif; padding: 6px 10px;
+}
+.ctx-btn-okay {
+  font-size: 13px; font-weight: 600; color: white;
+  background: var(--primary); border: none; cursor: pointer;
+  font-family: 'Figtree', sans-serif; padding: 6px 16px;
+  border-radius: var(--radius-s); transition: background 120ms;
+}
+.ctx-btn-okay:hover { background: var(--primary-dark); }
+
+/* Role permission dropdown */
+.role-select-wrap { display: flex; flex-direction: column; gap: 6px; }
+.role-select-label { font-size: 12px; font-weight: 400; color: var(--text-secondary); line-height: 1.4; }
+.role-select {
+  appearance: none; -webkit-appearance: none;
+  width: 100%; padding: 10px 36px 10px 14px;
+  background: var(--bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%234E4E4D' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid #DBDAD7; border-radius: 8px;
+  font-size: 14px; font-weight: 500; color: var(--text-primary);
+  font-family: 'Figtree', sans-serif; cursor: pointer; transition: background-color 120ms;
+}
+.role-select:hover { background-color: #F7F6F2; }
+.role-select:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
+.role-select option { background: white; color: var(--text-primary); font-weight: 400; }
+
+/* Drop zone */
+.drop-zone {
+  border: 1.5px dashed #BFBEBB;
+  border-radius: var(--radius-m);
+  background: var(--bg-alt);
+  padding: 20px 16px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  cursor: pointer; transition: background 120ms;
+}
+.drop-zone:hover { background: #F7F6F2; }
+.drop-zone.drag-over { background: #F7F6F2; border-color: var(--primary); }
+.dz-icon {
+  width: 40px; height: 40px; background: #DBDAD7;
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; color: var(--primary);
+}
+.dz-icon svg { width: 18px; height: 18px; stroke-width: 1.5; }
+.dz-title {
+  font-size: 14px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.4;
+}
+.dz-title span { color: inherit; }
+.dz-sub { font-size: 13px; font-weight: 300; color: var(--text-secondary); text-align: center; line-height: 1.5; }
+.dz-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-size: 14px; font-weight: 500;
+  border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
+  transition: background 120ms;
+}
+.dz-cta:hover { background: var(--primary-dark); }
+.dz-cta svg { width: 20px; height: 16px; stroke-width: 1.5; flex-shrink: 0; }
+.dz-limit { font-size: 11px; color: var(--text-secondary); }
+
+/* Upload progress state */
+.upload-progress {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 12px;
+  padding: 20px 16px; text-align: center;
+}
+.upload-file-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.upload-file-icon svg { width: 48px; height: 48px; }
+.upload-filename {
+  font-size: 15px; font-weight: 600; color: var(--text-primary);
+  line-height: 1.3;
+}
+.upload-bar-track {
+  width: 100%; height: 6px; background: #DBDAD7;
+  border-radius: 100px; overflow: hidden;
+}
+.upload-bar-fill {
+  height: 100%; background: var(--primary); border-radius: 100px;
+  width: 0%; transition: width 300ms ease;
+}
+.upload-cancel {
+  font-size: 14px; font-weight: 600; color: var(--text-secondary);
+  background: none; border: none; cursor: pointer;
+  font-family: 'Figtree', sans-serif; padding: 4px 8px;
+}
+.upload-cancel:hover { color: var(--text-primary); }
+
+/* Upload ready / confirm state */
+.upload-ready {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.upload-ready-file {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: #F1F5ED; border: 1px solid #DCE7D2;
+  border-radius: 8px;
+}
+.upload-ready-info { flex: 1; min-width: 0; }
+.upload-ready-name {
+  font-size: 13px; font-weight: 500; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center; gap: 6px;
+}
+.upload-ready-status { font-size: 11px; color: #517431; margin-top: 1px; }
+.upload-ready-change {
+  font-size: 12px; color: var(--text-secondary); flex-shrink: 0;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Figtree', sans-serif; text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.upload-ready-change:hover { color: var(--text-primary); }
+.upload-submit {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 8px 20px; width: 100%;
+  background: var(--primary); color: white;
+  border-radius: 8px; font-size: 14px; font-weight: 500;
+  border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
+  transition: background 120ms;
+}
+.upload-submit:hover { background: var(--primary-dark); }
+.upload-submit svg { width: 16px; height: 16px; stroke-width: 1.5; flex-shrink: 0; }
+.processing-card {
+  border: 1px solid var(--divider); border-radius: var(--radius-m);
+  padding: 14px 16px; background: var(--bg-alt);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.proc-row {
+  display: flex; align-items: center; gap: 10px;
+}
+.proc-spinner {
+  width: 18px; height: 18px; flex-shrink: 0;
+  border: 2px solid #DBDAD7; border-top-color: var(--primary);
+  border-radius: 50%; animation: spin 700ms linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.proc-check {
+  width: 18px; height: 18px; flex-shrink: 0;
+  background: #517431; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.proc-check svg { width: 10px; height: 10px; stroke: white; stroke-width: 2.5; }
+.proc-label { font-size: 13px; font-weight: 400; color: var(--text-primary); }
+.proc-label.done { color: var(--text-secondary); }
+.proc-label.pending { color: var(--text-disabled); }
+.proc-progress {
+  height: 3px; background: #DBDAD7; border-radius: 2px; overflow: hidden;
+}
+.proc-progress-fill {
+  height: 100%; background: var(--blueflame); border-radius: 2px;
+  width: 40%; transition: width 400ms ease;
+}
+
+/* Export card */
+.export-card {
+  border: 1px solid var(--divider); border-radius: var(--radius-m);
+  padding: 14px 16px; background: var(--bg-alt);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.export-row {
+  display: flex; align-items: center; gap: 10px;
+}
+.export-icon {
+  width: 36px; height: 36px; background: #517431;
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.export-icon svg { width: 18px; height: 18px; stroke: white; stroke-width: 1.5; }
+.export-info { flex: 1; min-width: 0; }
+.export-name {
+  font-size: 13px; font-weight: 500; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.export-meta { font-size: 11px; color: var(--text-secondary); }
+.export-actions { display: flex; gap: 8px; }
+.btn-ghost {
+  padding: 6px 12px; border: 1px solid var(--divider);
+  border-radius: 100px; font-size: 12px; font-weight: 500;
+  color: var(--text-primary); background: white; cursor: pointer;
+  font-family: 'Figtree', sans-serif; transition: background 120ms;
+}
+.btn-ghost:hover { background: var(--hover); }
+.btn-primary {
+  padding: 6px 14px;
+  background: var(--primary); color: white;
+  border-radius: 100px; font-size: 12px; font-weight: 500;
+  border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
+  transition: background 120ms;
+}
+.btn-primary:hover { background: var(--primary-dark); }
+
+/* Error state */
+.error-card {
+  border: 1px solid #F9A9B8; border-radius: var(--radius-m);
+  padding: 12px 14px; background: #FEEEF1;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.error-icon { flex-shrink: 0; color: #C02641; padding-top: 1px; }
+.error-icon svg { width: 16px; height: 16px; stroke-width: 1.5; }
+.error-body { flex: 1; min-width: 0; }
+.error-title { font-size: 13px; font-weight: 500; color: #C02641; margin-bottom: 2px; }
+.error-msg { font-size: 12px; color: #C02641; line-height: 1.4; }
+.error-retry {
+  margin-top: 6px;
+  font-size: 12px; font-weight: 500; color: var(--text-primary);
+  text-decoration: underline; cursor: pointer; background: none;
+  border: none; padding: 0; font-family: 'Figtree', sans-serif;
+}
+
+/* Hint badge */
+.hint-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px;
+  background: #FFF4EA; border: 1px solid #FFC690;
+  border-radius: 100px;
+  font-size: 11px; font-weight: 500; color: #B34814;
+  margin-bottom: 12px;
+}
+.hint-badge svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+/* Footer note */
+.ai-foot-note {
+  font-size: 12px; color: var(--text-secondary);
+  padding: 0 4px; margin-top: 8px;
+}
+
+/* ═══════════════════════════════════
+   SOLUTION A — EXPANDABLE CHIP
+═══════════════════════════════════ */
+.expand-body {
+  overflow: hidden; max-height: 0;
+  transition: max-height 320ms ease;
+  width: 100%;
+}
+.expand-body.open { max-height: 600px; }
+/* When the expand panel is open, the chip-wrap takes full row width */
+.chip-wrap:has(.expand-body.open) { width: 100%; }
+.expand-inner {
+  border: 1px solid var(--divider); border-radius: 10px;
+  margin-top: 8px; padding: 14px; background: var(--bg-default);
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+/* ═══════════════════════════════════
+   SOLUTION B — DIALOG ANIMATE-IN
+═══════════════════════════════════ */
+.dialog-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.06);
+  z-index: 10; display: none;
+  align-items: flex-end; justify-content: center;
+  padding: 12px;
+  pointer-events: none;
+}
+.dialog-overlay.show {
+  display: flex; pointer-events: all;
+}
+.dialog-sheet {
+  width: 100%;
+  background: white; border-radius: var(--radius-l);
+  border: 1px solid var(--divider);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(24px); opacity: 0;
+  transition: transform 260ms cubic-bezier(0.34,1.2,0.64,1), opacity 200ms ease;
+  display: flex; flex-direction: column; gap: 12px;
+  padding: 16px; max-height: 85%;
+  overflow-y: auto;
+}
+.dialog-sheet.visible { transform: translateY(0); opacity: 1; }
+.dialog-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dialog-hdr-l { display: flex; align-items: center; gap: 8px; }
+.dialog-hdr-icon {
+  width: 28px; height: 28px; background: #F7F6F2;
+  border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; color: var(--primary); flex-shrink: 0;
+}
+.dialog-hdr-icon svg { width: 14px; height: 14px; stroke-width: 1.5; }
+.dialog-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.dialog-close {
+  width: 24px; height: 24px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary); cursor: pointer;
+}
+.dialog-close:hover { background: var(--hover); }
+.dialog-close svg { width: 14px; height: 14px; stroke-width: 1.5; }
+
+/* ═══════════════════════════════════
+   CHAT CONVERSATION VIEW
+═══════════════════════════════════ */
+.chat-view {
+  display: none; flex-direction: column;
+  width: 100%; height: 100%;
+  background: white; border-left: 1px solid var(--divider);
+}
+.chat-view.active { display: flex; }
+
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 16px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
+
+/* User message bubble */
+.msg-user {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+}
+.msg-user-row { display: flex; align-items: flex-start; gap: 8px; }
+.msg-avatar-user {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--primary); display: flex; align-items: center;
+  justify-content: center; color: white; font-size: 12px;
+  font-weight: 600; flex-shrink: 0; letter-spacing: 0.5px;
+}
+.msg-bubble-user {
+  background: #F7F6F2; border-radius: 12px 2px 12px 12px;
+  padding: 12px 14px; max-width: 85%;
+}
+.msg-bubble-text {
+  font-size: 14px; font-weight: 400; color: var(--text-primary); line-height: 1.5;
+}
+.msg-context {
+  font-size: 13px; color: var(--text-secondary);
+  margin-top: 6px; line-height: 1.4;
+}
+.msg-file-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 8px; padding: 5px 10px;
+  border: 1px solid var(--divider); border-radius: 100px;
+  background: white; font-size: 12px; font-weight: 400; color: var(--text-primary);
+}
+.msg-file-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+.msg-time {
+  font-size: 11px; color: var(--text-disabled); padding-right: 4px;
+}
+
+/* Agent thinking */
+.msg-agent { display: flex; align-items: flex-start; gap: 8px; }
+.msg-avatar-agent {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+  margin-top: 2px;
+}
+.msg-avatar-agent svg { width: 28px; height: 28px; }
+.msg-thinking {
+  font-size: 14px; font-weight: 400; color: var(--text-secondary);
+  padding: 6px 0; display: flex; align-items: center; gap: 6px;
+}
+.thinking-dots span {
+  display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--text-secondary); margin: 0 1px;
+  animation: blink 1.2s ease-in-out infinite;
+}
+.thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%,80%,100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+/* Plan card */
+.plan-card {
+  background: var(--bg-alt); border-radius: var(--radius-m);
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 12px;
+}
+.plan-header { font-size: 13px; }
+.plan-header strong { font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 2px; }
+.plan-header span { font-weight: 300; color: var(--text-secondary); }
+.plan-progress-row {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.plan-progress-label { font-size: 11px; color: var(--text-secondary); }
+.plan-progress-track {
+  height: 3px; background: #DBDAD7; border-radius: 100px; overflow: hidden;
+}
+.plan-progress-fill {
+  height: 100%; border-radius: 100px;
+  background: var(--primary); width: 0%;
+  transition: width 600ms ease;
+}
+.plan-progress-fill.done { background: #517431; }
+.plan-steps { display: flex; flex-direction: column; gap: 0; }
+.plan-step {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; position: relative;
+}
+.plan-step:not(:last-child)::before {
+  content: ''; position: absolute;
+  left: 13px; top: 30px; bottom: -8px;
+  width: 2px; background: #DBDAD7;
+}
+.plan-step.step-done:not(:last-child)::before { background: #BFBEBB; }
+.step-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid #DBDAD7; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: white; position: relative; z-index: 1;
+}
+.step-icon.spinning {
+  border-color: var(--primary); border-top-color: transparent;
+  animation: spin 700ms linear infinite;
+}
+.step-icon.done {
+  background: #F7F6F2; border-color: #DBDAD7;
+}
+.step-icon.done svg { width: 12px; height: 12px; stroke: var(--primary); stroke-width: 2.5; }
+.step-label {
+  font-size: 13px; font-weight: 400; color: var(--text-secondary);
+  line-height: 1.4; padding-top: 4px; flex: 1;
+}
+.step-label.active { color: var(--text-primary); font-weight: 500; }
+.step-label.done-text { color: var(--text-secondary); }
+
+/* Agent final response */
+.msg-agent-response { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.agent-response-label {
+  font-size: 13px; font-weight: 600; color: var(--text-primary);
+}
+.agent-response-sub {
+  font-size: 13px; font-weight: 300; color: var(--text-secondary); margin-bottom: 4px;
+}
+.download-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  background: var(--primary); color: white;
+  border-radius: 100px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; font-family: 'Figtree', sans-serif;
+  transition: background 120ms;
+  align-self: flex-start;
+}
+.download-btn:hover { background: var(--primary-dark); }
+.download-btn svg { width: 16px; height: 16px; stroke-width: 1.5; flex-shrink: 0; }
+.msg-time-agent { font-size: 11px; color: var(--text-disabled); padding-left: 36px; }
+
+/* ═══════════════════════════════════
+   FLOATING PROGRESS BAR (bottom-right)
+═══════════════════════════════════ */
+.float-progress {
+  position: fixed; bottom: 20px; right: 20px;
+  width: 320px; background: white;
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-m);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  overflow: hidden; z-index: 500;
+  display: none; flex-direction: column;
+  transform: translateY(8px); opacity: 0;
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+.float-progress.show { display: flex; transform: translateY(0); opacity: 1; }
+.float-progress-body {
+  padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+}
+.float-progress-icon {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.float-progress-icon.spinning {
+  border: 2px solid #DBDAD7; border-top-color: var(--primary);
+  animation: spin 700ms linear infinite;
+}
+.float-progress-icon.done-icon {
+  border: 2px solid #517431;
+}
+.float-progress-icon.done-icon svg { width: 14px; height: 14px; stroke: #517431; stroke-width: 2.5; }
+.float-progress-info { flex: 1; min-width: 0; }
+.float-progress-title {
+  font-size: 13px; font-weight: 500; color: var(--text-primary); line-height: 1.3;
+}
+.float-progress-sub { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+.float-progress-actions { display: flex; gap: 12px; flex-shrink: 0; }
+.float-action-btn {
+  font-size: 12px; font-weight: 500; color: var(--text-secondary);
+  background: none; border: none; cursor: pointer;
+  font-family: 'Figtree', sans-serif; padding: 0;
+}
+.float-action-btn:hover { color: var(--text-primary); }
+.float-action-btn.view { color: var(--primary); }
+.float-action-btn.view:hover { color: var(--primary-dark); }
+.float-progress-bar {
+  height: 3px; background: #F7F6F2;
+}
+.float-progress-bar-fill {
+  height: 100%; background: var(--primary);
+  width: 0%; transition: width 600ms ease;
+}
+.float-progress-bar-fill.done { background: #517431; width: 100% !important; }
+
+/* ═══════════════════════════════════
+   SOLUTION D — INLINE CHAT CARD
+═══════════════════════════════════ */
+.chat-message {
+  display: flex; gap: 10px; margin-bottom: 12px;
+}
+.chat-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent-orange);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.chat-avatar svg { width: 12px; height: 12px; }
+.chat-bubble {
+  background: var(--bg-alt); border-radius: 0 var(--radius-m) var(--radius-m) var(--radius-m);
+  padding: 10px 12px; flex: 1; min-width: 0;
+}
+.chat-bubble-text {
+  font-size: 13px; font-weight: 300; color: var(--text-primary);
+  line-height: 1.5; margin-bottom: 10px;
+}
+.chat-card {
+  border: 1px solid var(--divider); border-radius: var(--radius-m);
+  background: white; padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+/* ═══════════════════════════════════
+   TABS inside sidecar for solutions
+═══════════════════════════════════ */
+.sol-tabs {
+  display: none; /* hidden — solutions switch the whole body */
+}
+
+/* ── Option E: prompt box drag-drop + plus menu ── */
+#solE .ai-prompt-wrap { position: relative; transition: border-color 140ms, background 140ms; overflow: visible; }
+#solE .ai-prompt-wrap.drag-over { border-color: var(--accent-orange); background: #FFF4EA; }
+.prompt-attachments-row {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding: 8px 12px 0;
+}
+.prompt-attachments-row:empty { display: none; }
+.prompt-attach-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border: 1px solid var(--divider); border-radius: 100px;
+  background: var(--bg-alt); font-size: 12px; font-weight: 400; color: var(--text-primary);
+  max-width: 200px;
+}
+.prompt-attach-pill span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prompt-attach-pill-x {
+  flex-shrink: 0; width: 16px; height: 16px; border: none; background: none;
+  cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--text-disabled); border-radius: 50%; font-size: 14px; line-height: 1;
+}
+.prompt-attach-pill-x:hover { color: var(--text-primary); background: var(--hover); }
+.prompt-plus-btn {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: none; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary); flex-shrink: 0;
+}
+.prompt-plus-btn:hover { background: var(--hover); }
+.prompt-plus-menu {
+  position: absolute; bottom: 40px; left: 0;
+  background: white; border: 1px solid var(--divider);
+  border-radius: var(--radius-m); box-shadow: 0 4px 16px rgba(25,25,25,0.12);
+  z-index: 20; min-width: 210px; overflow: hidden;
+  display: none;
+}
+.prompt-plus-menu.open { display: block; }
+.prompt-plus-menu-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; cursor: pointer;
+  font-size: 13px; font-weight: 400; color: var(--text-primary);
+  border: none; background: transparent; width: 100%; text-align: left;
+  font-family: 'Figtree', sans-serif; white-space: nowrap;
+}
+.prompt-plus-menu-item:hover { background: var(--hover); }
+.prompt-plus-menu-item svg { flex-shrink: 0; color: var(--text-secondary); }
+.prompt-plus-menu-hint {
+  font-size: 11px; color: var(--text-disabled); padding: 2px 14px 10px;
+}
+/* Hide footerCtx_E entirely in Option E — accessible via plus menu only */
+#solE .footer-context { display: none; padding: 0; min-height: 0; }
+#solE .footer-context:has(#ctxModal) { display: flex; padding: 0 0 8px 2px; min-height: 36px; }
+
+/* ── Alternate Options collapsible ── */
+.alt-options { border: none; margin-top: 12px; }
+.alt-options summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 16px 8px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-family: 'Figtree', sans-serif;
+  transition: color 120ms;
+}
+.alt-options summary:hover { color: rgba(255,255,255,0.8); }
+.alt-options summary::-webkit-details-marker { display: none; }
+.alt-options summary::before {
+  content: '›'; font-size: 15px; line-height: 1; color: rgba(255,255,255,0.6);
+  transition: transform 180ms ease, color 120ms; display: inline-block;
+}
+.alt-options summary:hover::before { color: rgba(255,255,255,0.8); }
+details[open].alt-options summary::before { transform: rotate(90deg); }
+
+/* ─── Blueflame badge — reserved ─── */
+</style>
+</head>
+<body>
+<div class="outer-shell">
+
+  <!-- ═══════════════════════════════
+       SOLUTION SELECTOR PANEL
+  ═══════════════════════════════ -->
+  <div class="sol-panel">
+    <div class="sol-panel-hdr">
+      <div class="sol-panel-label">Design Exploration</div>
+      <div class="sol-panel-title">Upload Tracker Flow</div>
+      <div class="sol-panel-epic">MIVS-2779</div>
+    </div>
+
+    <button class="sol-item active" onclick="selectSolution(5, this)">
+      <span class="sol-item-name">Handoff for Dev</span>
+      <span class="sol-item-desc">From customer feedback: The tracker-answering feature needs to be visually differentiated — called out as a distinct capability, not just another prompt chip.</span>
+    </button>
+
+    <details class="alt-options">
+      <summary>Alternate Options</summary>
+
+      <button class="sol-item" onclick="selectSolution(0, this)">
+        <span class="sol-item-num">Option A</span>
+        <span class="sol-item-name">Expandable Hero Chip</span>
+        <span class="sol-item-desc">Chip expands in-place to reveal context + upload</span>
+      </button>
+
+      <button class="sol-item" onclick="selectSolution(1, this)">
+        <span class="sol-item-num">Option B</span>
+        <span class="sol-item-name">Animate-In Dialog Sheet</span>
+        <span class="sol-item-desc">Chip click triggers bottom-sheet with setup flow</span>
+      </button>
+
+      <button class="sol-item" onclick="selectSolution(2, this)">
+        <span class="sol-item-num">Option C</span>
+        <span class="sol-item-name">Expandable Card</span>
+        <span class="sol-item-desc">Card header always visible in empty state; click to expand upload UI</span>
+      </button>
+
+      <button class="sol-item" onclick="selectSolution(3, this)">
+        <span class="sol-item-num">Option D</span>
+        <span class="sol-item-name">Sell-side answers with specific buyer permissions</span>
+        <span class="sol-item-desc">Dialog sheet with role-based permissioning before upload</span>
+      </button>
+
+      <button class="sol-item" onclick="selectSolution(4, this)">
+        <span class="sol-item-num">Option E</span>
+        <span class="sol-item-name">Pre-fill Prompt</span>
+        <span class="sol-item-desc">Chip pre-fills the prompt field — no upload or dialog</span>
+      </button>
+    </details>
+
+    <div class="sol-panel-footer">
+      <p>Click any option to preview. All solutions share the same upload, error handling, and export states.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       DATASITE APP SHELL
+  ═══════════════════════════════ -->
+  <div class="shell">
+
+    <!-- LEFT NAV -->
+    <nav class="lnav" id="lnav">
+      <div style="flex-shrink:0">
+        <div class="logo-row">
+          <div class="logo-mark" onclick="toggleNav()">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M28.75 11H28.721H28.6556H28.5249H28.2635H27.7406H26.6948H24.6034C24.4434 11 24.2902 10.9364 24.177 10.8236C24.0637 10.7104 24.0005 10.5572 24.0005 10.3972L24.0003 6.21424C24.0003 6.09607 23.9042 6 23.786 6H10.2143C10.0961 6 10 6.09607 10 6.21424V10.7858C10 10.9039 10.0961 11 10.2143 11H23.396C23.5563 11 23.7099 11.0626 23.8231 11.1762C23.9363 11.2894 24.0003 11.4433 24.0003 11.6033V24.4169C24.0003 24.5715 23.9388 24.72 23.8296 24.8293C23.7203 24.9386 23.5717 25 23.417 25H10.2146C10.0964 25 10.0003 25.0961 10.0003 25.2142L10 29.7857C10 29.9039 10.0961 30 10.2143 30H23.786C23.9042 30 24.0003 29.9039 24.0003 29.7857V25.6234C24.0003 25.4581 24.066 25.2996 24.1828 25.1824C24.2996 25.0653 24.4581 25 24.6235 25H28.7857C28.9039 25 29 24.9039 29 24.7857V11.2133C29 11.0952 28.9042 11 28.786 11H28.75Z" fill="#0D0D0D"/>
+            </svg>
+          </div>
+          <span class="product-name" onclick="toggleNav()">Datasite</span>
+          <button class="collapse-btn" onclick="toggleNav()">
+            <i data-lucide="chevron-left"></i>
+          </button>
+        </div>
+        <div class="nav-top">
+          <button class="nav-item" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="bar-chart-2"></i></div>
+              <span class="nav-lbl">Dashboard</span>
+            </div>
+          </button>
+          <button class="nav-item active" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="file-text"></i></div>
+              <span class="nav-lbl">Documents</span>
+            </div>
+          </button>
+          <button class="nav-item" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="list-checks"></i></div>
+              <span class="nav-lbl">Trackers</span>
+            </div>
+          </button>
+          <button class="nav-item" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="message-square"></i></div>
+              <span class="nav-lbl">Q&amp;A</span>
+            </div>
+          </button>
+          <button class="nav-item" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="users"></i></div>
+              <span class="nav-lbl">Users</span>
+            </div>
+          </button>
+          <button class="nav-item" onclick="setActive(this)">
+            <div class="nav-item-inner">
+              <div class="nav-ic"><i data-lucide="settings"></i></div>
+              <span class="nav-lbl">Settings</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="nav-foot">
+        <div class="user-row">
+          <div class="avatar">DS</div>
+          <span class="user-name">Daniel Samuels</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENT COLUMN -->
+    <div class="content-col">
+      <div class="topnav">
+        <div class="topnav-search">
+          <div class="search-field">
+            <span class="search-ph">Ask or search for anything</span>
+            <i data-lucide="search" style="width:16px;height:16px;stroke-width:1.25;color:var(--text-secondary);flex-shrink:0"></i>
+          </div>
+        </div>
+        <div class="topnav-right">
+          <button class="ai-icon-btn" onclick="openAI()" title="AI Assistant">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36Z" fill="#EF601A"/>
+              <path d="M31.3088 17.6175C22.6688 17.5613 18.4275 13.3313 18.3713 4.68V4.48874H17.6175V4.68C17.5613 13.32 13.32 17.5613 4.68002 17.6175H4.48877V18.3712H4.68002C13.32 18.4275 17.5613 22.6687 17.6175 31.3087V31.5H18.3713V31.3087C18.4275 22.6687 22.6688 18.4275 31.3088 18.3712H31.5V17.6175H31.3088Z" fill="white"/>
+            </svg>
+          </button>
+          <button class="ic-btn"><i data-lucide="grid-3x3"></i></button>
+        </div>
+      </div>
+
+      <div class="page-body">
+        <!-- Left drawer -->
+        <div class="ldrawer">
+          <div class="dtabs">
+            <button class="dtab">Insights</button>
+            <button class="dtab on">Folders &amp; Shortcuts</button>
+          </div>
+          <div class="sec sec-plain">
+            <div class="sec-hdr">
+              <div class="sec-hdr-l">
+                <span class="hdr-chev"><i data-lucide="chevron-down"></i></span>
+                <span class="sec-hdr-lbl">Shortcuts</span>
+              </div>
+            </div>
+            <div class="li"><div class="li-ic"><i data-lucide="inbox"></i></div><span class="li-txt">Inbox</span></div>
+            <div class="li"><div class="li-ic"><i data-lucide="star"></i></div><span class="li-txt">Favorites</span></div>
+            <div class="li"><div class="li-ic"><i data-lucide="cloud-download"></i></div><span class="li-txt">Downloads</span></div>
+          </div>
+          <div class="sec sec-tree">
+            <div class="sec-hdr">
+              <div class="sec-hdr-l">
+                <span class="hdr-chev"><i data-lucide="chevron-down"></i></span>
+                <span class="sec-hdr-lbl">Index</span>
+              </div>
+            </div>
+            <div class="ti">
+              <div class="ti-ic">
+                <svg viewBox="0 0 16 14" fill="none">
+                  <rect x="0.5" y="0.5" width="15" height="3.5" rx="0.8" class="arch-lid"/>
+                  <path d="M1.5 4h13v8.5a1 1 0 01-1 1h-11a1 1 0 01-1-1V4z" class="arch-body"/>
+                  <rect x="5.5" y="7" width="5" height="1.2" rx="0.4" fill="white" fill-opacity="0.85"/>
+                </svg>
+              </div>
+              <span class="ti-txt">Fileroom</span>
+            </div>
+            <div class="ti sel" style="padding-left:8px">
+              <div class="ti-ic">
+                <svg viewBox="0 0 16 13" fill="none">
+                  <path d="M1 3.5C1 3 1.4 2.5 2 2.5h3.7L7 4h7a1 1 0 011 1V5.5H1V3.5z" class="folder-lid"/>
+                  <path d="M1 5.5h14L13.5 12H2.5L1 5.5z" class="folder-open-body"/>
+                </svg>
+              </div>
+              <span class="ti-txt">Financial Statements</span>
+            </div>
+            <div class="ti" style="padding-left:8px">
+              <div class="ti-ic">
+                <svg viewBox="0 0 16 13" fill="none">
+                  <path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" class="folder-lid"/>
+                  <path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" class="folder-body"/>
+                </svg>
+              </div>
+              <span class="ti-txt">Legal Documents</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main viewport -->
+        <div class="main-view">
+          <div style="max-width:560px">
+            <div class="ph" style="width:38%;height:18px;margin-bottom:16px"></div>
+            <div class="ph" style="width:100%"></div>
+            <div class="ph" style="width:72%"></div>
+            <div class="ph" style="width:100%"></div>
+            <div class="ph" style="width:46%"></div>
+            <div style="height:20px"></div>
+            <div class="ph" style="width:100%"></div>
+            <div class="ph" style="width:65%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════
+         AI SIDECAR
+    ═══════════════════════════════ -->
+    <div class="ai-backdrop" id="aiBackdrop" onclick="closeAI()"></div>
+
+    <div class="ai-container" id="aiContainer" style="position:fixed">
+
+      <!-- ── SOLUTION A: Expandable Chip ── -->
+      <div class="ai-panel" id="solA">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;">
+              <i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0">
+                <circle cx="18" cy="18" r="18" fill="#EF601A"/>
+                <path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/>
+              </svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto;">
+          <div class="ai-hello" style="margin-top:32px">Hello, Daniel</div>
+          <div class="ai-sub">What can I help with?</div>
+
+          <div class="chip-row">
+            <!-- Upload chip — expandable -->
+            <div class="chip-wrap">
+              <button class="hero-chip" id="chipA" onclick="toggleExpandA()">
+                <i data-lucide="upload-cloud" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
+                Get answers for a question tracker
+                <i data-lucide="chevron-down" class="hero-chip-chevron" style="width:14px;height:14px;stroke-width:2"></i>
+              </button>
+              <div class="expand-body" id="expandBodyA">
+                <div class="expand-inner">
+                  <!-- Body text -->
+                  <div style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.5;">Search the whole project, or narrow the context before uploading.</div>
+                  <!-- Context selector -->
+                  <div id="expandCtx_A" class="expand-ctx-row"></div>
+                  <!-- Drop zone -->
+                  <div class="drop-zone" id="dzA"
+                    ondragover="event.preventDefault();this.classList.add('drag-over')"
+                    ondragleave="this.classList.remove('drag-over')"
+                    ondrop="event.preventDefault();this.classList.remove('drag-over');startUploadA()">
+                    <div class="dz-title">Upload your question tracker.</div>
+                    <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+                    <button class="dz-cta" onclick="event.stopPropagation();startUploadA()"><i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker</button>
+                    <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+                  </div>
+                  <!-- Uploading progress -->
+                  <div id="uploadingA" style="display:none">
+                    <div class="upload-progress">
+                      <div class="upload-file-icon">
+                        <svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect width="48" height="56" rx="6" fill="#DCFCE7"/>
+                          <rect x="6" y="6" width="36" height="44" rx="4" fill="#86EFAC"/>
+                          <text x="24" y="36" text-anchor="middle" font-family="Figtree,sans-serif" font-size="18" font-weight="700" fill="#15803D">x</text>
+                        </svg>
+                      </div>
+                      <div class="upload-filename">Buyer2-questions.xlsx</div>
+                      <div class="upload-bar-track" style="width:100%"><div class="upload-bar-fill" id="uploadBarA"></div></div>
+                      <button class="upload-cancel" onclick="resetA()">Cancel</button>
+                    </div>
+                  </div>
+                  <!-- Upload ready / confirm -->
+                  <div id="readyA" style="display:none">
+                    <div class="upload-ready">
+                      <div class="upload-ready-file">
+                        
+                        <div class="upload-ready-info">
+                          <div class="upload-ready-name"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect width="16" height="20" rx="2" fill="#E8F5E9"/>
+  <rect x="1" y="1" width="14" height="18" rx="1.5" fill="#1D6F42"/>
+  <text x="8" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">X</text>
+</svg>Buyer2-questions.xlsx</div>
+                          <div class="upload-ready-status">Uploaded successfully</div>
+                        </div>
+                        <button class="upload-ready-change" onclick="resetA()">Change</button>
+                      </div>
+                      <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Answers may take a few minutes.</div>
+                      <button class="upload-submit" onclick="submitA()">
+                        <i data-lucide="sparkles" style="width:16px;height:16px;stroke-width:1.5"></i>
+                        Get answers
+                      </button>
+                    </div>
+                  </div>
+                  <!-- AI processing (hidden initially) -->
+                  <div id="procA" style="display:none">
+                    <div class="processing-card">
+                      <div class="proc-row">
+                        <div class="proc-check"><svg viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+                        <span class="proc-label done">Uploaded Buyer2-questions.xlsx</span>
+                      </div>
+                      <div class="proc-row">
+                        <div class="proc-spinner"></div>
+                        <span class="proc-label">Matching questions to dataroom documents…</span>
+                      </div>
+                      <div class="proc-progress"><div class="proc-progress-fill" id="fillA"></div></div>
+                      <div class="proc-row" style="opacity:0.4">
+                        <div style="width:18px;height:18px;border:2px solid #DBDAD7;border-radius:50%;flex-shrink:0"></div>
+                        <span class="proc-label pending">Generating citations &amp; draft answers</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Export (hidden initially) -->
+                  <div id="exportA" style="display:none">
+                    <div class="export-card">
+                      <div class="export-row">
+                        <div class="export-icon"><i data-lucide="file-spreadsheet"></i></div>
+                        <div class="export-info">
+                          <div class="export-name">DRL_Project_Orange_v2_Answered.xlsx</div>
+                          <div class="export-meta">47 questions · 43 answered · 4 flagged</div>
+                        </div>
+                      </div>
+                      <div class="export-actions">
+                        <button class="btn-ghost">Preview</button>
+                        <button class="btn-primary" style="flex:1">
+                          <i data-lucide="download" style="width:12px;height:12px;stroke-width:2;display:inline-block;margin-right:4px;vertical-align:middle"></i>
+                          Download .xlsx
+                        </button>
+                      </div>
+                    </div>
+                    <div class="ai-foot-note">4 questions couldn't be answered — not enough source material found in the dataroom.</div>
+                  </div>
+                  <!-- Error (hidden initially) -->
+                  <div id="errA" style="display:none">
+                    <div class="error-card">
+                      <div class="error-icon"><i data-lucide="alert-circle"></i></div>
+                      <div class="error-body">
+                        <div class="error-title">Upload failed</div>
+                        <div class="error-msg">The file couldn't be parsed. Make sure column headers match the expected format (e.g. "Question", "Category").</div>
+                        <button class="error-retry" onclick="resetA()">Try again</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="hero-chip">
+              Summarize key financial highlights
+            </button>
+            <button class="hero-chip">
+              Highlight change of control clauses
+            </button>
+          </div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_A">
+            <button class="proj-selector" onclick="openCtxPicker('A')">
+              <span class="proj-avatar">D</span>
+              <span class="proj-selector-label">Project Orange</span>
+              <span class="proj-chevron" id="projChevron_A"><i data-lucide="chevron-down"></i></span>
+            </button>
+          </div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions">
+              
+              <button class="ai-send-btn"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTION B: Animate-in Dialog Sheet ── -->
+      <div class="ai-panel" id="solB" style="display:none; position:relative;">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;">
+              <i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0">
+                <circle cx="18" cy="18" r="18" fill="#EF601A"/>
+                <path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/>
+              </svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto;">
+          <div class="ai-hello" style="margin-top:32px">Hello, Daniel</div>
+          <div class="ai-sub">What can I help with?</div>
+          <div class="chip-row">
+            <button class="hero-chip" onclick="openDialogB()">
+              <i data-lucide="upload-cloud" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
+              Get answers for a question tracker
+            </button>
+            <button class="hero-chip">
+              Summarize key financial highlights
+            </button>
+            <button class="hero-chip">
+              Highlight change of control clauses
+            </button>
+          </div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_B">
+            <button class="proj-selector" onclick="openCtxPicker('B')">
+              <span class="proj-avatar">D</span>
+              <span class="proj-selector-label">Project Orange</span>
+              <span class="proj-chevron" id="projChevron_B"><i data-lucide="chevron-down"></i></span>
+            </button>
+          </div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions">
+              
+              <button class="ai-send-btn"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+
+        <!-- Dialog overlay -->
+        <div class="dialog-overlay" id="dialogOverlayB" onclick="closeDialogB(event)">
+          <div class="dialog-sheet" id="dialogSheetB">
+            <div class="dialog-hdr">
+              <div class="dialog-hdr-l">
+                <div class="dialog-hdr-icon"><i data-lucide="upload-cloud"></i></div>
+                <span class="dialog-title">Upload your question tracker</span>
+              </div>
+              <button class="dialog-close" onclick="closeDialogB(event, true)">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+            <div style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.5;">Search the whole project, or narrow the context before uploading.</div>
+            <div id="expandCtx_B" class="expand-ctx-row"></div>
+            <div class="drop-zone" id="dzB"
+              ondragover="event.preventDefault();this.classList.add('drag-over')"
+              ondragleave="this.classList.remove('drag-over')"
+              ondrop="event.preventDefault();this.classList.remove('drag-over');startUploadB()">
+              <div class="dz-title">Upload your question tracker.</div>
+              <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+              <button class="dz-cta" onclick="event.stopPropagation();startUploadB()"><i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker</button>
+              <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+            </div>
+            <!-- Uploading progress -->
+            <div id="uploadingB" style="display:none">
+              <div class="upload-progress">
+                <div class="upload-file-icon">
+                  <svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="48" height="56" rx="6" fill="#DCFCE7"/>
+                    <rect x="6" y="6" width="36" height="44" rx="4" fill="#86EFAC"/>
+                    <text x="24" y="36" text-anchor="middle" font-family="Figtree,sans-serif" font-size="18" font-weight="700" fill="#15803D">x</text>
+                  </svg>
+                </div>
+                <div class="upload-filename">Buyer2-questions.xlsx</div>
+                <div class="upload-bar-track" style="width:100%"><div class="upload-bar-fill" id="uploadBarB"></div></div>
+                <button class="upload-cancel" onclick="resetB()">Cancel</button>
+              </div>
+            </div>
+            <!-- Upload ready / confirm -->
+            <div id="readyB" style="display:none">
+              <div class="upload-ready">
+                <div class="upload-ready-file">
+                  
+                  <div class="upload-ready-info">
+                    <div class="upload-ready-name"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect width="16" height="20" rx="2" fill="#E8F5E9"/>
+  <rect x="1" y="1" width="14" height="18" rx="1.5" fill="#1D6F42"/>
+  <text x="8" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">X</text>
+</svg>Buyer2-questions.xlsx</div>
+                    <div class="upload-ready-status">Uploaded successfully</div>
+                  </div>
+                  <button class="upload-ready-change" onclick="resetB()">Change</button>
+                </div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Answers may take a few minutes.</div>
+              <button class="upload-submit" onclick="submitB()">
+                  <i data-lucide="sparkles" style="width:16px;height:16px;stroke-width:1.5"></i>
+                  Get answers
+                </button>
+              </div>
+            </div>
+            <div id="procB" style="display:none">
+              <div class="processing-card">
+                <div class="proc-row">
+                  <div class="proc-check"><svg viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+                  <span class="proc-label done">Uploaded Buyer2-questions.xlsx</span>
+                </div>
+                <div class="proc-row">
+                  <div class="proc-spinner"></div>
+                  <span class="proc-label">Matching questions to dataroom documents…</span>
+                </div>
+                <div class="proc-progress"><div class="proc-progress-fill" id="fillB"></div></div>
+                <div class="proc-row" style="opacity:0.4">
+                  <div style="width:18px;height:18px;border:2px solid #DBDAD7;border-radius:50%;flex-shrink:0"></div>
+                  <span class="proc-label pending">Generating citations &amp; draft answers</span>
+                </div>
+              </div>
+            </div>
+            <div id="exportB" style="display:none">
+              <div class="export-card">
+                <div class="export-row">
+                  <div class="export-icon"><i data-lucide="file-spreadsheet"></i></div>
+                  <div class="export-info">
+                    <div class="export-name">DRL_Project_Orange_v2_Answered.xlsx</div>
+                    <div class="export-meta">47 questions · 43 answered · 4 flagged</div>
+                  </div>
+                </div>
+                <div class="export-actions">
+                  <button class="btn-ghost">Preview</button>
+                  <button class="btn-primary" style="flex:1">
+                    <i data-lucide="download" style="width:12px;height:12px;stroke-width:2;display:inline-block;margin-right:4px;vertical-align:middle"></i>
+                    Download .xlsx
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div id="errB" style="display:none">
+              <div class="error-card">
+                <div class="error-icon"><i data-lucide="alert-circle"></i></div>
+                <div class="error-body">
+                  <div class="error-title">Upload failed</div>
+                  <div class="error-msg">File couldn't be parsed. Ensure column headers match the expected format.</div>
+                  <button class="error-retry" onclick="resetB()">Try again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTION D: Sell-side answers with specific buyer permissions ── -->
+      <div class="ai-panel" id="solD" style="display:none; position:relative;">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;"><i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i></button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0"><circle cx="18" cy="18" r="18" fill="#EF601A"/><path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/></svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto;">
+          <div class="ai-hello" style="margin-top:32px">Hello, Daniel</div>
+          <div class="ai-sub">What can I help with?</div>
+          <div class="chip-row">
+            <button class="hero-chip" onclick="openDialogD()">
+              <i data-lucide="upload-cloud" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
+              Get answers for a question tracker
+            </button>
+            <button class="hero-chip">Summarize key financial highlights</button>
+            <button class="hero-chip">Highlight change of control clauses</button>
+          </div>
+        </div>
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_D"></div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions"><button class="ai-send-btn"><i data-lucide="arrow-up"></i></button></div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+        <!-- Dialog overlay -->
+        <div class="dialog-overlay" id="dialogOverlayD" onclick="closeDialogD(event)">
+          <div class="dialog-sheet" id="dialogSheetD">
+            <div class="dialog-hdr">
+              <div class="dialog-hdr-l">
+                <div class="dialog-hdr-icon"><i data-lucide="upload-cloud"></i></div>
+                <span class="dialog-title">Upload your question tracker</span>
+              </div>
+              <button class="dialog-close" onclick="closeDialogD(event, true)"><i data-lucide="x"></i></button>
+            </div>
+            <div style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.5;">Search the whole project, or narrow the context before uploading.</div>
+            <div id="expandCtx_D" class="expand-ctx-row"></div>
+            <!-- Role permission selector -->
+            <div class="role-select-wrap">
+              <div class="role-select-label">Answer with permissioning from this role:</div>
+              <select class="role-select" id="roleSelectD">
+                <option selected>Admin (full access)</option>
+                <option>Buyer A</option>
+                <option>Buyer B</option>
+                <option>Buyer C</option>
+                <option>Buyer D</option>
+              </select>
+            </div>
+            <div class="drop-zone" id="dzD"
+              ondragover="event.preventDefault();this.classList.add('drag-over')"
+              ondragleave="this.classList.remove('drag-over')"
+              ondrop="event.preventDefault();this.classList.remove('drag-over');startUploadD()">
+              <div class="dz-title">Upload your question tracker.</div>
+              <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+              <button class="dz-cta" onclick="event.stopPropagation();startUploadD()"><i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker</button>
+              <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+            </div>
+            <div id="uploadingD" style="display:none">
+              <div class="upload-progress">
+                <div class="upload-file-icon"><svg viewBox="0 0 48 56" fill="none"><rect width="48" height="56" rx="6" fill="#DCFCE7"/><rect x="6" y="6" width="36" height="44" rx="4" fill="#86EFAC"/><text x="24" y="36" text-anchor="middle" font-family="Figtree,sans-serif" font-size="18" font-weight="700" fill="#15803D">x</text></svg></div>
+                <div class="upload-filename">Buyer2-questions.xlsx</div>
+                <div class="upload-bar-track" style="width:100%"><div class="upload-bar-fill" id="uploadBarD"></div></div>
+                <button class="upload-cancel" onclick="resetD()">Cancel</button>
+              </div>
+            </div>
+            <div id="readyD" style="display:none">
+              <div class="upload-ready">
+                <div class="upload-ready-file">
+                  <div class="upload-ready-info">
+                    <div class="upload-ready-name"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" style="flex-shrink:0"><rect width="16" height="20" rx="2" fill="#E8F5E9"/><rect x="1" y="1" width="14" height="18" rx="1.5" fill="#1D6F42"/><text x="8" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">X</text></svg>Buyer2-questions.xlsx</div>
+                    <div class="upload-ready-status">Uploaded successfully</div>
+                  </div>
+                  <button class="upload-ready-change" onclick="resetD()">Change</button>
+                </div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Answers may take a few minutes.</div>
+                <button class="upload-submit" onclick="submitD()"><i data-lucide="sparkles" style="width:16px;height:16px;stroke-width:1.5"></i>Get answers</button>
+              </div>
+            </div>
+            <div id="procD" style="display:none">
+              <div class="processing-card">
+                <div class="proc-row"><div class="proc-check"><svg viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="proc-label done">Uploaded Buyer2-questions.xlsx</span></div>
+                <div class="proc-row"><div class="proc-spinner"></div><span class="proc-label">Matching questions to dataroom documents…</span></div>
+                <div class="proc-progress"><div class="proc-progress-fill" id="fillD"></div></div>
+                <div class="proc-row" style="opacity:0.4"><div style="width:18px;height:18px;border:2px solid #DBDAD7;border-radius:50%;flex-shrink:0"></div><span class="proc-label pending">Generating citations &amp; draft answers</span></div>
+              </div>
+            </div>
+            <div id="exportD" style="display:none">
+              <div class="export-card">
+                <div class="export-row">
+                  <div class="export-icon"><i data-lucide="file-spreadsheet"></i></div>
+                  <div class="export-info"><div class="export-name">DRL_Project_Orange_Answered.xlsx</div><div class="export-meta">47 questions · 43 answered · 4 flagged</div></div>
+                </div>
+                <div class="export-actions">
+                  <button class="btn-ghost">Preview</button>
+                  <button class="btn-primary" style="flex:1"><i data-lucide="download" style="width:12px;height:12px;stroke-width:2;display:inline-block;margin-right:4px;vertical-align:middle"></i>Download .xlsx</button>
+                </div>
+              </div>
+            </div>
+            <div id="errD" style="display:none">
+              <div class="error-card">
+                <div class="error-icon"><i data-lucide="alert-circle"></i></div>
+                <div class="error-body">
+                  <div class="error-title">Upload failed</div>
+                  <div class="error-msg">File couldn't be parsed. Ensure column headers match the expected format.</div>
+                  <button class="error-retry" onclick="resetD()">Try again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTION C: Expandable Card in Empty State ── -->
+      <div class="ai-panel" id="solC" style="display:none;">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;">
+              <i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0">
+                <circle cx="18" cy="18" r="18" fill="#EF601A"/>
+                <path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/>
+              </svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto; padding:0 16px 16px;">
+          <!-- Greeting -->
+          <div style="text-align:center; padding: 32px 0 20px;">
+            <div class="ai-hello">Hello, Daniel</div>
+            <div class="ai-sub">What can I help with?</div>
+          </div>
+
+          <!-- Expandable card — header always shown, body collapses -->
+          <div id="cardC" style="border:1px solid var(--divider); border-radius:12px; overflow:hidden; margin-bottom:16px;">
+
+            <!-- Clickable header row — always visible -->
+            <button id="cardCTrigger" onclick="toggleCardC()" style="width:100%;background:transparent;border:none;padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;text-align:left;font-family:'Figtree',sans-serif;" onmouseover="this.style.background='var(--hover)'" onmouseout="this.style.background='transparent'">
+              <div style="width:32px;height:32px;background:#F7F6F2;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--primary)">
+                <i data-lucide="upload-cloud" style="width:16px;height:16px;stroke-width:1.5"></i>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:500;color:var(--text-primary);line-height:1.4;">Answer your question tracker</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.4;">Blueflame will draft answers from the dataroom</div>
+              </div>
+              <i data-lucide="chevron-down" id="cardCChevron" style="width:16px;height:16px;stroke-width:1.5;color:var(--text-secondary);flex-shrink:0;transition:transform 220ms ease"></i>
+            </button>
+
+            <!-- Expandable body -->
+            <div id="cardCBody" style="overflow:hidden;max-height:0;transition:max-height 320ms ease;">
+              <div style="padding:0 14px 14px;display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--divider);">
+                <div style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.5;padding-top:12px;">Search the whole project, or narrow the context before uploading.</div>
+                <div id="expandCtx_C" class="expand-ctx-row"></div>
+                <div class="drop-zone" id="dzC"
+                  ondragover="event.preventDefault();this.classList.add('drag-over')"
+                  ondragleave="this.classList.remove('drag-over')"
+                  ondrop="event.preventDefault();this.classList.remove('drag-over');startUploadC()">
+                  <div class="dz-title">Upload your question tracker.</div>
+                  <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+                  <button class="dz-cta" onclick="event.stopPropagation();startUploadC()"><i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker</button>
+                  <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+                </div>
+                <!-- Uploading progress -->
+                <div id="uploadingC" style="display:none">
+                  <div class="upload-progress">
+                    <div class="upload-file-icon">
+                      <svg viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="48" height="56" rx="6" fill="#DCFCE7"/>
+                        <rect x="6" y="6" width="36" height="44" rx="4" fill="#86EFAC"/>
+                        <text x="24" y="36" text-anchor="middle" font-family="Figtree,sans-serif" font-size="18" font-weight="700" fill="#15803D">x</text>
+                      </svg>
+                    </div>
+                    <div class="upload-filename">Buyer2-questions.xlsx</div>
+                    <div class="upload-bar-track" style="width:100%"><div class="upload-bar-fill" id="uploadBarC"></div></div>
+                    <button class="upload-cancel" onclick="resetC()">Cancel</button>
+                  </div>
+                </div>
+                <!-- Upload ready / confirm -->
+                <div id="readyC" style="display:none">
+                  <div class="upload-ready">
+                    <div class="upload-ready-file">
+                      
+                      <div class="upload-ready-info">
+                        <div class="upload-ready-name"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+  <rect width="16" height="20" rx="2" fill="#E8F5E9"/>
+  <rect x="1" y="1" width="14" height="18" rx="1.5" fill="#1D6F42"/>
+  <text x="8" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">X</text>
+</svg>Buyer2-questions.xlsx</div>
+                        <div class="upload-ready-status">Uploaded successfully</div>
+                      </div>
+                      <button class="upload-ready-change" onclick="resetC()">Change</button>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Answers may take a few minutes.</div>
+                    <button class="upload-submit" onclick="submitC()">
+                      <i data-lucide="sparkles" style="width:16px;height:16px;stroke-width:1.5"></i>
+                      Get answers
+                    </button>
+                  </div>
+                </div>
+                <div id="procC" style="display:none">
+                  <div class="processing-card">
+                    <div class="proc-row">
+                      <div class="proc-check"><svg viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div>
+                      <span class="proc-label done">Uploaded Buyer2-questions.xlsx</span>
+                    </div>
+                    <div class="proc-row">
+                      <div class="proc-spinner"></div>
+                      <span class="proc-label">Matching questions to dataroom documents…</span>
+                    </div>
+                    <div class="proc-progress"><div class="proc-progress-fill" id="fillC"></div></div>
+                    <div class="proc-row" style="opacity:0.4">
+                      <div style="width:18px;height:18px;border:2px solid #DBDAD7;border-radius:50%;flex-shrink:0"></div>
+                      <span class="proc-label pending">Generating citations &amp; draft answers</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="exportC" style="display:none">
+                  <div class="export-card">
+                    <div class="export-row">
+                      <div class="export-icon"><i data-lucide="file-spreadsheet"></i></div>
+                      <div class="export-info">
+                        <div class="export-name">DRL_Project_Orange_Answered.xlsx</div>
+                        <div class="export-meta">47 questions · 43 answered · 4 flagged</div>
+                      </div>
+                    </div>
+                    <div class="export-actions">
+                      <button class="btn-ghost">Preview</button>
+                      <button class="btn-primary" style="flex:1">
+                        <i data-lucide="download" style="width:12px;height:12px;stroke-width:2;display:inline-block;margin-right:4px;vertical-align:middle"></i>
+                        Download .xlsx
+                      </button>
+                    </div>
+                  </div>
+                  <div class="ai-foot-note">4 questions couldn't be answered — not enough source material found in the dataroom.</div>
+                </div>
+                <div id="errC" style="display:none">
+                  <div class="error-card">
+                    <div class="error-icon"><i data-lucide="alert-circle"></i></div>
+                    <div class="error-body">
+                      <div class="error-title">Upload failed</div>
+                      <div class="error-msg">File couldn't be parsed. Check column headers match expected format.</div>
+                      <button class="error-retry" onclick="resetC()">Try again</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Regular chips below -->
+          <div class="chip-row" style="margin-bottom:0">
+            <button class="hero-chip">Summarize key financial highlights</button>
+            <button class="hero-chip">Highlight change of control clauses</button>
+          </div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_C">
+            <button class="proj-selector" onclick="openCtxPicker('C')">
+              <span class="proj-avatar">D</span>
+              <span class="proj-selector-label">Project Orange</span>
+              <span class="proj-chevron" id="projChevron_C"><i data-lucide="chevron-down"></i></span>
+            </button>
+          </div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions">
+              
+              <button class="ai-send-btn"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTION E: Pre-fill Prompt ── -->
+      <div class="ai-panel" id="solE" style="display:none; position:relative;">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;">
+              <i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0"><circle cx="18" cy="18" r="18" fill="#EF601A"/><path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/></svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto;">
+          <div class="ai-hello" style="margin-top:32px">Hello, Daniel</div>
+          <div class="ai-sub">What can I help with?</div>
+          <div class="chip-row">
+            <button class="hero-chip" onclick="prefillPromptE()">
+              Get answers for a question tracker
+            </button>
+            <button class="hero-chip">Summarize key financial highlights</button>
+            <button class="hero-chip">Highlight change of control clauses</button>
+          </div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_E"></div>
+          <div class="ai-prompt-wrap" id="promptWrapE"
+            ondragover="event.preventDefault(); event.dataTransfer.dropEffect='copy'; document.getElementById('promptWrapE').classList.add('drag-over')"
+            ondragleave="document.getElementById('promptWrapE').classList.remove('drag-over')"
+            ondrop="event.preventDefault(); document.getElementById('promptWrapE').classList.remove('drag-over'); handleFilesE(event.dataTransfer.files)">
+            <div class="prompt-attachments-row" id="attachRowE"></div>
+            <textarea class="ai-prompt-input" id="promptE" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions" style="justify-content:space-between;">
+              <div style="position:relative;">
+                <button class="prompt-plus-btn" id="plusBtnE" onclick="togglePlusMenuE(event)" title="Add file or set context">
+                  <i data-lucide="plus" style="width:16px;height:16px;stroke-width:2"></i>
+                </button>
+                <div class="prompt-plus-menu" id="plusMenuE">
+                  <div style="padding:6px 6px 4px;">
+                    <button class="proj-selector" style="width:100%;border-radius:8px;padding:0 10px 0 6px;" onclick="closePlusMenuE(); openCtxPicker('E')">
+                      <span class="proj-avatar">D</span>
+                      <span class="proj-selector-label" style="flex:1;text-align:left;">Project Orange</span>
+                      <span class="proj-chevron" id="projChevron_E"><i data-lucide="chevron-down"></i></span>
+                    </button>
+                  </div>
+                  <div style="height:1px;background:var(--divider);margin:2px 8px 2px;"></div>
+                  <button class="prompt-plus-menu-item" onclick="closePlusMenuE(); triggerFilePickerE()">
+                    <i data-lucide="file-plus" style="width:14px;height:14px;stroke-width:1.5"></i>
+                    Add file
+                  </button>
+                  <div class="prompt-plus-menu-hint">.xlsx or .csv only</div>
+                </div>
+              </div>
+              <button class="ai-send-btn" onclick="if(this.classList.contains('active')) submitE()"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <input type="file" id="filePickerE" accept=".xlsx,.csv" style="display:none" onchange="handleFilesE(this.files); this.value=''">
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+      </div>
+
+      <!-- ── SOLUTION F: Card + Dialog Sheet ── -->
+      <div class="ai-panel" id="solF" style="display:none; position:relative;">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;">
+              <i data-lucide="menu" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0"><circle cx="18" cy="18" r="18" fill="#EF601A"/><path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/></svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeAI()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="ai-panel-body" style="justify-content:flex-start; overflow-y:auto; padding:0 16px 16px;">
+          <div style="text-align:center; padding: 32px 0 20px;">
+            <div class="ai-hello">Hello, Daniel</div>
+            <div class="ai-sub">What can I help with?</div>
+          </div>
+
+          <!-- Card — always visible, click opens dialog -->
+          <div id="cardF" style="border:1px solid var(--divider); border-radius:var(--radius-m); overflow:hidden; margin-bottom:16px;">
+            <button onclick="openDialogF()" style="width:100%;background:transparent;border:none;padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;text-align:left;font-family:'Figtree',sans-serif;" onmouseover="this.style.background='var(--hover)'" onmouseout="this.style.background='transparent'">
+              <div style="width:32px;height:32px;background:#F7F6F2;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--primary)">
+                <i data-lucide="upload-cloud" style="width:16px;height:16px;stroke-width:1.5"></i>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:500;color:var(--text-primary);line-height:1.4;">Answer your question tracker</div>
+                <div style="font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.4;">Blueflame will draft answers from the dataroom</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="chip-row" style="margin-bottom:0">
+            <button class="hero-chip">Summarize key financial highlights</button>
+            <button class="hero-chip">Highlight change of control clauses</button>
+          </div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_F">
+            <button class="proj-selector" onclick="openCtxPicker('F')">
+              <span class="proj-avatar">D</span>
+              <span class="proj-selector-label">Project Orange</span>
+              <span class="proj-chevron" id="projChevron_F"><i data-lucide="chevron-down"></i></span>
+            </button>
+          </div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions">
+              <button class="ai-send-btn"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+
+        <!-- Dialog overlay -->
+        <div class="dialog-overlay" id="dialogOverlayF" onclick="closeDialogF(event)">
+          <div class="dialog-sheet" id="dialogSheetF">
+            <div class="dialog-hdr">
+              <div class="dialog-hdr-l">
+                <div class="dialog-hdr-icon"><i data-lucide="upload-cloud"></i></div>
+                <span class="dialog-title">Upload your question tracker</span>
+              </div>
+              <button class="dialog-close" onclick="closeDialogF(event, true)"><i data-lucide="x"></i></button>
+            </div>
+            <div style="font-size:13px;font-weight:300;color:var(--text-secondary);line-height:1.5;">Search the whole project, or narrow the context before uploading.</div>
+            <div id="expandCtx_F" class="expand-ctx-row"></div>
+            <div class="drop-zone" id="dzF"
+              ondragover="event.preventDefault();this.classList.add('drag-over')"
+              ondragleave="this.classList.remove('drag-over')"
+              ondrop="event.preventDefault();this.classList.remove('drag-over');startUploadF()">
+              <div class="dz-title">Upload your question tracker.</div>
+              <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+              <button class="dz-cta" onclick="event.stopPropagation();startUploadF()"><i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker</button>
+              <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+            </div>
+            <div id="uploadingF" style="display:none">
+              <div class="upload-progress">
+                <div class="upload-file-icon"><svg viewBox="0 0 48 56" fill="none"><rect width="48" height="56" rx="6" fill="#DCFCE7"/><rect x="6" y="6" width="36" height="44" rx="4" fill="#86EFAC"/><text x="24" y="36" text-anchor="middle" font-family="Figtree,sans-serif" font-size="18" font-weight="700" fill="#15803D">x</text></svg></div>
+                <div class="upload-filename">Buyer2-questions.xlsx</div>
+                <div class="upload-bar-track" style="width:100%"><div class="upload-bar-fill" id="uploadBarF"></div></div>
+                <button class="upload-cancel" onclick="resetF()">Cancel</button>
+              </div>
+            </div>
+            <div id="readyF" style="display:none">
+              <div class="upload-ready">
+                <div class="upload-ready-file">
+                  <div class="upload-ready-info">
+                    <div class="upload-ready-name"><svg width="16" height="20" viewBox="0 0 16 20" fill="none" style="flex-shrink:0"><rect width="16" height="20" rx="2" fill="#E8F5E9"/><rect x="1" y="1" width="14" height="18" rx="1.5" fill="#1D6F42"/><text x="8" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">X</text></svg>Buyer2-questions.xlsx</div>
+                    <div class="upload-ready-status">Uploaded successfully</div>
+                  </div>
+                  <button class="upload-ready-change" onclick="resetF()">Change</button>
+                </div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Answers may take a few minutes.</div>
+                <button class="upload-submit" onclick="submitF()"><i data-lucide="sparkles" style="width:16px;height:16px;stroke-width:1.5"></i>Get answers</button>
+              </div>
+            </div>
+            <div id="procF" style="display:none">
+              <div class="processing-card">
+                <div class="proc-row"><div class="proc-check"><svg viewBox="0 0 10 8"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="1.5" fill="none"/></svg></div><span class="proc-label done">Uploaded Buyer2-questions.xlsx</span></div>
+                <div class="proc-row"><div class="proc-spinner"></div><span class="proc-label">Matching questions to dataroom documents…</span></div>
+                <div class="proc-progress"><div class="proc-progress-fill" id="fillF"></div></div>
+                <div class="proc-row" style="opacity:0.4"><div style="width:18px;height:18px;border:2px solid #DBDAD7;border-radius:50%;flex-shrink:0"></div><span class="proc-label pending">Generating citations &amp; draft answers</span></div>
+              </div>
+            </div>
+            <div id="exportF" style="display:none">
+              <div class="export-card">
+                <div class="export-row">
+                  <div class="export-icon"><i data-lucide="file-spreadsheet"></i></div>
+                  <div class="export-info">
+                    <div class="export-name">DRL_Project_Orange_v2_Answered.xlsx</div>
+                    <div class="export-meta">47 questions · 43 answered · 4 flagged</div>
+                  </div>
+                </div>
+                <div class="export-actions">
+                  <button class="btn-ghost">Preview</button>
+                  <button class="btn-primary" style="flex:1"><i data-lucide="download" style="width:12px;height:12px;stroke-width:2;display:inline-block;margin-right:4px;vertical-align:middle"></i>Download .xlsx</button>
+                </div>
+              </div>
+            </div>
+            <div id="errF" style="display:none">
+              <div class="error-card">
+                <div class="error-icon"><i data-lucide="alert-circle"></i></div>
+                <div class="error-body">
+                  <div class="error-title">Upload failed</div>
+                  <div class="error-msg">File couldn't be parsed. Ensure column headers match the expected format.</div>
+                  <button class="error-retry" onclick="resetF()">Try again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SHARED CHAT VIEW (shown after Get Answers on any solution) ── -->
+      <div class="chat-view" id="chatView">
+        <div class="ai-panel-hdr">
+          <div class="ai-panel-hdr-l">
+            <button onclick="backToSolution()" style="width:24px;height:24px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:4px;color:var(--text-secondary);padding:0;flex-shrink:0;" title="Back">
+              <i data-lucide="arrow-left" style="width:16px;height:16px;stroke-width:1.5;display:block"></i>
+            </button>
+            <div class="ai-panel-hdr-bf">
+              <svg width="16" height="16" viewBox="0 0 36 36" fill="none" style="flex-shrink:0">
+                <circle cx="18" cy="18" r="18" fill="#EF601A"/>
+                <path d="M31.31 17.62C22.67 17.56 18.43 13.33 18.37 4.68V4.49H17.62V4.68C17.56 13.32 13.32 17.56 4.68 17.62H4.49V18.37H4.68C13.32 18.43 17.56 22.67 17.62 31.31V31.5H18.37V31.31C18.43 22.67 22.67 18.43 31.31 18.37H31.5V17.62H31.31Z" fill="white"/>
+              </svg>
+              <span class="ai-panel-title">Blueflame</span>
+            </div>
+          </div>
+          <div class="ai-panel-hdr-r">
+            <button title="New chat"><i data-lucide="plus"></i></button>
+            <button title="Close" onclick="closeChatAndShowFloat()"><i data-lucide="arrow-right-to-line"></i></button>
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <!-- User message -->
+          <div class="msg-user">
+            <div class="msg-user-row">
+              <div class="msg-bubble-user">
+                <div class="msg-bubble-text" id="chatMsgText">Generate answers for a question tracker based on the content of the dataroom.</div>
+                <div id="chatFilePillWrap">
+                  <span class="msg-file-pill">
+                    <svg viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="14" height="16" rx="2" fill="#DCFCE7"/>
+                      <text x="7" y="12" text-anchor="middle" font-size="8" font-weight="700" fill="#15803D" font-family="sans-serif">x</text>
+                    </svg>
+                    <span id="chatFilePillName">Buyer2-questions.xlsx</span>
+                  </span>
+                </div>
+              </div>
+              <div class="msg-avatar-user">DS</div>
+            </div>
+            <div class="msg-time" id="chatTimestamp"></div>
+          </div>
+
+          <!-- No-file: AI asks for upload (Option E, hidden initially) -->
+          <div class="msg-agent" id="noFileMsg" style="display:none">
+            <div class="msg-avatar-agent" style="flex-shrink:0;width:28px;height:28px;background:transparent;">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#EF601A"/><path d="M22.5 13.6C17.1 13.56 14.32 10.79 14.28 5.39V5.26H13.72V5.39C13.68 10.79 10.9 13.56 5.5 13.6V14.15H5.64C10.9 14.19 13.68 16.96 13.72 22.36V22.5H14.28V22.36C14.32 16.96 17.1 14.19 22.5 14.15V13.6Z" fill="white"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;">
+              <div style="font-size:14px;font-weight:300;color:var(--text-primary);line-height:1.6;">To generate answers, I'll need your question tracker. Please upload your <strong style="font-weight:500;">.xlsx</strong> or <strong style="font-weight:500;">.csv</strong> file below.</div>
+              <div class="drop-zone" id="noFileDropZone" style="margin:0;"
+                ondragover="event.preventDefault();this.classList.add('drag-over')"
+                ondragleave="this.classList.remove('drag-over')"
+                ondrop="event.preventDefault();this.classList.remove('drag-over');handleInlineFileE(event.dataTransfer.files)">
+                <div class="dz-title">Upload your question tracker.</div>
+                <div class="dz-sub">Blueflame drafts answers from your dataroom.</div>
+                <button class="dz-cta" onclick="event.stopPropagation();document.getElementById('inlineFilePickerE').click()">
+                  <i data-lucide="upload-cloud" style="width:20px;height:16px;stroke-width:1.5"></i>Upload Tracker
+                </button>
+                <div class="dz-limit">.xlsx or .csv · Up to 25MB</div>
+              </div>
+              <input type="file" id="inlineFilePickerE" accept=".xlsx,.csv" style="display:none" onchange="handleInlineFileE(this.files);this.value=''">
+            </div>
+          </div>
+
+          <!-- Agent thinking -->
+          <div class="msg-agent" id="thinkingMsg">
+            <div class="msg-avatar-agent">
+              <svg width="12" height="12" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="#EF601A"/><path d="M27 17.6C21 17.6 18.4 15 18.4 9h-.8C17.6 15 15 17.6 9 17.6v.8C15 18.4 17.6 21 17.6 27h.8C18.4 21 21 18.4 27 18.4v-.8z" fill="white"/></svg>
+            </div>
+            <div class="msg-thinking">
+              Thinking
+              <span class="thinking-dots"><span></span><span></span><span></span></span>
+            </div>
+          </div>
+
+          <!-- Plan (hidden initially) -->
+          <div class="msg-agent" id="planMsg" style="display:none">
+            <div class="msg-avatar-agent" style="flex-shrink:0;width:28px;height:28px;background:transparent;">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="14" fill="#EF601A"/>
+                <path d="M22.5 13.6C17.1 13.56 14.32 10.79 14.28 5.39V5.26H13.72V5.39C13.68 10.79 10.9 13.56 5.5 13.6V14.15H5.64C10.9 14.19 13.68 16.96 13.72 22.36V22.5H14.28V22.36C14.32 16.96 17.1 14.19 22.5 14.15V13.6Z" fill="white"/>
+              </svg>
+            </div>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;">
+              <div class="plan-card" id="planCard">
+                <div class="plan-header">
+                  <strong id="planCardTitle">Here's the plan</strong>
+                  <span>Goal: Answer the question tracker with cited sources</span>
+                </div>
+                <div class="plan-progress-row" id="planProgressRow" style="display:none">
+                  <div class="plan-progress-label" id="planProgressLabel"></div>
+                  <div class="plan-progress-track"><div class="plan-progress-fill" id="planProgressFill"></div></div>
+                </div>
+                <div class="plan-steps" id="planSteps">
+                  <div class="plan-step" id="step0">
+                    <div class="step-icon spinning" id="stepIcon0"></div>
+                    <div class="step-label active" id="stepLabel0">Uploading and parsing tracker</div>
+                  </div>
+                  <div class="plan-step" id="step1">
+                    <div class="step-icon" id="stepIcon1"></div>
+                    <div class="step-label" id="stepLabel1">Categorize questions by topic</div>
+                  </div>
+                  <div class="plan-step" id="step2">
+                    <div class="step-icon" id="stepIcon2"></div>
+                    <div class="step-label" id="stepLabel2">Search dataroom for relevant documents</div>
+                  </div>
+                  <div class="plan-step" id="step3">
+                    <div class="step-icon" id="stepIcon3"></div>
+                    <div class="step-label" id="stepLabel3">Draft answers and generate citations</div>
+                  </div>
+                  <div class="plan-step" id="step4">
+                    <div class="step-icon" id="stepIcon4"></div>
+                    <div class="step-label" id="stepLabel4">Compile results into output file</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Final response — appears in same bubble after plan completes -->
+              <div id="responseMsg" style="display:none">
+                <div class="msg-agent-response">
+                  <div class="agent-response-label">Your tracker is ready</div>
+                  <div class="agent-response-sub">247 answers with dataroom citations.</div>
+                  <button class="download-btn">
+                    Download Tracker
+                    <i data-lucide="cloud-download" style="width:16px;height:16px;stroke-width:1.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time-agent" id="responseTime" style="display:none"></div>
+        </div>
+
+        <div class="ai-panel-footer">
+          <div class="footer-context" id="footerCtx_chat">
+            <button class="proj-selector" onclick="openCtxPicker('chat')">
+              <span class="proj-avatar">D</span>
+              <span class="proj-selector-label">Project Orange</span>
+              <span class="proj-chevron" id="projChevron_chat"><i data-lucide="chevron-down"></i></span>
+            </button>
+          </div>
+          <div class="ai-prompt-wrap">
+            <textarea class="ai-prompt-input" rows="2" placeholder="How can I help you today?"></textarea>
+            <div class="ai-prompt-actions">
+              <button class="ai-send-btn"><i data-lucide="arrow-up"></i></button>
+            </div>
+          </div>
+          <div class="ai-attribution">Powered by Blueflame AI. Always review for accuracy.</div>
+        </div>
+      </div>
+
+    </div><!-- /ai-container -->
+
+    <!-- Floating progress bar -->
+    <div class="float-progress" id="floatProgress">
+      <div class="float-progress-body">
+        <div class="float-progress-icon spinning" id="floatIcon"></div>
+        <div class="float-progress-info">
+          <div class="float-progress-title" id="floatTitle">Answering and citing questions</div>
+          <div class="float-progress-sub" id="floatSub">0 of 5 steps complete</div>
+        </div>
+        <div class="float-progress-actions">
+          <button class="float-action-btn" id="floatDismiss" style="display:none" onclick="dismissFloat()">Dismiss</button>
+          <button class="float-action-btn view" onclick="reopenChatFromFloat()">View</button>
+        </div>
+      </div>
+      <div class="float-progress-bar"><div class="float-progress-bar-fill" id="floatBarFill"></div></div>
+    </div>
+  </div><!-- /shell -->
+</div><!-- /outer-shell -->
+
+<!-- ═══════════════════════════════════
+     CONTEXT PICKER MODAL (shared)
+═══════════════════════════════════ -->
+<div id="ctxPickerStorage" style="position:absolute;visibility:hidden;pointer-events:none;width:0;height:0;overflow:hidden;">
+  <div class="ctx-modal" id="ctxModal">
+    <div class="ctx-modal-hdr">
+      <div class="ctx-modal-hdr-row">
+        <span class="ctx-modal-title">Select files and folders</span>
+        <button class="ctx-modal-close" onclick="closeCtxPicker(false)">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="ctx-modal-meta">
+        <span class="ctx-modal-count" id="ctxCount">0 items selected</span>
+        <button class="ctx-modal-clear" id="ctxClearBtn" onclick="clearCtxAll()" disabled>Clear All</button>
+      </div>
+    </div>
+
+    <div class="ctx-tree" id="ctxTree">
+      <!-- Round 2 -->
+      <div class="ctx-tree-row" id="ctxRow_r2" onclick="toggleCtxExpand('r2')">
+        <div class="ctx-expand-btn" id="ctxExp_r2"><i data-lucide="chevron-right"></i></div>
+        <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.22)"/></svg></div>
+        <div class="ctx-checkbox" id="ctxChk_r2"></div>
+        <span class="ctx-row-label">Round 2</span>
+      </div>
+      <div class="ctx-child-rows" id="ctxChildren_r2">
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('1_Corporate','(1) 1_Corporate')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_1_Corporate"></div>
+          <span class="ctx-row-label">(1) 1_Corporate</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('2_Financial','(2) 2_Financial')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_2_Financial"></div>
+          <span class="ctx-row-label">(2) 2_Financial</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('3_Process_Materials','(3) 3_Process_Materials')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_3_Process_Materials"></div>
+          <span class="ctx-row-label">(3) 3_Process_Materials</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('4_Third_Party_Reports','(4) 4_Third_Party_Reports')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_4_Third_Party_Reports"></div>
+          <span class="ctx-row-label">(4) 4_Third_Party_Reports</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('5_Insurance','(5) 5_Insurance')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_5_Insurance"></div>
+          <span class="ctx-row-label">(5) 5_Insurance</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('6_Management_Employees','(6) 6_Management_Employees')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_6_Management_Employees"></div>
+          <span class="ctx-row-label">(6) 6_Management_Employees</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('7_Technology','(7) 7_Technology')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_7_Technology"></div>
+          <span class="ctx-row-label">(7) 7_Technology</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('8_Contracts','(8) 8_Contracts')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_8_Contracts"></div>
+          <span class="ctx-row-label">(8) 8_Contracts</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('9_Tax','(9) 9_Tax')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_9_Tax"></div>
+          <span class="ctx-row-label">(9) 9_Tax</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('10_Transaction_Documents','(10) 10_Transaction_Documents')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_10_Transaction_Documents"></div>
+          <span class="ctx-row-label">(10) 10_Transaction_Documents</span>
+        </div>
+        <div class="ctx-tree-row" style="padding-left:38px" onclick="toggleCtxItem('11_Leverage_Term_Sheets','(11) 11_Leverage_Term_Sheets')">
+          <div class="ctx-expand-placeholder"></div>
+          <div class="ctx-folder-icon"><svg viewBox="0 0 16 13" fill="none"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.18)"/></svg></div>
+          <div class="ctx-checkbox" id="ctxChk_11_Leverage_Term_Sheets"></div>
+          <span class="ctx-row-label">(11) 11_Leverage_Term_Sheets</span>
+        </div>
+      </div>
+      <!-- Round 3 (archived) -->
+      <div class="ctx-tree-row" onclick="toggleCtxItem('round3','Round 3')">
+        <div class="ctx-expand-placeholder"></div>
+        <div class="ctx-folder-icon">
+          <svg viewBox="0 0 16 14" fill="none" width="16" height="14">
+            <rect x="0.5" y="0.5" width="15" height="3.5" rx="0.8" fill="rgba(31,34,39,0.22)"/>
+            <path d="M1.5 4h13v8.5a1 1 0 01-1 1h-11a1 1 0 01-1-1V4z" fill="rgba(31,34,39,0.12)"/>
+            <rect x="5.5" y="7" width="5" height="1.2" rx="0.4" fill="rgba(31,34,39,0.3)"/>
+          </svg>
+        </div>
+        <div class="ctx-checkbox" id="ctxChk_round3"></div>
+        <span class="ctx-row-label muted">Round 3</span>
+      </div>
+    </div>
+
+    <!-- Selected chips bar -->
+    <div class="ctx-selected-bar" id="ctxSelectedBar"></div>
+
+    <div class="ctx-modal-footer">
+      <button class="ctx-btn-cancel" onclick="closeCtxPicker(false)">Cancel</button>
+      <button class="ctx-btn-okay" onclick="closeCtxPicker(true)">Apply</button>
+    </div>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+// ═══════════════════════════════════
+// CONTEXT PICKER
+// ═══════════════════════════════════
+var ctxSelected = [];
+var ctxPending = [];
+var ctxActiveSlot = null;
+var MAX_CHIPS = 3;
+
+function openCtxPicker(slot) {
+  // Close any open picker from another slot first
+  if (ctxActiveSlot && ctxActiveSlot !== slot) {
+    closeCtxPicker(false);
+  }
+  ctxActiveSlot = slot;
+  ctxPending = ctxSelected.map(function(x){ return {id:x.id,label:x.label}; });
+
+  // Resolve the container: expand_X slots live inside dialogs
+  var containerId = slot.startsWith('expand_')
+    ? 'expandCtx_' + slot.replace('expand_','')
+    : 'footerCtx_' + slot;
+  var container = document.getElementById(containerId);
+  if (!container) return;
+
+  // Move the picker into this container (inserted first = appears above the chip row)
+  var modal = document.getElementById('ctxModal');
+  container.insertBefore(modal, container.firstChild);
+  modal.classList.add('visible');
+
+  var chev = document.getElementById('projChevron_' + slot);
+  if (chev) chev.classList.add('open');
+
+  renderCtxCheckboxes(); updateCtxMeta(); renderCtxSelectedBar();
+  lucide.createIcons();
+}
+
+// Initialize all context areas on load
+function initAllCtxAreas() {
+  ['A','B','C','D','F','chat'].forEach(function(slot) {
+    var container = document.getElementById('footerCtx_' + slot);
+    if (container) buildCtxChips(container, slot);
+  });
+  ['A','B','C','D','F'].forEach(function(slot) {
+    var container = document.getElementById('expandCtx_' + slot);
+    if (container) buildCtxChips(container, 'expand_' + slot);
+  });
+}
+
+function closeCtxPicker(confirm) {
+  var modal = document.getElementById('ctxModal');
+  modal.classList.remove('visible');
+  // Park the modal back in hidden storage so it's out of any container
+  document.getElementById('ctxPickerStorage').appendChild(modal);
+
+  if (ctxActiveSlot) {
+    var chev = document.getElementById('projChevron_' + ctxActiveSlot);
+    if (chev) chev.classList.remove('open');
+    ctxActiveSlot = null;
+  }
+
+  if (confirm) {
+    ctxSelected = ctxPending.map(function(x){ return {id:x.id,label:x.label}; });
+    updateAllFooterChips();
+  }
+}
+
+function toggleCtxExpand(key) {
+  var btn = document.getElementById('ctxExp_' + key);
+  var children = document.getElementById('ctxChildren_' + key);
+  if (!children) return;
+  var open = children.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  lucide.createIcons();
+}
+
+function toggleCtxItem(id, label) {
+  var idx = ctxPending.findIndex(function(x){ return x.id===id; });
+  if (idx >= 0) ctxPending.splice(idx, 1); else ctxPending.push({id:id,label:label});
+  renderCtxCheckboxes(); updateCtxMeta(); renderCtxSelectedBar();
+}
+
+function renderCtxCheckboxes() {
+  var ids = ctxPending.map(function(x){ return x.id; });
+  document.querySelectorAll('[id^="ctxChk_"]').forEach(function(el) {
+    var key = el.id.replace('ctxChk_','');
+    var row = el.closest('.ctx-tree-row');
+    if (ids.indexOf(key) >= 0) {
+      el.classList.add('checked'); el.classList.remove('indeterminate');
+      el.innerHTML = '<svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>';
+      if (row) row.classList.add('selected');
+    } else {
+      el.classList.remove('checked','indeterminate'); el.innerHTML = '';
+      if (row) row.classList.remove('selected');
+    }
+  });
+}
+
+function updateCtxMeta() {
+  var n = ctxPending.length;
+  document.getElementById('ctxCount').textContent = n === 0 ? '0 items selected' : n + ' item' + (n>1?'s':'') + ' selected';
+  document.getElementById('ctxClearBtn').disabled = n === 0;
+}
+
+function renderCtxSelectedBar() {
+  var bar = document.getElementById('ctxSelectedBar');
+  bar.innerHTML = '';
+  if (!ctxPending.length) { bar.classList.remove('has-items'); return; }
+  bar.classList.add('has-items');
+  ctxPending.slice(0, MAX_CHIPS).forEach(function(item) {
+    var short = item.label.replace(/^\(\d+\.?\d*\)\s*/,'');
+    var chip = document.createElement('div');
+    chip.className = 'ctx-folder-chip';
+    chip.innerHTML = '<svg viewBox="0 0 16 13" fill="none" width="14" height="12"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.22)"/></svg>'
+      + '<span>' + short + '</span>'
+      + '<button class="ctx-folder-chip-x" onclick="removeCtxItem(\'' + item.id + '\')">×</button>';
+    bar.appendChild(chip);
+  });
+  var overflow = ctxPending.length - MAX_CHIPS;
+  if (overflow > 0) {
+    var badge = document.createElement('div');
+    badge.className = 'ctx-more-badge';
+    badge.textContent = '+' + overflow + ' more';
+    bar.appendChild(badge);
+  }
+}
+
+function removeCtxItem(id) {
+  ctxPending = ctxPending.filter(function(x){ return x.id!==id; });
+  renderCtxCheckboxes(); updateCtxMeta(); renderCtxSelectedBar();
+}
+
+function clearCtxAll() {
+  ctxPending = [];
+  renderCtxCheckboxes(); updateCtxMeta(); renderCtxSelectedBar();
+}
+
+function buildCtxChips(container, slot) {
+  container.innerHTML = '';
+  var btn = document.createElement('button');
+  btn.className = 'proj-selector';
+  btn.setAttribute('onclick', "openCtxPicker('" + slot + "')");
+  btn.innerHTML = '<span class="proj-avatar">D</span>'
+    + '<span class="proj-selector-label">Project Orange</span>'
+    + '<span class="proj-chevron" id="projChevron_' + slot + '"><i data-lucide="chevron-down"></i></span>';
+  container.appendChild(btn);
+  if (ctxSelected.length > 0) {
+    ctxSelected.slice(0, MAX_CHIPS).forEach(function(item) {
+      var short = item.label.replace(/^\(\d+\.?\d*\)\s*/,'');
+      var chip = document.createElement('div');
+      chip.className = 'ctx-folder-chip';
+      chip.innerHTML = '<svg viewBox="0 0 16 13" fill="none" width="14" height="12"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.35)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.22)"/></svg>'
+        + '<span>' + short + '</span>'
+        + '<button class="ctx-folder-chip-x" onclick="removeCtxConfirmed(\'' + item.id + '\')">×</button>';
+      container.appendChild(chip);
+    });
+    var overflow = ctxSelected.length - MAX_CHIPS;
+    if (overflow > 0) {
+      var badge = document.createElement('div');
+      badge.className = 'ctx-more-badge';
+      badge.textContent = '+' + overflow + ' more';
+      container.appendChild(badge);
+    }
+  }
+  lucide.createIcons();
+}
+
+function updateAllFooterChips() {
+  // Footer slots
+  ['A','B','C','D','F','chat'].forEach(function(slot) {
+    var container = document.getElementById('footerCtx_' + slot);
+    if (container) buildCtxChips(container, slot);
+  });
+  // Expand slots
+  ['A','B','C','F'].forEach(function(slot) {
+    var container = document.getElementById('expandCtx_' + slot);
+    if (container) buildCtxChips(container, 'expand_' + slot);
+  });
+  syncCtxChipsToE();
+}
+
+function removeCtxConfirmed(id) {
+  ctxSelected = ctxSelected.filter(function(x){ return x.id!==id; });
+  updateAllFooterChips();
+}
+
+// ── Nav ──
+var isOpen = false;
+function toggleNav() {
+  isOpen = !isOpen;
+  document.getElementById('lnav').classList.toggle('open', isOpen);
+  lucide.createIcons();
+}
+function setActive(btn) {
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── AI Panel ──
+var aiOpen = false;
+function openAI() {
+  aiOpen = true;
+  document.getElementById('aiContainer').classList.add('show');
+  document.getElementById('aiBackdrop').classList.add('show');
+  lucide.createIcons();
+}
+function closeAI() {
+  aiOpen = false;
+  document.getElementById('aiContainer').classList.remove('show');
+  document.getElementById('aiBackdrop').classList.remove('show');
+}
+
+// ── Solution Switcher ──
+var currentSol = 0;
+var solIds = ['solA','solB','solC','solD','solE','solF'];
+
+function selectSolution(idx, btn) {
+  currentSol = idx;
+  document.querySelectorAll('.sol-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  solIds.forEach((id, i) => {
+    document.getElementById(id).style.display = i === idx ? 'flex' : 'none';
+  });
+  openAI();
+  lucide.createIcons();
+  resetA(); resetB(); resetC(); resetD(); resetE(); resetF(); initSendButtons();
+}
+
+// ══ Shared upload state machine helper ══
+function startUpload(ids) {
+  // ids: { dz, uploading, bar, ready, proc, fill, export, err }
+  document.getElementById(ids.dz).style.display = 'none';
+  document.getElementById(ids.uploading).style.display = 'block';
+  lucide.createIcons();
+  // Animate the upload bar to 100%
+  var bar = document.getElementById(ids.bar);
+  var w = 0;
+  var iv = setInterval(function() {
+    w += Math.random() * 12 + 6;
+    if (w >= 100) { w = 100; clearInterval(iv);
+      setTimeout(function() {
+        document.getElementById(ids.uploading).style.display = 'none';
+        document.getElementById(ids.ready).style.display = 'block';
+        lucide.createIcons();
+        // re-expand cardC body if needed
+        if (ids.cardBody) {
+          var cb = document.getElementById(ids.cardBody);
+          if (cb) cb.style.maxHeight = '1200px';
+        }
+      }, 300);
+    }
+    bar.style.width = w + '%';
+  }, 80);
+}
+function submitFlow(ids) {
+  document.getElementById(ids.ready).style.display = 'none';
+  document.getElementById(ids.proc).style.display = 'block';
+  lucide.createIcons();
+  if (ids.cardBody) {
+    var cb = document.getElementById(ids.cardBody);
+    if (cb) cb.style.maxHeight = '1200px';
+  }
+  animateFill(ids.fill, function() {
+    document.getElementById(ids.proc).style.display = 'none';
+    document.getElementById(ids.export).style.display = 'block';
+    lucide.createIcons();
+    if (ids.cardBody) {
+      var cb = document.getElementById(ids.cardBody);
+      if (cb) cb.style.maxHeight = '1200px';
+    }
+  });
+}
+
+// ══ SOLUTION A — Expandable Chip ══
+function toggleExpandA() {
+  var body = document.getElementById('expandBodyA');
+  var chip = document.getElementById('chipA');
+  var open = body.classList.toggle('open');
+  chip.classList.toggle('active', open);
+  if (open) {
+    var c = document.getElementById('expandCtx_A');
+    if (c) buildCtxChips(c, 'expand_A');
+  }
+  lucide.createIcons();
+}
+function startUploadA() {
+  startUpload({ dz:'dzA', uploading:'uploadingA', bar:'uploadBarA', ready:'readyA', proc:'procA', fill:'fillA', export:'exportA', err:'errA' });
+}
+function submitA() {
+  submitFlow({ ready:'readyA', proc:'procA', fill:'fillA', export:'exportA' });
+}
+function resetA() {
+  ['uploadingA','readyA','procA','exportA','errA'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+  var dz = document.getElementById('dzA'); if (dz) dz.style.display = 'flex';
+  var bar = document.getElementById('uploadBarA'); if (bar) bar.style.width = '0%';
+  var body = document.getElementById('expandBodyA'); if (body) body.classList.remove('open');
+  var chip = document.getElementById('chipA'); if (chip) chip.classList.remove('active');
+}
+
+// ══ SOLUTION B — Dialog Sheet ══
+function openDialogB() {
+  var ov = document.getElementById('dialogOverlayB');
+  var sheet = document.getElementById('dialogSheetB');
+  ov.classList.add('show');
+  var c = document.getElementById('expandCtx_B');
+  if (c) buildCtxChips(c, 'expand_B');
+  requestAnimationFrame(() => { requestAnimationFrame(() => { sheet.classList.add('visible'); lucide.createIcons(); }); });
+}
+function closeDialogB(e, force) {
+  if (!force && e.target !== document.getElementById('dialogOverlayB')) return;
+  var sheet = document.getElementById('dialogSheetB');
+  sheet.classList.remove('visible');
+  setTimeout(() => { document.getElementById('dialogOverlayB').classList.remove('show'); }, 260);
+}
+function startUploadB() {
+  startUpload({ dz:'dzB', uploading:'uploadingB', bar:'uploadBarB', ready:'readyB', proc:'procB', fill:'fillB', export:'exportB', err:'errB' });
+}
+function submitB() {
+  submitFlow({ ready:'readyB', proc:'procB', fill:'fillB', export:'exportB' });
+}
+function resetB() {
+  ['uploadingB','readyB','procB','exportB','errB'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+  var dz = document.getElementById('dzB'); if (dz) dz.style.display = 'flex';
+  var bar = document.getElementById('uploadBarB'); if (bar) bar.style.width = '0%';
+}
+
+// ══ SOLUTION D — Buyer Permissions Dialog ══
+function openDialogD() {
+  var ov = document.getElementById('dialogOverlayD');
+  var sheet = document.getElementById('dialogSheetD');
+  ov.classList.add('show');
+  var c = document.getElementById('expandCtx_D');
+  if (c) buildCtxChips(c, 'expand_D');
+  requestAnimationFrame(() => { requestAnimationFrame(() => { sheet.classList.add('visible'); lucide.createIcons(); }); });
+}
+function closeDialogD(e, force) {
+  if (!force && e.target !== document.getElementById('dialogOverlayD')) return;
+  document.getElementById('dialogSheetD').classList.remove('visible');
+  setTimeout(() => { document.getElementById('dialogOverlayD').classList.remove('show'); }, 260);
+}
+function startUploadD() {
+  startUpload({ dz:'dzD', uploading:'uploadingD', bar:'uploadBarD', ready:'readyD', proc:'procD', fill:'fillD', export:'exportD', err:'errD' });
+}
+function submitD() { closeDialogD({}, true); launchChat(); }
+function resetD() {
+  ['uploadingD','readyD','procD','exportD','errD'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+  var dz = document.getElementById('dzD'); if (dz) dz.style.display = 'flex';
+  var bar = document.getElementById('uploadBarD'); if (bar) bar.style.width = '0%';
+}
+
+// ══ SOLUTION C — Expandable Card ══
+var cardCOpen = false;
+function toggleCardC() {
+  cardCOpen = !cardCOpen;
+  var body = document.getElementById('cardCBody');
+  var chev = document.getElementById('cardCChevron');
+  var card = document.getElementById('cardC');
+  body.style.maxHeight = cardCOpen ? body.scrollHeight + 800 + 'px' : '0';
+  chev.style.transform = cardCOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+  card.style.borderColor = cardCOpen ? 'var(--blueflame)' : 'var(--divider)';
+  if (cardCOpen) {
+    var c = document.getElementById('expandCtx_C');
+    if (c) buildCtxChips(c, 'expand_C');
+  }
+  lucide.createIcons();
+}
+function startUploadC() {
+  startUpload({ dz:'dzC', uploading:'uploadingC', bar:'uploadBarC', ready:'readyC', proc:'procC', fill:'fillC', export:'exportC', err:'errC', cardBody:'cardCBody' });
+}
+function submitC() {
+  submitFlow({ ready:'readyC', proc:'procC', fill:'fillC', export:'exportC', cardBody:'cardCBody' });
+}
+function resetC() {
+  cardCOpen = false;
+  var body = document.getElementById('cardCBody'); if (body) body.style.maxHeight = '0';
+  var chev = document.getElementById('cardCChevron'); if (chev) chev.style.transform = 'rotate(0deg)';
+  var card = document.getElementById('cardC'); if (card) card.style.borderColor = 'var(--divider)';
+  ['uploadingC','readyC','procC','exportC','errC'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+  var dz = document.getElementById('dzC'); if (dz) dz.style.display = 'flex';
+  var bar = document.getElementById('uploadBarC'); if (bar) bar.style.width = '0%';
+}
+
+// ══ SOLUTION F — Card + Dialog Sheet ══
+function openDialogF() {
+  var ov = document.getElementById('dialogOverlayF');
+  var sheet = document.getElementById('dialogSheetF');
+  ov.classList.add('show');
+  var c = document.getElementById('expandCtx_F');
+  if (c) buildCtxChips(c, 'expand_F');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ sheet.classList.add('visible'); lucide.createIcons(); }); });
+}
+function closeDialogF(e, force) {
+  if (!force && e.target !== document.getElementById('dialogOverlayF')) return;
+  document.getElementById('dialogSheetF').classList.remove('visible');
+  setTimeout(function(){ document.getElementById('dialogOverlayF').classList.remove('show'); }, 260);
+}
+function startUploadF() {
+  startUpload({ dz:'dzF', uploading:'uploadingF', bar:'uploadBarF', ready:'readyF', proc:'procF', fill:'fillF', export:'exportF', err:'errF' });
+}
+function submitF() { closeDialogF({}, true); launchChat(); }
+function resetF() {
+  ['uploadingF','readyF','procF','exportF','errF'].forEach(function(id){ var el=document.getElementById(id); if(el) el.style.display='none'; });
+  var dz = document.getElementById('dzF'); if (dz) dz.style.display = 'flex';
+  var bar = document.getElementById('uploadBarF'); if (bar) bar.style.width = '0%';
+}
+
+// ── Progress animation helpers ──
+function animateFill(id, cb) { animateFillEl(document.getElementById(id), cb); }
+function animateFillEl(el, cb) {
+  if (!el) { setTimeout(cb, 1800); return; }
+  var w = 0;
+  var iv = setInterval(function() {
+    w += Math.random() * 8 + 3;
+    if (w >= 100) { w = 100; clearInterval(iv); setTimeout(cb, 400); }
+    el.style.width = w + '%';
+  }, 120);
+}
+
+// ═══════════════════════════════════
+// CHAT STATE MACHINE
+// ═══════════════════════════════════
+var chatActive = false;
+var chatDone = false;
+var stepLabels = [
+  'Uploaded and parsed the tracker',
+  'Categorized questions by topic',
+  'Searched dataroom for relevant documents',
+  'Drafted answers and generated citations',
+  'Compiled results'
+];
+var stepLabelsActive = [
+  'Uploading and parsing tracker',
+  'Categorize questions by topic',
+  'Search dataroom for relevant documents',
+  'Draft answers and generate citations',
+  'Compile results into output file'
+];
+
+function launchChat() {
+  chatActive = true; chatDone = false;
+  // Set timestamp
+  var now = new Date();
+  var h = now.getHours() % 12 || 12;
+  var m = String(now.getMinutes()).padStart(2,'0');
+  var ampm = now.getHours() >= 12 ? 'pm' : 'am';
+  document.getElementById('chatTimestamp').textContent = h + ':' + m + ampm;
+  // Reset plan/response
+  document.getElementById('planMsg').style.display = 'none';
+  document.getElementById('responseMsg').style.display = 'none';
+  document.getElementById('responseTime').style.display = 'none';
+  document.getElementById('thinkingMsg').style.display = 'flex';
+  document.getElementById('planCardTitle').textContent = "Here's the plan";
+  document.getElementById('planProgressRow').style.display = 'none';
+  document.getElementById('planProgressFill').style.width = '0%';
+  document.getElementById('planProgressFill').classList.remove('done');
+  document.getElementById('floatProgress').classList.remove('show');
+  document.getElementById('floatIcon').className = 'float-progress-icon spinning';
+  document.getElementById('floatIcon').innerHTML = '';
+  document.getElementById('floatTitle').textContent = 'Answering and citing questions';
+  document.getElementById('floatDismiss').style.display = 'none';
+  document.getElementById('floatBarFill').classList.remove('done');
+  document.getElementById('floatBarFill').style.width = '0%';
+  // Reset steps
+  for (var i = 0; i < 5; i++) {
+    var icon = document.getElementById('stepIcon' + i);
+    icon.className = 'step-icon'; icon.innerHTML = '';
+    document.getElementById('stepLabel' + i).className = 'step-label';
+    document.getElementById('stepLabel' + i).textContent = stepLabelsActive[i];
+    document.getElementById('step' + i).classList.remove('step-done');
+  }
+  // Show chat view
+  solIds.forEach(function(id){ document.getElementById(id).style.display = 'none'; });
+  document.getElementById('chatView').classList.add('active');
+  lucide.createIcons();
+  // Thinking → plan after 2.5s
+  setTimeout(showPlan, 2500);
+}
+
+function showPlan() {
+  document.getElementById('thinkingMsg').style.display = 'none';
+  document.getElementById('planMsg').style.display = 'flex';
+  document.getElementById('planProgressRow').style.display = 'flex';
+  document.getElementById('planProgressLabel').textContent = '0 of 5 complete';
+  document.getElementById('stepIcon0').className = 'step-icon spinning';
+  document.getElementById('stepLabel0').className = 'step-label active';
+  updateFloatProgress(0);
+  lucide.createIcons();
+  scrollChatBottom();
+  advanceStep(0);
+}
+
+function advanceStep(idx) {
+  var delay = idx === 0 ? 1200 : 900;
+  setTimeout(function() {
+    // Complete this step
+    var icon = document.getElementById('stepIcon' + idx);
+    icon.className = 'step-icon done';
+    icon.innerHTML = '<svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#4E4E4D" stroke-width="2" stroke-linecap="round"/></svg>';
+    document.getElementById('stepLabel' + idx).className = 'step-label done-text';
+    document.getElementById('stepLabel' + idx).textContent = stepLabels[idx];
+    document.getElementById('step' + idx).classList.add('step-done');
+    var done = idx + 1;
+    document.getElementById('planProgressFill').style.width = (done / 5 * 100) + '%';
+    document.getElementById('planProgressLabel').textContent = done + ' of 5 complete';
+    updateFloatProgress(done);
+    scrollChatBottom();
+    if (idx < 4) {
+      // Start next
+      document.getElementById('stepIcon' + (idx+1)).className = 'step-icon spinning';
+      document.getElementById('stepLabel' + (idx+1)).className = 'step-label active';
+      lucide.createIcons();
+      advanceStep(idx + 1);
+    } else {
+      // All done
+      chatDone = true;
+      document.getElementById('planCardTitle').textContent = 'Executed plan';
+      document.getElementById('planProgressFill').classList.add('done');
+      showResponse();
+    }
+  }, delay);
+}
+
+function showResponse() {
+  document.getElementById('responseMsg').style.display = 'block';
+  document.getElementById('responseTime').style.display = 'block';
+  var now = new Date();
+  var h = now.getHours() % 12 || 12;
+  var m = String(now.getMinutes()).padStart(2,'0');
+  var ampm = now.getHours() >= 12 ? 'pm' : 'am';
+  document.getElementById('responseTime').textContent = h + ':' + m + ampm;
+  lucide.createIcons();
+  scrollChatBottom();
+  if (document.getElementById('floatProgress').classList.contains('show')) showFloatDone();
+}
+
+function updateFloatProgress(done) {
+  document.getElementById('floatSub').textContent = done + ' of 5 steps complete';
+  document.getElementById('floatBarFill').style.width = (done / 5 * 100) + '%';
+}
+
+function showFloatDone() {
+  var icon = document.getElementById('floatIcon');
+  icon.className = 'float-progress-icon done-icon';
+  icon.innerHTML = '<svg viewBox="0 0 14 12" fill="none"><path d="M1 6l4 4 8-8" stroke="#517431" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  document.getElementById('floatTitle').textContent = '247 questions answered successfully';
+  document.getElementById('floatSub').textContent = '';
+  document.getElementById('floatDismiss').style.display = 'inline';
+  document.getElementById('floatBarFill').classList.add('done');
+}
+
+function closeChatAndShowFloat() {
+  aiOpen = false;
+  document.getElementById('aiContainer').classList.remove('show');
+  document.getElementById('aiBackdrop').classList.remove('show');
+  if (chatActive) {
+    var fp = document.getElementById('floatProgress');
+    fp.classList.add('show');
+    if (chatDone) showFloatDone();
+  }
+}
+
+function reopenChatFromFloat() {
+  aiOpen = true;
+  document.getElementById('aiContainer').classList.add('show');
+  document.getElementById('aiBackdrop').classList.add('show');
+  solIds.forEach(function(id){ document.getElementById(id).style.display = 'none'; });
+  document.getElementById('chatView').classList.add('active');
+  lucide.createIcons();
+  scrollChatBottom();
+  if (chatDone) showFloatDone();
+}
+
+function dismissFloat() {
+  var fp = document.getElementById('floatProgress');
+  fp.style.opacity = '0'; fp.style.transform = 'translateY(8px)';
+  setTimeout(function(){ fp.classList.remove('show'); fp.style.opacity=''; fp.style.transform=''; }, 200);
+}
+
+function backToSolution() {
+  chatActive = false; chatDone = false;
+  document.getElementById('chatView').classList.remove('active');
+  document.getElementById('floatProgress').classList.remove('show');
+  document.getElementById('noFileMsg').style.display = 'none';
+  solIds.forEach(function(id, i){
+    document.getElementById(id).style.display = i === currentSol ? 'flex' : 'none';
+  });
+  lucide.createIcons();
+  resetA(); resetB(); resetC();
+}
+
+function submitA() { launchChat(); }
+function submitB() { closeDialogB({}, true); launchChat(); }
+function submitC() { launchChat(); }
+function submitE() {
+  var ta = document.getElementById('promptE');
+  var fileSpan = document.querySelector('#attachRowE .prompt-attach-pill:not(.e-ctx-chip) span');
+  var hasFile = !!fileSpan;
+  var filename = hasFile ? fileSpan.textContent.trim() : '';
+  var promptText = ta.value.trim() || 'Generate answers for a question tracker based on the content of the dataroom.';
+  document.getElementById('chatMsgText').textContent = promptText;
+  document.getElementById('chatFilePillWrap').style.display = hasFile ? '' : 'none';
+  if (hasFile) document.getElementById('chatFilePillName').textContent = filename;
+  if (hasFile) {
+    launchChat();
+  } else {
+    launchChatNoFile();
+  }
+}
+function launchChatNoFile() {
+  chatActive = true; chatDone = false;
+  var now = new Date();
+  var h = now.getHours() % 12 || 12;
+  var m = String(now.getMinutes()).padStart(2,'0');
+  var ampm = now.getHours() >= 12 ? 'pm' : 'am';
+  document.getElementById('chatTimestamp').textContent = h + ':' + m + ampm;
+  document.getElementById('planMsg').style.display = 'none';
+  document.getElementById('responseMsg').style.display = 'none';
+  document.getElementById('responseTime').style.display = 'none';
+  document.getElementById('noFileMsg').style.display = 'none';
+  document.getElementById('thinkingMsg').style.display = 'flex';
+  document.getElementById('floatProgress').classList.remove('show');
+  solIds.forEach(function(id){ document.getElementById(id).style.display = 'none'; });
+  document.getElementById('chatView').classList.add('active');
+  lucide.createIcons();
+  setTimeout(function() {
+    document.getElementById('thinkingMsg').style.display = 'none';
+    document.getElementById('noFileMsg').style.display = 'flex';
+    lucide.createIcons();
+    scrollChatBottom();
+  }, 2000);
+}
+function handleInlineFileE(files) {
+  if (!files || !files.length) return;
+  var name = files[0].name || '';
+  var ext = name.split('.').pop().toLowerCase();
+  if (ext !== 'xlsx' && ext !== 'csv') {
+    var zone = document.getElementById('noFileDropZone');
+    if (zone) { zone.style.borderColor = '#D32F2F'; setTimeout(function(){ zone.style.borderColor = ''; }, 1400); }
+    return;
+  }
+  document.getElementById('chatFilePillName').textContent = name;
+  document.getElementById('chatFilePillWrap').style.display = '';
+  document.getElementById('noFileMsg').style.display = 'none';
+  document.getElementById('thinkingMsg').style.display = 'flex';
+  scrollChatBottom();
+  setTimeout(showPlan, 2000);
+}
+
+function scrollChatBottom() {
+  var el = document.getElementById('chatMessages');
+  if (el) setTimeout(function(){ el.scrollTop = el.scrollHeight; }, 50);
+}
+
+// Open panel A by default
+setTimeout(function() { openAI(); initAllCtxAreas(); }, 300);
+
+// ── Send button: disabled until text entered ──
+// ══ SOLUTION E — Pre-fill Prompt ══
+function prefillPromptE() {
+  var ta = document.getElementById('promptE');
+  ta.value = 'Generate answers for a question tracker based on the content of the dataroom.';
+  ta.dispatchEvent(new Event('input'));
+  ta.focus();
+}
+function resetE() {
+  var ta = document.getElementById('promptE');
+  if (ta) { ta.value = ''; ta.dispatchEvent(new Event('input')); }
+  var row = document.getElementById('attachRowE');
+  if (row) row.innerHTML = '';
+  var wrap = document.getElementById('promptWrapE');
+  if (wrap) { var btn = wrap.querySelector('.ai-send-btn'); if (btn) btn.classList.remove('active'); }
+  closePlusMenuE();
+}
+function togglePlusMenuE(e) {
+  e.stopPropagation();
+  var menu = document.getElementById('plusMenuE');
+  var open = menu.classList.toggle('open');
+  if (open) {
+    lucide.createIcons();
+    document.addEventListener('click', function handler(ev) {
+      var btn = document.getElementById('plusBtnE');
+      if (!menu.contains(ev.target) && ev.target !== btn) menu.classList.remove('open');
+      document.removeEventListener('click', handler);
+    });
+  }
+}
+function closePlusMenuE() {
+  var menu = document.getElementById('plusMenuE');
+  if (menu) menu.classList.remove('open');
+}
+function triggerFilePickerE() {
+  document.getElementById('filePickerE').click();
+}
+function handleFilesE(files) {
+  if (!files || !files.length) return;
+  var file = files[0];
+  var name = file.name || '';
+  var ext = name.split('.').pop().toLowerCase();
+  if (ext !== 'xlsx' && ext !== 'csv') {
+    var wrap = document.getElementById('promptWrapE');
+    var orig = wrap.style.borderColor;
+    wrap.style.borderColor = '#D32F2F';
+    wrap.style.transition = 'none';
+    setTimeout(function() { wrap.style.borderColor = orig; wrap.style.transition = ''; }, 1400);
+    return;
+  }
+  attachFileE(name);
+}
+function attachFileE(name) {
+  var row = document.getElementById('attachRowE');
+  row.innerHTML = '';
+  var pill = document.createElement('div');
+  pill.className = 'prompt-attach-pill';
+  pill.innerHTML = '<svg width="12" height="14" viewBox="0 0 12 14" fill="none"><rect width="12" height="14" rx="1.5" fill="#E8F5E9"/><rect x="0.75" y="0.75" width="10.5" height="12.5" rx="1" fill="#1D6F42"/><text x="6" y="10.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="white">X</text></svg>'
+    + '<span>' + name + '</span>'
+    + '<button class="prompt-attach-pill-x" onclick="removeAttachmentE()" title="Remove">×</button>';
+  row.appendChild(pill);
+  var wrap = document.getElementById('promptWrapE');
+  var sendBtn = wrap && wrap.querySelector('.ai-send-btn');
+  if (sendBtn) sendBtn.classList.add('active');
+}
+function removeAttachmentE() {
+  var row = document.getElementById('attachRowE');
+  row.querySelectorAll('.prompt-attach-pill:not(.e-ctx-chip)').forEach(function(el) { el.remove(); });
+  var ta = document.getElementById('promptE');
+  var wrap = document.getElementById('promptWrapE');
+  var sendBtn = wrap && wrap.querySelector('.ai-send-btn');
+  if (sendBtn && ta && ta.value.trim().length === 0 && !row.querySelector('.e-ctx-chip')) {
+    sendBtn.classList.remove('active');
+  }
+}
+function syncCtxChipsToE() {
+  var row = document.getElementById('attachRowE');
+  if (!row) return;
+  row.querySelectorAll('.e-ctx-chip').forEach(function(el) { el.remove(); });
+  var folderSvg = '<svg width="12" height="11" viewBox="0 0 16 13" fill="none" style="flex-shrink:0"><path d="M1 3C1 2.4 1.4 2 2 2h3.7L7 3.5h7a1 1 0 011 1V4.5H1V3z" fill="rgba(31,34,39,0.5)"/><path d="M1 4.5h14V11a1 1 0 01-1 1H2a1 1 0 01-1-1V4.5z" fill="rgba(31,34,39,0.35)"/></svg>';
+  ctxSelected.forEach(function(item) {
+    var short = item.label.replace(/^\(\d+\.?\d*\)\s*/, '');
+    var chip = document.createElement('div');
+    chip.className = 'prompt-attach-pill e-ctx-chip';
+    chip.innerHTML = folderSvg + '<span>' + short + '</span>'
+      + '<button class="prompt-attach-pill-x" onclick="removeCtxConfirmed(\'' + item.id + '\')" title="Remove">×</button>';
+    row.insertBefore(chip, row.firstChild);
+  });
+}
+
+function initSendButtons() {
+  document.querySelectorAll('.ai-prompt-input').forEach(function(ta) {
+    var btn = ta.closest('.ai-prompt-wrap') && ta.closest('.ai-prompt-wrap').querySelector('.ai-send-btn');
+    if (!btn) return;
+    ta.addEventListener('input', function() {
+      if (ta.value.trim().length > 0) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+  });
+}
+initSendButtons();
+</script>
+</body>
+</html>

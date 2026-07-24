@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'location-smile';
+var width = 384;
+var height = 512;
+var aliases = ["map-marker-smile"];
+var unicode = 'f60d';
+var svgPathData = 'M32 188.6C32 102.6 103.1 32 192 32s160 70.6 160 156.6c0 50.3-25.9 109.4-61.4 165.6-34 53.8-74 100.5-98.6 127.4-24.6-26.9-64.6-73.7-98.6-127.4-35.5-56.2-61.4-115.3-61.4-165.6zM192 0C86 0 0 84.4 0 188.6 0 307.9 120.2 450.9 170.4 505.4 182.2 518.2 201.8 518.2 213.6 505.4 263.8 450.9 384 307.9 384 188.6 384 84.4 298 0 192 0zM128 184a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm152-24a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM125.3 247.1c-4.9-7.4-14.8-9.3-22.2-4.4s-9.3 14.8-4.4 22.2c11 16.5 43.9 47.1 93.3 47.1s82.3-30.6 93.3-47.1c4.9-7.4 2.9-17.3-4.4-22.2s-17.3-2.9-22.2 4.4C251.9 257.3 228 280 192 280s-59.9-22.7-66.7-32.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLocationSmile = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

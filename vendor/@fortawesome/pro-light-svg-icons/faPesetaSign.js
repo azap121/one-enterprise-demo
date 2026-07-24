@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'peseta-sign';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e221';
+var svgPathData = 'M112 32c-8.8 0-16 7.2-16 16l0 128-32 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0 0 256c0 8.8 7.2 16 16 16s16-7.2 16-16l0-112 96 0c83 0 151.2-63.1 159.2-144l32.8 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32.8 0C375.2 95.1 307 32 224 32L112 32zM351 176l-223 0 0-112 96 0c65.3 0 119.1 48.9 127 112zM128 208l223 0c-7.9 63.1-61.7 112-127 112l-96 0 0-112z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPesetaSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

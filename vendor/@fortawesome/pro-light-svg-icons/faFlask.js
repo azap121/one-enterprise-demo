@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'flask';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f0c3';
+var svgPathData = 'M96 16c0-8.8 7.2-16 16-16L336 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-16 0 0 187.8 61.8 108.1c.1 .2 .2 .3 .3 .5l58.9 103c4.7 8.2 7.1 17.4 7.1 26.8 0 29.8-24.1 53.9-53.9 53.9L53.9 512c-29.8 0-53.9-24.1-53.9-53.9 0-9.4 2.4-18.6 7.1-26.8L66 328.3c.1-.2 .2-.3 .3-.5L128 219.8 128 32 112 32c-8.8 0-16-7.2-16-16zM89.3 352L34.9 447.2c-1.9 3.3-2.9 7.1-2.9 10.9 0 12.1 9.8 21.9 21.9 21.9l340.1 0c12.1 0 21.9-9.8 21.9-21.9 0-3.8-1-7.6-2.9-10.9L358.7 352 89.3 352zm251.1-32l-50.3-88.1c-1.4-2.4-2.1-5.2-2.1-7.9l0-192-128 0 0 192c0 2.8-.7 5.5-2.1 7.9l-50.3 88.1 232.9 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFlask = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

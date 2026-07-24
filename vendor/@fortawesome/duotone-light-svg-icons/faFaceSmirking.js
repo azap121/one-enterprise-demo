@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'face-smirking';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e397';
+var svgPathData = ['M32 256a224 224 0 1 0 448 0 224 224 0 1 0 -448 0zm64-48c0-8.8 7.2-16 16-16l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32l-32 0c-8.8 0-16-7.2-16-16zm64 160c0-8.8 7.2-16 16-16l144 0c8.8 0 16-7.2 16-16s7.2-16 16-16 16 7.2 16 16c0 26.5-21.5 48-48 48l-144 0c-8.8 0-16-7.2-16-16zM288 208c0-8.8 7.2-16 16-16l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32l-32 0c-8.8 0-16-7.2-16-16z', 'M480 256a224 224 0 1 0 -448 0 224 224 0 1 0 448 0zM0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zm96-48c0-8.8 7.2-16 16-16l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32l-32 0c-8.8 0-16-7.2-16-16zm208-16l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32l-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm64 144c0 26.5-21.5 48-48 48l-144 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l144 0c8.8 0 16-7.2 16-16s7.2-16 16-16 16 7.2 16 16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFaceSmirking = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

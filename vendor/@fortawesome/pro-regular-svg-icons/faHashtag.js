@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'hashtag';
+var width = 512;
+var height = 512;
+var aliases = [62098];
+var unicode = '23';
+var svgPathData = 'M226.9 29c2.8-13-5.5-25.7-18.4-28.5S182.7 6 180 18.9L156.6 128 68.5 128c-13.3 0-24 10.7-24 24s10.7 24 24 24l77.8 0-34.3 160-88 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l77.7 0-21.2 99c-2.8 13 5.5 25.7 18.4 28.5s25.7-5.5 28.5-18.4l23.4-109 155.4 0-21.2 99c-2.8 13 5.5 25.7 18.4 28.5s25.7-5.5 28.5-18.4l23.4-109 88 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-77.7 0 34.3-160 88.1 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-77.8 0 21.2-99c2.8-13-5.5-25.7-18.4-28.5S387.2 6 384.4 18.9l-23.4 109.1-155.4 0 21.2-99zM195.4 176l155.4 0-34.3 160-155.4 0 34.3-160z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHashtag = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

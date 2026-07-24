@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'hammer-war';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f6e4';
+var svgPathData = 'M224 0c13.3 0 24 10.7 24 24l0 36.6 163.5-23.4C430.8 34.5 448 49.4 448 68.9l0 198.2c0 19.5-17.2 34.4-36.5 31.7L248 275.4 248 520c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-244.6-163.5 23.4C17.2 301.5 0 286.6 0 267.1L0 68.9C0 49.4 17.2 34.5 36.5 37.2L200 60.6 200 24c0-13.3 10.7-24 24-24zM400 248.7l0-161.3-169.2 24.2c-4.5 .6-9.1 .6-13.6 0L48 87.3 48 248.7 217.2 224.5c4.5-.6 9.1-.6 13.6 0L400 248.7z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHammerWar = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

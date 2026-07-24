@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'album-collection';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f8a0';
+var svgPathData = 'M128.5 24c0 13.3 10.7 24 24 24l208 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-208 0c-13.3 0-24 10.7-24 24zm-64 168c-13.9 0-27.1 6-36.3 16.6S15 233 17 246.8l32 224C52.4 494.4 72.6 512 96.5 512l320 0c23.9 0 44.1-17.6 47.5-41.2l32-224c2-13.8-2.1-27.7-11.3-38.2S462.4 192 448.5 192l-384 0zm352 160c0 61.9-71.6 112-160 112s-160-50.1-160-112 71.6-112 160-112 160 50.1 160 112zm-160 28c22.1 0 40-12.5 40-28s-17.9-28-40-28-40 12.5-40 28 17.9 28 40 28zM104.5 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l304 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-304 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faAlbumCollection = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

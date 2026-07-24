@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'circleapore-dollar';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e71e';
+var svgPathData = 'M256 32a224 224 0 1 1 0 448 224 224 0 1 1 0-448zm0 480a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm80-384c-8.8 0-16 7.2-16 16l0 16-1 0c-30.4 0-55 24.6-55 55 0 26.9 19.4 49.8 45.9 54.2l30.9 5.1c11.1 1.8 19.2 11.4 19.2 22.7 0 12.7-10.3 23-23 23l-49 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l32 0 0 16c0 8.8 7.2 16 16 16s16-7.2 16-16l0-18.1c23.1-6.5 40-27.7 40-52.9 0-26.9-19.4-49.8-45.9-54.2l-30.9-5.1c-11.1-1.8-19.2-11.4-19.2-22.7 0-12.7 10.3-23 23-23l49 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-16 0 0-16c0-8.8-7.2-16-16-16zM120 215c0 26.9 19.4 49.8 45.9 54.2l30.9 5.1c11.1 1.8 19.2 11.4 19.2 22.7 0 12.7-10.3 23-23 23l-49 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l49 0c30.4 0 55-24.6 55-55 0-26.9-19.4-49.8-45.9-54.2l-30.9-5.1c-11.1-1.8-19.2-11.4-19.2-22.7 0-12.7 10.3-23 23-23l49 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-49 0c-30.4 0-55 24.6-55 55z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleaporeDollar = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

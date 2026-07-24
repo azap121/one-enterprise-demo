@@ -1,0 +1,3 @@
+{
+  "extends": ["github>MerrillCorporation/renovate-config:default-npm-mfe"]
+}

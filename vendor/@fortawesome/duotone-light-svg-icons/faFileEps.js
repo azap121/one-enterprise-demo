@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'file-eps';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e644';
+var svgPathData = ['M64 64c0-17.7 14.3-32 32-32l128 0 0 96c0 35.3 28.7 64 64 64l96 0 0 144-152 0c-30.9 0-56 25.1-56 56l0 88-80 0c-17.7 0-32-14.3-32-32L64 64z', 'M224 32L96 32C78.3 32 64 46.3 64 64l0 384c0 17.7 14.3 32 32 32l80 0 0 32-80 0c-35.3 0-64-28.7-64-64L32 64C32 28.7 60.7 0 96 0L229.5 0c17 0 33.3 6.7 45.3 18.7L397.3 141.3c12 12 18.7 28.3 18.7 45.3l0 149.5-32 0 0-144-96 0c-35.3 0-64-28.7-64-64l0-96zM370.7 160L256 45.3 256 128c0 17.7 14.3 32 32 32l82.7 0zM240 384l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm128 0l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm80-34.3c0-25.2 20.4-45.7 45.7-45.7l26.3 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-26.3 0c-7.5 0-13.7 6.1-13.7 13.7 0 5.2 2.9 9.9 7.6 12.2l31.2 15.6c15.5 7.7 25.2 23.5 25.2 40.8 0 25.2-20.4 45.7-45.7 45.7L496 544c-8.8 0-16-7.2-16-16s7.2-16 16-16l34.3 0c7.5 0 13.7-6.1 13.7-13.7 0-5.2-2.9-9.9-7.6-12.2l-31.2-15.6C489.8 462.8 480 447 480 429.7z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileEps = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

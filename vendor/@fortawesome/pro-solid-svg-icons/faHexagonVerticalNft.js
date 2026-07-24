@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'hexagon-vertical-nft';
+var width = 512;
+var height = 512;
+var aliases = [58630,"hexagon-vertical-nft-slanted"];
+var unicode = 'e505';
+var svgPathData = 'M292.8 511.1c-22.2 12.7-49.4 12.7-71.5 0L53.2 414.9C30.8 402.1 17 378.2 17 352.4l0-191.6c0-25.8 13.8-49.7 36.2-62.5L221.2 2.1c22.2-12.7 49.4-12.7 71.5 0L460.8 98.3c22.4 12.8 36.2 36.7 36.2 62.5l0 191.6c0 25.8-13.8 49.7-36.2 62.5L292.8 511.1zm-162.9-328c-4.1-8.3-13.5-12.7-22.5-10.5S92 182.7 92 192l0 128c0 11 9 20 20 20s20-9 20-20l0-43.3 26.1 52.2c4.1 8.3 13.5 12.7 22.5 10.5S196 329.3 196 320l0-128c0-11-9-20-20-20s-20 9-20 20l0 43.3-26.1-52.2zM220 192l0 128c0 11 9 20 20 20s20-9 20-20l0-44 28 0c11 0 20-9 20-20s-9-20-20-20l-28 0 0-24 28 0c11 0 20-9 20-20s-9-20-20-20l-48 0c-11 0-20 9-20 20zm116-20c-11 0-20 9-20 20s9 20 20 20l12 0 0 108c0 11 9 20 20 20s20-9 20-20l0-108 12 0c11 0 20-9 20-20s-9-20-20-20l-64 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHexagonVerticalNft = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

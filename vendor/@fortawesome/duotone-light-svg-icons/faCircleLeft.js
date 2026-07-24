@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'circle-left';
+var width = 512;
+var height = 512;
+var aliases = [61840,"arrow-alt-circle-left"];
+var unicode = 'f359';
+var svgPathData = ['M32 256a224 224 0 1 0 448 0 224 224 0 1 0 -448 0zm95-17L231 135c6.9-6.9 17.2-8.9 26.2-5.2S272 142.3 272 152l0 40 72 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-72 0 0 40c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2L127 273c-9.4-9.4-9.4-24.6 0-33.9z', 'M32 256a224 224 0 1 1 448 0 224 224 0 1 1 -448 0zm480 0a256 256 0 1 0 -512 0 256 256 0 1 0 512 0zM240 340.7L155.3 256 240 171.3 240 208c0 8.8 7.2 16 16 16l88 0c4.4 0 8 3.6 8 8l0 48c0 4.4-3.6 8-8 8l-88 0c-8.8 0-16 7.2-16 16l0 36.7zM231 135L127 239c-9.4 9.4-9.4 24.6 0 33.9L231 377c6.9 6.9 17.2 8.9 26.2 5.2S272 369.7 272 360l0-40 72 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-72 0 0-40c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleLeft = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

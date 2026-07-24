@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'person-biking';
+var width = 576;
+var height = 512;
+var aliases = [128692,"biking"];
+var unicode = 'f84a';
+var svgPathData = 'M416 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 400a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm176 0a112 112 0 1 0 -224 0 112 112 0 1 0 224 0zm176 0a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm176 0a112 112 0 1 0 -224 0 112 112 0 1 0 224 0zM298.2 161.5c2.9-2.1 6.8-1.9 9.6 .3l61.2 49c4.3 3.4 9.5 5.3 15 5.3l64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-55.6 0-54.6-43.7c-19.5-15.6-46.9-16.4-67.3-2L207.2 167c-38.9 27.5-35.3 86.3 6.8 108.8l50 26.7 0 113.6c0 13.3 10.7 24 24 24s24-10.7 24-24l0-128c0-8.9-4.9-17-12.7-21.2l-62.7-33.5c-10.5-5.6-11.4-20.3-1.7-27.2l63.3-44.7z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonBiking = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

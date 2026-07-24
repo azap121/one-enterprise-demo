@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'person-seat';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e21e';
+var svgPathData = 'M192 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm0 64c17.7 0 32 14.3 32 32l0 128-16 0c-26.5 0-48-21.5-48-48l0-80c0-17.7 14.3-32 32-32zm64 160l0-128c0-35.3-28.7-64-64-64s-64 28.7-64 64l0 80c0 44.2 35.8 80 80 80l64 0c17.7 0 32 14.3 32 32l0 80c0 8.8 7.2 16 16 16l48 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-32 0 0-64c0-35.3-28.7-64-64-64l-16 0zM80 176c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 176c0 61.9 50.1 112 112 112l80 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-80 0c-44.2 0-80-35.8-80-80l0-176z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonSeat = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

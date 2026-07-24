@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'shuffle';
+var width = 512;
+var height = 512;
+var aliases = [128256,"random"];
+var unicode = 'f074';
+var svgPathData = 'M427.3 36.7c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l52.7 52.7-97.4 0c-30.2 0-58.7 14.2-76.8 38.4l-29.2 38.9 20 26.7 34.8-46.4C320.9 153.5 339.9 144 360 144l97.4 0-52.7 52.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l80-80c6.2-6.2 6.2-16.4 0-22.6l-80-80zM139.2 342.4C127.1 358.5 108.1 368 88 368l-72 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l72 0c30.2 0 58.7-14.2 76.8-38.4l29.2-38.9-20-26.7-34.8 46.4zM404.7 475.3c6.2 6.2 16.4 6.2 22.6 0l80-80c6.2-6.2 6.2-16.4 0-22.6l-80-80c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l52.7 52.7-93.4 0c-22.7 0-44-10.7-57.6-28.8L167.2 153.6C147.6 127.4 116.7 112 84 112l-68 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l68 0c22.7 0 44 10.7 57.6 28.8L280.8 358.4C300.4 384.6 331.3 400 364 400l93.4 0-52.7 52.7c-6.2 6.2-6.2 16.4 0 22.6z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faShuffle = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

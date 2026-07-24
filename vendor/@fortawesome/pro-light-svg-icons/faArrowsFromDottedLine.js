@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'arrows-from-dotted-line';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e0a3';
+var svgPathData = 'M203.3-27.3c-6.2-6.2-16.4-6.2-22.6 0l-80 80c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L176 22.6 176 176c0 8.8 7.2 16 16 16s16-7.2 16-16l0-153.4 52.7 52.7c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-80-80zm80 486.6c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0L208 489.4 208 336c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 153.4-52.7-52.7c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6l80 80c6.2 6.2 16.4 6.2 22.6 0l80-80zM0 256a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm136-24a24 24 0 1 0 0 48 24 24 0 1 0 0-48zm88 24a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zm136-24a24 24 0 1 0 0 48 24 24 0 1 0 0-48z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowsFromDottedLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

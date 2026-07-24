@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'file-export';
+var width = 576;
+var height = 512;
+var aliases = ["arrow-right-from-file"];
+var unicode = 'f56e';
+var svgPathData = 'M208.5 48l-112 0c-8.8 0-16 7.2-16 16l0 384c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-48 48 0 0 48c0 35.3-28.7 64-64 64l-256 0c-35.3 0-64-28.7-64-64l0-384c0-35.3 28.7-64 64-64L230 0c17 0 33.3 6.7 45.3 18.7L397.8 141.3c12 12 18.7 28.3 18.7 45.3l0 69.5-48 0 0-48-88 0c-39.8 0-72-32.2-72-72l0-88zm72 256l214.1 0-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-214.1 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm68.1-144l-92.1-92.1 0 68.1c0 13.3 10.7 24 24 24l68.1 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFileExport = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

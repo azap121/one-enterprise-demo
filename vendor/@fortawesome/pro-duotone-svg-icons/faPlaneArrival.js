@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'plane-arrival';
+var width = 576;
+var height = 512;
+var aliases = [128748];
+var unicode = 'f5af';
+var svgPathData = ['M0 480c0-17.7 14.3-32 32-32l512 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32z', 'M265.9 3.7l120.8 189.5 132.6 23.4c30.5 5.4 50.8 34.4 45.4 64.9s-34.4 50.8-64.9 45.4l-417.6-73.6 0 0-13.5-2.4c-30.5-5.4-52.7-31.8-52.9-62.7L15.3 81.8C15.2 71.8 24.2 64.2 34 66l17 3c7.2 1.3 13.4 5.7 16.9 12.1l33.8 61.8 105 18.5-24-161.6c-1.6-10.8 7.9-20 18.6-18.1l43.1 7.6c8.8 1.6 16.6 6.8 21.4 14.3zM192 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm131.2-15.3a32 32 0 1 1 0 64 32 32 0 1 1 0-64z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPlaneArrival = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

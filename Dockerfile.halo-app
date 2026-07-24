@@ -1,0 +1,23 @@
+# Stage 1: build the rsbuild bundle.
+# Using fully-qualified Harbor paths so this Dockerfile works regardless of
+# the build container's shortname config (Datasite CI's Buildah/Podman has
+# `node` aliased but not `nginx`; using harbor.dsite.io/* for both removes
+# any ambiguity).
+FROM harbor.dsite.io/datasite-docker/node:22-alpine AS builder
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+# Stage 2: serve the built static bundle with nginx.
+# Harbor proxy-caches nginx (verified via docker pull). The bridge config
+# below provides SPA fallback so react-router routes resolve correctly.
+FROM harbor.dsite.io/datasite-docker/nginx:1.29-alpine
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80

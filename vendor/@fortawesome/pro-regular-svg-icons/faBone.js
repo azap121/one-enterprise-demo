@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'bone';
+var width = 640;
+var height = 512;
+var aliases = [129460];
+var unicode = 'f5d7';
+var svgPathData = 'M0 192c0-61.9 50.1-112 112-112 50.8 0 93.6 33.7 107.4 80l201.3 0c13.8-46.3 56.6-80 107.4-80 61.9 0 112 50.1 112 112 0 23.8-7.4 45.9-20.1 64 12.6 18.1 20.1 40.2 20.1 64 0 61.9-50.1 112-112 112-50.7 0-93.6-33.7-107.4-80l-201.3 0C205.6 398.3 162.8 432 112 432 50.1 432 0 381.9 0 320 0 296.2 7.4 274.1 20.1 256 7.4 237.9 0 215.8 0 192zm112-64c-35.3 0-64 28.7-64 64 0 16.1 5.9 30.8 15.8 42.1 10.9 12.5 10.9 31.3 0 43.8-9.9 11.3-15.8 26-15.8 42.1 0 35.3 28.7 64 64 64 31.5 0 57.8-22.8 63-52.9 2.5-14.3 14.9-27.1 31.9-27.1L433 304c17 0 29.4 12.8 31.9 27.1 5.2 30 31.5 52.9 63 52.9 35.3 0 64-28.7 64-64 0-16.1-5.9-30.8-15.8-42.1-10.9-12.5-10.9-31.3 0-43.8 9.9-11.3 15.8-26 15.8-42.1 0-35.3-28.7-64-64-64-31.5 0-57.8 22.8-63 52.9-2.5 14.3-14.9 27.1-31.9 27.1L207 208c-17 0-29.4-12.8-31.9-27.1-5.2-30-31.5-52.9-63-52.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBone = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

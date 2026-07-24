@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'scalpel-line-dashed';
+var width = 640;
+var height = 512;
+var aliases = ["scalpel-path"];
+var unicode = 'f61e';
+var svgPathData = ['M204.8 320L352 320c12 0 23.5-4.8 32-13.3L558.7 132.1c11.1-11.1 17.2-26.1 17.2-41.7-.1-32.1-26.5-58.4-59-58.4-15.8 0-31 6.3-42 17.4L204.8 320z', 'M172.9 352l-95.8 96 40.8 0c59.4 0 116.4-23.6 158.4-65.6l30.4-30.4-133.8 0zM474.8 49.4l-270 270.6 147.2 0 0 0c12 0 23.5-4.8 32-13.3L558.7 132.1c11.1-11.1 17.2-26.1 17.2-41.7-.1-32.1-26.5-58.4-59-58.4-15.8 0-31 6.3-42 17.4zm133 40.9c.1 24.2-9.4 47.4-26.5 64.5L406.6 329.4C392.1 343.9 372.5 352 352 352l-53 53c-48 48-113.1 75-181 75L0 480 31.9 448 452.2 26.8c17.1-17.1 40.5-26.8 64.7-26.8 49.9 0 90.8 40.3 91 90.2zM336 448l96 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-96 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm176 0l80 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-80 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faScalpelLineDashed = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

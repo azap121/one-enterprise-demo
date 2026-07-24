@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'mountain-sun';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e52f';
+var svgPathData = 'M256 0c14.7 0 28.2 8.1 35.2 21l216 400c6.7 12.4 6.4 27.4-.8 39.5-7.2 12.1-20.3 19.5-34.3 19.5L40 480c-14.1 0-27.1-7.4-34.3-19.5-7.2-12.1-7.5-27.1-.8-39.5l216-400 2.9-4.6C231.2 6.2 243.2 0 256 0zM227.2 310.4c-4.5 6-11.5 9.5-19 9.6s-14.6-3.4-19.2-9.3l-41.4-53.2-94.2 174.5 405.2 0-95-176-95.6 0-40.8 54.4zm-54.6-99.1l35.1 45.1 29.2-38.8 1.8-2.2c4.5-4.7 10.8-7.4 17.4-7.4l81.6 0-81.6-151.2-83.4 154.5zM496 160a80 80 0 1 1 0-160 80 80 0 1 1 0 160z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMountainSun = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

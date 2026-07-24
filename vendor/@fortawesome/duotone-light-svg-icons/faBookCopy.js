@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'book-copy';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e0be';
+var svgPathData = ['M256 64l0 200.6c9.4-5.4 20.3-8.6 32-8.6l240 0c8.8 0 16-7.2 16-16l0-192c0-8.8-7.2-16-16-16L288 32c-17.7 0-32 14.3-32 32z', 'M224 64c0-35.3 28.7-64 64-64L528 0c26.5 0 48 21.5 48 48l0 192c0 20.9-13.4 38.7-32 45.3l0 66.7 16 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-272 0c-35.3 0-64-28.7-64-64l0 0 0-256zm64 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l224 0 0-64-224 0zm-32-23.4c9.4-5.4 20.3-8.6 32-8.6l240 0c8.8 0 16-7.2 16-16l0-192c0-8.8-7.2-16-16-16L288 32c-17.7 0-32 14.3-32 32l0 200.6zM64 128l112 0 0 32-112 0c-17.7 0-32 14.3-32 32l0 200.6c9.4-5.4 20.3-8.6 32-8.6l132.1 0c9 12.9 20.7 23.8 34.2 32L64 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l224 0 0-48 32 0 0 48 16 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L64 512c-35.3 0-64-28.7-64-64l0 0 0-256c0-35.3 28.7-64 64-64z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBookCopy = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

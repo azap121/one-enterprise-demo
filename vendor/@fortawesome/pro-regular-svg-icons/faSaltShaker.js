@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'salt-shaker';
+var width = 384;
+var height = 512;
+var aliases = [129474];
+var unicode = 'e446';
+var svgPathData = 'M59.3 512l266.4 0c36.1 0 64.2-33.9 57.9-69.1L324.2 110.3C312.8 46.5 257.3 0 192.5 0S72.2 46.5 60.8 110.3L1.4 442.9C-4.9 478.1 23.2 512 59.3 512zm266.4-48L59.3 464c-6.6 0-11.8-6.2-10.6-12.7L94.9 192 290 192 336.3 451.3c1.2 6.5-4 12.7-10.6 12.7zM192.5 48a16 16 0 1 1 0 32 16 16 0 1 1 0-32zm-64 48a16 16 0 1 1 32 0 16 16 0 1 1 -32 0zm112-16a16 16 0 1 1 0 32 16 16 0 1 1 0-32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSaltShaker = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

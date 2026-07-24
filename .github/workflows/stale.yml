@@ -1,0 +1,10 @@
+name: Cleanup Stale Work
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 5 * * 2' # Tuesdays at 5am
+
+jobs:
+  cleanup-stale-work:
+    uses: MerrillCorporation/.github-internal/.github/workflows/stale.yml@latest
+    secrets: inherit

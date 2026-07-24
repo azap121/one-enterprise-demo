@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'power-off';
+var width = 512;
+var height = 512;
+var aliases = [9211];
+var unicode = 'f011';
+var svgPathData = 'M280-8c0-13.3-10.7-24-24-24S232-21.3 232-8l0 264c0 13.3 10.7 24 24 24s24-10.7 24-24L280-8zM148.4 78c11.3-6.9 15-21.6 8.1-33s-21.6-15-33-8.1C49.5 81.7 0 163.1 0 256 0 397.4 114.6 512 256 512S512 397.4 512 256c0-92.9-49.5-174.3-123.5-219.1-11.3-6.9-26.1-3.2-33 8.1s-3.2 26.1 8.1 33c60.2 36.5 100.4 102.6 100.4 178 0 114.9-93.1 208-208 208S48 370.9 48 256c0-75.4 40.2-141.5 100.4-178z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPowerOff = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

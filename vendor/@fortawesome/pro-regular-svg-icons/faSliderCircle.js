@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'slider-circle';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e750';
+var svgPathData = 'M432 256a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zm45.8 24c-11.2 59.2-63.3 104-125.8 104-70.7 0-128-57.3-128-128s57.3-128 128-128c62.5 0 114.5 44.8 125.8 104l74.2 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-74.2 0zM177.6 232c-1.1 7.8-1.6 15.9-1.6 24s.6 16.2 1.6 24L24 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l153.6 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSliderCircle = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

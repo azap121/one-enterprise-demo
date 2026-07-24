@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'globe-snow';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f7a3';
+var svgPathData = 'M448 224c0 54.8-19.7 105.1-52.4 144l-65.6 0-56.2-60 30.2 0c8.1 0 15.4-4.9 18.5-12.3s1.4-16.1-4.3-21.8l-80-80c-7.8-7.8-20.5-7.8-28.3 0l-80 80c-5.7 5.7-7.4 14.3-4.3 21.8S135.9 308 144 308l30.3 0-56.3 60-65.6 0C19.7 329.1 0 278.8 0 224 0 100.3 100.3 0 224 0S448 100.3 448 224zM240 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm96 96a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm-232 8a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM21.9 473.4l51.7-57.4 300.8 0 51.7 57.4c3.8 4.2 5.9 9.8 5.9 15.5 0 12.8-10.4 23.1-23.1 23.1L39.1 512c-12.8 0-23.1-10.4-23.1-23.1 0-5.7 2.1-11.2 5.9-15.5z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGlobeSnow = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

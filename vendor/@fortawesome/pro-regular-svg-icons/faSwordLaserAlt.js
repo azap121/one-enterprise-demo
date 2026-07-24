@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'sword-laser-alt';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e03c';
+var svgPathData = 'M331 272L277.9 272 579.6-3.5 331 272zm59.1 6.2L618.7 24.8C635.7 6 635-23 617-40.9 599-59 569.9-59.6 551.1-42.4l-344.4 314.4-1.4 0c-8.5 0-16.6 3.4-22.6 9.4L33.9 430.1c-18.7 18.7-18.7 49.1 0 67.9l44.1 44.1c18.7 18.7 49.1 18.7 67.9 0L368 320 388.7 299.3c6.2-6.2 5.9-15.2 1.4-21.1zM67.9 464L137 394.9 181.1 439 112 508.1 67.9 464zM300.1 320l-85.1 85.1-44.1-44.1 41-41 88.2 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSwordLaserAlt = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

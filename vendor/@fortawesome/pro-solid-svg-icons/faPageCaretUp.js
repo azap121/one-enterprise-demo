@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'page-caret-up';
+var width = 384;
+var height = 512;
+var aliases = ["file-caret-up"];
+var unicode = 'e42a';
+var svgPathData = 'M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-277.5c0-17-6.7-33.3-18.7-45.3L258.7 18.7C246.7 6.7 230.5 0 213.5 0L64 0zm36.2 307.1l78.7-93c3.3-3.9 8.1-6.1 13.2-6.1s9.9 2.2 13.2 6.1l78.7 93c2.7 3.2 4.2 7.2 4.2 11.3 0 9.7-7.9 17.6-17.6 17.6l-156.9 0c-9.7 0-17.6-7.9-17.6-17.6 0-4.2 1.5-8.2 4.2-11.3z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPageCaretUp = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

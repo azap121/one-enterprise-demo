@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'basket-shopping-plus';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e653';
+var svgPathData = ['M16 192c0 14.5 9.6 26.7 22.8 30.7l46 207.2c6.5 29.3 32.5 50.1 62.5 50.1l281.3 0c30 0 56-20.8 62.5-50.1l46.1-207.2c13.2-3.9 22.8-16.2 22.8-30.7 0-17.7-14.3-32-32-32l-78.1 0c8.6 9.6 8.1 24.5-1.4 33.4-9.6 9.1-24.8 8.7-33.9-.9l-30.8-32.5-191.6 0-30.8 32.5c-9.1 9.6-24.3 10-33.9 .9-9.5-9-10-23.8-1.4-33.4L48 160c-17.7 0-32 14.3-32 32zM192 320c0-13.3 10.7-24 24-24l48 0 0-48c0-13.3 10.7-24 24-24s24 10.7 24 24l0 48 48 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-48 0 0 48c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-48-48 0c-13.3 0-24-10.7-24-24z', 'M305.4 7.5C300.9 2.7 294.6 0 288 0s-12.9 2.7-17.4 7.5l-144 152c-9.1 9.6-8.7 24.8 .9 33.9s24.8 8.7 33.9-.9L288 58.9 414.6 192.5c9.1 9.6 24.3 10 33.9 .9s10-24.3 .9-33.9l-144-152zM288 224c-13.3 0-24 10.7-24 24l0 48-48 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l48 0 0 48c0 13.3 10.7 24 24 24s24-10.7 24-24l0-48 48 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-48 0 0-48c0-13.3-10.7-24-24-24z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBasketShoppingPlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

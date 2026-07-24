@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'wand-magic';
+var width = 512;
+var height = 512;
+var aliases = ["magic"];
+var unicode = 'f0d0';
+var svgPathData = 'M424.5 49.5c.9-.9 2.2-1.5 3.5-1.5s2.6 .5 3.5 1.5l31 31c.9 .9 1.5 2.2 1.5 3.5s-.5 2.6-1.5 3.5L356 194.1 317.9 156 424.5 49.5zM284 189.9L322.1 228 87.5 462.5c-.9 .9-2.2 1.5-3.5 1.5s-2.6-.5-3.5-1.5l-31-31c-.9-.9-1.5-2.2-1.5-3.5s.5-2.6 1.5-3.5L284 189.9zM428 0c-14 0-27.5 5.6-37.5 15.5l-375 375C5.6 400.5 0 414 0 428s5.6 27.5 15.5 37.5l31 31C56.5 506.4 70 512 84 512s27.5-5.6 37.5-15.5l375-375C506.4 111.5 512 98 512 84s-5.6-27.5-15.5-37.5l-31-31C455.5 5.6 442 0 428 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faWandMagic = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

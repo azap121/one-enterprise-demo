@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'music-slash';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f8d1';
+var svgPathData = ['M32 400c0 44.2 43 80 96 80s96-35.8 96-80l0-106.2-64-64 0 94.7c-10-2.9-20.8-4.6-32-4.6-53 0-96 35.8-96 80z', 'M41-24.9c-9.4-9.4-24.6-9.4-33.9 0S-2.3-.3 7 9.1l528 528c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L468.7 402.9C494.8 388.6 512 364 512 336l0-304c0-9.7-4.4-18.9-12-25s-17.5-8.4-27-6.3l-288 64C171 67.9 160.8 80 160 94.2L41-24.9zM253.1 187.2l194.9-43.3 0 116.7c-10-2.9-20.8-4.6-32-4.6-27.3 0-51.9 9.5-69.4 24.7l-93.5-93.5z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMusicSlash = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

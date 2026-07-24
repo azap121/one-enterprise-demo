@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'code-compare';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e13a';
+var svgPathData = 'M191 7c9.4-9.4 24.6-9.4 33.9 0l56 56c9.4 9.4 9.4 24.6 0 33.9l-56 56c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l15-15-46.1 0c-22.1 0-40 17.9-40 40l0 211.7c32.5 10.2 56 40.5 56 76.3 0 44.2-35.8 80-80 80s-80-35.8-80-80c0-35.8 23.5-66.1 56-76.3L72 144c0-48.6 39.4-88 88-88l46.1 0-15-15c-9.4-9.4-9.4-24.6 0-33.9zM384 80a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm8 76.3c-32.5-10.2-56-40.5-56-76.3 0-44.2 35.8-80 80-80s80 35.8 80 80c0 35.8-23.5 66.1-56 76.3L440 368c0 48.6-39.4 88-88 88l-46.1 0 15 15c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-56-56c-9.4-9.4-9.4-24.6 0-33.9l56-56c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-15 15 46.1 0c22.1 0 40-17.9 40-40l0-211.7zM64 432a32 32 0 1 0 64 0 32 32 0 1 0 -64 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCodeCompare = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

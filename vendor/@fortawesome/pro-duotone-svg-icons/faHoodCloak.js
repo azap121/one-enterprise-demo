@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'hood-cloak';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f6ef';
+var svgPathData = ['M160 288l0 160 192 0 0-160c0-53-43-96-96-96s-96 43-96 96z', 'M31.8 416.4L6.2 454.7C2.2 460.8 0 467.9 0 475.2 0 495.5 16.5 512 36.8 512l438.3 0c20.3 0 36.8-16.5 36.8-36.8 0-7.3-2.2-14.4-6.2-20.4l-25.6-38.3c-21-31.5-32.2-68.6-32.2-106.5l0-91.7c0-37.9-11.2-75-32.2-106.5L389 71.5c-2.7-4-1.2-9.4 3.1-11.6l45-22.5C443.8 34.1 448 27.3 448 19.8 448 8.9 439.1 0 428.2 0L288 0C164.3 0 64 100.3 64 224l0 85.9c0 37.9-11.2 75-32.2 106.5zM352 448l-192 0 0-160c0-53 43-96 96-96s96 43 96 96l0 160z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHoodCloak = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

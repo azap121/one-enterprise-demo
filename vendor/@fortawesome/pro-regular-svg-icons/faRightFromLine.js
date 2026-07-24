@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'right-from-line';
+var width = 512;
+var height = 512;
+var aliases = ["arrow-alt-from-left"];
+var unicode = 'f347';
+var svgPathData = 'M505 273c9.4-9.4 9.4-24.6 0-33.9L361 95c-6.9-6.9-17.2-8.9-26.2-5.2S320 102.3 320 112l0 64-64 0 0 0-80 0c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l144 0 0 64c0 9.7 5.8 18.5 14.8 22.2s19.3 1.7 26.2-5.2L505 273zM256 288l-80 0 0-64 80 0 0 0 88 0c13.3 0 24-10.7 24-24l0-30.1 86.1 86.1-86.1 86.1 0-30.1c0-13.3-10.7-24-24-24l-88 0zM24 64C10.7 64 0 74.7 0 88L0 424c0 13.3 10.7 24 24 24s24-10.7 24-24L48 88c0-13.3-10.7-24-24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRightFromLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

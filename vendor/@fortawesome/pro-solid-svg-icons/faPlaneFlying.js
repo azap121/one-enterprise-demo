@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'plane-flying';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e7bb';
+var svgPathData = 'M401.7 176L249.8 10.4C243.8 3.8 235.2 0 226.3 0L182.5 0c-10.9 0-18.6 10.7-15.2 21.1l51.6 154.9-103.5 0-44-55c-4.6-5.7-11.5-9-18.7-9l-17.3 0c-10 0-17.5 9-15.7 18.9l19 104.6c5.5 30.4 32 52.6 63 52.6l450.6 0c30.9 0 56-25.1 56-56s-25.1-56-56-56l-150.7 0zM64.3 448c-17.7 0-32 14.3-32 32s14.3 32 32 32l512 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-512 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPlaneFlying = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

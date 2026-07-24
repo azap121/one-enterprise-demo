@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'picture-in-picture';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e80b';
+var svgPathData = ['M32 96c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32l0 112c45.2 0-13.5 0-176 0-53 0-96 43-96 96l0 144-144 0c-17.7 0-32-14.3-32-32L32 96z', 'M448 32c35.3 0 64 28.7 64 64l0 112-32 0 0-112c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l144 0 0 32-144 0-6.5-.3c-30.1-3.1-54.1-27-57.1-57.1L0 416 0 96C0 62.9 25.2 35.6 57.5 32.3L64 32 448 32zm16 224c26.5 0 48 21.5 48 48l0 128-.2 4.9C509.3 461.1 488.9 480 464 480l-160 0-4.9-.2c-22.6-2.3-40.6-20.3-42.8-42.8l-.2-4.9 0-128c0-26.5 21.5-48 48-48l160 0zM304 288c-8.8 0-16 7.2-16 16l0 128c0 8.8 7.2 16 16 16l160 0c8.8 0 16-7.2 16-16l0-128c0-8.8-7.2-16-16-16l-160 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPictureInPicture = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

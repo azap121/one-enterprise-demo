@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'filter';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f0b0';
+var svgPathData = 'M2.4 83.8C7.4 71.8 19.1 64 32 64l448 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9L320 301.3 320 480c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-64-64c-6-6-9.4-14.1-9.4-22.6L192 301.3 9.4 118.6C.2 109.5-2.5 95.7 2.4 83.8zM480 96L32 96 219.3 283.3c3 3 4.7 7.1 4.7 11.3l0 121.4 64 64 0-185.4c0-4.2 1.7-8.3 4.7-11.3L480 96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFilter = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'person-carry-empty';
+var width = 320;
+var height = 512;
+var aliases = [];
+var unicode = 'e785';
+var svgPathData = 'M152 24a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM72 24A56 56 0 1 1 184 24 56 56 0 1 1 72 24zM64 176.5c0-35.6 28.9-64.5 64.5-64.5 25.5 0 48.6 15 58.9 38.3l34.3 77.2c7.7 17.3 24.9 28.5 43.9 28.5l38.4 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-38.4 0c-31.6 0-60.3-18.6-73.1-47.5l-.5-1.1 0 128.6c20.1 15.1 32 38.8 32 64l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-15.1-7.1-29.3-19.2-38.4L96 336c-20.1-15.1-32-38.8-32-64l0-95.5zm0 195.4c1.1 .8 2.1 1.7 3.2 2.5L96 396 96 528c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-156.1zM128 144c-17.7 0-32 14.3-32 32l0 96c0 15.1 7.1 29.3 19.2 38.4L160 344 160 176c0-17.7-14.3-32-32-32z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonCarryEmpty = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

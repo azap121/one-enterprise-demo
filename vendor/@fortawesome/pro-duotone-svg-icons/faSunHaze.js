@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'sun-haze';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f765';
+var svgPathData = ['M21.9 145.8c-3.1 7.4-2.2 15.8 2.2 22.5l58.2 87.8-42.5 64 137.3 0c-10.9-18.8-17.1-40.7-17.1-64 0-70.7 57.3-128 128-128s128 57.3 128 128c0 23.3-6.2 45.2-17.1 64l137.3 0-42.5-64 58.2-87.8c4.4-6.7 5.2-15.1 2.2-22.5s-9.6-12.8-17.4-14.3L433.4 110.6 412.6 7.3C411-.5 405.6-7 398.2-10.1s-15.8-2.2-22.5 2.2L288 50.3 200.2-7.9c-6.7-4.4-15.1-5.2-22.5-2.2S165-.5 163.4 7.3L142.6 110.6 39.3 131.4c-7.8 1.6-14.4 7-17.4 14.3zM208 256c0 26.2 12.6 49.4 32 64l96 0c19.4-14.6 32-37.8 32-64 0-44.2-35.8-80-80-80s-80 35.8-80 80z', 'M488 368c13.3 0 24 10.7 24 24s-10.7 24-24 24L24 416c-13.3 0-24-10.7-24-24s10.7-24 24-24l464 0zM88 464l80 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm176 0l288 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSunHaze = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

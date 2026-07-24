@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'coffee-bean';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e13e';
+var svgPathData = ['M36.4 338.3c-14.3-62.2 6.8-139.9 68.4-201.5 87.7-87.7 208.1-93.3 269.9-31.5 9.9 9.9 18.1 21.3 24.4 33.8l-28.8 33.6c-36.6 42.7-90.1 67.3-146.3 67.3-65.6 0-127.9 28.7-170.6 78.5l-17 19.8zm12.5 34.6l28.8-33.6c36.6-42.7 90.1-67.3 146.3-67.3 65.6 0 127.9-28.7 170.6-78.5l17-19.8c14.3 62.2-6.8 139.9-68.4 201.5-87.7 87.7-208.1 93.3-269.9 31.5-9.9-9.9-18.1-21.3-24.4-33.8z', 'M48.8 372.9l28.8-33.6c36.6-42.7 90.1-67.3 146.3-67.3 65.6 0 127.9-28.7 170.6-78.5l17-19.8c14.3 62.2-6.8 139.9-68.4 201.5-87.7 87.7-208.1 93.3-269.9 31.5-9.9-9.9-18.1-21.3-24.4-33.8zM36.4 338.3c-14.3-62.2 6.8-139.9 68.4-201.5 87.7-87.7 208.1-93.3 269.9-31.5 9.9 9.9 18.1 21.3 24.4 33.8l-28.8 33.6c-36.6 42.7-90.1 67.3-146.3 67.3-65.6 0-127.9 28.7-170.6 78.5l-17 19.8zM82.2 114.2C-13.6 209.9-27.7 351 50.6 429.4S270.1 493.6 365.8 397.8 475.7 161 397.4 82.6 177.9 18.4 82.2 114.2z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCoffeeBean = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

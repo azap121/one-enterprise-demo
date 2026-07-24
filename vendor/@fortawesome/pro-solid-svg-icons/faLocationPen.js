@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'location-pen';
+var width = 384;
+var height = 512;
+var aliases = ["map-marker-edit"];
+var unicode = 'f607';
+var svgPathData = 'M0 188.6C0 84.4 86 0 192 0S384 84.4 384 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0-50.2-54.5-170.4-197.5-170.4-316.8zm102.7 78.9c-.2 .9-.3 1.8-.3 2.8 0 6.3 5.1 11.4 11.4 11.4 .9 0 1.9-.1 2.8-.3l36.9-9.2c8.4-2.1 16.1-6.5 22.3-12.6L271 164.2c6.8-6.8 10.6-16 10.6-25.6 0-20-16.2-36.2-36.2-36.2-9.6 0-18.8 3.8-25.6 10.6l-95.2 95.2c-6.2 6.2-10.5 13.9-12.6 22.3l-9.2 36.9z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLocationPen = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

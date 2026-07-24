@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'draw-circle';
+var width = 576;
+var height = 512;
+var aliases = [58054,"vector-circle"];
+var unicode = 'f5ed';
+var svgPathData = 'M288 56a24 24 0 1 0 0-48 24 24 0 1 0 0 48zM226.1 15.8C233.2-11.7 258.3-32 288-32s54.8 20.3 61.9 47.8c87.2 22.4 155.9 91.1 178.3 178.3 27.5 7.2 47.8 32.2 47.8 61.9s-20.3 54.8-47.8 61.9c-22.4 87.2-91.1 155.9-178.3 178.3-7.2 27.5-32.2 47.8-61.9 47.8s-54.8-20.3-61.9-47.8C138.9 473.8 70.2 405.1 47.8 317.9 20.3 310.8 0 285.7 0 256s20.3-54.8 47.8-61.9C70.2 106.9 138.9 38.2 226.1 15.8zm6.4 48c-65.8 19-117.7 70.8-136.6 136.6 19.2 11 32.2 31.8 32.2 55.5s-13 44.5-32.2 55.5c19 65.8 70.8 117.7 136.6 136.6 11-19.2 31.8-32.2 55.5-32.2s44.5 13 55.5 32.2c65.8-19 117.7-70.8 136.6-136.6-19.2-11-32.2-31.8-32.2-55.5s13-44.5 32.2-55.5C461.2 134.7 409.3 82.8 343.5 63.8 332.5 83 311.8 96 288 96s-44.5-13-55.5-32.2zM488 256a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zM264 480a24 24 0 1 0 48 0 24 24 0 1 0 -48 0zM40 256a24 24 0 1 0 48 0 24 24 0 1 0 -48 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDrawCircle = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'face-smile-plus';
+var width = 640;
+var height = 512;
+var aliases = ["smile-plus"];
+var unicode = 'f5b9';
+var svgPathData = ['M32 272a208 208 0 1 0 416 0 208 208 0 1 0 -416 0zm86.3 71.9c-5.7-6.7-5-16.8 1.8-22.6s16.8-5 22.6 1.8C166.2 350.6 201 368 240 368s73.8-17.4 97.3-44.9c5.7-6.7 15.8-7.5 22.6-1.8s7.5 15.8 1.8 22.6C332.4 378.2 288.7 400 240 400s-92.4-21.8-121.7-56.1zM184 224a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zm160 0a24 24 0 1 1 -48 0 24 24 0 1 1 48 0z', 'M560-40c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 56-56 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l56 0 0 56c0 8.8 7.2 16 16 16s16-7.2 16-16l0-56 56 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-56 0 0-56zM240 64a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 448a240 240 0 1 0 0-480 240 240 0 1 0 0 480zM142.7 323.1c-5.7-6.7-15.8-7.5-22.6-1.8s-7.5 15.8-1.8 22.6c29.3 34.3 73 56.1 121.7 56.1s92.4-21.8 121.7-56.1c5.7-6.7 5-16.8-1.8-22.6s-16.8-5-22.6 1.8C313.8 350.6 279 368 240 368s-73.8-17.4-97.3-44.9zM184 224a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zm136 24a24 24 0 1 0 0-48 24 24 0 1 0 0 48z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFaceSmilePlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'spell-check';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f891';
+var svgPathData = 'M120 32c-48.6 0-88 39.4-88 88l0 184c0 8.8 7.2 16 16 16s16-7.2 16-16l0-96 128 0 0 96c0 8.8 7.2 16 16 16s16-7.2 16-16l0-184c0-48.6-39.4-88-88-88l-16 0zm72 144l-128 0 0-56c0-30.9 25.1-56 56-56l16 0c30.9 0 56 25.1 56 56l0 56zM288 32c-8.8 0-16 7.2-16 16l0 256c0 8.8 7.2 16 16 16l96 0c44.2 0 80-35.8 80-80 0-30-16.6-56.2-41-69.9 15.4-14.6 25-35.2 25-58.1 0-44.2-35.8-80-80-80l-80 0zm80 128l-64 0 0-96 64 0c26.5 0 48 21.5 48 48s-21.5 48-48 48zM304 288l0-96 80 0c26.5 0 48 21.5 48 48s-21.5 48-48 48l-80 0zm268.8 25.6c5.3-7.1 3.9-17.1-3.2-22.4s-17.1-3.9-22.4 3.2l-131.9 175.8-67-80.5c-5.7-6.8-15.7-7.7-22.5-2s-7.7 15.7-2 22.5l80 96c3.1 3.8 7.8 5.9 12.7 5.8s9.5-2.5 12.4-6.4l144-192z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSpellCheck = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

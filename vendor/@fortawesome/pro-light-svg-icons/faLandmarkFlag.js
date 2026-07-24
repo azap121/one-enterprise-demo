@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'landmark-flag';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e51c';
+var svgPathData = 'M336 0l0 48-80 0 0-48 80 0zM256 80l96 0c8.8 0 16-7.2 16-16l0-80c0-8.8-7.2-16-16-16L240-32c-8.8 0-16 7.2-16 16l0 144-176 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l16 0 0 240-16 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l416 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-16 0 0-240 16 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-208 0 0-48zm160 80l0 240-80 0 0-240 80 0zm-208 0l96 0 0 240-96 0 0-240zm-32 0l0 240-80 0 0-240 80 0zM0 496c0 8.8 7.2 16 16 16l480 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L16 480c-8.8 0-16 7.2-16 16z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLandmarkFlag = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

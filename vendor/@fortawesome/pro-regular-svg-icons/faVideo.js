@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'video';
+var width = 576;
+var height = 512;
+var aliases = ["video-camera"];
+var unicode = 'f03d';
+var svgPathData = 'M96 112c-8.8 0-16 7.2-16 16l0 256c0 8.8 7.2 16 16 16l256 0c8.8 0 16-7.2 16-16l0-256c0-8.8-7.2-16-16-16L96 112zM32 128c0-35.3 28.7-64 64-64l256 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L96 448c-35.3 0-64-28.7-64-64l0-256zm505.6-11.2c4.2-3.1 9.2-4.8 14.4-4.8 13.3 0 24 10.7 24 24l0 240c0 13.3-10.7 24-24 24-5.2 0-10.2-1.7-14.4-4.8l-73.6-55.2 0-60 64 48 0-144-64 48 0-60 73.6-55.2z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faVideo = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

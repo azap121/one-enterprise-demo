@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'notdef';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e1fe';
+var svgPathData = 'M48 421.8L162.8 256 48 90.2 48 421.8zM77.2 464L306.8 464 192 298.2 77.2 464zm144-208L336 421.8 336 90.2 221.2 256zM306.8 48L77.2 48 192 213.8 306.8 48zM0 48C0 21.5 21.5 0 48 0L336 0c26.5 0 48 21.5 48 48l0 416c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 48z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faNotdef = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

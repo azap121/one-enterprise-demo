@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'truck-ramp-couch';
+var width = 576;
+var height = 512;
+var aliases = ["truck-couch"];
+var unicode = 'f4dd';
+var svgPathData = ['M352 96c0-17.7 14.3-32 32-32l192 0 0 334.6-3.7 0c-10.9-36.3-44.5-62.7-84.3-62.7-34.2 0-63.8 19.5-78.4 48l-57.6 0 0-288z', 'M384 32c-35.3 0-64 28.7-64 64l0 292.1-308.6 92.6C2.9 483.2-1.9 492.1 .7 500.6s11.5 13.3 19.9 10.7l317.8-95.3 62 0c-.2 2.6-.4 5.3-.4 8 0 48.6 39.4 88 88 88s88-39.4 88-88-39.4-88-88-88c-34.2 0-63.8 19.5-78.4 48l-57.6 0 0-288c0-17.7 14.3-32 32-32l192 0 0-32-192 0zm48 392a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zM70.9 176.4c-33.8 10.3-52.8 46.1-42.5 79.9 10.9 35.7 21.8 71.4 32.7 107.1l4.7 15.3c5.2 16.9 23.1 26.4 40 21.2l166.2-50.8 0-33.5-175.5 53.7c-1.2-3.8-8.2-26.8-21.1-68.9-3.9-12.7 3.3-26.1 15.9-30s26.1 3.3 30 15.9l2.3 7.7c2.6 8.5 11.5 13.2 20 10.6l128.4-39.2 0-33.5 0 0-122.9 37.6c-11.6-24.8-40.1-37.9-67-29.7-8.2 2.5-15.4 6.7-21.4 12.2l-1.6-5.2c-5.2-16.9 4.3-34.8 21.2-40l191.7-58.6 0-33.5-201.1 61.5z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTruckRampCouch = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

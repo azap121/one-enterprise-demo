@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'lira-sign';
+var width = 320;
+var height = 512;
+var aliases = [8356];
+var unicode = 'f195';
+var svgPathData = 'M171.3 32C78.9 32 17 126.7 54 211.3L59.5 224 16 224c-8.8 0-16 7.2-16 16s7.2 16 16 16l56.6 0c3.2 10.5 5.1 21.2 5.5 32L16 288c-8.8 0-16 7.2-16 16s7.2 16 16 16l59.5 0c-2.9 13.8-8.1 27.1-15.5 39.5L2.3 455.8c-3 4.9-3 11.1-.2 16.1S10.2 480 16 480l288 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-259.7 0 43.2-72c10.5-17.4 17.4-36.4 20.6-56L256 320c8.8 0 16-7.2 16-16s-7.2-16-16-16l-145.8 0c-.4-10.7-1.8-21.5-4.4-32L256 256c8.8 0 16-7.2 16-16s-7.2-16-16-16l-161.5 0-11.2-25.5C55.5 135.1 102 64 171.3 64l6.5 0c22.3 0 44.2 5.8 63.5 16.9l22.8 13c7.7 4.4 17.4 1.7 21.8-6s1.7-17.4-6-21.8l-22.8-13C233 39.3 205.6 32 177.8 32l-6.5 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLiraSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

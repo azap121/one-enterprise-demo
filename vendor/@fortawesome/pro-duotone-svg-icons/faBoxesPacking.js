@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'boxes-packing';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e4c7';
+var svgPathData = ['M160 48l0 96 176 0c44.2 0 80 35.8 80 80l0 32c0 18-6 34.6-16 48l0 160c0 17.5-4.7 33.9-12.8 48L496 512c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48l-80 0 0 56c0 13.3-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24l0-56-80 0c-26.5 0-48 21.5-48 48z', 'M416 0l0 56c0 13.3-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24l0-56 128 0zM16 224c0-17.7 14.3-32 32-32l288 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32l0-32zM32 336l320 0 0 128c0 26.5-21.5 48-48 48L80 512c-26.5 0-48-21.5-48-48l0-128z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBoxesPacking = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

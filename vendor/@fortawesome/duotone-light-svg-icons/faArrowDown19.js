@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'arrow-down-1-9';
+var width = 512;
+var height = 512;
+var aliases = ["sort-numeric-asc","sort-numeric-down"];
+var unicode = 'f162';
+var svgPathData = ['', 'M235.3 379.3l-96 96c-6.2 6.2-16.4 6.2-22.6 0l-96-96c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L112 425.4 112 48c0-8.8 7.2-16 16-16s16 7.2 16 16l0 377.4 68.7-68.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6zM409.6 35.2c4 3 6.4 7.8 6.4 12.8l0 144 40 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-112 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l40 0 0-122.8-35.6 10.2c-8.5 2.4-17.4-2.5-19.8-11s2.5-17.4 11-19.8l56-16c4.8-1.4 10-.4 14 2.6zM448 336a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm-42.1 79.8c-2 .1-3.9 .2-5.9 .2-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80c0 18.9-5.8 37.3-16.5 52.8l-58.3 84.3c-5 7.3-15 9.1-22.3 4s-9.1-15-4-22.3l27.1-39.1z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowDown19 = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'light-emergency';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e41f';
+var svgPathData = 'M448 368c0-26.5-21.5-48-48-48l0-112c0-97.2-78.8-176-176-176S48 110.8 48 208l0 112c-26.5 0-48 21.5-48 48l0 64c0 26.5 21.5 48 48 48l352 0c26.5 0 48-21.5 48-48l0-64zM352 208l0 112-256 0 0-112c0-70.7 57.3-128 128-128s128 57.3 128 128zM48 368l352 0 0 64-352 0 0-64zM176 200c0-22.1 17.9-40 40-40 13.3 0 24-10.7 24-24s-10.7-24-24-24c-48.6 0-88 39.4-88 88 0 13.3 10.7 24 24 24s24-10.7 24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLightEmergency = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'martini-glass';
+var width = 512;
+var height = 512;
+var aliases = [127864,"glass-martini-alt"];
+var unicode = 'f57b';
+var svgPathData = 'M16 32C9.7 32 3.9 35.7 1.4 41.5S-.1 54.1 4.2 58.8l83.8 92.2 0 9 8.2 0 143.8 158.2 0 161.8-96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l224 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-96 0 0-161.8 143.8-158.2 8.2 0 0-9 83.8-92.2c4.3-4.7 5.4-11.4 2.8-17.2S502.3 32 496 32L16 32zm385.7 96l-291.3 0-58.2-64 407.7 0-58.2 64zM139.4 160L372.6 160 256 288.2 139.4 160z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMartiniGlass = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

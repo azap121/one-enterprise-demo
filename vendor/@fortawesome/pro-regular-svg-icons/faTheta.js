@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'theta';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'f69e';
+var svgPathData = 'M336 256c0-61.3-18.7-115-46.6-152.2-27.9-37.2-62.8-55.8-97.4-55.8s-69.4 18.5-97.4 55.8C66.7 141 48 194.7 48 256S66.7 371 94.6 408.2C122.6 445.5 157.5 464 192 464s69.4-18.5 97.4-55.8C317.3 371 336 317.3 336 256zm48 0c0 141.4-86 256-192 256S0 397.4 0 256 86 0 192 0 384 114.6 384 256zM120 232l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24s10.7-24 24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTheta = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

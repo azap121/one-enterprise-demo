@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'bowl-hot';
+var width = 512;
+var height = 512;
+var aliases = ["soup"];
+var unicode = 'f823';
+var svgPathData = ['M128.1 8l0 8c0 32.7 15.4 63.6 41.6 83.2 14.1 10.6 22.4 27.2 22.4 44.8l0 8c0 13.3 10.7 24 24 24s24-10.7 24-24l0-8c0-32.7-15.4-63.6-41.6-83.2-14.1-10.6-22.4-27.2-22.4-44.8l0-8c0-13.3-10.7-24-24-24s-24 10.7-24 24zm128 0l0 8c0 32.7 15.4 63.6 41.6 83.2 14.1 10.6 22.4 27.2 22.4 44.8l0 8c0 13.3 10.7 24 24 24s24-10.7 24-24l0-8c0-32.7-15.4-63.6-41.6-83.2-14.1-10.6-22.4-27.2-22.4-44.8l0-8c0-13.3-10.7-24-24-24s-24 10.7-24 24z', 'M33.7 224C15.4 224 1 239.3 2.1 257.5 7.5 349.3 61.7 427.2 138.5 467.2l1.2 9.7c2.5 20 19.5 35 39.7 35l153.4 0c20.2 0 37.2-15 39.7-35l1.2-9.7c76.8-40 131-118 136.4-209.7 1.1-18.2-13.4-33.5-31.6-33.5L33.7 224z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBowlHot = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

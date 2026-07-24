@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'arrows-down-to-line';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e4b8';
+var svgPathData = 'M24 512c-13.3 0-24-10.7-24-24s10.7-24 24-24l464 0c13.3 0 24 10.7 24 24s-10.7 24-24 24L24 512zM145 377c-9.4 9.4-24.6 9.4-33.9 0L39 305c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31 0-278.1c0-13.3 10.7-24 24-24s24 10.7 24 24l0 278.1 31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72zm256 0c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31 0-278.1c0-13.3 10.7-24 24-24s24 10.7 24 24l0 278.1 31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faArrowsDownToLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

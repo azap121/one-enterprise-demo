@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'ufo-beam';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e048';
+var svgPathData = 'M288 48c42.8 0 80.4 22.4 101.7 56.2 11.6 18.5 18.3 40.4 18.3 63.8-51.6 51.6-188.4 51.6-240 0 0-23.4 6.7-45.3 18.3-63.8 21.2-33.8 58.8-56.2 101.7-56.2zm0-48C212.8 0 149.1 49.5 127.7 117.7 50.7 140.6 0 179.7 0 224 0 294.7 128.9 352 288 352s288-57.3 288-128C576 179.7 525.3 140.6 448.3 117.7 426.9 49.5 363.2 0 288 0zM264 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM120 216a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm312 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM149.7 388.3c-10.9-7.5-25.8-4.8-33.4 6.1l-72 104c-7.5 10.9-4.8 25.8 6.1 33.4s25.8 4.8 33.4-6.1l72-104c7.5-10.9 4.8-25.8-6.1-33.4zm276.7 0c-10.9 7.5-13.6 22.5-6.1 33.4l72 104c7.5 10.9 22.5 13.6 33.4 6.1s13.6-22.5 6.1-33.4l-72-104c-7.5-10.9-22.5-13.6-33.4-6.1z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faUfoBeam = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

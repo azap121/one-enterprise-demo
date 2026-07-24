@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'box-magnifying-glass';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e828';
+var svgPathData = ['M32.5 148.5l0 267.5 .3 6.5c3.1 30.1 27 54.1 57.1 57.1l6.5 .3 180.1 0c-22.6-28.6-36.1-64.7-36.1-104 0-92.8 75.2-168 168-168 25.8 0 50.2 5.8 72 16.2l0-75.7c0-13.3-4.2-26.3-11.9-37.2L419.6 42.8C407.6 26 388.2 16 367.6 16l-222.1 0-7.7 .5C120 18.6 103.8 28.1 93.3 42.8l-48.9 68.5-2.7 4.2c-6 9.9-9.2 21.4-9.2 33zM111.1 128l34.3-48 222.1 0 34.3 48-290.7 0z', 'M408.5 256.1c66.3 0 120 53.7 120 120 0 24.4-7.4 47.2-19.9 66.1l60.9 60.9c9.4 9.4 9.4 24.6 0 33.9-8.8 8.8-22.7 9.3-32.1 1.7l-1.8-1.7-60.9-60.9c-19 12.6-41.7 19.9-66.2 19.9-66.3 0-120-53.7-120-120s53.7-120 120-120zm0 48a72 72 0 1 0 0 144 72 72 0 1 0 0-144z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBoxMagnifyingGlass = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'skeleton';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f620';
+var svgPathData = 'M256 0c13.3 0 24 10.7 24 24l0 56 144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0 0 48 208 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-208 0 0 48 112 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-112 0 0 80 72 0c48.6 0 88 39.4 88 88 0 13.3-10.7 24-24 24s-24-10.7-24-24c0-22.1-17.9-40-40-40l-192 0c-22.1 0-40 17.9-40 40 0 13.3-10.7 24-24 24s-24-10.7-24-24c0-48.6 39.4-88 88-88l72 0 0-80-112 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l112 0 0-48-208 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l208 0 0-48-144 0c-13.3 0-24-10.7-24-24S74.7 80 88 80l144 0 0-56c0-13.3 10.7-24 24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSkeleton = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

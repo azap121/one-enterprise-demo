@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'x-ray';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f497';
+var svgPathData = 'M24 32C10.7 32 0 42.7 0 56S10.7 80 24 80l8 0 0 352-8 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l464 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-8 0 0-352 8 0c13.3 0 24-10.7 24-24s-10.7-24-24-24L24 32zM80 432l0-352 352 0 0 352-352 0zM280 136c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 8-64 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l64 0 0 40-80 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0 0 40-64 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l64 0 0 8c0 13.3 10.7 24 24 24s24-10.7 24-24l0-8 64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-64 0 0-40 80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0 0-40 64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-64 0 0-8z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faXRay = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

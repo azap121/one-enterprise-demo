@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'mosque';
+var width = 576;
+var height = 512;
+var aliases = [128332];
+var unicode = 'f678';
+var svgPathData = ['M0 256l576 0 0 192c0 35.3-28.7 64-64 64l-176 0 0-112c0-26.5-21.5-48-48-48s-48 21.5-48 48l0 112-176 0c-35.3 0-64-28.7-64-64L0 256z', 'M187.4 256l201.3 0c50.5 0 91.4-40.9 91.4-91.4 0-27.9-12.7-54.2-34.5-71.5L298-24.1c-5.8-4.6-14.1-4.6-19.9 0L130.5 93.1c-21.8 17.3-34.5 43.7-34.5 71.5 0 50.5 40.9 91.4 91.4 91.4zM288 352c-26.5 0-48 21.5-48 48l0 112 96 0 0-112c0-26.5-21.5-48-48-48zM0 256l64 0 0-32c0-17.7-14.3-32-32-32S0 206.3 0 224l0 32zm512-32l0 32 64 0 0-32c0-17.7-14.3-32-32-32s-32 14.3-32 32z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMosque = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

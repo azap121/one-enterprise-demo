@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'square-right';
+var width = 448;
+var height = 512;
+var aliases = [10145,"arrow-alt-square-right"];
+var unicode = 'f352';
+var svgPathData = 'M416 96c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320zM384 32c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0zM240 171.3l0 36.7c0 8.8-7.2 16-16 16l-88 0c-4.4 0-8 3.6-8 8l0 48c0 4.4 3.6 8 8 8l88 0c8.8 0 16 7.2 16 16l0 36.7 84.7-84.7-84.7-84.7zM249 377c-6.9 6.9-17.2 8.9-26.2 5.2S208 369.7 208 360l0-40-72 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40l72 0 0-40c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2L353 239c9.4 9.4 9.4 24.6 0 33.9L249 377z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareRight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'grid';
+var width = 448;
+var height = 512;
+var aliases = ["grid-3"];
+var unicode = 'e195';
+var svgPathData = ['M32 64l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0zM200 64l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0zM368 64l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0zm0 168l0 48 48 0 0-48-48 0z', 'M80 64l0 48-48 0 0-48 48 0zM32 32C14.3 32 0 46.3 0 64l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32L32 32zM80 232l0 48-48 0 0-48 48 0zM32 200c-17.7 0-32 14.3-32 32l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0zm0 200l48 0 0 48-48 0 0-48zM0 400l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0c-17.7 0-32 14.3-32 32zM248 64l0 48-48 0 0-48 48 0zM200 32c-17.7 0-32 14.3-32 32l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0zm0 200l48 0 0 48-48 0 0-48zm-32 0l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0c-17.7 0-32 14.3-32 32zm80 168l0 48-48 0 0-48 48 0zm-48-32c-17.7 0-32 14.3-32 32l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0zM368 64l48 0 0 48-48 0 0-48zm-32 0l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0c-17.7 0-32 14.3-32 32zm80 168l0 48-48 0 0-48 48 0zm-48-32c-17.7 0-32 14.3-32 32l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0zm0 200l48 0 0 48-48 0 0-48zm-32 0l0 48c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-48c0-17.7-14.3-32-32-32l-48 0c-17.7 0-32 14.3-32 32z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faGrid = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

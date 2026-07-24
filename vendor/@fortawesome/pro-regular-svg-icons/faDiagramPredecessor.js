@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'diagram-predecessor';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e477';
+var svgPathData = 'M295 127c9.4-9.4 24.6-9.4 33.9 0l15 15 0-38.1c0-13.3-10.7-24-24-24l-98 0c1.3 5.1 2 10.5 2 16l0 80c0 35.3-28.7 64-64 64l-96 0c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l256 0c39.8 0 72 32.2 72 72l0 38.1 15-15c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-56 56c-9.4 9.4-24.6 9.4-33.9 0l-56-56c-9.4-9.4-9.4-24.6 0-33.9zM400 352c0-8.8-7.2-16-16-16L64 336c-8.8 0-16 7.2-16 16l0 64c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-64zm48 64c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l320 0c35.3 0 64 28.7 64 64l0 64zM176 96c0-8.8-7.2-16-16-16L64 80c-8.8 0-16 7.2-16 16l0 80c0 8.8 7.2 16 16 16l96 0c8.8 0 16-7.2 16-16l0-80zM96 120l32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faDiagramPredecessor = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

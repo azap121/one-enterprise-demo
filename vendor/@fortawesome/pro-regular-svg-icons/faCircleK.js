@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'circle-k';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e113';
+var svgPathData = 'M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm87.4-325.6c10.2-8.5 11.6-23.6 3.1-33.8s-23.6-11.6-33.8-3.1L208 236.8 208 168c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 176c0 13.3 10.7 24 24 24s24-10.7 24-24l0-44.8 31.1-25.9 70.3 85.9c8.4 10.3 23.5 11.8 33.8 3.4s11.8-23.5 3.4-33.8l-70.6-86.2 67.3-56.1z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleK = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

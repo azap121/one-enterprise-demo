@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'engine';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e16e';
+var svgPathData = ['M96 192l0 128c0 17.7 14.3 32 32 32l32 0c5 0 9.8 2.4 12.8 6.4l33.6 44.8c6 8.1 15.5 12.8 25.6 12.8l152 0c17.7 0 32-14.3 32-32l0-192c0-17.7-14.3-32-32-32l-256 0c-17.7 0-32 14.3-32 32zm64 48c0-8.8 7.2-16 16-16l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16z', 'M360 48c0 8.8-7.2 16-16 16l-72 0 0 64 112 0c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64l-152 0c-20.1 0-39.1-9.5-51.2-25.6L152 384 128 384c-35.3 0-64-28.7-64-64l0-48-32 0 0 80c0 8.8-7.2 16-16 16S0 360.8 0 352L0 160c0-8.8 7.2-16 16-16s16 7.2 16 16l0 80 32 0 0-48c0-35.3 28.7-64 64-64l112 0 0-64-72 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l176 0c8.8 0 16 7.2 16 16zM496 160c8.8 0 16 7.2 16 16l0 224c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-224c0-8.8 7.2-16 16-16zm-368 0c-17.7 0-32 14.3-32 32l0 128c0 17.7 14.3 32 32 32l32 0c5 0 9.8 2.4 12.8 6.4l33.6 44.8c6 8.1 15.5 12.8 25.6 12.8l152 0c17.7 0 32-14.3 32-32l0-192c0-17.7-14.3-32-32-32l-256 0zm208 96l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faEngine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

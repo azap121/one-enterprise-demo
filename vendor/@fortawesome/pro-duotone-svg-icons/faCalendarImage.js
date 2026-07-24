@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'calendar-image';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e0d4';
+var svgPathData = ['M0 160l448 0 0 272c0 26.5-21.5 48-48 48L48 480c-26.5 0-48-21.5-48-48L0 160zm96 64a32 32 0 1 0 64 0 32 32 0 1 0 -64 0zm0 163.4c0 15.8 12.8 28.6 28.6 28.6l198.8 0c15.8 0 28.6-12.8 28.6-28.6 0-7.3-2.8-14.4-7.9-19.7L247.3 265.9c-6-6.3-14.4-9.9-23.2-9.9-9 0-17.4 3.6-23.5 9.9L103.9 367.7C98.8 373 96 380.1 96 387.4z', 'M128 0C110.3 0 96 14.3 96 32l0 32-48 0C21.5 64 0 85.5 0 112l0 48 448 0 0-48c0-26.5-21.5-48-48-48l-48 0 0-32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 32-128 0 0-32c0-17.7-14.3-32-32-32zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM124.6 416l198.8 0c15.8 0 28.6-12.8 28.6-28.6 0-7.3-2.8-14.4-7.9-19.7L247.3 265.9c-6-6.3-14.4-9.9-23.2-9.9l-.3 0c-8.8 0-17.1 3.6-23.2 9.9L103.9 367.7c-5.1 5.3-7.9 12.4-7.9 19.7 0 15.8 12.8 28.6 28.6 28.6z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCalendarImage = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

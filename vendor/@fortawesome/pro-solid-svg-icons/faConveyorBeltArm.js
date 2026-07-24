@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'conveyor-belt-arm';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e5f8';
+var svgPathData = 'M192 160l0-96-64 0c-17.7 0-32-14.3-32-32S110.3 0 128 0l64 0 0 0 64 0 0 0 64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0 0 64 135.4 0c.2 0 .4 0 .6 0l48 0c22.1 0 40 17.9 40 40l0 32c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-8-208 0c-17.7 0-32-14.3-32-32zM416 280c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 40 32 0c53 0 96 43 96 96s-43 96-96 96L96 512c-53 0-96-43-96-96s43-96 96-96l0-40c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 40 64 0 0-40c0-13.3 10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 40 64 0 0-40zM128 448a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm224-32a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm160 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faConveyorBeltArm = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

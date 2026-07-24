@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'message-arrow-up';
+var width = 512;
+var height = 512;
+var aliases = ["comment-alt-arrow-up"];
+var unicode = 'e1dc';
+var svgPathData = 'M179.2 533.6l0 0 112-84c1.4-1 3.1-1.6 4.8-1.6l120 0c53 0 96-43 96-96l0-224c0-53-43-96-96-96L96 32C43 32 0 75 0 128L0 352c0 53 43 96 96 96l32 0 0 68c0 15.5 12.5 28 28 28 6.1 0 12-2 16.8-5.6l6.4-4.8zM160 448l0-8c0-13.3-10.7-24-24-24l-40 0c-35.3 0-64-28.7-64-64l0-224c0-35.3 28.7-64 64-64l320 0c35.3 0 64 28.7 64 64l0 224c0 35.3-28.7 64-64 64l-120 0c-8.7 0-17.1 2.8-24 8l-112 84 0-60zm84.7-299.3l-72 72c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L240 198.6 240 320c0 8.8 7.2 16 16 16s16-7.2 16-16l0-121.4 44.7 44.7c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-72-72c-6.2-6.2-16.4-6.2-22.6 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMessageArrowUp = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

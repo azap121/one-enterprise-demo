@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'bookmark-plus';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e755';
+var svgPathData = 'M0 64C0 28.7 28.7 0 64 0L320 0c35.3 0 64 28.7 64 64l0 416c0 11.5-6.2 22.2-16.2 27.8s-22.3 5.5-32.2-.4L192 421.3 48.5 507.4c-9.9 5.9-22.2 6.1-32.2 .4S0 491.5 0 480L0 64zm192 64c-13.3 0-24 10.7-24 24l0 48-48 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l48 0 0 48c0 13.3 10.7 24 24 24s24-10.7 24-24l0-48 48 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-48 0 0-48c0-13.3-10.7-24-24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faBookmarkPlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

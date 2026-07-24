@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'square-down';
+var width = 448;
+var height = 512;
+var aliases = [11015,"arrow-alt-square-down"];
+var unicode = 'f350';
+var svgPathData = 'M384 448c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l320 0zm64-32c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320zM308.7 272L272 272c-8.8 0-16-7.2-16-16l0-88c0-4.4-3.6-8-8-8l-48 0c-4.4 0-8 3.6-8 8l0 88c0 8.8-7.2 16-16 16l-36.7 0 84.7 84.7 84.7-84.7zM103 281c-6.9-6.9-8.9-17.2-5.2-26.2S110.3 240 120 240l40 0 0-72c0-22.1 17.9-40 40-40l48 0c22.1 0 40 17.9 40 40l0 72 40 0c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2L241 385c-9.4 9.4-24.6 9.4-33.9 0L103 281z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareDown = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

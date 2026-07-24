@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'person-half-dress';
+var width = 384;
+var height = 512;
+var aliases = [];
+var unicode = 'e548';
+var svgPathData = 'M216 24a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zm-80 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zM124.6 197.9L44.5 298c-5.5 6.9-15.6 8-22.5 2.5s-8-15.6-2.5-22.5L128.3 142c12.1-15.1 29-25.1 47.7-28.6l0 38.7c-2.7 2.6-4.7 5.8-5.9 9.5l-62 190.5 67.9 0 0 32-16 0 0 144c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-144-42 0c-10.9 0-18.6-10.6-15.2-21l53.7-165.1zM240 368l-32 0 0-32 32 0 0-179.3c-9.8-5.6-20.7-9.5-32-11.4l0-32.3c39 4.9 74.1 27.4 94.7 61.7l63.1 105.1c4.5 7.6 2.1 17.4-5.5 21.9s-17.4 2.1-22-5.5L275.2 191.1c-1-1.7-2.1-3.4-3.2-5L272 528c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-160z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPersonHalfDress = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

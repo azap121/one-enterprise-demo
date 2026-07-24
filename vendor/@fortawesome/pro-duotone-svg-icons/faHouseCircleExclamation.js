@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'house-circle-exclamation';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e50a';
+var svgPathData = ['M34.2 251.7C39 263.9 50.9 272 64 272l16 0 0 176c0 35.3 28.7 64 64 64l196.1 0c-10.5-14.6-19-30.7-25.2-48l-90.9 0 0-96c0-26.5 21.5-48 48-48l32 0c5.7 0 11.1 1 16.1 2.8 29.7-67.6 97.3-114.8 175.9-114.8 10.7 0 21.1 .9 31.3 2.6L309.8 8.6c-11.5-10.7-28.9-11.4-41.2-2l-2.4 2-224 208c-9.6 9-12.8 22.9-8 35.1z', 'M352 400a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm164 64a20 20 0 1 0 -40 0 20 20 0 1 0 40 0zm-4-144c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 80c0 8.8 7.2 16 16 16s16-7.2 16-16l0-80z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHouseCircleExclamation = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

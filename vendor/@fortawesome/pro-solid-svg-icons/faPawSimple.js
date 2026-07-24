@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'paw-simple';
+var width = 448;
+var height = 512;
+var aliases = ["paw-alt"];
+var unicode = 'f701';
+var svgPathData = 'M96 80a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm1.7 206c6.2-2.3 11.8-6.3 15-12.2l40-71.9c14.4-25.9 41.7-42 71.3-42s56.9 16.1 71.3 42l40 71.9c3.2 5.8 8.8 9.9 15 12.2 38.3 14 65.7 50.8 65.7 94 0 55.2-44.8 100-100 100-21.2 0-40.8-6.6-56.9-17.8-17.4-12-52.8-12-70.1 0-16.2 11.2-35.8 17.8-56.9 17.8-55.2 0-100-44.8-100-100 0-43.2 27.4-80 65.7-94zM304 32a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm48 160a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM48 144a48 48 0 1 1 0 96 48 48 0 1 1 0-96z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPawSimple = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

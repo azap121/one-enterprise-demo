@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'clock-ten-thirty';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e355';
+var svgPathData = ['M0 256a256 256 0 1 0 512 0 256 256 0 1 0 -512 0zm140-77.3c7.4-11 22.3-14 33.3-6.7l96 64C276 240.5 280 248 280 256l0 136c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-41.1 0-82.1 0-123.2-28.4-19-56.9-37.9-85.3-56.9-11-7.4-14-22.3-6.7-33.3z', 'M256 416c13.3 0 24-10.7 24-24l0-136c0-8-4-15.5-10.7-20l-96-64c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3L232 268.8 232 392c0 13.3 10.7 24 24 24z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faClockTenThirty = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

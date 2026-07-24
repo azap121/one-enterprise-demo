@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'layer-minus';
+var width = 512;
+var height = 512;
+var aliases = ["layer-group-minus"];
+var unicode = 'f5fe';
+var svgPathData = 'M368 32c-8.8 0-16 7.2-16 16s7.2 16 16 16l128 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L368 32zM266.1 130.2L468.9 224 266.1 317.7c-6.4 3-13.8 3-20.1 0L43.1 224 245.9 130.2c6.4-3 13.7-3 20.1 0zm13.4-29c-14.9-6.9-32.1-6.9-47 0L13.9 202.2C5.4 206.1 0 214.6 0 224s5.4 17.9 13.9 21.8l218.6 101c14.9 6.9 32.1 6.9 47 0l218.6-101c8.5-3.9 13.9-12.4 13.9-21.8s-5.4-17.9-13.9-21.8l-218.6-101zM82.7 330.4L13.9 362.2C5.4 366.1 0 374.6 0 384s5.4 17.9 13.9 21.8l218.6 101c14.9 6.9 32.1 6.9 47 0l218.6-101c8.5-3.9 13.9-12.4 13.9-21.8s-5.4-17.9-13.9-21.8l-68.7-31.8-38.1 17.6 77.7 35.9-202.9 93.8c-6.4 3-13.8 3-20.1 0L43.1 384 120.8 348 82.7 330.4z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faLayerMinus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

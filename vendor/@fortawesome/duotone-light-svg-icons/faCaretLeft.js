@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'caret-left';
+var width = 256;
+var height = 512;
+var aliases = [];
+var unicode = 'f0d9';
+var svgPathData = ['M32.7 256c.1-.3 .3-.7 .7-1.1l126.9-126.9 0 256c-42.6-42.6-85.1-85.1-127.6-128z', 'M9.7 233.4c-11.6 12.9-12.8 32.4 0 45.2l128 128c9.1 9.2 22.9 11.9 34.9 6.9l4.3-2.2c9.5-5.7 15.5-16.1 15.5-27.4l0-256-.3-4.8c-1.4-9.4-7-17.7-15.1-22.6l-4.3-2.2c-10.5-4.3-22.3-2.8-31.2 3.8l-3.7 3.1-128 128zm23 22.7c.1-.3 .3-.7 .7-1.1l126.9-126.9 0 256-127.7-127.7c0-.1 .1-.2 .1-.2z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCaretLeft = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'highlighter';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'f591';
+var svgPathData = ['M63 410.4c1.5 4.5 4.1 8.7 7.6 12.2l50.7 50.7c3.6 3.6 7.8 6.1 12.2 7.6 11.2 3.8 24.1 1.3 33-7.6l57.4-57.4 71.7 0c15.3 0 29.6-7.2 38.6-19.5l26.3-35.8-177.5-177.5c-11.9 8.8-23.8 17.6-35.7 26.3-12.3 9-19.5 23.4-19.5 38.6l0 71.7c-19.1 19.1-38.2 38.3-57.4 57.4-8.9 8.9-11.5 21.8-7.6 33z', 'M360.7 360.7L183.3 183.3 420.6 8.4C428 2.9 437 0 446.2 0 457.6 0 468.5 4.5 476.6 12.6l54.8 54.8c8.1 8.1 12.6 19 12.6 30.5 0 9.2-2.9 18.2-8.4 25.6L360.7 360.7zM7 466.3l56-56c1.5 4.5 4.1 8.7 7.6 12.2l50.7 50.7c3.6 3.6 7.8 6.1 12.2 7.6l-24 24c-4.5 4.5-10.6 7-17 7L24 512c-13.3 0-24-10.7-24-24l0-4.7c0-6.4 2.5-12.5 7-17z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHighlighter = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

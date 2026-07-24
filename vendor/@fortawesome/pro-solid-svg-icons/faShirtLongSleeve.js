@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fas';
+var iconName = 'shirt-long-sleeve';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e3c7';
+var svgPathData = 'M288 112c44.2 0 80-35.8 80-80l41 0c37.8 0 72 22.2 87.5 56.6l53.6 119.2c6.5 14.4 9.9 30.1 9.9 46L560 416c0 17.7-14.3 32-32 32l-32 0 0-200c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 200c0 35.3-28.7 64-64 64l-192 0c-35.3 0-64-28.7-64-64l0-200c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 200-32 0c-17.7 0-32-14.3-32-32l0-162.3c0-15.8 3.4-31.5 9.9-46L79.5 88.6C95 54.2 129.3 32 167 32l41 0c0 44.2 35.8 80 80 80z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faShirtLongSleeve = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

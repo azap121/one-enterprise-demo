@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'message-music';
+var width = 512;
+var height = 512;
+var aliases = ["comment-alt-music"];
+var unicode = 'f8af';
+var svgPathData = 'M203.7 512.9l0 0 91.9-64.9 120.4 0c53 0 96-43 96-96l0-224c0-53-43-96-96-96L96 32C43 32 0 75 0 128L0 352c0 53 43 96 96 96l32 0 0 72c0 9 5 17.2 13 21.3s17.6 3.5 24.9-1.7l37.8-26.7zM295.6 400c-9.9 0-19.6 3.1-27.7 8.8-28.6 20.2-59.3 41.8-91.9 64.9l0-49.7c0-2.8-.5-5.6-1.4-8.1-3.3-9.3-12.2-15.9-22.6-15.9l-56 0c-26.5 0-48-21.5-48-48l0-224c0-26.5 21.5-48 48-48l320 0c26.5 0 48 21.5 48 48l0 224c0 26.5-21.5 48-48 48l-120.4 0zM312 128l-48 0c-13.3 0-24 10.7-24 24l0 89.8c-5.1-1.2-10.5-1.8-16-1.8-35.3 0-64 25.1-64 56s28.7 56 64 56 64-25.1 64-56l0-104 24 0c13.3 0 24-10.7 24-24l0-16c0-13.3-10.7-24-24-24z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMessageMusic = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

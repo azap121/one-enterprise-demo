@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#000000"/>
+  <!-- Datasite D mark: three rectangles forming the open-D shape -->
+  <!-- Top bar -->
+  <rect x="116" y="75" width="197" height="83" fill="#ffffff"/>
+  <!-- Right connector -->
+  <rect x="313" y="158" width="83" height="196" fill="#ffffff"/>
+  <!-- Bottom bar -->
+  <rect x="116" y="354" width="197" height="83" fill="#ffffff"/>
+</svg>

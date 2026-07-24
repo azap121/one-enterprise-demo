@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'rupiah-sign';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e23d';
+var svgPathData = ['M288 256c0-17.7 14.3-32 32-32l80 0c61.9 0 112 50.1 112 112S461.9 448 400 448l-48 0 0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-256zm64 32l0 96 48 0c26.5 0 48-21.5 48-48s-21.5-48-48-48l-48 0z', 'M32 32C14.3 32 0 46.3 0 64L0 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-128 48 0c2.7 0 5.4-.1 8.1-.2l41.2 137.4c5.1 16.9 22.9 26.5 39.8 21.5s26.5-22.9 21.5-39.8l-41-136.7C226 277.5 256 230.3 256 176 256 96.5 191.5 32 112 32L32 32zm80 224l-48 0 0-160 48 0c44.2 0 80 35.8 80 80s-35.8 80-80 80z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRupiahSign = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'tent-arrow-left-right';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e57f';
+var svgPathData = ['M37.1 476c-2.4 19.1 12.5 36 31.7 36l154.5 0c17.7 0 32-14.3 32-32l0-117.4c0-5.9 4.7-10.6 10.6-10.6 4 0 7.7 2.3 9.5 5.9l68.2 136.5c5.4 10.8 16.5 17.7 28.6 17.7l71.9 0c19.3 0 34.2-16.9 31.7-36L452.7 292.7c-1.2-9.7-6.9-18.4-15.3-23.4L271.9 169.9c-10.2-6.1-22.9-6.1-33.1 .1L75.4 269.3c-8.3 5.1-13.9 13.7-15.1 23.3L37.1 476z', 'M-.5 113c-9.4-9.4-9.4-24.6 0-33.9l72-72c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-31 31 102.1 0c0 0 .1 0 .1 0l262 0-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l72 72c9.4 9.4 9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-310.1 0 0 0-54.1 0 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTentArrowLeftRight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

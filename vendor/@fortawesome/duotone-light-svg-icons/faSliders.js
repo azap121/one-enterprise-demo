@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'sliders';
+var width = 512;
+var height = 512;
+var aliases = ["sliders-h"];
+var unicode = 'f1de';
+var svgPathData = ['M112 416a48 48 0 1 0 96 0 48 48 0 1 0 -96 0zM144 96a48 48 0 1 0 96 0 48 48 0 1 0 -96 0zM304 256a48 48 0 1 0 96 0 48 48 0 1 0 -96 0z', 'M0 416c0-8.8 7.2-16 16-16l65.6 0c7.4-36.5 39.7-64 78.4-64s71 27.5 78.4 64L496 400c8.8 0 16 7.2 16 16s-7.2 16-16 16l-257.6 0c-7.4 36.5-39.7 64-78.4 64s-71-27.5-78.4-64L16 432c-8.8 0-16-7.2-16-16zm208 0a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM400 256a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm-48-80c38.7 0 71 27.5 78.4 64l65.6 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-65.6 0c-7.4 36.5-39.7 64-78.4 64s-71-27.5-78.4-64L16 272c-8.8 0-16-7.2-16-16s7.2-16 16-16l257.6 0c7.4-36.5 39.7-64 78.4-64zM192 48a48 48 0 1 0 0 96 48 48 0 1 0 0-96zm78.4 32L496 80c8.8 0 16 7.2 16 16s-7.2 16-16 16l-225.6 0c-7.4 36.5-39.7 64-78.4 64s-71-27.5-78.4-64L16 112c-8.8 0-16-7.2-16-16S7.2 80 16 80l97.6 0C121 43.5 153.3 16 192 16s71 27.5 78.4 64z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSliders = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'square-cent';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e6f0';
+var svgPathData = ['M0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zM96 256c0-62.5 44.8-114.5 104-125.8l0-10.2c0-13.3 10.7-24 24-24s24 10.7 24 24l0 10.2c24.5 4.6 46.5 16.3 63.9 32.7 9.6 9.1 10.1 24.3 1 33.9s-24.3 10.1-33.9 1c-14.3-13.5-33.6-21.8-54.9-21.8-44.2 0-80 35.8-80 80s35.8 80 80 80c21.3 0 40.6-8.3 54.9-21.8 9.6-9.1 24.8-8.7 33.9 1s8.7 24.8-1 33.9c-17.4 16.4-39.4 28-63.9 32.7l0 10.2c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-10.2C140.8 370.5 96 318.5 96 256z', 'M224 96c13.3 0 24 10.7 24 24l0 10.2c24.5 4.6 46.5 16.3 63.9 32.7 9.6 9.1 10.1 24.3 1 33.9s-24.3 10.1-33.9 1c-14.3-13.5-33.6-21.8-54.9-21.8-44.2 0-80 35.8-80 80s35.8 80 80 80c21.3 0 40.6-8.3 54.9-21.8 9.6-9.1 24.8-8.7 33.9 1s8.7 24.8-1 33.9c-17.4 16.4-39.4 28-63.9 32.7l0 10.2c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-10.2C140.8 370.5 96 318.5 96 256s44.8-114.5 104-125.8l0-10.2c0-13.3 10.7-24 24-24z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareCent = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

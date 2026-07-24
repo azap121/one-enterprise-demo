@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'circle-cruzeiro';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e722';
+var svgPathData = 'M256 32a224 224 0 1 1 0 448 224 224 0 1 1 0-448zm0 480a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM152.5 256c0-57.4 46.6-104 104-104 27.6 0 52.7 10.8 71.4 28.4 6.4 6.1 16.6 5.8 22.6-.7s5.8-16.6-.6-22.6c-24.3-23-57.2-37.1-93.3-37.1-75.1 0-136 60.9-136 136s60.9 136 136 136c36.1 0 69-14.1 93.3-37.1 6.4-6.1 6.7-16.2 .6-22.6s-16.2-6.7-22.6-.6c-15.1 14.2-34.4 24-55.8 27.2l0-46.9c0-22.1 17.9-40 40-40 8.8 0 16-7.2 16-16s-7.2-16-16-16c-14.8 0-28.6 4.5-40 12.1l0-4.1c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 110.7c-49.6-7.9-87.5-50.9-87.5-102.7z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faCircleCruzeiro = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,103 @@
+.dsg-chrome-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.dsg-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  height: 44px;
+  background: var(--dsg-chrome-bg, #DBDAD7);
+  border-bottom: 1px solid var(--dsg-chrome-border, #BFBEBB);
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.17px;
+  color: var(--dsg-chrome-fg, #4E4E4D);
+}
+.dsg-chrome a {
+  color: var(--dsg-chrome-fg, #4E4E4D);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dsg-chrome a:hover {
+  color: var(--dsg-chrome-fg-strong, #323232);
+}
+.dsg-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dsg-crumbs strong {
+  font-weight: 400;
+  color: var(--dsg-chrome-fg, #4E4E4D);
+}
+.dsg-crumb-sep {
+  color: var(--dsg-chrome-sep, #A3A2A0);
+  font-weight: 300;
+}
+.dsg-chrome-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dsg-chrome-link {
+  font-size: 0.875rem;
+  color: var(--dsg-chrome-fg, #4E4E4D);
+  text-decoration: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.dsg-chrome-link:hover {
+  color: var(--dsg-chrome-fg-strong, #323232);
+  background: var(--dsg-chrome-toggle-hover, rgba(0,0,0,0.07));
+}
+.dsg-sep-v {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: var(--dsg-chrome-border, #BFBEBB);
+  flex-shrink: 0;
+}
+.dsg-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--dsg-chrome-fg, #4E4E4D);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+.dsg-mode-toggle:hover {
+  background: var(--dsg-chrome-toggle-hover, rgba(0, 0, 0, 0.07));
+  color: var(--dsg-chrome-fg-strong, #323232);
+}
+
+html[data-theme='dark'] {
+  --dsg-chrome-bg: #323232;
+  --dsg-chrome-fg: #BFBEBB;
+  --dsg-chrome-fg-strong: #F7F6F2;
+  --dsg-chrome-border: #4E4E4D;
+  --dsg-chrome-sep: #6A6A69;
+  --dsg-chrome-toggle-hover: rgba(255, 255, 255, 0.09);
+  background: #191919;
+}
+html[data-theme='dark'] body {
+  background: #191919;
+}

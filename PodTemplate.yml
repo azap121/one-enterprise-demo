@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+    - name: node-container
+      image: harbor.dsite.io/cloudbees-agents/cloudbees-config-agents/main/nodejs-22:latest
+      alwaysPullImage: true
+      command:
+        - cat
+      tty: true
+  nodeSelector:
+    agentpool: npgen
+  tolerations:
+    - key: 'npgen'
+      operator: 'Exists'
+      effect: 'NoSchedule'
+  imagePullSecrets:
+    - name: harbor

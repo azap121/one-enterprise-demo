@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'money-check-pen';
+var width = 640;
+var height = 512;
+var aliases = ["money-check-edit"];
+var unicode = 'f872';
+var svgPathData = ['M32.1 128l0 256c0 35.3 28.7 64 64 64l191.5 0c5.3-18 15-34.4 28.3-47.8L486.1 229.9c16.3-16.3 36.7-26.1 57.9-29.4l0-72.5c0-35.3-28.7-64-64-64l-384 0c-35.3 0-64 28.7-64 64zm96 72c0-13.3 10.7-24 24-24l272 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-272 0c-13.3 0-24-10.7-24-24zm0 112c0-13.3 10.7-24 24-24l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24z', 'M320.4 526.5l11.9-59.6c2.5-12.4 8.6-23.8 17.5-32.7l118.9-118.9 80 80-118.9 118.9c-8.9 8.9-20.3 15-32.7 17.5l-59.6 11.9c-.9 .2-1.9 .3-2.9 .3-8 0-14.6-6.5-14.6-14.6 0-1 .1-1.9 .3-2.9zm251-153.8l-80-80 28.8-28.8c22.1-22.1 57.9-22.1 80 0s22.1 57.9 0 80l-28.8 28.8z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faMoneyCheckPen = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

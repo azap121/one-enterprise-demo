@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'hourglass-clock';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e41b';
+var svgPathData = ['M32 32c0 17.7 14.3 32 32 32l0 11c0 42.4 16.9 83.1 46.9 113.1l67.9 67.9-67.9 67.9C80.9 353.9 64 394.6 64 437l0 11c-17.7 0-32 14.3-32 32s14.3 32 32 32l212 0c-13.7-19-24-40.7-30-64l-118 0 0-11c0-25.5 10.1-49.9 28.1-67.9l67.9-67.9 29 29c8.1-20.8 19.7-39.8 34.1-56.4l-17.9-17.9 67.9-67.9c30-30 46.9-70.7 46.9-113.1l0-11c17.7 0 32-14.3 32-32S401.7 0 384 0L64 0C46.3 0 32 14.3 32 32zm96 32l192 0 0 11c0 25.5-10.1 49.9-28.1 67.9l-67.9 67.9-67.9-67.9c-18-18-28.1-42.4-28.1-67.9l0-11z', 'M432 544a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm16-208l0 48 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-48 0c-8.8 0-16-7.2-16-16l0-64c0-8.8 7.2-16 16-16s16 7.2 16 16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHourglassClock = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

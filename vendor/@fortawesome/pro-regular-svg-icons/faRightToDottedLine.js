@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'right-to-dotted-line';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e6c5';
+var svgPathData = 'M448 416a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm0-106.7a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-138.7a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM448 96a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM377 239c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17L233 417c-6.9 6.9-17.2 8.9-26.2 5.2S192 409.7 192 400l0-64-144 0c-26.5 0-48-21.5-48-48l0-64c0-26.5 21.5-48 48-48l80 0 0 0 64 0 0-64c0-9.7 5.8-18.5 14.8-22.2S226.1 88.2 233 95L377 239zM128 224l0 0-80 0 0 64 168 0c13.3 0 24 10.7 24 24l0 30.1 86.1-86.1-86.1-86.1 0 30.1c0 13.3-10.7 24-24 24l-88 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faRightToDottedLine = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

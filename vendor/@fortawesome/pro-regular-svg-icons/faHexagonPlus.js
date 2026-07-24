@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'hexagon-plus';
+var width = 576;
+var height = 512;
+var aliases = ["plus-hexagon"];
+var unicode = 'f300';
+var svgPathData = 'M33.5 220.3c-12.7 22.2-12.7 49.4 0 71.5l96.2 168.1c12.8 22.4 36.7 36.2 62.5 36.2l191.6 0c25.8 0 49.7-13.8 62.5-36.2l96.2-168.1c12.7-22.2 12.7-49.4 0-71.5L446.3 52.2C433.5 29.8 409.6 16 383.8 16L192.2 16c-25.8 0-49.7 13.8-62.5 36.2L33.5 220.3zM75.2 268c-4.2-7.4-4.2-16.5 0-23.8L171.4 76.1c4.3-7.5 12.2-12.1 20.8-12.1l191.6 0c8.6 0 16.6 4.6 20.8 12.1l96.2 168.1c4.2 7.4 4.2 16.5 0 23.8L404.7 436c-4.3 7.5-12.2 12.1-20.8 12.1l-191.6 0c-8.6 0-16.6-4.6-20.8-12.1L75.2 268zM264 344c0 13.3 10.7 24 24 24s24-10.7 24-24l0-64 64 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-64 0 0-64c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 64-64 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l64 0 0 64z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHexagonPlus = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

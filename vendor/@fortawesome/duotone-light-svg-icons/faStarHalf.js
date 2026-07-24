@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'star-half';
+var width = 576;
+var height = 512;
+var aliases = [61731];
+var unicode = 'f089';
+var svgPathData = ['M53.7 179.9L157.1 283.3c7.2 7.2 10.6 17.5 9 27.6l-22.8 144.4 128.8-65.5 0-348.9-50.5 98.9c-4.6 9.1-13.4 15.5-23.5 17.1l-144.4 23z', 'M266.7-18.9c4.1-8 12.4-13.1 21.4-13.1 8.8 0 16 7.2 16 16l0 415.6c0 6-3.4 11.5-8.7 14.3L143.8 491c-8 4.1-17.7 3.3-25-2l0 0c-7.3-5.3-11-14.2-9.6-23.2L134.4 305.9 20 191.4c-6.4-6.4-8.6-15.8-5.8-24.4s10.1-14.9 19.1-16.3l159.9-25.4 73.6-144.2zM272.1 41l-50.5 98.9c-4.6 9.1-13.4 15.5-23.5 17.1l-144.4 23 103.3 103.5c7.2 7.2 10.6 17.5 9 27.6l-22.8 144.4 128.8-65.5 0-348.9zM295.2-4.4l0 0 0 0s0 0 0 0zM29.4 172l0 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faStarHalf = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

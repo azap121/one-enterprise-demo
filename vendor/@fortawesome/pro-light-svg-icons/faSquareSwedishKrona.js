@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'square-swedish-krona';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e71c';
+var svgPathData = 'M64 64C46.3 64 32 78.3 32 96l0 320c0 17.7 14.3 32 32 32l320 0c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L64 64zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm112 32c8.8 0 16 7.2 16 16l0 125.8 69.8-58.1c6.8-5.7 16.9-4.7 22.5 2s4.7 16.9-2 22.5l-41.1 34.2 45.2 90.3c4 7.9 .7 17.5-7.2 21.5s-17.5 .7-21.5-7.2l-41.8-83.6-23.9 19.9 0 56.5c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-224c0-8.8 7.2-16 16-16zM300.1 264.5c-7.7 6.6-12.1 16.3-12.1 26.4l0 77.1c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16 6.9 0 12.8 4.3 15 10.4 10.7-6.8 23.1-10.4 35.9-10.4l13.1 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-13.1 0c-8.4 0-16.5 3-22.8 8.5z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faSquareSwedishKrona = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'thermometer';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'f491';
+var svgPathData = 'M218.7 368l-74.7 0 0-74.7c0-2.1 .8-4.2 2.3-5.7l21.7-21.7 23 23c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-23-23 46.1-46.1 23 23c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-23-23 46.1-46.1 23 23c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-23-23 7.8-7.8c10.3-10.4 24.4-16.2 39-16.2 30.5 0 55.2 24.7 55.2 55.2 0 14.6-5.8 28.7-16.2 39L224.4 365.7c-1.5 1.5-3.5 2.3-5.7 2.3zM41 505l89-89 88.8 0c14.9 0 29.1-5.9 39.6-16.4L481.8 176.2c19.4-19.4 30.2-45.6 30.2-73 0-57-46.2-103.2-103.2-103.2-27.4 0-53.6 10.9-73 30.2L112.4 253.7C101.9 264.2 96 278.4 96 293.3l0 88.8-89 89 0 0c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l0 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faThermometer = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'face-sad-cry';
+var width = 512;
+var height = 512;
+var aliases = [128557,"sad-cry"];
+var unicode = 'f5b3';
+var svgPathData = ['M0 256c0 88 44.4 165.6 112 211.7L112 296c0-13.3 10.7-24 24-24s24 10.7 24 24l0 197.4c29.6 12 62.1 18.6 96 18.6s66.4-6.6 96-18.6L352 296c0-13.3 10.7-24 24-24s24 10.7 24 24l0 171.7C467.6 421.6 512 344 512 256 512 114.6 397.4 0 256 0S0 114.6 0 256zm92-40c0-33.1 26.9-60 60-60l16 0c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20l-16 0c-11 0-20 9-20 20s-9 20-20 20-20-9-20-20zM208 336c0-26.5 21.5-48 48-48s48 21.5 48 48l0 32c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-32zm76-120c0-33.1 26.9-60 60-60l16 0c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20l-16 0c-11 0-20 9-20 20s-9 20-20 20-20-9-20-20z', 'M152 196c-11 0-20 9-20 20s-9 20-20 20-20-9-20-20c0-33.1 26.9-60 60-60l16 0c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20l-16 0zM112 467.7L112 296c0-13.3 10.7-24 24-24s24 10.7 24 24l0 197.4c-17-6.9-33.1-15.5-48-25.7zm240 25.7L352 296c0-13.3 10.7-24 24-24s24 10.7 24 24l0 171.7c-14.9 10.2-31 18.8-48 25.7zM324 216c0 11-9 20-20 20s-20-9-20-20c0-33.1 26.9-60 60-60l16 0c33.1 0 60 26.9 60 60 0 11-9 20-20 20s-20-9-20-20-9-20-20-20l-16 0c-11 0-20 9-20 20z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFaceSadCry = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

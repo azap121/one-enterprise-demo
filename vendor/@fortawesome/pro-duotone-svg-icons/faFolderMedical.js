@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'folder-medical';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e18c';
+var svgPathData = ['M0 96L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-240c0-35.3-28.7-64-64-64L298.7 80c-6.9 0-13.7-2.2-19.2-6.4L241.1 44.8C230 36.5 216.5 32 202.7 32L64 32C28.7 32 0 60.7 0 96zM168 256c0-8.8 7.2-16 16-16l40 0 0-40c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 40 40 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-40 0 0 40c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-40-40 0c-8.8 0-16-7.2-16-16l0-32z', 'M240 184c-8.8 0-16 7.2-16 16l0 40-40 0c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l40 0 0 40c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-40 40 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-40 0 0-40c0-8.8-7.2-16-16-16l-32 0z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFolderMedical = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

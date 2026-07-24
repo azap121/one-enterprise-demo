@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'tally';
+var width = 576;
+var height = 512;
+var aliases = ["tally-5"];
+var unicode = 'f69c';
+var svgPathData = ['', 'M96 32c8.8 0 16 7.2 16 16l0 243.1 96-28.2 0-214.9c0-8.8 7.2-16 16-16s16 7.2 16 16l0 205.4 96-28.2 0-177.2c0-8.8 7.2-16 16-16s16 7.2 16 16l0 167.8 96-28.2 0-139.6c0-8.8 7.2-16 16-16s16 7.2 16 16l0 130.1 59.5-17.5c8.5-2.5 17.4 2.4 19.9 10.8s-2.4 17.4-10.8 19.9L496 211.5 496 464c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-243.1-96 28.2 0 214.9c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-205.4-96 28.2 0 177.2c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-167.8-96 28.2 0 139.6c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-130.1-59.5 17.5C12 353.8 3.2 349 .7 340.5S3 323.1 11.5 320.6L80 300.5 80 48c0-8.8 7.2-16 16-16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTally = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'jeans-straight';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e6d3';
+var svgPathData = ['M2.6 34C1.4 15.6 16 0 34.5 0L414.4 0c18.5 0 33.1 15.6 31.9 34-.5 7.3-.9 14.7-1.4 22L3.9 56C3.5 48.7 3 41.3 2.6 34zM6.4 96l85.5 0c-3.9 29.4-29 52-59.5 52L9.7 148c-1.1-17.3-2.2-34.7-3.2-52zm5.8 92l20.2 0c52.5 0 95.6-40.5 99.7-92l68.3 0 0 384c0 17.7-14.3 32-32 32L62.5 512c-16.9 0-30.9-13.1-31.9-30-6.1-98-12.2-196-18.4-294zM248.4 96l68.3 0c4.1 51.5 47.1 92 99.7 92l20.2 0c-6.1 98-12.2 196-18.4 294-1.1 16.9-15 30-31.9 30l-105.9 0c-17.7 0-32-14.3-32-32l0-384zM357 96l85.5 0c-1.1 17.3-2.2 34.7-3.3 52l-22.7 0c-30.4 0-55.6-22.6-59.5-52z', 'M444.9 56l-441 0 2.5 40 85.5 0c-3.9 29.4-29 52-59.5 52l-22.7 0 2.5 40 20.2 0c52.5 0 95.6-40.5 99.7-92l184.6 0c4.1 51.5 47.1 92 99.7 92l20.2 0 2.5-40-22.7 0c-30.4 0-55.6-22.6-59.5-52l85.5 0 2.5-40z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faJeansStraight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

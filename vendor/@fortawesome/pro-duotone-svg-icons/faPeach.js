@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'peach';
+var width = 512;
+var height = 512;
+var aliases = [];
+var unicode = 'e20b';
+var svgPathData = ['M0 280c0 136.2 199.3 214.6 240.6 229.4 5 1.8 10.1 2.6 15.4 2.6s10.4-.8 15.4-2.6c41.3-14.8 240.6-93.2 240.6-229.4 0-92.8-75.2-168-168-168-18.3 0-35.8 2.9-52.3 8.3-.8 .3-1.5 .5-2.3 .7 43.8 33.5 73.4 84.7 78 143 .7 8.8-6.5 16-15.4 16s-15.9-7.2-16.8-16c-6.4-68-53.3-124.1-116.3-144.2-16.1-5.1-33.2-7.9-50.9-7.9-92.8 0-168 75.2-168 168z', 'M377.5 82.8c-10.9-1.8-22.1-2.8-33.5-2.8-31.5 0-61.4 7.3-88 20.4-26.6-13-56.5-20.4-88-20.4-11.4 0-22.6 1-33.5 2.8-14-15.6-22.5-36.2-22.5-58.8 0-13.3 10.7-24 24-24l24 0c53 0 96 43 96 96 0-53 43-96 96-96l24 0c13.3 0 24 10.7 24 24 0 22.6-8.5 43.2-22.5 58.8z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPeach = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'hand-pointer';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'f25a';
+var svgPathData = ['M8 336l72 96c33.7 45 84.6 73.4 140 79 4.8 .7 9.7 1 14.7 1l85.3 0c70.7 0 128-57.3 128-128l0-112c0-26.5-21.5-48-48-48-12.4 0-23.6 4.7-32.1 12.3-1.9-24.8-22.6-44.3-47.9-44.3-13.8 0-26.3 5.8-35 15.2-6.8-18.2-24.4-31.2-45-31.2-12.3 0-23.5 4.6-32 12.2L208 40c0-22.1-17.9-40-40-40s-40 17.9-40 40l0 322.7-56-74.7c-13.3-17.7-38.3-21.3-56-8s-21.3 38.3-8 56zm200-32c0-8.8 7.2-16 16-16s16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96zm64 0c0-8.8 7.2-16 16-16s16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96zm64 0c0-8.8 7.2-16 16-16s16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96z', 'M224 288c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zm64 0c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zm80 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16s16 7.2 16 16z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faHandPointer = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

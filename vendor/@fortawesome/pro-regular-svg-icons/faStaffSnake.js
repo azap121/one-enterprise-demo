@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'staff-snake';
+var width = 448;
+var height = 512;
+var aliases = ["rod-asclepius","rod-snake","staff-aesculapius"];
+var unicode = 'e579';
+var svgPathData = 'M200 464l0 56c0 13.3 10.7 24 24 24s24-10.7 24-24l0-184 32 0c22.1 0 40 17.9 40 40 0 19.4-13.7 35.5-32 39.2l0 48.4c44.9-4 80-41.7 80-87.6 0-48.6-39.4-88-88-88l-32 0 0-192 68 0c19.9 0 36 16.1 36 36s-16.1 36-36 36l-28 0 0 48 28 0c46.4 0 84-37.6 84-84s-37.6-84-84-84l-68 0 0-56c0-13.3-10.7-24-24-24S200-21.3 200-8l0 56-128 0c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56l0-8 72 0 0 192-36 0c-19.9 0-36-16.1-36-36 0-18.5 14-33.8 32-35.8l0-48.1c-44.5 2.1-80 38.9-80 83.9 0 46.4 37.6 84 84 84l36 0 0 80-32 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l32 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faStaffSnake = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fal';
+var iconName = 'truck-fire';
+var width = 576;
+var height = 512;
+var aliases = [];
+var unicode = 'e65a';
+var svgPathData = 'M0 16C0 7.2 7.2 0 16 0L560 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-240 0 0 96 64 0c0-35.3 28.7-64 64-64s64 28.7 64 64c35.3 0 64 28.7 64 64l0 192c0 35.3-28.7 64-64 64l-3.3 0c-10.4 36.9-44.4 64-84.7 64s-74.2-27.1-84.7-64l-102.6 0c-10.4 36.9-44.4 64-84.7 64s-74.2-27.1-84.7-64L64 448c-35.3 0-64-28.7-64-64L0 192c0-23.7 12.9-44.4 32-55.4L32 32 16 32C7.2 32 0 24.8 0 16zM448 96c-17.7 0-32 14.3-32 32l64 0c0-17.7-14.3-32-32-32zM320 160L64 160c-17.7 0-32 14.3-32 32l0 64 352 0 0-96-64 0zm96 0l0 96 128 0 0-64c0-17.7-14.3-32-32-32l-96 0zM544 288l-512 0 0 96c0 17.7 14.3 32 32 32l.4 0c4-44.9 41.7-80 87.6-80s83.6 35.1 87.6 80l96.7 0c4-44.9 41.7-80 87.6-80s83.6 35.1 87.6 80l.4 0c17.7 0 32-14.3 32-32l0-96zM288 128l0-96-96 0 0 96 96 0zM64 32l0 96 96 0 0-96-96 0zM208 424a56 56 0 1 0 -112 0 56 56 0 1 0 112 0zm216 56a56 56 0 1 0 0-112 56 56 0 1 0 0 112z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faTruckFire = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

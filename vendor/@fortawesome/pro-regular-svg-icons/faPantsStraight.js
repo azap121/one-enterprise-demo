@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'far';
+var iconName = 'pants-straight';
+var width = 448;
+var height = 512;
+var aliases = [];
+var unicode = 'e6d6';
+var svgPathData = 'M51.5 48l345.8 0-3 48-49.9 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l46.9 0-20 320-122.9 0 0-280c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 280-122.9 0-20-320 46.9 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-49.9 0-3-48zM397.3 0L51.5 0C23.8 0 1.9 23.4 3.6 51l26 416c1.6 25.3 22.6 45 47.9 45l293.8 0c25.3 0 46.3-19.7 47.9-45l26-416C446.9 23.4 425 0 397.3 0z';
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faPantsStraight = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

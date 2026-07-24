@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fadl';
+var iconName = 'font-awesome';
+var width = 512;
+var height = 512;
+var aliases = [62501,62694,"font-awesome-flag","font-awesome-logo-full"];
+var unicode = 'f2b4';
+var svgPathData = ['M64 128l0 288 397 0-58.2-131c-3.7-8.3-3.7-17.7 0-26L461 128 64 128z', 'M64 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm55.4 64c5.4-9.4 8.6-20.3 8.6-32 0-35.3-28.7-64-64-64S0 28.7 0 64c0 23.7 12.9 44.4 32 55.4l0 392.6 32 0 0-64 405.6 0c14.6 0 26.4-11.8 26.4-26.4 0-3.7-.8-7.3-2.3-10.7L432 272 493.7 133.1c1.5-3.4 2.3-7 2.3-10.7 0-14.6-11.8-26.4-26.4-26.4L119.4 96zM461 416l-397 0 0-288 397 0-58.2 131c-3.7 8.3-3.7 17.7 0 26L461 416z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faFontAwesome = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;

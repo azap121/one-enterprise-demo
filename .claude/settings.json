@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "additionalDirectories": ["/Users/pana.vue/git/halo-app"],
+    "allow": [
+      "mcp__Claude_Preview__preview_eval",
+      "mcp__Claude_Preview__preview_screenshot",
+      "mcp__Claude_Preview__preview_click",
+      "mcp__Claude_Preview__preview_console_logs",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__Claude_Preview__preview_snapshot",
+      "mcp__Claude_Preview__preview_list",
+      "mcp__Claude_Preview__preview_resize",
+      "mcp__Claude_Preview__preview_logs",
+      "mcp__Claude_Preview__preview_fill",
+      "mcp__Claude_Preview__preview_network",
+      "mcp__Claude_Preview__preview_inspect",
+      "mcp__Claude_Preview__preview_stop",
+      "Bash(open *)",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_screenshot",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_design_context",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_metadata",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_libraries",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__search_design_system",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_variable_defs",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__get_code_connect_map",
+      "mcp__55d58e01-0544-40fb-9fb8-7dd032351317__whoami"
+    ]
+  }
+}

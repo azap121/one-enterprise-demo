@@ -1,0 +1,30 @@
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var prefix = 'fad';
+var iconName = 'shop-lock';
+var width = 640;
+var height = 512;
+var aliases = [];
+var unicode = 'e4a5';
+var svgPathData = ['M16 204.2c0 27.3 21.2 49.7 48 51.6L64 432c0 26.5 21.5 48 48 48l192 0c26.5 0 48-21.5 48-48l0-176 57.3 0c19-46.9 65-80 118.7-80 8.6 0 17.1 .9 25.2 2.5L497.7 67.4C486.8 45.7 464.7 32 440.4 32L135.6 32c-24.2 0-46.4 13.7-57.2 35.4L21.5 181.1c-3.6 7.2-5.5 15.1-5.5 23.2zM128 256l160 0 0 112c0 8.8-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16l0-112z', 'M496 352l0-47.9c0-17.7 14.3-32 32-32s32 14.3 32 32l0 47.9-64 0zm-48 2.7c-18.6 6.6-32 24.4-32 45.3l0 96c0 26.5 21.5 48 48 48l128 0c26.5 0 48-21.5 48-48l0-96c0-20.9-13.4-38.7-32-45.3l0-50.6c0-44.2-35.8-80-80-80s-80 35.8-80 80l0 50.6z'];
+
+exports.definition = {
+  prefix: prefix,
+  iconName: iconName,
+  icon: [
+    width,
+    height,
+    aliases,
+    unicode,
+    svgPathData
+  ]};
+
+exports.faShopLock = exports.definition;
+exports.prefix = prefix;
+exports.iconName = iconName;
+exports.width = width;
+exports.height = height;
+exports.ligatures = aliases;
+exports.unicode = unicode;
+exports.svgPathData = svgPathData;
+exports.aliases = aliases;
