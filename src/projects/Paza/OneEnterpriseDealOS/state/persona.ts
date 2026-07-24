@@ -3,7 +3,9 @@
 // operator work; the Analyst seat works ahead of the room (email, Excel, buyer lists).
 // The switcher toggles WHERE the work lives relative to the room, not seniority.
 
-export type SeatId = 'tom' | 'jaime';
+// 'alex' is the One Enterprise Deal OS persona (Surface 0): Corporate Development,
+// buy-side. Tom/Jaime are retained for the inherited Aldgate (sell-side IB) flows.
+export type SeatId = 'tom' | 'jaime' | 'alex';
 
 export interface Persona {
   id: SeatId;
@@ -27,6 +29,13 @@ export const PERSONAS: Record<SeatId, Persona> = {
     firstName: 'Jaime',
     initials: 'JB',
     role: 'Analyst · works ahead of the room',
+  },
+  alex: {
+    id: 'alex',
+    name: 'Alex Verma',
+    firstName: 'Alex',
+    initials: 'AV',
+    role: 'Corporate Development · buy-side',
   },
 };
 

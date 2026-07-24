@@ -19,7 +19,10 @@ import { DatasitePrototypeShell, type NavItem } from '~/shared';
 import AiSparkleBadge from './AiSparkleBadge';
 import AssistantPanel, { type RecentChat } from './AssistantPanel';
 import type { AssistantRailMode } from './AssistantRail';
+import DealOpenedView from './DealOpenedView';
 import LegalReviewWorkspace from './LegalReviewWorkspace';
+import MyDealsHome from './MyDealsHome';
+import PromoteToDealDialog from './PromoteToDealDialog';
 import RightContextCanvas, { getComposerPlaceholderForRightTab, type RightCanvasMotion, type RightCanvasTab } from './RightContextCanvas';
 import RightContextCanvasFileDetailView from './RightContextCanvasFileDetailView';
 import RightContextCanvasFilesView from './RightContextCanvasFilesView';
@@ -52,7 +55,9 @@ import {
 import { BRIEF_SOURCE_FILES, briefPlanSteps, briefRunSteps } from '../state/briefScenario';
 import { filingSaveSteps, filingSteps } from '../state/filingScenario';
 import { initialState, reducer } from '../state/reducer';
-import { DEFAULT_SEAT, PERSONAS, type SeatId } from '../state/persona';
+import { PERSONAS, type SeatId } from '../state/persona';
+import { CALDERA_DEAL, SEED_DEALS, type DealCard } from '../state/dealsFixtures';
+import { SOURCING_INTERPRET_MS } from '../state/sourcingScenario';
 import type { WorkspaceAction, WorkspaceState } from '../state/types';
 
 type CoreTab = 'ai' | 'documents' | 'qa' | 'review' | 'notes';
@@ -96,7 +101,12 @@ const REVIEWER_DOCUMENT_SECTIONS: DocumentSourceSection[] = [
 ];
 
 export default function FolderRecommendationsChatAssistant() {
-  const [activeSeat] = useState<SeatId>(DEFAULT_SEAT);
+  const [activeSeat] = useState<SeatId>('alex');
+  // Surface 0: the project opens on the My Deals home, not straight into Aldgate chat.
+  const [homeView, setHomeView] = useState<'home' | 'chat'>('home');
+  const [deals, setDeals] = useState<DealCard[]>(SEED_DEALS);
+  const [freshDealId, setFreshDealId] = useState<string | null>(null);
+  const [promoteOpen, setPromoteOpen] = useState(false);
   const [activeCoreTab, setActiveCoreTab] = useState<CoreTab>('ai');
   const [assistantRailMode, setAssistantRailMode] = useState<AssistantRailMode>('chat');
   const [sessions, setSessions] = useState<AiSession[]>(() => createInitialSessions());
@@ -310,6 +320,66 @@ export default function FolderRecommendationsChatAssistant() {
     });
   }, [activeSessionId, draftSession, startNewChat]);
 
+  // ── My Deals home → chat transitions ──
+  const startSourcing = useCallback((query: string) => {
+    clearReviewTransitionTimers();
+    setRightCanvasMotion('idle');
+    setAssistantRailMode('chat');
+    setDraftSession({ ...createDraftSession(), state: reducer(createDraftSession().state, { type: 'START_SOURCING', query }) });
+    setActiveSessionId(DRAFT_SESSION_ID);
+    setActiveCoreTab('ai');
+    setHomeView('chat');
+  }, [clearReviewTransitionTimers]);
+
+  const askFromHome = useCallback((prompt: string) => {
+    clearReviewTransitionTimers();
+    setRightCanvasMotion('idle');
+    setAssistantRailMode('chat');
+    setDraftSession({ ...createDraftSession(), state: reducer(createDraftSession().state, { type: 'CHAT_PROMPT_SUBMITTED', prompt }) });
+    setActiveSessionId(DRAFT_SESSION_ID);
+    setActiveCoreTab('ai');
+    setHomeView('chat');
+  }, [clearReviewTransitionTimers]);
+
+  const openDealFromHome = useCallback((deal: DealCard) => {
+    if (deal.opens === 'none') return;
+    clearReviewTransitionTimers();
+    setRightCanvasMotion('idle');
+    setAssistantRailMode('chat');
+    setFreshDealId(null);
+    if (deal.opens === 'aldgate') {
+      // Enter the existing Aldgate chat experience unchanged (empty chat home).
+      setDraftSession(createDraftSession());
+      setActiveSessionId(DRAFT_SESSION_ID);
+    } else {
+      // Caldera — Phase-1 deal-opened state.
+      setDraftSession({ ...createDraftSession(), state: reducer(createDraftSession().state, { type: 'OPEN_DEAL' }) });
+      setActiveSessionId(DRAFT_SESSION_ID);
+    }
+    setActiveCoreTab('ai');
+    setHomeView('chat');
+  }, [clearReviewTransitionTimers]);
+
+  const goToDealsHome = useCallback(() => {
+    clearReviewTransitionTimers();
+    setRightCanvasMotion('idle');
+    setHomeView('home');
+  }, [clearReviewTransitionTimers]);
+
+  const confirmPromote = useCallback(() => {
+    setPromoteOpen(false);
+    // Create the Caldera deal and return to the My Deals home with the entrance flash.
+    setDeals((current) => (current.some((deal) => deal.id === CALDERA_DEAL.id) ? current : [...current, CALDERA_DEAL]));
+    setFreshDealId(CALDERA_DEAL.id);
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: false,
+      rightCanvasDisplayMode: 'default',
+    }));
+    setHomeView('home');
+    window.setTimeout(() => setFreshDealId(null), 1200);
+  }, [updateActiveSession]);
+
   useEffect(() => clearReviewTransitionTimers, [clearReviewTransitionTimers]);
 
   useEffect(() => {
@@ -352,6 +422,41 @@ export default function FolderRecommendationsChatAssistant() {
     const timer = window.setTimeout(() => dispatch({ type: 'INDEX_SAVED' }), FINAL_STEP_PAUSE_MS);
     return () => window.clearTimeout(timer);
   }, [activeCoreTab, dispatch, state.flow, state.saveStepIndex, state.stage]);
+
+  // Sourcing: "Interpreting your search…" holds ~2.5s, then the parse renders.
+  useEffect(() => {
+    if (activeCoreTab !== 'ai') return undefined;
+    if (state.stage !== 'sourcing-interpreting') return undefined;
+    const timer = window.setTimeout(() => dispatch({ type: 'SOURCING_PARSED' }), SOURCING_INTERPRET_MS);
+    return () => window.clearTimeout(timer);
+  }, [activeCoreTab, dispatch, state.stage]);
+
+  // When the parse arrives, slide the sourcing-results canvas open (320ms).
+  useEffect(() => {
+    if (state.stage !== 'sourcing-parsed') return;
+    if (activeSession.openRightCanvasTabs.includes('sourcing-results')) return;
+    clearReviewTransitionTimers();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    updateActiveSession((session) => ({
+      ...session,
+      rightCanvasOpen: true,
+      rightCanvasDisplayMode: 'default',
+      openRightCanvasTabs: session.openRightCanvasTabs.includes('sourcing-results')
+        ? session.openRightCanvasTabs
+        : [...session.openRightCanvasTabs, 'sourcing-results'],
+      activeRightCanvasTab: 'sourcing-results',
+    }));
+    setRightCanvasMotion(reducedMotion ? 'idle' : 'entering-from-right');
+    if (!reducedMotion) {
+      setReviewTransitionTimer(() => setRightCanvasMotion('idle'), REVIEW_ENTER_MS);
+    }
+  }, [
+    activeSession.openRightCanvasTabs,
+    clearReviewTransitionTimers,
+    setReviewTransitionTimer,
+    state.stage,
+    updateActiveSession,
+  ]);
 
   const openValidationPlanContext = useCallback((reducedMotion = false) => {
     updateActiveSession((session) => ({
@@ -593,10 +698,17 @@ export default function FolderRecommendationsChatAssistant() {
   const navItems = useMemo<NavItem[]>(
     () => [
       {
+        label: 'My Deals',
+        icon: <FontAwesomeIcon icon={faFolder} />,
+        active: homeView === 'home',
+        onClick: goToDealsHome,
+      },
+      {
         label: 'Datasite AI',
         icon: <DatasiteAiNavIcon />,
-        active: activeCoreTab === 'ai',
+        active: homeView === 'chat' && activeCoreTab === 'ai',
         onClick: () => {
+          setHomeView('chat');
           if (activeCoreTab === 'documents' && selectedDocumentFolder) {
             openSelectedFolderOverview();
             return;
@@ -633,7 +745,7 @@ export default function FolderRecommendationsChatAssistant() {
         onClick: () => setActiveCoreTab('notes'),
       },
     ],
-    [activeCoreTab, openSelectedFolderOverview, selectedDocumentFolder]
+    [activeCoreTab, goToDealsHome, homeView, openSelectedFolderOverview, selectedDocumentFolder]
   );
 
   const recentChats = useMemo<RecentChat[]>(
@@ -691,7 +803,15 @@ export default function FolderRecommendationsChatAssistant() {
             bgcolor: 'background.paper',
           }}
         >
-          {activeCoreTab === 'ai' ? (
+          {homeView === 'home' ? (
+            <MyDealsHome
+              deals={deals}
+              freshDealId={freshDealId}
+              onOpenDeal={openDealFromHome}
+              onStartSourcing={startSourcing}
+              onAsk={askFromHome}
+            />
+          ) : activeCoreTab === 'ai' ? (
             <AiWorkspace
               activeSessionId={activeSessionId}
               activeMode={assistantRailMode}
@@ -731,6 +851,7 @@ export default function FolderRecommendationsChatAssistant() {
               notesByRowId={qaNotesByRowId}
               onNoteChange={handleQaNoteChange}
               selectedQaItemId={selectedQaItemId}
+              onPromoteSourcing={() => setPromoteOpen(true)}
             />
           ) : null}
           {activeCoreTab === 'documents' ? (
@@ -767,6 +888,12 @@ export default function FolderRecommendationsChatAssistant() {
           flow={state.flow}
           onCancel={() => dispatch({ type: 'CANCEL_UPDATE' })}
           onConfirm={() => dispatch({ type: 'CONFIRM_UPDATE' })}
+        />
+        <PromoteToDealDialog
+          open={promoteOpen}
+          selectedCount={state.sourcingSelectedIds.length}
+          onClose={() => setPromoteOpen(false)}
+          onConfirm={confirmPromote}
         />
       </Box>
     </DatasitePrototypeShell>
@@ -812,6 +939,7 @@ function AiWorkspace({
   notesByRowId,
   onNoteChange,
   selectedQaItemId,
+  onPromoteSourcing,
 }: {
   activeSessionId: string;
   activeMode: AssistantRailMode;
@@ -851,9 +979,20 @@ function AiWorkspace({
   notesByRowId: Record<string, string>;
   onNoteChange: (rowId: string, value: string) => void;
   selectedQaItemId: string | null;
+  onPromoteSourcing: () => void;
 }) {
   if (state.stage === 'documents-view') {
     return <SandboxFolderStructureView state={state} dispatch={dispatch} />;
+  }
+
+  if (state.stage === 'deal-opened') {
+    return (
+      <DealOpenedView
+        composerValue={state.composerValue}
+        onComposerChange={(value) => dispatch({ type: 'CHAT_PROMPT_CHANGED', value })}
+        onComposerSubmit={(prompt) => dispatch({ type: 'CHAT_PROMPT_SUBMITTED', prompt })}
+      />
+    );
   }
 
   return (
@@ -932,6 +1071,7 @@ function AiWorkspace({
             onNoteChange={onNoteChange}
             selectedQaItemId={selectedQaItemId}
             onOpenQaItem={onOpenQaItem}
+            onPromoteSourcing={onPromoteSourcing}
           />
         </Box>
       ) : (
