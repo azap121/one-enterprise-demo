@@ -5,7 +5,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/projects/paza-stifel-deal-assistant",
+      "destination": "/projects/paza-one-enterprise-deal-os",
       "permanent": false
     }
   ],
