@@ -1,19 +1,35 @@
 {
-  "generatedAt": "2026-07-24T12:14:47.093Z",
-  "totalCommits": 1,
+  "generatedAt": "2026-07-24T17:33:47.883Z",
+  "totalCommits": 8,
   "totalSkillEvents": 0,
   "skillsAvailable": 13,
   "byDesigner": {
     "Paza Bahia": {
-      "commits": 1,
-      "commitsWeek": 1,
-      "commitsTwoWeeks": 1,
-      "commitsMonth": 1,
-      "lastCommit": "2026-07-24T12:41:58+01:00",
+      "commits": 8,
+      "commitsWeek": 8,
+      "commitsTwoWeeks": 8,
+      "commitsMonth": 8,
+      "lastCommit": "2026-07-24T18:00:18+01:00",
       "recentSubjects": [
         {
-          "subject": "one-enterprise-demo: fork of Stifel prototype framework for the Grata × Blueflame merged-IA demo",
-          "date": "2026-07-24T12:41:58+01:00"
+          "subject": "One Enterprise Phase 2: wire deal workspace into the Phase 1 shell",
+          "date": "2026-07-24T18:00:18+01:00"
+        },
+        {
+          "subject": "One Enterprise Phase 2: deal workspace components",
+          "date": "2026-07-24T18:00:06+01:00"
+        },
+        {
+          "subject": "One Enterprise Phase 2: Caldera deal workspace state + fixtures",
+          "date": "2026-07-24T17:59:55+01:00"
+        },
+        {
+          "subject": "One Enterprise Phase 1: My Deals home + promote-to-deal orchestration",
+          "date": "2026-07-24T16:49:24+01:00"
+        },
+        {
+          "subject": "One Enterprise Phase 1: sourcing scenario UI",
+          "date": "2026-07-24T16:49:15+01:00"
         }
       ],
       "skillInvocations": 0,
@@ -22,7 +38,7 @@
     }
   },
   "daily": {
-    "2026-07-24": 1
+    "2026-07-24": 8
   },
   "topSkillsOverall": []
 }
