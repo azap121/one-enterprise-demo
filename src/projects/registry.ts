@@ -3,6 +3,19 @@ import type { PrototypeEntry } from './types';
 
 export const registry: PrototypeEntry[] = [
   {
+    slug: 'paza-one-enterprise-deal-os',
+    type: 'project',
+    discipline: 'product',
+    designer: 'Paza',
+    title: 'One Enterprise — Deal OS (Grata × Blueflame merged IA)',
+    description:
+      'The merged-IA concept prototype: chat front-and-centre with the expandable right context canvas, hosting Grata origination (source → promote-to-Deal) and Blueflame reasoning (playbooks, agents, cited outputs, approval gates) inside one deal spine. Based on the chat-first framework; fixtures from platform recons + live scrapes.',
+    updatedAt: '2026-07-24',
+    chromeless: true,
+    audience: ['daniel'],
+    component: lazy(() => import('./Paza/OneEnterpriseDealOS')),
+  },
+  {
     slug: 'paza-stifel-deal-assistant',
     type: 'project',
     discipline: 'product',
