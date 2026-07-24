@@ -132,7 +132,12 @@ export type WorkspaceStage =
   | 'confirm-update'
   | 'save-processing'
   | 'saved'
-  | 'documents-view';
+  | 'documents-view'
+  // Sourcing flow stages (Grata-style AI search).
+  | 'sourcing-interpreting'
+  | 'sourcing-parsed'
+  // Deal-opened state for a promoted deal (Project Caldera).
+  | 'deal-opened';
 
 export type AssistantMode = 'full' | 'docked' | 'hidden';
 
@@ -147,7 +152,10 @@ export type ChatMessageKind =
   | 'saving'
   | 'success'
   | 'rationale'
-  | 'folder-overview';
+  | 'folder-overview'
+  // Sourcing flow.
+  | 'sourcing-interpreting'
+  | 'sourcing-parse';
 
 export interface ChatMessage {
   id: string;
@@ -176,7 +184,7 @@ export interface ValidationPlanPhase {
   required: boolean;
 }
 
-export type WorkspaceFlow = 'qa' | 'filing' | 'brief';
+export type WorkspaceFlow = 'qa' | 'filing' | 'brief' | 'sourcing';
 
 export interface WorkspaceState {
   stage: WorkspaceStage;
@@ -203,6 +211,17 @@ export interface WorkspaceState {
   rationaleExpanded: boolean;
   attachedFileIds: string[];
   attachedFolderIds: string[];
+  // ── Sourcing flow (Grata-style AI search) ──
+  // The query submitted into the sourcing scenario.
+  sourcingQuery: string;
+  // Whether the parse row's overflow term chips are expanded (+4).
+  sourcingTermsExpanded: boolean;
+  // Company ids removed cosmetically from the parse term chips (× affordance).
+  sourcingRemovedTermIds: string[];
+  // Whether the commercial-mechanical narrowing has been applied (State 4).
+  sourcingNarrowed: boolean;
+  // Selected company ids in the results canvas (checkboxes → floating action bar).
+  sourcingSelectedIds: string[];
 }
 
 export type WorkspaceAction =
@@ -248,4 +267,12 @@ export type WorkspaceAction =
   | { type: 'TOGGLE_ATTACHMENT'; fileId: string }
   | { type: 'REMOVE_ATTACHMENT'; fileId: string }
   | { type: 'REMOVE_FOLDER_ATTACHMENT'; folderId: string }
-  | { type: 'DISCARD_CHANGES' };
+  | { type: 'DISCARD_CHANGES' }
+  // ── Sourcing flow ──
+  | { type: 'START_SOURCING'; query: string }
+  | { type: 'SOURCING_PARSED' }
+  | { type: 'TOGGLE_SOURCING_TERMS' }
+  | { type: 'REMOVE_SOURCING_TERM'; termId: string }
+  | { type: 'NARROW_SOURCING' }
+  | { type: 'TOGGLE_SOURCING_ROW'; companyId: string }
+  | { type: 'OPEN_DEAL' };

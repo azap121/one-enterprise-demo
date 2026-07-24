@@ -3,6 +3,7 @@ import { projectScenario } from './fixtures';
 import { BRIEF_COPY, BRIEF_PLAN, briefPlanSteps, briefRunSteps } from './briefScenario';
 import { FILING_COPY, filingScenario, filingSaveSteps, filingSteps } from './filingScenario';
 import { planFormationSteps, recommendationSteps, saveSteps } from './timing';
+import { SOURCING_COMPANIES, SOURCING_COPY, SOURCING_QUICK_SUGGESTIONS } from './sourcingScenario';
 import { createDefaultValidationPlan } from './validationPlan';
 import type { ValidationPlanPhase, WorkspaceAction, WorkspaceState } from './types';
 import {
@@ -39,6 +40,11 @@ export const initialState: WorkspaceState = {
   rationaleExpanded: false,
   attachedFileIds: [],
   attachedFolderIds: [],
+  sourcingQuery: '',
+  sourcingTermsExpanded: false,
+  sourcingRemovedTermIds: [],
+  sourcingNarrowed: false,
+  sourcingSelectedIds: [],
 };
 
 // Scripted reply for the 'Stage the client drop' card. Synthetic Aldgate fixture data,
@@ -645,6 +651,79 @@ export function reducer(state: WorkspaceState, action: WorkspaceAction): Workspa
         editingNodeId: null,
         pendingNewFolder: null,
       };
+
+    case 'START_SOURCING': {
+      const query = action.query.trim();
+      if (!query) return state;
+      track('one_enterprise.sourcing.start');
+      return {
+        ...initialState,
+        stage: 'sourcing-interpreting',
+        flow: 'sourcing',
+        assistantMode: 'full',
+        sourcingQuery: query,
+        messages: [
+          { id: 'sourcing-user', role: 'user', kind: 'text', content: query },
+          { id: 'sourcing-interpreting', role: 'assistant', kind: 'sourcing-interpreting', content: SOURCING_COPY.interpreting },
+        ],
+      };
+    }
+
+    case 'SOURCING_PARSED':
+      if (state.stage !== 'sourcing-interpreting') return state;
+      track('one_enterprise.sourcing.parsed', { count: SOURCING_COMPANIES.length });
+      return {
+        ...state,
+        stage: 'sourcing-parsed',
+        messages: [
+          ...state.messages.filter((message) => message.kind !== 'sourcing-interpreting'),
+          { id: 'sourcing-parse', role: 'assistant', kind: 'sourcing-parse', content: SOURCING_COPY.interpretation },
+        ],
+      };
+
+    case 'TOGGLE_SOURCING_TERMS':
+      return { ...state, sourcingTermsExpanded: !state.sourcingTermsExpanded };
+
+    case 'REMOVE_SOURCING_TERM':
+      return {
+        ...state,
+        sourcingRemovedTermIds: state.sourcingRemovedTermIds.includes(action.termId)
+          ? state.sourcingRemovedTermIds
+          : [...state.sourcingRemovedTermIds, action.termId],
+      };
+
+    case 'NARROW_SOURCING':
+      if (state.sourcingNarrowed) return state;
+      track('one_enterprise.sourcing.narrow', { suggestion: 'commercial-mechanical' });
+      return {
+        ...state,
+        sourcingNarrowed: true,
+        // Drop any selection that no longer survives the narrowing.
+        sourcingSelectedIds: state.sourcingSelectedIds.filter((id) => {
+          const company = SOURCING_COMPANIES.find((candidate) => candidate.id === id);
+          return company?.commercial ?? false;
+        }),
+        messages: [
+          ...state.messages,
+          {
+            id: `sourcing-narrow-${state.messages.length}`,
+            role: 'user',
+            kind: 'text',
+            content: SOURCING_QUICK_SUGGESTIONS[0].label,
+          },
+        ],
+      };
+
+    case 'TOGGLE_SOURCING_ROW':
+      return {
+        ...state,
+        sourcingSelectedIds: state.sourcingSelectedIds.includes(action.companyId)
+          ? state.sourcingSelectedIds.filter((id) => id !== action.companyId)
+          : [...state.sourcingSelectedIds, action.companyId],
+      };
+
+    case 'OPEN_DEAL':
+      return { ...initialState, stage: 'deal-opened', flow: 'sourcing' };
 
     default:
       return state;
