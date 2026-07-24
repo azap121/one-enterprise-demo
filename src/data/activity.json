@@ -1,16 +1,28 @@
 {
-  "generatedAt": "2026-07-24T17:33:47.883Z",
-  "totalCommits": 8,
+  "generatedAt": "2026-07-24T20:10:26.738Z",
+  "totalCommits": 11,
   "totalSkillEvents": 0,
   "skillsAvailable": 13,
   "byDesigner": {
     "Paza Bahia": {
-      "commits": 8,
-      "commitsWeek": 8,
-      "commitsTwoWeeks": 8,
-      "commitsMonth": 8,
-      "lastCommit": "2026-07-24T18:00:18+01:00",
+      "commits": 11,
+      "commitsWeek": 11,
+      "commitsTwoWeeks": 11,
+      "commitsMonth": 11,
+      "lastCommit": "2026-07-24T20:28:16+01:00",
       "recentSubjects": [
+        {
+          "subject": "Phase 3 handoff notes: run panel, citations canvas, gates, seat toggle + locked vocabulary",
+          "date": "2026-07-24T20:28:16+01:00"
+        },
+        {
+          "subject": "Fix inherited root redirect: / now lands on the One Enterprise Deal OS demo",
+          "date": "2026-07-24T18:36:07+01:00"
+        },
+        {
+          "subject": "Root URL redirects to the One Enterprise Deal OS demo; gallery index moves to /gallery",
+          "date": "2026-07-24T18:33:58+01:00"
+        },
         {
           "subject": "One Enterprise Phase 2: wire deal workspace into the Phase 1 shell",
           "date": "2026-07-24T18:00:18+01:00"
@@ -18,18 +30,6 @@
         {
           "subject": "One Enterprise Phase 2: deal workspace components",
           "date": "2026-07-24T18:00:06+01:00"
-        },
-        {
-          "subject": "One Enterprise Phase 2: Caldera deal workspace state + fixtures",
-          "date": "2026-07-24T17:59:55+01:00"
-        },
-        {
-          "subject": "One Enterprise Phase 1: My Deals home + promote-to-deal orchestration",
-          "date": "2026-07-24T16:49:24+01:00"
-        },
-        {
-          "subject": "One Enterprise Phase 1: sourcing scenario UI",
-          "date": "2026-07-24T16:49:15+01:00"
         }
       ],
       "skillInvocations": 0,
@@ -38,7 +38,7 @@
     }
   },
   "daily": {
-    "2026-07-24": 8
+    "2026-07-24": 11
   },
   "topSkillsOverall": []
 }

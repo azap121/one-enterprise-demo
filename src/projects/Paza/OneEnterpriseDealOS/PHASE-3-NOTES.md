@@ -1,6 +1,18 @@
 # Phase 3 Handoff — chat run + citations canvas + approval gates + seat toggle
 
-**State as of 24 Jul 2026:** Phases 0–2 complete and live at https://one-enterprise-demo.vercel.app (root redirects to `/projects/paza-one-enterprise-deal-os`). Phase 3 is next. Read `BRIEF.md` first, then this.
+**State as of 24 Jul 2026 (evening): PHASE 3 BUILT + smoke-tested** — everything below plus the Merlin-mode frame is implemented and pushed. Phase 4 (motion polish, BRIEF demo script, final deploy smoke) is next. Read `BRIEF.md` first, then this.
+
+## What shipped (Phase 3 build record, 24 Jul)
+
+- **CIM run** — `state/cimRunScenario.ts` phase machine (`idle → working → plan-ready → executing → output-ready → accepted`), keyed off the playbook id via `QUEUE_PLAYBOOK` (Agent card click stages the prompt + arms the engine; submit never parses composer strings). Timers live in `FolderRecommendationsChatAssistant` effects, AX cadence 950/1050ms, reduced-motion collapses to 80ms.
+- **Chat cards** — `CimWorkLog` (elapsed badges, mono sub-process line, tanzanite `@Grata` tool-call chip), `CimPlanCard` (est.-credits line; Approve plan → Executing → Done, no layout shift), `CimOutputCard` (deliverable-named, Blueflame action bar, **audit stamp "Ran in <mode> · … approved by you"**), `GrataSimilarCard`.
+- **Cited review canvas** — `CimReviewCanvasView` on new `deal-review` tab: Nexus toolbar/view-strip anatomy + per-cell citation badges (page + verbatim quote + confidence + basis popover — deliberately beyond real Blueflame). Footer = the commit gate; copy follows the dial. Accept → Tracked chip + Overview echo (activity row + next-step, sticky via `cimAcceptedOnce`).
+- **Merlin mode** — `MerlinComposerFrame` + `state/merlinFixtures.ts`: Normal ⇄ Merlin toggle (⌘M), Normal = frontier-model chip (GPT-5.5/Opus 4.8/Sonnet 4.6/Gemini 3.1 Pro/Perplexity Sonar) + web toggle + conversation-only replies; Merlin = autonomy dial chip (Guide me / Plan first / Draft ahead / Run it / Sandbox, keys 1–5, microcopy) + animated gradient border + pre-run credit estimate. Dial branches the run: 1–2 plan-gated, 3–4 straight to the commit gate ("Ready to file into Deal › Review — approve?"), Sandbox = banner + file-to-deal disabled. Run-time facts are **frozen on the message via `runMeta`** so reruns on a different dial can't rewrite the audit history.
+- **Two-tier vocabulary** — rail is ONE "Agents" library grouped Source/Evaluate/Diligence/Monitor (`CALDERA_AGENT_GROUPS`); governed runners folded in with status chips (Deal Research Agent flips active during execution); assistant is "Blueflame AI" in all deal-scoped copy.
+- **Seat toggle** — rail `Seat` control: Alex (chat-first) ↔ Morgan (structure-first → canvas expanded, chat docked). `persona.ts` gained `morgan` + `DealLayout`.
+- **Smoke-tested in-browser** (gstack /browse): full plan-first run → accept → Overview echo; Draft-ahead rerun with frozen history; @Grata similar; seat toggle; model menu; Aldgate + Phases 1–2 regression clean. `npm run build` passes; no new tsc errors (4 pre-existing in `briefScenario.ts`).
+
+**Known deltas for Phase 4:** motion pass (card collapse cause→effect flashes, stagger tokens), BRIEF.md demo script incl. the "notice what we never built: an unsafe mode" beat, Guide-me per-step cards (currently falls back to plan-gated flow), split-pane source viewer in the review canvas (citation popover shipped instead).
 
 ## What Phase 3 builds (the 5th demo beat, plus the toggle)
 
@@ -26,6 +38,17 @@ On the Caldera deal: run the "CIM Screen — buy-side" playbook from chat →
 - **"Agents" = the library items** (blueprints + push-button skills), outcome-named, grouped by deal-lifecycle stage. Phase 3 should demo this two-tier vocabulary — the current rail's "Playbooks" section header should become **"Agents"** during Phase 3 (and the current "Agents" governed-runner cards need a rename decision — check doc `enterprise/09-ia-direction-skills-agents-research.md` before renaming; likely fold into the same lifecycle-grouped library with status chips).
 - Outputs named by deliverable (memo / model / buyer list / dashboard), not "artifacts"/"apps".
 - One unified run panel regardless of what's invoked (Alice's consistency objection — converge the doorway).
+
+## Merlin mode — two-mode assistant frame (ADDED 24 Jul, from `enterprise/11-merlin-mode-plan.md`)
+
+Phase 3's run beat gets wrapped in a two-mode composer frame:
+
+- **Normal mode** = chat with a **frontier-model picker chip** (roster fixture from Blueflame recon §3: GPT-5.5, Claude Opus 4.8, Sonnet 4.6, Gemini 3.1 Pro, Perplexity Sonar) + web toggle. Conversation only; never writes to the deal.
+- **Merlin mode** = agentic. Model chip swaps for an **autonomy dial chip** (same composer slot); animated gradient border signals the mode; agent @-mentions available.
+- **Autonomy dial (5 positions, number-key shortcuts, one-line microcopy each):** 1 **Guide me** (approve every step) · 2 **Plan first** (approve the plan, then run — DEFAULT for Deal spaces) · 3 **Draft ahead** (runs freely, asks before anything lands in the deal record or leaves the room) · 4 **Run it** (end-to-end, gates only at hard commits: send/file/share/external) · 5 **Sandbox** (full autonomy, personal scratch space, outputs cannot touch the deal record).
+- **Build mapping:** the scripted CIM-Screen run IS "Plan first" — no new engine. Add ONE extra scripted moment: rerun in "Draft ahead" → plan gate skipped, commit gate still fires ("Ready to file into Deal › Review — approve?"). Sandbox = banner-only teaser (Phase 4 optional).
+- Mode is sticky per space. Show estimated credits pre-run in Merlin mode (budget-panel pattern).
+- Demo-script line: "notice what we never built: an unsafe mode" — Claude Code's Bypass becomes our Sandbox (safe-by-isolation, not dangerous-by-permission).
 
 ## Inputs that may land mid-phase
 
